@@ -2,7 +2,7 @@
 
 | Área | Informação ou implementação pendente |
 | --- | --- |
-| Política editorial | Diretrizes recebidas e registradas em EDITORIAL_POLICY.md; confirmar vigência, interpretação dos marcadores, equivalentes por idioma, contagem e Condições para submissão. |
+| Política editorial | Diretrizes recebidas e registradas em EDITORIAL_POLICY.md; marcadores e equivalentes aprovados; confirmar vigência, convenção editorial de contagem e Condições para submissão. |
 | Locales | Confirmar códigos configurados no OJS e mapeamento para pt_BR/en_US/es_ES, inclusive variantes regionais. |
 | Autoria | Extração completa e ordenada de autores da publicação corrente; política para ausência de autoria e múltiplas afiliações. |
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
@@ -16,8 +16,9 @@
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
 | Homologação | Runtime compatível, extensões, banco, TLS e recursos do laboratório; não houve acesso à VM. |
 
-As primeiras regras verificam apenas presença e formato/checksum. O registro das
-[diretrizes fornecidas](EDITORIAL_POLICY.md) não implementa novas verificações.
+As regras da Etapa 2 verificam também marcadores e extensão dos resumos e
+quantidade de palavras-chave, conforme [STAGE2.md](STAGE2.md). As
+[diretrizes fornecidas](EDITORIAL_POLICY.md) registram os demais requisitos.
 Nenhuma política ausente foi preenchida por suposição. Os limites da arquitetura
 original continuam válidos. Alterações editoriais exigem aprovação explícita
 em trabalho futuro e não são parte desta implementação.

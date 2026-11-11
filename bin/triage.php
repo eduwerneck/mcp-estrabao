@@ -3,7 +3,7 @@ declare(strict_types=1);
 require_once __DIR__ . '/../src/bootstrap.php';
 use Estrabao\Contracts\Submission;
 use Estrabao\Reporting\Report;
-use Estrabao\Rules\{MetadataPresence, Orcid, PendingPolicy};
+use Estrabao\Rules\DefaultRules;
 
 if (PHP_SAPI !== 'cli') {
     http_response_code(404);
@@ -15,7 +15,7 @@ try {
         throw new InvalidArgumentException('Uso: php bin/triage.php snapshot.json (arquivo local até 1 MiB).');
     }
     $snapshot = Submission::fromJson(file_get_contents($argv[1]));
-    $report = Report::generate($snapshot, [new MetadataPresence(), new Orcid(), new PendingPolicy()]);
+    $report = Report::generate($snapshot, DefaultRules::all());
     echo json_encode($report, JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR) . PHP_EOL;
 } catch (Throwable $error) {
     // Não revelar conteúdo do manuscrito ou caminhos internos em erros.

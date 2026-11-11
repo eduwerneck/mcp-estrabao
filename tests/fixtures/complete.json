@@ -6,19 +6,25 @@
     "es_ES": "Título sintético"
   },
   "abstract": {
-    "pt_BR": "Resumo sintético.",
-    "en_US": "Synthetic abstract.",
-    "es_ES": "Resumen sintético."
+    "pt_BR": "Contexto: Estudo sintético. Metodologia: Análise local. Resultados: Evidências sintéticas.",
+    "en_US": "Background: Synthetic study. Method: Local analysis. Conclusions: Synthetic evidence.",
+    "es_ES": "Introducción: Estudio sintético. Metodología: Análisis local. Resultados: Evidencia sintética."
   },
   "keywords": {
     "pt_BR": [
-      "exemplo"
+      "geografia",
+      "pesquisa",
+      "dados sintéticos"
     ],
     "en_US": [
-      "example"
+      "geography",
+      "research",
+      "synthetic data"
     ],
     "es_ES": [
-      "ejemplo"
+      "geografía",
+      "investigación",
+      "datos sintéticos"
     ]
   },
   "authors": [

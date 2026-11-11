@@ -56,6 +56,15 @@ e registro de decisões humanas dependem da integração futura. Um hash isolado
 não garante autenticidade. Mesmo o relatório reduzido deve ser tratado como dado
 editorial, sem publicação ou envio externo automático.
 
-Rótulos de resumo, estrutura DOCX, APA 7 e correspondência de citações geram
+Estrutura Word, APA 7 e correspondência de citações geram
 resultados indeterminados com `implemented: false`; não são analisadores funcionais.
 Não há recomendação automática de rejeição nesta etapa.
+
+## Extensão na Etapa 2
+
+O formato de snapshot e a versão de schema 1.0 foram preservados. O motor 0.2.0
+acrescenta resultados por idioma para marcadores e extensão dos resumos e
+quantidade de palavras-chave, descritos em STAGE2.md. `rule_version` e
+`engine_version` aceitam versões numéricas em três componentes no schema.
+O resultado `abstract.labels` passa de pendência 1.0.0 para regra 2.0.0.
+Resultados anteriores continuam identificáveis pelas versões registradas.

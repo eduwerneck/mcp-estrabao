@@ -19,7 +19,8 @@
       "const": "1.0"
     },
     "engine_version": {
-      "const": "0.1.0"
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
     },
     "generated_at": {
       "type": "string",
@@ -61,7 +62,8 @@
             "minLength": 1
           },
           "rule_version": {
-            "const": "1.0.0"
+            "type": "string",
+            "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
           },
           "status": {
             "enum": [

@@ -54,3 +54,10 @@ As [diretrizes editoriais fornecidas](EDITORIAL_POLICY.md) registram estrutura,
 extensão, resumos e formatação sem exigir template. Esse registro distingue
 obrigações, recomendações e exigências condicionais; não modifica as regras já
 implementadas. As interpretações ainda pendentes permanecem explícitas.
+
+## Implementação da Etapa 2
+
+O motor 0.2.0 acrescenta regras locais de marcadores, extensão dos resumos e
+quantidade de palavras-chave por idioma. A descrição técnica em STAGE2.md
+registra normalização, evidências e tratamento de casos ambíguos. O esqueleto
+do plugin continua sem invocar o motor, consultar submissões ou publicar rotas.

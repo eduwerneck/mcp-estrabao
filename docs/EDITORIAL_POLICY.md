@@ -10,8 +10,9 @@ vigência ou versão oficial da política. Confirmar a vigência antes da homolo
 O usuário informou expressamente que a revista **não possui template oficial**.
 Não exigir template, estilos específicos de Word ou modelos não publicados.
 
-Este documento registra requisitos; não altera o comportamento do motor da
-Etapa 1. Suas regras continuam limitadas à presença trilíngue e ao ORCID.
+Este documento registra requisitos. O motor da Etapa 2 implementa presença,
+ORCID, marcadores e extensão dos resumos e quantidade de palavras-chave;
+os critérios técnicos e limites estão em STAGE2.md.
 
 ## Exigências explícitas
 
@@ -31,8 +32,8 @@ traduções oficiais dos títulos para manuscritos em inglês e espanhol.
 | --- | --- | --- |
 | Idioma principal | Português, inglês ou espanhol | Identificação declarada e eventual conferência humana; não confundir idioma com locale |
 | Metadados | Título, resumo e palavras-chave nos três idiomas, independentemente do idioma principal | Presença já implementada; normalização de locales OJS pendente |
-| Resumo | Até 250 palavras; marcadores explícitos Contexto, Metodologia(s), Resultados ou Conclusões | Contagem e marcadores ainda não implementados; decisões e pendências registradas abaixo |
-| Palavras-chave | 3 a 4 | Quantidade ainda não implementada; confirmar aplicação por idioma e duplicatas |
+| Resumo | Até 250 palavras; marcadores explícitos Contexto, Metodologia(s), Resultados ou Conclusões | Implementados na Etapa 2; decisões e convenções técnicas em STAGE2.md |
+| Palavras-chave | 3 a 4 | Quantidade implementada por idioma; duplicatas registradas sem reprovação por unicidade |
 | Autoria | Sem limite numérico de autores; contribuição significativa de todos | Não impor máximo; contribuição significativa exige análise humana |
 | ORCID | Informado no sistema para todos os autores | Presença/formato/checksum já implementados; identidade não verificada |
 | Contribuições | Descrição de contribuições conforme taxonomia CRediT; autor correspondente responde pela veracidade | Presença futura separada de avaliação humana da veracidade |
@@ -75,18 +76,18 @@ no resumo do idioma correspondente. Não exigir ambas as alternativas de um grup
 “Metodologias” não é alternativa aprovada. Não estender a lista automaticamente
 com plurais, sinônimos ou traduções adicionais. Esta tabela se refere aos
 **resumos**; não modifica os títulos obrigatórios das seções do corpo do manuscrito.
-O reconhecimento automático desses marcadores ainda não foi implementado.
+O reconhecimento automático está implementado com os limites descritos em STAGE2.md.
 
 ## Confirmações antes de automatizar
 
 1. Marcadores dos resumos: alternativas e traduções aprovadas pelo responsável
-   conforme a tabela abaixo. Permanecem a definir detalhes de reconhecimento,
-   como pontuação, caixa, posição e separação entre marcador e conteúdo.
+   conforme a tabela acima. O reconhecimento técnico está em STAGE2.md; formatos
+   ambíguos exigem revisão humana, sem criar exigência editorial de pontuação.
 2. Títulos das seções em inglês/espanhol, variantes e seções adicionais permitidas;
    obrigatoriedade de ordem e tratamento de Resultados/Discussão separados.
 3. Convenção para contar palavras (hífens, números, siglas, tabelas, legendas,
-   notas, CRediT e fomento) e delimitar as exclusões. Confirmar o limite do resumo
-   e quantidade de palavras-chave em cada versão linguística.
+   notas, CRediT e fomento) e delimitar as exclusões do corpo do manuscrito. A Etapa 2 aplica 250 palavras
+   e 3 a 4 palavras-chave em cada idioma; métodos de contagem ficam explícitos.
 4. Se toda submissão deve declarar uso ou não uso de IA; quais campos permitem
    distinguir “não utilizado” de ausência de informação.
 5. Como declarar ausência de fomento e aplicabilidade ética; não presumir que a
@@ -97,9 +98,9 @@ O reconhecimento automático desses marcadores ainda não foi implementado.
 
 ## Sequência de desenvolvimento sugerida
 
-Primeiro aprovar a interpretação dos marcadores e da contagem. Depois acrescentar
-regras independentes de quantidade de palavras-chave e extensão de resumos com
-testes sintéticos e regras versionadas. Na sequência, desenvolver extração segura
+Marcadores, quantidade de palavras-chave e extensão de resumos estão implementados
+com testes sintéticos, regras versionadas e limites documentados em STAGE2.md.
+Na sequência, desenvolver extração segura
 local de .docx e estratégia para .doc, identificação do tipo de manuscrito e
 seções. Falha ou cobertura incompleta de extração será indeterminado.
 
