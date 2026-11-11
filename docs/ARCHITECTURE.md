@@ -29,3 +29,20 @@ Construir um plugin nativo para OJS 3.3.0.20 e um serviço MCP opcional para apo
 3. Implementar o esqueleto do plugin OJS e testes sem conexão com produção.
 4. Provisionar laboratório OJS 3.3.0.20 na VM estrabao-lab e validar SSH, rede e custos.
 5. Implementar integração MCP de leitura e relatórios; habilitar operações editoriais apenas após revisão e autorização.
+
+## Implementação da Etapa 1
+
+O motor local (`src/`) trabalha sobre snapshot normalizado independente do OJS,
+com regras de presença trilíngue e ORCID. Regras que dependem de políticas ou de
+extração ainda inexistente retornam indeterminado. Os contratos e sua semântica
+estão em [CONTRACTS.md](CONTRACTS.md).
+
+O plugin genérico em `plugins/generic/estrabao/` é somente um esqueleto baseado
+na API efetiva de 3.3.0.20. Ainda não chama o motor nem consulta submissões.
+O módulo `mcp/` documenta o serviço futuro; não expõe ferramentas.
+Relatórios JSON registram evidências reduzidas, versões e hash do snapshot;
+persistência protegida e auditoria de decisões humanas permanecem pendentes.
+
+A [lista de requisitos pendentes](PENDING_REQUIREMENTS.md) distingue políticas
+a confirmar de integrações ainda não implementadas. Não houve acesso à revista
+em produção ou à VM `estrabao-lab`.

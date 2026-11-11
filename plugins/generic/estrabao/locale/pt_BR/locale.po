@@ -1,0 +1,10 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: pt_BR\n"
+
+msgid "plugins.generic.estrabao.displayName"
+msgstr "MCP Estrabão — triagem preliminar"
+
+msgid "plugins.generic.estrabao.description"
+msgstr "Esqueleto de integração para triagem formal. Não executa verificações no OJS nem ações editoriais nesta versão."
