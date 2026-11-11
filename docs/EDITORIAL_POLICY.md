@@ -31,7 +31,7 @@ traduções oficiais dos títulos para manuscritos em inglês e espanhol.
 | --- | --- | --- |
 | Idioma principal | Português, inglês ou espanhol | Identificação declarada e eventual conferência humana; não confundir idioma com locale |
 | Metadados | Título, resumo e palavras-chave nos três idiomas, independentemente do idioma principal | Presença já implementada; normalização de locales OJS pendente |
-| Resumo | Até 250 palavras; marcadores explícitos Contexto, Metodologia(s), Resultados ou Conclusões | Contagem e marcadores ainda não implementados; confirmar variantes e traduções |
+| Resumo | Até 250 palavras; marcadores explícitos Contexto, Metodologia(s), Resultados ou Conclusões | Contagem e marcadores ainda não implementados; decisões e pendências registradas abaixo |
 | Palavras-chave | 3 a 4 | Quantidade ainda não implementada; confirmar aplicação por idioma e duplicatas |
 | Autoria | Sem limite numérico de autores; contribuição significativa de todos | Não impor máximo; contribuição significativa exige análise humana |
 | ORCID | Informado no sistema para todos os autores | Presença/formato/checksum já implementados; identidade não verificada |
@@ -62,9 +62,13 @@ traduções oficiais dos títulos para manuscritos em inglês e espanhol.
 
 ## Confirmações antes de automatizar
 
-1. Marcadores: aceitar literalmente “Metodologia(s)” ou as variantes “Metodologia”
-   e “Metodologias”? “Resultados ou Conclusões” significa aceitar um dos dois
-   marcadores? Quais equivalentes oficiais em inglês e espanhol?
+1. Marcadores: o responsável confirmou “Metodologia” no singular (não
+   “Metodologias”) e aceitação de qualquer um entre “Resultados” e “Conclusões”.
+   Em esclarecimento sobre os demais idiomas, indicou “Contexto/Introdução.
+   Método. Resultados ou Conclusões”. Confirmar se “Contexto” e “Introdução” são
+   alternativas, se “Método” é alternativa a “Metodologia” e quais grafias devem
+   aparecer em inglês/espanhol (traduções ou termos literais em português).
+   Não implementar correspondências presumidas enquanto houver essa ambiguidade.
 2. Títulos das seções em inglês/espanhol, variantes e seções adicionais permitidas;
    obrigatoriedade de ordem e tratamento de Resultados/Discussão separados.
 3. Convenção para contar palavras (hífens, números, siglas, tabelas, legendas,
