@@ -1,0 +1,88 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:estrabao:report:1.0",
+  "title": "Relatório de triagem v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "engine_version",
+    "generated_at",
+    "input_sha256",
+    "locale_profile",
+    "scope",
+    "human_review_required",
+    "checks"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "engine_version": {
+      "const": "0.1.0"
+    },
+    "generated_at": {
+      "type": "string",
+      "format": "date-time"
+    },
+    "input_sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "locale_profile": {
+      "const": [
+        "pt_BR",
+        "en_US",
+        "es_ES"
+      ]
+    },
+    "scope": {
+      "const": "local_snapshot_only"
+    },
+    "human_review_required": {
+      "const": true
+    },
+    "checks": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "rule_version",
+          "status",
+          "evidence",
+          "location",
+          "recommendation"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "rule_version": {
+            "const": "1.0.0"
+          },
+          "status": {
+            "enum": [
+              "conforme",
+              "não conforme",
+              "indeterminado"
+            ]
+          },
+          "evidence": {
+            "type": "object",
+            "minProperties": 1
+          },
+          "location": {
+            "type": "string"
+          },
+          "recommendation": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    }
+  }
+}

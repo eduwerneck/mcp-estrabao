@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "title": {
+    "pt_BR": "Título sintético",
+    "en_US": "Synthetic title",
+    "es_ES": "Título sintético"
+  },
+  "abstract": {
+    "pt_BR": "Resumo sintético.",
+    "en_US": "Synthetic abstract.",
+    "es_ES": "Resumen sintético."
+  },
+  "keywords": {
+    "pt_BR": [
+      "exemplo"
+    ],
+    "en_US": [
+      "example"
+    ],
+    "es_ES": [
+      "ejemplo"
+    ]
+  },
+  "authors": [
+    {
+      "orcid": "0000-0000-0000-001X"
+    },
+    {
+      "orcid": "https://orcid.org/0000-0000-0000-0028"
+    }
+  ]
+}

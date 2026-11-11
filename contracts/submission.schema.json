@@ -1,0 +1,75 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:estrabao:submission:1.0",
+  "title": "Snapshot de triagem v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "title": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "propertyNames": {
+        "pattern": "^[a-z]{2}_[A-Z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "abstract": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "propertyNames": {
+        "pattern": "^[a-z]{2}_[A-Z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "keywords": {
+      "type": [
+        "object",
+        "null"
+      ],
+      "propertyNames": {
+        "pattern": "^[a-z]{2}_[A-Z]{2}$"
+      },
+      "additionalProperties": {
+        "type": "array",
+        "items": {
+          "type": "string"
+        }
+      }
+    },
+    "authors": {
+      "type": [
+        "array",
+        "null"
+      ],
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "orcid"
+        ],
+        "properties": {
+          "orcid": {
+            "type": [
+              "string",
+              "null"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

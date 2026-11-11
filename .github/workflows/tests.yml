@@ -1,0 +1,19 @@
+name: PHP checks
+on: [push, pull_request]
+permissions:
+  contents: read
+jobs:
+  tests:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        php: ['7.4', '8.3']
+    steps:
+      - uses: actions/checkout@v4
+      - uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          coverage: none
+      - run: find src bin plugins tests -name '*.php' -print0 | xargs -0 -n1 php -l
+      - run: php tests/run.php
+      - run: php bin/triage.php tests/fixtures/complete.json > /tmp/estrabao-report.json
