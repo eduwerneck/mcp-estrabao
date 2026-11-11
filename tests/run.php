@@ -171,7 +171,8 @@ test('plugin carrega com dublê explícito da API legada', function () {
 
 function cli(array $args): array
 {
-    $command = escapeshellarg(PHP_BINARY) . ' -n ' . escapeshellarg(__DIR__ . '/../bin/triage.php');
+    // Preserve php.ini and its shared extensions (notably JSON on PHP 7.4).
+    $command = escapeshellarg(PHP_BINARY) . ' ' . escapeshellarg(__DIR__ . '/../bin/triage.php');
     foreach ($args as $arg) { $command .= ' ' . escapeshellarg($arg); }
     $process = proc_open($command, [1 => ['pipe', 'w'], 2 => ['pipe', 'w']], $pipes);
     if (!is_resource($process)) { throw new RuntimeException('CLI não iniciada.'); }
@@ -185,6 +186,30 @@ test('CLI gera relatório JSON local', function () {
     $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
     same(19, count($report['checks']));
     same(true, $report['human_review_required']);
+});
+test('CLI preserva inicialização configurada em arquivos ini', function () {
+    $dir = sys_get_temp_dir() . '/estrabao-ini-' . bin2hex(random_bytes(8));
+    if (!mkdir($dir, 0700)) { throw new RuntimeException('Diretório temporário não criado.'); }
+    $original = getenv('PHP_INI_SCAN_DIR');
+    $directories = [];
+    // Keep the directories already supplying shared extensions to this PHP.
+    foreach (explode(',', php_ini_scanned_files() ?: '') as $ini) {
+        if (trim($ini) !== '') { $directories[] = dirname(trim($ini)); }
+    }
+    $scan = $original === false ? implode(PATH_SEPARATOR, array_unique($directories)) : $original;
+    try {
+        file_put_contents($dir . '/prepend.php', '<?php file_put_contents(' . var_export($dir . '/loaded', true) . ', "loaded");');
+        file_put_contents($dir . '/99-test.ini', 'auto_prepend_file="' . $dir . '/prepend.php"' . PHP_EOL);
+        putenv('PHP_INI_SCAN_DIR=' . ($scan === '' ? '' : $scan . PATH_SEPARATOR) . $dir);
+        list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json']);
+        same(0, $code); same('', $err);
+        same(true, is_file($dir . '/loaded'));
+        same(19, count(json_decode($out, true, 64, JSON_THROW_ON_ERROR)['checks']));
+    } finally {
+        putenv($original === false ? 'PHP_INI_SCAN_DIR' : 'PHP_INI_SCAN_DIR=' . $original);
+        foreach (glob($dir . '/*') as $path) { unlink($path); }
+        rmdir($dir);
+    }
 });
 test('CLI sem argumento falha sem saída de relatório', function () {
     list($code, $out, $err) = cli([]);
