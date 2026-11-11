@@ -35,6 +35,7 @@ relatórios em disco. Use exclusivamente fixtures sintéticas nesta etapa.
 Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md),
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
+[diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),
 [procedimentos futuros do laboratório](docs/LAB.md) e
 [resultados de validação](docs/VALIDATION.md).
 

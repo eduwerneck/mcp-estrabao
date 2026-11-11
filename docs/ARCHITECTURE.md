@@ -20,7 +20,8 @@ Construir um plugin nativo para OJS 3.3.0.20 e um serviço MCP opcional para apo
 - Título, resumo e palavras-chave em português, inglês e espanhol.
 - Seções rotuladas exigidas pela política editorial vigente em cada resumo.
 - ORCID de todos os autores, com distinção entre presença, formato e validação externa.
-- Estrutura DOCX conforme o template oficial, após disponibilização da versão de referência.
+- Estrutura do manuscrito Word conforme as diretrizes por tipo de texto. A revista
+  não possui template e aceita .doc e .docx (esclarecimento posterior à Etapa 1).
 - Citações e referências APA 7: indícios e inconsistências com revisão humana para casos ambíguos.
 
 ## Próximos marcos
@@ -46,3 +47,10 @@ persistência protegida e auditoria de decisões humanas permanecem pendentes.
 A [lista de requisitos pendentes](PENDING_REQUIREMENTS.md) distingue políticas
 a confirmar de integrações ainda não implementadas. Não houve acesso à revista
 em produção ou à VM `estrabao-lab`.
+
+## Diretrizes recebidas após a Etapa 1
+
+As [diretrizes editoriais fornecidas](EDITORIAL_POLICY.md) registram estrutura,
+extensão, resumos e formatação sem exigir template. Esse registro distingue
+obrigações, recomendações e exigências condicionais; não modifica as regras já
+implementadas. As interpretações ainda pendentes permanecem explícitas.

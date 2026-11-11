@@ -2,11 +2,11 @@
 
 | Área | Informação ou implementação pendente |
 | --- | --- |
-| Política editorial | Versão aprovada, rótulos exatos por idioma, obrigatoriedade e ordem; nenhum limite de palavras foi presumido. |
+| Política editorial | Diretrizes recebidas e registradas em EDITORIAL_POLICY.md; confirmar vigência, interpretação dos marcadores, equivalentes por idioma, contagem e Condições para submissão. |
 | Locales | Confirmar códigos configurados no OJS e mapeamento para pt_BR/en_US/es_ES, inclusive variantes regionais. |
 | Autoria | Extração completa e ordenada de autores da publicação corrente; política para ausência de autoria e múltiplas afiliações. |
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
-| DOCX | Template oficial versionado, definições objetivas de IMRD e conclusão, títulos equivalentes e variações admitidas. |
+| Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Implementar extração e confirmar títulos equivalentes e variações admitidas. |
 | Extração segura | Limites de arquivo e descompactação, proteção contra ZIP bomb, caminhos ZIP, XML externo, arquivos corrompidos; falhas serão indeterminadas. |
 | APA 7 | Escopo determinístico aprovado, exemplos sintéticos e tratamento humano de ambiguidades e correspondências de citações. |
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
@@ -16,7 +16,8 @@
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
 | Homologação | Runtime compatível, extensões, banco, TLS e recursos do laboratório; não houve acesso à VM. |
 
-As primeiras regras verificam apenas presença e formato/checksum. Nenhuma
-política ausente foi preenchida por suposição. Os limites da arquitetura
+As primeiras regras verificam apenas presença e formato/checksum. O registro das
+[diretrizes fornecidas](EDITORIAL_POLICY.md) não implementa novas verificações.
+Nenhuma política ausente foi preenchida por suposição. Os limites da arquitetura
 original continuam válidos. Alterações editoriais exigem aprovação explícita
 em trabalho futuro e não são parte desta implementação.
