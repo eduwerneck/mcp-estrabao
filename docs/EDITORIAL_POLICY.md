@@ -60,15 +60,28 @@ traduções oficiais dos títulos para manuscritos em inglês e espanhol.
 - Linguagem clara, acessível e inclusiva: encorajamento; análise humana, sem
   converter preferência de linguagem em descumprimento formal automático.
 
+## Marcadores de resumo aprovados pelo responsável
+
+A tabela proposta nesta conversa foi aprovada expressamente pelo responsável.
+Cada coluna representa um grupo obrigatório; basta uma alternativa de cada grupo
+no resumo do idioma correspondente. Não exigir ambas as alternativas de um grupo.
+
+| Idioma | Primeiro grupo | Segundo grupo | Terceiro grupo |
+| --- | --- | --- | --- |
+| Português | Contexto ou Introdução | Metodologia ou Método | Resultados ou Conclusões |
+| Inglês | Background ou Introduction | Methodology ou Method | Results ou Conclusions |
+| Espanhol | Contexto ou Introducción | Metodología ou Método | Resultados ou Conclusiones |
+
+“Metodologias” não é alternativa aprovada. Não estender a lista automaticamente
+com plurais, sinônimos ou traduções adicionais. Esta tabela se refere aos
+**resumos**; não modifica os títulos obrigatórios das seções do corpo do manuscrito.
+O reconhecimento automático desses marcadores ainda não foi implementado.
+
 ## Confirmações antes de automatizar
 
-1. Marcadores: o responsável confirmou “Metodologia” no singular (não
-   “Metodologias”) e aceitação de qualquer um entre “Resultados” e “Conclusões”.
-   Em esclarecimento sobre os demais idiomas, indicou “Contexto/Introdução.
-   Método. Resultados ou Conclusões”. Confirmar se “Contexto” e “Introdução” são
-   alternativas, se “Método” é alternativa a “Metodologia” e quais grafias devem
-   aparecer em inglês/espanhol (traduções ou termos literais em português).
-   Não implementar correspondências presumidas enquanto houver essa ambiguidade.
+1. Marcadores dos resumos: alternativas e traduções aprovadas pelo responsável
+   conforme a tabela abaixo. Permanecem a definir detalhes de reconhecimento,
+   como pontuação, caixa, posição e separação entre marcador e conteúdo.
 2. Títulos das seções em inglês/espanhol, variantes e seções adicionais permitidas;
    obrigatoriedade de ordem e tratamento de Resultados/Discussão separados.
 3. Convenção para contar palavras (hífens, números, siglas, tabelas, legendas,
