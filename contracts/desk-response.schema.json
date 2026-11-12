@@ -1,0 +1,143 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "urn:estrabao:desk-response:1.0",
+  "title": "Minuta de devolutiva editorial v1",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schema_version",
+    "template_version",
+    "editor_review_required",
+    "send_authorized",
+    "source_input_sha256",
+    "source_document_sha256",
+    "source_engine_version",
+    "decision",
+    "subject",
+    "body",
+    "corrections",
+    "pending_review_count",
+    "unmapped_check_count",
+    "pending_review"
+  ],
+  "properties": {
+    "schema_version": {
+      "const": "1.0"
+    },
+    "template_version": {
+      "const": "1.0.0"
+    },
+    "editor_review_required": {
+      "const": true
+    },
+    "send_authorized": {
+      "const": false
+    },
+    "source_input_sha256": {
+      "type": "string",
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_document_sha256": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "pattern": "^[a-f0-9]{64}$"
+    },
+    "source_engine_version": {
+      "type": "string",
+      "pattern": "^[0-9]+\\.[0-9]+\\.[0-9]+$"
+    },
+    "decision": {
+      "enum": [
+        "corrections_required",
+        "editorial_review_required",
+        "no_issues_detected"
+      ]
+    },
+    "subject": {
+      "const": "Adequação às diretrizes editoriais"
+    },
+    "body": {
+      "type": "string",
+      "minLength": 1
+    },
+    "corrections": {
+      "type": "array",
+      "maxItems": 8192,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "area",
+          "requirement",
+          "finding",
+          "correction"
+        ],
+        "properties": {
+          "area": {
+            "type": "string",
+            "minLength": 1
+          },
+          "requirement": {
+            "type": "string",
+            "minLength": 1
+          },
+          "finding": {
+            "type": "string",
+            "minLength": 1
+          },
+          "correction": {
+            "type": "string",
+            "minLength": 1
+          }
+        }
+      }
+    },
+    "pending_review_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8192
+    },
+    "unmapped_check_count": {
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 8192
+    },
+    "pending_review": {
+      "type": "array",
+      "maxItems": 8192,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "rule_id",
+          "location",
+          "reason"
+        ],
+        "properties": {
+          "rule_id": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "location": {
+            "type": [
+              "string",
+              "null"
+            ]
+          },
+          "reason": {
+            "enum": [
+              "indeterminate",
+              "unmapped_rule",
+              "source_unavailable",
+              "insufficient_evidence"
+            ]
+          }
+        }
+      }
+    }
+  }
+}

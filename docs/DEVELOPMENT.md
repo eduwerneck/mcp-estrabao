@@ -90,3 +90,10 @@ O plugin 0.3.1.0 foi exercitado em OJS 3.3.0.20 real com PHP 8.1, MariaDB e
 Chromium em Docker internal, só com dados sintéticos. Procedimento, scripts
 opcionais e capturas estão em [STAGE15.md](STAGE15.md). Os registros anteriores
 de ausência de instalação descrevem as etapas anteriores. Sem produção ou VM.
+
+## Minuta de devolutiva — Etapa 16
+
+`php bin/desk.php snapshot.json [manuscrito.docx article|research_communication pt|en|es]`
+gera minuta local revisável e ficha interna conforme STAGE16.md. O runner e a CI
+exercitam a nova CLI sem OJS, banco ou rede. Gerar JSON não autoriza envio; para
+comunicação, revisar apenas subject/body e conferir a versão dos dados analisados.

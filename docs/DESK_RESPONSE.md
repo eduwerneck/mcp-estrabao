@@ -63,9 +63,10 @@ A orientação de corrigir e passar por nova triagem não promete encaminhamento
 editor, utilizando os motivos aplicáveis. Aprovar este modelo não autoriza
 mensagens automáticas, publicação de dados de manuscritos ou mudanças no OJS.
 
-Este registro aprova o modelo documental; a consolidação automática de todas
-as regras em uma carta completa ainda não está implementada. O adaptador atual
-exibe motivos e correções APA no formulário, conforme STAGE15.md.
+A Etapa 16 implementa a consolidação local dos resultados reconhecidos em
+minuta revisável, sem envio, pela CLI bin/desk.php (STAGE16.md). A emissão pelo
+painel OJS ainda não está implementada. O adaptador atual exibe motivos e
+correções APA no formulário, conforme STAGE15.md.
 
 O documento real usado para aprovar a redação, sua carta específica e suas notas
 internas ficam fora do repositório e das fixtures. Nenhuma comunicação foi enviada.
