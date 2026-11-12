@@ -107,7 +107,7 @@ test('DOI ausente não é obrigatório nem gera falha', function () use ($single
 foreach (['https://doi.org/10.1234/synthetic' => 'url_candidates', 'doi:10.1234/synthetic' => 'legacy_candidates', 'http://dx.doi.org/10.1234/synthetic' => 'legacy_candidates'] as $doi => $kind) {
     test('sinal DOI não é validação externa ' . $kind . $doi, function () use ($doi, $kind, $single) {
         $checks = referenceChecks(referenceDocument(['Texto (Silva, 2020).'], [$single . ' ' . $doi]));
-        same('indeterminado', $checks[0]['status']); same(1, $checks[0]['evidence']['analysis']['doi_signals'][$kind]);
+        same($kind === 'legacy_candidates' ? 'não conforme' : 'indeterminado', $checks[0]['status']); same(1, $checks[0]['evidence']['analysis']['doi_signals'][$kind]);
         same('conforme', $checks[1]['status']); same(false, strpos(json_encode($checks), $doi) !== false);
     });
 }
@@ -166,10 +166,10 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.10.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.11.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
-            same($expected, $checks['references.citation_matching']['status']); same('2.0.0', $checks['references.citation_matching']['rule_version']);
-            same('indeterminado', $checks['references.apa7']['status']);
+            same($expected, $checks['references.citation_matching']['status']); same('3.0.0', $checks['references.citation_matching']['rule_version']);
+            same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);
             same(hash_file('sha256', $path), $checks['references.apa7']['evidence']['document_sha256']);
             same(false, strpos($out, 'Livro sintético') !== false); same(false, strpos($out, $path) !== false);
         });

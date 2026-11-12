@@ -280,6 +280,45 @@ final class StyleResolver
         }
     }
 
+    /** Byte spans of effective italics in exactly the same normalized paragraph text. */
+    public function referenceFormatting(\DOMElement $paragraph, string $normalized): array
+    {
+        $unknown = ['available' => false, 'italic_spans' => []];
+        if (!$this->valid || strlen($normalized) > 8192) { return $unknown; }
+        try {
+            $x = $this->xpath($paragraph->ownerDocument); $this->containers($paragraph);
+            if ($x->query('.//w:r', $paragraph)->length > self::MAX_RUNS_PER_PARAGRAPH) { return $unknown; }
+            $italic = false;
+            if ($this->styleXml !== null) {
+                $sx = $this->xpath($this->styleXml);
+                if ($sx->query('/w:styles/w:docDefaults')->length > 1) { return $unknown; }
+                foreach ($sx->query('/w:styles/w:docDefaults | /w:styles/w:docDefaults/w:rPrDefault') as $node) { $this->containers($node); }
+                foreach ($sx->query('/w:styles/w:docDefaults/w:rPrDefault/w:rPr') as $node) { $italic = $this->toggleProperty($node, 'i', $italic, false); }
+            }
+            $id = $this->value($paragraph, './w:pPr/w:pStyle') ?? ($this->defaults['paragraph'] ?? null);
+            foreach ($this->chain($id, 'paragraph') as $style) {
+                foreach ($this->xpath($style->ownerDocument)->query('./w:rPr', $style) as $node) { $italic = $this->toggleProperty($node, 'i', $italic, true); }
+            }
+            $plain = ''; $pending = false; $spans = [];
+            foreach ($x->query('.//w:r', $paragraph) as $run) {
+                $this->containers($run); $effective = $italic; $text = '';
+                $id = $this->value($run, './w:rPr/w:rStyle') ?? ($this->defaults['character'] ?? null);
+                foreach ($this->chain($id, 'character') as $style) {
+                    foreach ($this->xpath($style->ownerDocument)->query('./w:rPr', $style) as $node) { $effective = $this->toggleProperty($node, 'i', $effective, true); }
+                }
+                foreach ($x->query('./w:rPr', $run) as $node) { $effective = $this->toggleProperty($node, 'i', $effective, false); }
+                foreach ($x->query('./w:t|./w:tab|./w:br|./w:cr', $run) as $node) { $text .= $node->localName === 't' ? $node->textContent : ' '; }
+                foreach (preg_split('/(\s+)/u', $text, -1, PREG_SPLIT_NO_EMPTY | PREG_SPLIT_DELIM_CAPTURE) as $token) {
+                    if (preg_match('/^\s+$/uD', $token)) { $pending = $plain !== ''; continue; }
+                    if ($pending) { $plain .= ' '; $pending = false; }
+                    $start = strlen($plain); $plain .= $token;
+                    $spans[] = ['start' => $start, 'end' => strlen($plain), 'italic' => $effective];
+                }
+            }
+            return $plain === $normalized ? ['available' => true, 'italic_spans' => $spans] : $unknown;
+        } catch (\RuntimeException $error) { return $unknown; }
+    }
+
     private function chain(?string $id, string $type): array
     {
         $chain = []; $seen = [];
@@ -295,9 +334,14 @@ final class StyleResolver
 
     private function bold(\DOMNode $properties, bool $inherited, bool $toggle): bool
     {
+        return $this->toggleProperty($properties, 'b', $inherited, $toggle);
+    }
+
+    private function toggleProperty(\DOMNode $properties, string $property, bool $inherited, bool $toggle): bool
+    {
         $x = $this->xpath($properties->ownerDocument);
         if ($x->query('./w:cs|./w:rtl|./w:rPrChange', $properties)->length) { throw new \RuntimeException(); }
-        $nodes = $x->query('./w:b', $properties);
+        $nodes = $x->query('./w:' . $property, $properties);
         if ($nodes->length === 0) { return $inherited; }
         if ($nodes->length !== 1) { throw new \RuntimeException(); }
         $v = $nodes->item(0)->getAttributeNS(DocxReader::W, 'val');

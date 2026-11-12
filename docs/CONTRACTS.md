@@ -131,3 +131,15 @@ indeterminada; correspondência só é conclusiva no subconjunto fechado de STAG
 Mesmos dois IDs e quantidade de resultados, sem novos campos de entrada ou mudança
 de schema 1.0 do relatório. Evidências limitadas sem nomes, títulos ou identificadores
 bibliográficos. Entradas 1.0/1.1 e CLI preservadas.
+
+## Etapa 11
+
+Motor 0.11.0: `references.apa7` e `references.citation_matching` versão 3.0.0.
+APA agregada reprova incompatibilidades concretas e permanece indeterminada
+sem elas; nunca certifica conformidade completa. Novas regras 1.0.0:
+`references.apa7.recognized_formats` e `references.apa7.citation_format`.
+São 45 resultados sem DOCX (47 para artigo, 46 para comunicação). Entradas
+1.0/1.1, schema de relatório 1.0 e CLI preservados. Perfis parciais de fonte
+são explícitos nas evidências; nenhum libera regras antigas sobre texto incompleto.
+Amostras limitadas contêm posições e orientações fixas, sem conteúdo bibliográfico.
+Ver STAGE11.md.
