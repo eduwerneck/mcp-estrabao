@@ -150,3 +150,10 @@ Motor 0.12.0; `references.apa7` 4.0.0 adiciona política explícita de não acei
 por incompatibilidade comprovada e revisão obrigatória nos demais casos.
 `admission_policy` nas evidências segue STAGE12.md. Sem aprovação automática,
 sem execução no OJS. Schemas e quantidades de resultados preservados.
+
+## Etapa 13
+
+Plugin 0.2.0.0 consome a política da regra APA do motor 0.12.0, sem alterar
+schemas, versões de regras ou quantidade de resultados. O hook local de
+confirmação nunca libera automaticamente resultados indeterminados. Escopo de
+ativação, API conferida e limitações operacionais em STAGE13.md.

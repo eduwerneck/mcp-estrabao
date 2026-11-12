@@ -374,3 +374,24 @@ pelo usuário não pôde ser confirmado nessa referência. A nova branch preserv
 
 A mudança calcula política de admissão local. Não implementa o impedimento
 no OJS, não altera estados nem comunica autores. Sem produção ou VM Oracle.
+
+## Etapa 13 — plugin 0.2.0.0, motor 0.12.0
+
+Validação local em 12/11/2026, após merge b51b48c do PR #12. PHP 8.4.27
+com DOM/ZIP. Fontes públicas OJS/pkp-lib nas revisões exatas de STAGE13.md
+foram consultadas para confirmar hook, referências e ordem validate/execute.
+
+- 627 testes sintéticos, zero falhas (10 novos).
+- Lint de 50 arquivos PHP sem erros de sintaxe.
+- Relatórios CLI das entradas 1.0/1.1 válidos no schema existente, 45 resultados.
+- Testes do adaptador com dublês: ativação explícita, isolamento de contexto,
+  autenticação/IDs, consulta de arquivo corrente, ABNT e retorno falso do hook,
+  ausência/multiplicidade de arquivos, estágio incorreto, travessia, URLs,
+  caminho absoluto, symlink externo, motor ausente, exceção e troca de versão.
+- `git diff --check` sem erros. Execução remota CI ainda não verificada.
+
+Os dublês não comprovam instalação, renderização da mensagem, autorização real,
+transações, bloqueio de outros canais ou ausência real de e-mails no OJS.
+Não foi iniciada instalação/banco OJS. Interface de revisão/liberação pendente;
+ativação é exclusivamente futura e em homologação. Nenhuma configuração de
+ambiente foi alterada, nem produção ou VM Oracle acessada.
