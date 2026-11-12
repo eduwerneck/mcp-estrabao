@@ -156,7 +156,7 @@ foreach ([6 => 'conforme', 7 => 'não conforme'] as $count => $status) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json', $path, 'research_communication', 'pt']);
             same(0, $code); same('', $err);
             $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-            same('0.11.0', $report['engine_version']);
+            same('0.12.0', $report['engine_version']);
             same($status, array_column($report['checks'], null, 'rule_id')['manuscript.visuals.count']['status']);
             same(false, strpos($out, 'Coluna A') !== false); same(false, strpos($out, $path) !== false);
         });

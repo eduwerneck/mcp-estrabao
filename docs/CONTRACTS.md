@@ -143,3 +143,10 @@ São 45 resultados sem DOCX (47 para artigo, 46 para comunicação). Entradas
 são explícitos nas evidências; nenhum libera regras antigas sobre texto incompleto.
 Amostras limitadas contêm posições e orientações fixas, sem conteúdo bibliográfico.
 Ver STAGE11.md.
+
+## Etapa 12
+
+Motor 0.12.0; `references.apa7` 4.0.0 adiciona política explícita de não aceitação
+por incompatibilidade comprovada e revisão obrigatória nos demais casos.
+`admission_policy` nas evidências segue STAGE12.md. Sem aprovação automática,
+sem execução no OJS. Schemas e quantidades de resultados preservados.

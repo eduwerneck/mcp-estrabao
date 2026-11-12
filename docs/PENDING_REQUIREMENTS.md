@@ -16,7 +16,7 @@
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
 | Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |
 | Relatórios | Persistência privada, retenção, identidade do operador, vínculo à revisão da submissão, auditoria de acesso e decisão humana. |
-| Rejeição preliminar | Critérios editoriais e autorização de editor; futura recomendação não executará rejeição, mensagens nem alteração de estado. |
+| Rejeição preliminar | Política APA autorizada em 12/11/2026: incompatibilidade comprovada implica submissão não aceita; indeterminado exige revisão sem avanço automático (STAGE12.md). Integração autenticada no OJS, execução do bloqueio e auditoria permanecem pendentes. |
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
 | Homologação | Runtime compatível, extensões, banco, TLS e recursos do laboratório; não houve acesso à VM. |
 

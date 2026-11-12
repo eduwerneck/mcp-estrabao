@@ -356,3 +356,21 @@ PHP 7.4/8.3 permanece na matriz CI; execução remota desta branch ainda não
 verificada. A implementação comunitária CSL foi consultada como apoio durante
 o desenvolvimento (STAGE11.md); não há consulta bibliográfica externa no motor.
 Nenhum manuscrito real, produção, OJS ou VM Oracle foi acessado.
+
+## Etapa 12 — motor 0.12.0
+
+Validação local em 12/11/2026, sobre o commit 152c96d da Etapa 11.
+A referência main observada no remoto ainda estava em 974cc9c; o merge informado
+pelo usuário não pôde ser confirmado nessa referência. A nova branch preserva
+152c96d como ancestral, sem reescrever ou reaplicar seu conteúdo.
+
+- 617 testes sintéticos, zero falhas (4 novos).
+- Lint de 48 arquivos PHP sem erros.
+- Relatórios CLI com entradas 1.0/1.1 válidos no schema existente; ambos com
+  revisão obrigatória e avanço automático desabilitado na ausência de DOCX.
+- Testes confirmam ABNT comprovada e outras incompatibilidades como não aceitas;
+  ausência de fonte e formatos parcialmente conformes não liberam aceite.
+- `git diff --check` sem erros. CI remoto não verificado.
+
+A mudança calcula política de admissão local. Não implementa o impedimento
+no OJS, não altera estados nem comunica autores. Sem produção ou VM Oracle.

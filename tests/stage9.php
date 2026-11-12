@@ -152,7 +152,7 @@ foreach ([1 => 'conforme', 4 => 'não conforme'] as $count => $status) {
         footnoteDocx(footnoteParts($count), function ($document, $path) use ($status) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.11.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.12.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
             same($status, $checks['manuscript.footnotes.count']['status']);
             same('indeterminado', $checks['manuscript.footnotes.lines']['status']);

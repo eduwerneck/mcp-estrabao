@@ -164,6 +164,6 @@ test('CLI mantém compatibilidade 1.0 e aceita 1.1 com subtítulo', function () 
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/' . $fixture]);
         same(0, $code); same('', $err);
         $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-        same('0.11.0', $report['engine_version']); same(45, count($report['checks']));
+        same('0.12.0', $report['engine_version']); same(45, count($report['checks']));
     }
 });

@@ -44,9 +44,18 @@ final class References implements Rule
         }
         $evidence['known_incompatibility_components'] = $components;
         $apa = $components ? CheckResult::FAIL : CheckResult::UNKNOWN;
+        $evidence['admission_policy'] = [
+            'policy_version' => 'apa-required-2026-11-12',
+            'decision' => $apa === CheckResult::FAIL ? 'not_accepted' : 'manual_review_required',
+            'automatic_progression_allowed' => false,
+            'reason' => $apa === CheckResult::FAIL ? 'proven_apa_incompatibility' : 'apa_compliance_not_established',
+            'blocking_components' => $components,
+            'ojs_enforcement_implemented' => false,
+            'editorial_state_changed' => false,
+        ];
         return [
             new CheckResult('references.apa7', $apa, $evidence, '/manuscript',
-                'Corrigir incompatibilidades comprovadas e revisar casos incertos conforme STAGE11.md; verificações automáticas não certificam APA 7 completa.', '3.0.0'),
+                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '4.0.0'),
             new CheckResult('references.citation_matching', $matching, $evidence + ['matching_direction' => 'recognized_citations_to_references'], '/manuscript',
                 'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '3.0.0'),
             new CheckResult('references.apa7.recognized_formats', $formats, $evidence, '/manuscript',
