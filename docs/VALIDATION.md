@@ -482,9 +482,9 @@ ou VM Oracle; o documento real da conversa não foi usado nesta validação.
 
 ## Etapa 17 — plugin 0.4.0.0
 
-Validação local em 12/11/2026 sobre e7337c0 (gerador 1.0.0). Motor 0.12.0
-preservado. O main observado no início ainda era 73b13c9; a dependência da
-Etapa 16 foi mantida como ancestral. Sem reaplicar conteúdo ou publicar ambiente.
+Validação local em 12/11/2026, gerador 1.0.0 e motor 0.12.0 preservados.
+Base final 7ebf393 (merge do PR #17), confirmada e incorporada antes do envio.
+Sem reaplicar conteúdo ou publicar ambiente.
 
 - 706 testes sintéticos, zero falhas (19 novos), em PHP 8.4.27 e PHP 8.1.27.
 - Lint: 64 arquivos PHP sem erros de sintaxe.

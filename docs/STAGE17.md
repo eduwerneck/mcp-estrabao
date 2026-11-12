@@ -1,9 +1,7 @@
 # Etapa 17 — devolutiva no painel editorial OJS
 
-Plugin 0.4.0.0; motor 0.12.0 e gerador 1.0.0 preservados. A base inclui e7337c0
-(Etapa 16). O merge informado pelo usuário ainda não apareceu na referência main
-observada (73b13c9) no início desta etapa; o commit da etapa anterior foi preservado
-como ancestral, sem reescrita. Reconciliar com o merge remoto antes de integrar.
+Plugin 0.4.0.0; motor 0.12.0 e gerador 1.0.0 preservados. Base final 7ebf393,
+merge do PR #17 (Etapa 16), confirmado e incorporado antes do envio da branch.
 
 ## Fluxo para o editor
 
