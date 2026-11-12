@@ -122,3 +122,32 @@ A matriz CI agora requer DOM e ZIP em PHP 7.4/8.3; a execução remota dessas ve
 não foi verificada nesta etapa. Não houve acesso a produção nem à VM Oracle.
 DOCX tem cobertura deliberadamente limitada; herança de estilos, `.doc`, OJS,
 MCP e as demais verificações indicadas em STAGE3.md continuam pendentes.
+
+## Etapa 4 — motor 0.4.0
+
+Validação local em 12/11/2026, branch `feat/etapa-4-estilos-docx`, após o merge
+`0b40792` do PR #3, no runtime PHP 8.4.27 já instalado. Não houve instalação
+adicional, alteração do ambiente publicado, acesso à produção ou à VM Oracle.
+
+- Runner: 214 testes executados, zero falhas, nenhum ignorado (53 novos).
+- Lint: 24 arquivos PHP sem erros de sintaxe.
+- JSON Schema 2020-12: schemas válidos e relatórios da CLI sem documento e com
+  DOCX sintéticos produzindo formatação conforme, não conforme e indeterminada.
+- CLI: presença de seções mantida independente da resolução de estilos;
+  evidência sem texto bruto, identificadores de estilo ou caminho do arquivo.
+- `git diff --check`: sem erros de whitespace.
+
+Os testes novos exercitam defaults, `basedOn`, estilos de parágrafo e caractere,
+alternância de negrito em estilos, precedência direta, runs mistos, espaços
+Unicode, ciclos, referências e tipos de estilo inválidos, duplicatas, limite de
+cadeia/quantidade, vínculos internos alternativos e externos recusados. Cobrem
+numeração herdada e direta, cancelamento, níveis associados por `pStyle`,
+`ilvl` direto, override de nível, formatos numéricos, ausência de numeração,
+bullets/customizados indeterminados, definições ausentes/duplicadas e vínculos
+de lista não suportados. Testes anteriores foram atualizados onde a resolução
+efetiva substitui os resultados antes indeterminados (inclusive texto padrão
+sem negrito, agora não conforme).
+
+PHP 7.4/8.3 permanece na matriz CI; a execução remota desta etapa não foi
+verificada nesta validação local. Ver STAGE4.md para o subconjunto implementado;
+esta etapa não valida fonte, tamanho, página, margens, espaçamento nem OJS.

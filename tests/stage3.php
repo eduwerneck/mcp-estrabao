@@ -52,7 +52,7 @@ foreach (['article', 'research_communication'] as $type) {
     test('seções completas sem exigir ordem ou fomento: ' . $type, function () use ($type) {
         withDocx(docxParts(docxBody(array_reverse(labels()))), function ($path) use ($type) {
             $checks = structure((new DocxReader())->read($path), $type);
-            same('conforme', $checks[0]['status']); same('indeterminado', $checks[1]['status']);
+            same('conforme', $checks[0]['status']); same('não conforme', $checks[1]['status']);
             same($type === 'article' ? 3 : 2, count($checks));
             if ($type === 'article') { same('indeterminado', $checks[2]['status']); }
         });
@@ -104,7 +104,7 @@ foreach (['1' => true, '0' => false] as $id => $expected) {
     test('numeração OOXML e cancelamento ' . $id, function () use ($id, $expected) {
         $body = str_replace('<w:p>', '<w:p><w:pPr><w:numPr><w:numId w:val="' . $id . '"/></w:numPr></w:pPr>', docxBody(labels()));
         withDocx(docxParts($body), function ($path) use ($expected) {
-            same($expected, structure((new DocxReader())->read($path))[1]['evidence']['explicit_numbering']);
+            same($expected, (new DocxReader())->read($path)['paragraphs'][0]['numbered']);
         });
     });
 }
@@ -200,7 +200,7 @@ foreach (['' => null, '<w:b/>' => true, '<w:b w:val="0"/>' => false] as $propert
         withDocx(docxParts($body), function ($path) use ($expected) {
             $doc = (new DocxReader())->read($path);
             same($expected, $doc['paragraphs'][0]['direct_bold']);
-            same($expected === false ? 'não conforme' : 'indeterminado', structure($doc)[1]['status']);
+            same($expected === true ? 'conforme' : 'não conforme', structure($doc)[1]['status']);
         });
     });
 }

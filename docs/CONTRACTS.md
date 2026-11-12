@@ -76,3 +76,10 @@ Motor 0.3.0: a CLI recebe opcionalmente DOCX, tipo e idioma fora do snapshot.
 faz parte da evidência de `manuscript.docx.structure` 2.0.0. A estrutura deixa
 de ser pendência quando há extração suportada e contexto editorial conhecido.
 Ver STAGE3.md para resultados adicionais de formatação e fomento e seus limites.
+
+## Etapa 4
+
+Motor 0.4.0: `manuscript.headings.format` 2.0.0 avalia negrito e numeração
+efetivos no subconjunto de estilos de STAGE4.md. As evidências incluem posições,
+valores resolvidos e lacunas, sem textos ou identificadores de estilos. Schemas
+1.0 e argumentos da CLI preservados; demais limitações de DOCX continuam.
