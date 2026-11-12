@@ -156,7 +156,7 @@ test('ledger corrompido ou de outra submissão falha fechado', function () {
             file_put_contents($ledger,$bad);
             reviewRejects(function () use ($service,$request) { $service->view($request,17); });
             $p=new EstrabaoPlugin();$p->enabled=true;$value=null;
-            same(true,$p->validateAdmission('submissionsubmitstep4form::validate',[$form,&$value]));same(false,$value);
+            same(false,$p->validateAdmission('submissionsubmitstep4form::validate',[$form,&$value]));same(false,$value);
         }
     });
 });

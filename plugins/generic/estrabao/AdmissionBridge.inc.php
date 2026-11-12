@@ -80,7 +80,17 @@ class EstrabaoAdmissionBridge
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
                     && $binding['rule_version'] === '4.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
-                return ['decision' => $decision, 'fingerprint' => hash('sha256', json_encode($binding)),
+                $corrections = [];
+                foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
+                    foreach ($sample['checks'] ?? [] as $entryCheck) {
+                        if (($entryCheck['status'] ?? null) === 'não conforme') { $corrections[] = $entryCheck['message']; }
+                    }
+                }
+                foreach ($result['evidence']['analysis']['citation_style_samples'] ?? [] as $sample) {
+                    if (($sample['status'] ?? null) === 'não conforme') { $corrections = array_merge($corrections, $sample['guidance'] ?? []); }
+                }
+                return ['decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
+                    'fingerprint' => hash('sha256', json_encode($binding)),
                     'binding' => $binding, 'reviewable' => $reviewable];
             }
         }

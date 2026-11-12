@@ -1,0 +1,2 @@
+<?php
+$p=json_decode(stream_get_contents(STDIN),true);$ch=curl_init('http://127.0.0.1:4444'.$p['path']);curl_setopt_array($ch,[CURLOPT_PROXY=>'',CURLOPT_RETURNTRANSFER=>true,CURLOPT_CUSTOMREQUEST=>$p['method'],CURLOPT_TIMEOUT=>90,CURLOPT_HTTPHEADER=>['Content-Type: application/json']]);if(isset($p['data']))curl_setopt($ch,CURLOPT_POSTFIELDS,json_encode($p['data']));$out=curl_exec($ch);if($out===false){fwrite(STDERR,curl_error($ch));exit(1);}echo $out;

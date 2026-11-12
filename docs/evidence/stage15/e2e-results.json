@@ -1,0 +1,70 @@
+[
+  {
+    "case": "ABNT has no release button",
+    "passed": true
+  },
+  {
+    "case": "direct POST ABNT blocked before completion",
+    "passed": true
+  },
+  {
+    "case": "real translations loaded",
+    "passed": true
+  },
+  {
+    "case": "release active in UI",
+    "passed": true
+  },
+  {
+    "case": "reviewed version completes in real OJS",
+    "passed": true
+  },
+  {
+    "case": "revoked release blocks completion",
+    "passed": true
+  },
+  {
+    "case": "human release does not bypass native CSRF",
+    "passed": true
+  },
+  {
+    "case": "author cannot access editorial review",
+    "passed": true
+  },
+  {
+    "case": "replacement scenario starts with active release",
+    "passed": true
+  },
+  {
+    "case": "new server file version invalidates release",
+    "passed": true
+  },
+  {
+    "case": "authenticated download returns DOCX bytes",
+    "passed": true
+  },
+  {
+    "case": "author cannot use editorial download route",
+    "passed": true
+  },
+  {
+    "case": "changed version cannot complete with old release",
+    "passed": true
+  },
+  {
+    "case": "author sees ABNT correction after real UI submission",
+    "passed": true
+  },
+  {
+    "case": "query-based review route renders",
+    "passed": true
+  },
+  {
+    "case": "lookup preserves query router parameters",
+    "passed": true
+  },
+  {
+    "case": "query-based lookup reaches ABNT record",
+    "passed": true
+  }
+]

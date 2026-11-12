@@ -34,8 +34,15 @@ class EstrabaoPlugin extends GenericPlugin
         }
         $key = $decision === 'not_accepted' ? 'apaNotAccepted' : 'apaReviewRequired';
         $form->addError('estrabaoAdmission', __('plugins.generic.estrabao.' . $key));
+        if ($decision === 'not_accepted') {
+            foreach ($analysis['corrections'] ?? [] as $index => $correction) {
+                $form->addError('estrabaoCorrection' . $index, $correction);
+            }
+        }
         $args[1] = false;
-        return true; // Form::validate returns false; execute() is not reached.
+        // Continue Form::validate: its native notification exposes these errors.
+        // Returning true here would skip notification creation and hide the reason.
+        return false;
     }
 
     function loadReviewHandler($hookName, $args)
