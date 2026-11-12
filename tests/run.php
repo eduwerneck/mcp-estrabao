@@ -235,6 +235,7 @@ foreach (['invalid-json' => '{"token":"synthetic-secret",', 'invalid-contract' =
 
 require __DIR__ . '/stage2.php';
 require __DIR__ . '/stage3.php';
+require __DIR__ . '/stage4.php';
 
 echo "$tests testes, $failed falhas\n";
 exit($failed ? 1 : 0);

@@ -7,7 +7,7 @@
 | Autoria | Extração completa e ordenada de autores da publicação corrente; política para ausência de autoria e múltiplas afiliações. |
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
 | Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); `.doc`, títulos equivalentes e variações ainda pendentes. |
-| Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; ampliar cobertura e resolver estilos/herança em etapa futura. |
+| Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; ampliar cobertura, listas vinculadas e scripts complexos em etapa futura. |
 | APA 7 | Escopo determinístico aprovado, exemplos sintéticos e tratamento humano de ambiguidades e correspondências de citações. |
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
 | Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |

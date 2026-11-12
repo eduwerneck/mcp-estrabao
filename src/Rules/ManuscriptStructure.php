@@ -35,6 +35,8 @@ final class ManuscriptStructure implements Rule
                     $pattern = '/^(?:[0-9]+(?:\.[0-9]+)*[.)]?\s+)?' . preg_quote($label, '/') . '$/iuD';
                     if (preg_match($pattern, $text)) {
                         $matches[] = ['paragraph_index' => $paragraph['index'], 'direct_bold' => $paragraph['direct_bold'] ?? null,
+                            'format' => $paragraph['format'] ?? ['bold' => null, 'numbered' => null, 'reason' => 'not_resolved'],
+                            'literal_numbering' => preg_match('/^[0-9]/', $text) === 1,
                             'explicit_numbering' => $paragraph['numbered'] || preg_match('/^[0-9]/', $text) === 1];
                     } elseif (preg_match('/' . preg_quote($label, '/') . '/iu', $text)) { $ambiguous = true; }
                 }
@@ -54,17 +56,35 @@ final class ManuscriptStructure implements Rule
         $results = [new CheckResult('manuscript.docx.structure', $status, $evidence, '/manuscript',
             'Revisar a presença dos títulos; traduções, variantes e cobertura incompleta exigem revisão humana.', '2.0.0')];
         if ($this->document !== null) {
-            $numbered = false; $nonBold = false;
+            $numbered = false; $nonBold = false; $resolvedBold = true; $resolvedNumbering = true;
+            $formatStatus = isset($evidence['sections']) ? CheckResult::PASS : CheckResult::UNKNOWN;
+            $headings = [];
             foreach ($evidence['sections'] ?? [] as $section) {
+                if ($section['status'] !== CheckResult::PASS && $formatStatus === CheckResult::PASS) {
+                    $formatStatus = CheckResult::UNKNOWN;
+                }
                 foreach ($section['matches'] as $match) {
-                    $numbered = $numbered || $match['explicit_numbering'];
-                    $nonBold = $nonBold || $match['direct_bold'] === false;
+                    $format = $match['format'];
+                    $hasNumber = $match['literal_numbering'] || $format['numbered'] === true;
+                    $numbered = $numbered || $hasNumber;
+                    $nonBold = $nonBold || $format['bold'] === false;
+                    $resolvedBold = $resolvedBold && $format['bold'] !== null;
+                    $resolvedNumbering = $resolvedNumbering && $format['numbered'] !== null;
+                    $headings[] = ['paragraph_index' => $match['paragraph_index'],
+                        'bold' => $format['bold'], 'numbered' => $match['literal_numbering'] ? true : $format['numbered'],
+                        'resolution' => $format['reason']];
+                    if ($hasNumber || $format['bold'] === false) { $formatStatus = CheckResult::FAIL; }
+                    elseif (($format['bold'] === null || $format['numbered'] === null) && $formatStatus === CheckResult::PASS) {
+                        $formatStatus = CheckResult::UNKNOWN;
+                    }
                 }
             }
-            $results[] = new CheckResult('manuscript.headings.format', ($numbered || $nonBold) ? CheckResult::FAIL : CheckResult::UNKNOWN,
-                ['explicit_numbering' => $numbered, 'explicit_nonbold' => $nonBold, 'effective_bold_resolved' => false,
-                    'inherited_numbering_resolved' => false], '/manuscript',
-                'Conferir títulos não numerados e em negrito; resolver estilos e herança antes de concluir conformidade.');
+            $results[] = new CheckResult('manuscript.headings.format', $formatStatus,
+                ['numbering_found' => $numbered, 'nonbold_found' => $nonBold,
+                    'effective_bold_resolved' => $headings && $resolvedBold,
+                    'inherited_numbering_resolved' => $headings && $resolvedNumbering,
+                    'headings' => $headings], '/manuscript',
+                'Revisar títulos não numerados e em negrito; herança não suportada permanece indeterminada.', '2.0.0');
             if ($this->type === 'article') {
                 $results[] = new CheckResult('manuscript.funding', CheckResult::UNKNOWN,
                     ['conditional' => true, 'applicability_known' => false], '/manuscript',
