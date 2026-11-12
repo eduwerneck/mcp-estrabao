@@ -157,3 +157,11 @@ Plugin 0.2.0.0 consome a política da regra APA do motor 0.12.0, sem alterar
 schemas, versões de regras ou quantidade de resultados. O hook local de
 confirmação nunca libera automaticamente resultados indeterminados. Escopo de
 ativação, API conferida e limitações operacionais em STAGE13.md.
+
+## Etapa 14
+
+Plugin 0.3.0.0 adiciona revisão humana privada, sem mudar snapshots, schemas,
+quantidade de resultados ou a política de não aceitação APA. Motor 0.12.0 usa
+constante compartilhada para sua versão. A liberação se vincula a fingerprint
+de arquivo/idioma/IDs/versões; nunca altera a regra para “APA conforme”.
+Formato privado de histórico, autorização e revogação em STAGE14.md.

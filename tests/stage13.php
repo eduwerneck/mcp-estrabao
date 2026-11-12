@@ -18,7 +18,9 @@ class Application {
 class Services {
     public static $files = [];
     public static $query;
-    static function get($name) { if ($name !== 'submissionFile') { throw new RuntimeException('service'); } return new self(); }
+    public static $downloads = [];
+    static function get($name) { if (!in_array($name, ['submissionFile', 'file'], true)) { throw new RuntimeException('service'); } return new self(); }
+    function download($id, $filename, $inline = false) { self::$downloads[] = [$id, $filename, $inline]; }
     function getMany($args) { self::$query = $args; return new ArrayIterator(self::$files); }
 }
 class AdmissionTestRecord {
@@ -28,6 +30,7 @@ class AdmissionTestRecord {
     function getId() { return $this->getData('id'); }
     function getContextId() { return $this->getData('contextId'); }
     function getLocale() { return $this->getData('locale'); }
+    function getSubmissionProgress() { return $this->getData('submissionProgress'); }
 }
 class AdmissionTestForm {
     public $submission;
@@ -44,6 +47,13 @@ class AdmissionTestForm {
 class AdmissionTestRequest {
     public $context;
     public $user = true;
+    public $vars = [];
+    public $post = true;
+    public $csrf = true;
+    function getRouter() { return new AdmissionTestRouter(); }
+    function isPost() { return $this->post; }
+    function checkCSRF() { return $this->csrf; }
+    function getUserVar($key) { return $this->vars[$key] ?? null; }
     function getContext() { return $this->context; }
     function getUser() { return $this->user; }
 }

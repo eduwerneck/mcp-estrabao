@@ -74,3 +74,12 @@ adiciona um hook de validação opt-in, documentado em [STAGE13.md](STAGE13.md),
 com engine_bootstrap privado e configuração explícita de homologação. Copiar
 só a pasta do plugin não instala o motor. Não ativar em produção: ainda não
 há interface de revisão/liberação e o bloqueio retém todos os casos pendentes.
+
+## Revisão humana — Etapa 14
+
+O plugin 0.3.0.0 acrescenta tela de revisão para gerentes do contexto e ledger
+privado com liberação por versão. Seguir [STAGE14.md](STAGE14.md): preparar
+review_dir 0700 dentro de files_dir, além das configurações da Etapa 13.
+Não foi criado diretório operacional, instalado OJS nem ativada a integração.
+O alerta anterior sobre ausência de interface é histórico da Etapa 13; agora
+a interface existe no código, mas ainda exige homologação real/visual.
