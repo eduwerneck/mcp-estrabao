@@ -13,10 +13,14 @@ final class StyleResolver
     private $styleXml;
     private $numbering;
     private $valid;
+    private $theme;
+    private $themeKnown;
 
     public function __construct(array $parts)
     {
         $this->valid = true;
+        $this->themeKnown = true;
+        $this->theme = PackageRelationships::part($parts, 'theme', $this->themeKnown);
         $this->styleXml = $this->part($parts, 'styles');
         $this->numbering = $this->part($parts, 'numbering');
         if ($this->numbering !== null) {
@@ -41,37 +45,12 @@ final class StyleResolver
         }
     }
 
-    /** Relationships select parts; never use an orphan part or follow external targets. */
     private function part(array $parts, string $kind): ?\DOMDocument
     {
-        $rels = $parts['word/_rels/document.xml.rels'] ?? null;
-        if ($rels === null) {
-            if (isset($parts['word/' . $kind . '.xml'])) { $this->valid = false; }
-            return null;
-        }
-        $x = new \DOMXPath($rels);
-        $x->registerNamespace('r', 'http://schemas.openxmlformats.org/package/2006/relationships');
-        if ($x->query('/r:Relationships')->length !== 1) { $this->valid = false; return null; }
-        $links = $x->query('/r:Relationships/r:Relationship[@Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/' . $kind . '"]');
-        if ($links->length === 0) {
-            if (isset($parts['word/' . $kind . '.xml'])) { $this->valid = false; }
-            return null;
-        }
-        if ($links->length !== 1) { $this->valid = false; return null; }
-        $link = $links->item(0); $target = $link->getAttribute('Target');
-        if ($link->getAttribute('TargetMode') === 'External' || preg_match('~[:\\\\%?#\x00-\x20]~', $target) || $target === '') {
-            $this->valid = false; return null;
-        }
-        $segments = [];
-        foreach (explode('/', $target[0] === '/' ? substr($target, 1) : 'word/' . $target) as $segment) {
-            if ($segment === '..') {
-                if (!$segments) { $this->valid = false; return null; }
-                array_pop($segments);
-            } elseif ($segment !== '' && $segment !== '.') { $segments[] = $segment; }
-        }
-        $name = implode('/', $segments);
-        if (!isset($parts[$name])) { $this->valid = false; return null; }
-        return $parts[$name];
+        $known = true;
+        $part = PackageRelationships::part($parts, $kind, $known);
+        $this->valid = $this->valid && $known;
+        return $part;
     }
 
     public function paragraph(\DOMElement $paragraph): array
@@ -123,6 +102,107 @@ final class StyleResolver
             }
             return ['bold' => $hasText ? $allBold : null, 'numbered' => $numbered, 'reason' => $numbered === null ? 'numbering_not_resolved' : 'resolved_supported_styles'];
         } catch (\RuntimeException $error) { return $unknown; }
+    }
+
+    /** Values are declared OOXML formatting, not a rendered font/glyph guarantee. */
+    public function typography(\DOMElement $paragraph): array
+    {
+        $unknown = ['available' => false, 'runs' => [], 'spacing' => ['line' => null, 'rule' => null]];
+        if (!$this->valid) { return $unknown; }
+        try {
+            $x = $this->xpath($paragraph->ownerDocument);
+            if ($x->query('.//w:r[w:t]', $paragraph)->length > self::MAX_RUNS_PER_PARAGRAPH) { return $unknown; }
+            $this->containers($paragraph);
+            $chain = $this->chain($this->value($paragraph, './w:pPr/w:pStyle') ?? ($this->defaults['paragraph'] ?? null), 'paragraph');
+            $state = ['ascii' => null, 'hAnsi' => null, 'size' => null, 'unsupported' => false];
+            $spacing = ['line' => null, 'rule' => null];
+            if ($this->styleXml !== null) {
+                $sx = $this->xpath($this->styleXml);
+                if ($sx->query('/w:styles/w:docDefaults')->length > 1) { return $unknown; }
+                foreach ($sx->query('/w:styles/w:docDefaults | /w:styles/w:docDefaults/w:rPrDefault | /w:styles/w:docDefaults/w:pPrDefault') as $node) { $this->containers($node); }
+                foreach ($sx->query('/w:styles/w:docDefaults/w:rPrDefault/w:rPr') as $node) { $this->typeProperties($node, $state); }
+                foreach ($sx->query('/w:styles/w:docDefaults/w:pPrDefault/w:pPr') as $node) { $this->spacing($node, $spacing); }
+            }
+            foreach ($chain as $style) {
+                $sx = $this->xpath($style->ownerDocument);
+                foreach ($sx->query('./w:rPr', $style) as $node) { $this->typeProperties($node, $state); }
+                foreach ($sx->query('./w:pPr', $style) as $node) { $this->spacing($node, $spacing); }
+            }
+            foreach ($x->query('./w:pPr', $paragraph) as $node) { $this->spacing($node, $spacing); }
+            $runs = [];
+            foreach ($x->query('.//w:r[w:t]', $paragraph) as $index => $run) {
+                $text = '';
+                foreach ($x->query('./w:t', $run) as $textNode) { $text .= $textNode->textContent; }
+                if (!preg_match('/[^\s\p{Z}]/u', $text)) { continue; }
+                $this->containers($run); $effective = $state;
+                $id = $this->value($run, './w:rPr/w:rStyle') ?? ($this->defaults['character'] ?? null);
+                foreach ($this->chain($id, 'character') as $style) {
+                    foreach ($this->xpath($style->ownerDocument)->query('./w:rPr', $style) as $node) { $this->typeProperties($node, $effective); }
+                }
+                foreach ($x->query('./w:rPr', $run) as $node) { $this->typeProperties($node, $effective); }
+                $fonts = [];
+                // This subset supports Latin text. Complex/East Asian selection needs another resolver.
+                if ($effective['unsupported'] || preg_match('/[^\p{Latin}\p{N}\p{P}\p{S}\p{Z}\s]/u', $text)) {
+                    $fonts[] = null; $effective['size'] = null;
+                } else {
+                    if (preg_match('/[\x21-\x7e]/', $text)) { $fonts[] = $this->font($effective['ascii']); }
+                    if (preg_match('/[^\x00-\x7f\s\p{Z}]/u', $text)) { $fonts[] = $this->font($effective['hAnsi']); }
+                }
+                $runs[] = ['run_index' => $index, 'fonts' => $fonts, 'size_half_points' => $effective['size']];
+            }
+            return ['available' => true, 'runs' => $runs, 'spacing' => $spacing];
+        } catch (\RuntimeException $error) { return $unknown; }
+    }
+
+    private function typeProperties(\DOMNode $node, array &$state): void
+    {
+        $x = $this->xpath($node->ownerDocument);
+        if ($x->query('./w:cs|./w:rtl|./w:rPrChange', $node)->length) { $state['unsupported'] = true; }
+        $fonts = $x->query('./w:rFonts', $node);
+        if ($fonts->length > 1) { throw new \RuntimeException(); }
+        if ($fonts->length) {
+            $font = $fonts->item(0);
+            if ($font->hasAttributeNS(DocxReader::W, 'hint') && $font->getAttributeNS(DocxReader::W, 'hint') !== 'default') { $state['unsupported'] = true; }
+            foreach (['ascii', 'hAnsi'] as $slot) {
+                if ($font->hasAttributeNS(DocxReader::W, $slot)) { $state[$slot] = ['literal', $font->getAttributeNS(DocxReader::W, $slot)]; }
+                if ($font->hasAttributeNS(DocxReader::W, $slot . 'Theme')) { $state[$slot] = ['theme', $font->getAttributeNS(DocxReader::W, $slot . 'Theme')]; }
+            }
+        }
+        $size = $this->value($node, './w:sz');
+        if ($size !== null) { $state['size'] = self::measure($size); }
+    }
+
+    private function spacing(\DOMNode $node, array &$state): void
+    {
+        $x = $this->xpath($node->ownerDocument);
+        if ($x->query('./w:pPrChange', $node)->length) { throw new \RuntimeException(); }
+        $spacing = $x->query('./w:spacing', $node);
+        if ($spacing->length > 1) { throw new \RuntimeException(); }
+        if (!$spacing->length) { return; }
+        $spacing = $spacing->item(0);
+        if ($spacing->hasAttributeNS(DocxReader::W, 'line')) { $state['line'] = self::measure($spacing->getAttributeNS(DocxReader::W, 'line')); }
+        if ($spacing->hasAttributeNS(DocxReader::W, 'lineRule')) { $state['rule'] = $spacing->getAttributeNS(DocxReader::W, 'lineRule'); }
+    }
+
+    private function font(?array $font): ?string
+    {
+        if ($font === null) { return null; }
+        if ($font[0] === 'literal') { return trim($font[1]) === '' ? null : $font[1]; }
+        if (!$this->themeKnown || $this->theme === null) { return null; }
+        $mapping = ['majorAscii' => 'majorFont', 'majorHAnsi' => 'majorFont', 'minorAscii' => 'minorFont', 'minorHAnsi' => 'minorFont'];
+        if (!isset($mapping[$font[1]])) { return null; }
+        $x = new \DOMXPath($this->theme);
+        $x->registerNamespace('a', 'http://schemas.openxmlformats.org/drawingml/2006/main');
+        $fonts = $x->query('/a:theme/a:themeElements/a:fontScheme/a:' . $mapping[$font[1]] . '/a:latin');
+        if ($fonts->length !== 1) { return null; }
+        $name = $fonts->item(0)->getAttribute('typeface');
+        return trim($name) === '' ? null : $name;
+    }
+
+    public static function measure(string $value): ?int
+    {
+        // Numeric OOXML units only; universal measures and malformed values stay unknown.
+        return preg_match('/^[0-9]{1,7}$/D', $value) ? (int) $value : null;
     }
 
     private function chain(?string $id, string $type): array

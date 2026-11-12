@@ -151,3 +151,32 @@ sem negrito, agora não conforme).
 PHP 7.4/8.3 permanece na matriz CI; a execução remota desta etapa não foi
 verificada nesta validação local. Ver STAGE4.md para o subconjunto implementado;
 esta etapa não valida fonte, tamanho, página, margens, espaçamento nem OJS.
+
+## Etapa 5 — motor 0.5.0
+
+Validação local em 12/11/2026, branch `feat/etapa-5-formatacao-docx`, após o merge
+`a0c7fc7` do PR #4. Mesmo PHP 8.4.27 com DOM/ZIP, sem novas dependências,
+configuração do ambiente publicado, acesso à produção ou à VM Oracle.
+
+- Runner: 282 testes executados, zero falhas, nenhum ignorado (68 novos).
+- Lint: 28 arquivos PHP sem erros de sintaxe.
+- Schemas JSON 2020-12 e snapshot sintético válidos. Relatório sem DOCX: 32
+  resultados; relatórios com artigo DOCX sintético: 34 resultados. A CLI e schema
+  foram exercitados com fonte/tamanho/entrelinhas conformes, divergentes e
+  indeterminados, e página/margens conhecidas em todos esses casos.
+- `git diff --check`: sem erros de whitespace.
+
+Os testes novos cobrem A4 retrato/paisagem, arredondamento, Letter, medidas
+universais não suportadas, cada margem, gutter, margens especiais, seção
+intermediária, herança e ausência da seção final, propriedades duplicadas e
+revisadas. Cobrem defaults, `basedOn`, estilos de caractere, overrides diretos,
+fontes de tema e seus vínculos externos/ausentes, slots ASCII/hAnsi, tamanho em
+meios-pontos, scripts não suportados, entrelinhas auto/exact/atLeast, herança de
+lineRule, grade, propriedades inválidas, fontes parcialmente desconhecidas,
+extração indisponível e documento vazio. A evidência tem amostras limitadas e
+preserva divergência tardia sem copiar texto, nomes arbitrários de fonte ou
+caminho. Testes anteriores permanecem exercitados, com contagens/versão atualizadas.
+
+PHP 7.4/8.3 segue na matriz CI; a execução remota da nova branch não foi
+verificada nesta validação local. Não houve renderização nem instalação de Word,
+fontes ou OJS. Os escopos de página e corpo e as limitações estão em STAGE5.md.

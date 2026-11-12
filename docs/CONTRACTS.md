@@ -83,3 +83,10 @@ Motor 0.4.0: `manuscript.headings.format` 2.0.0 avalia negrito e numeração
 efetivos no subconjunto de estilos de STAGE4.md. As evidências incluem posições,
 valores resolvidos e lacunas, sem textos ou identificadores de estilos. Schemas
 1.0 e argumentos da CLI preservados; demais limitações de DOCX continuam.
+
+## Etapa 5
+
+Motor 0.5.0: cinco regras 1.0.0 de página e tipografia documentadas em STAGE5.md.
+Resultados incluem hash do DOCX, escopo, cobertura, contagens e amostras limitadas
+por posição, sem texto bruto nem nomes de fontes/estilos. Sem manuscrito, as cinco
+regras retornam indeterminado. Snapshot, schemas 1.0 e argumentos da CLI preservados.
