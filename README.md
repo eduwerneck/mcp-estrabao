@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 13 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 14 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). Não há
 integração homologada com submissões do OJS,
 certificação completa de APA ou servidor MCP. Há leitura local limitada de DOCX e
@@ -65,6 +65,7 @@ Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [r
 A Etapa 12 registra submissão não aceita diante de incompatibilidade comprovada
 com APA 7, incluindo padrões ABNT reconhecidos. Casos indeterminados exigem
 revisão, sem liberação automática. O adaptador da [Etapa 13](docs/STAGE13.md) intercepta a confirmação quando
-explicitamente configurado; instalação real e liberação humana ainda estão pendentes.
+explicitamente configurado; a [Etapa 14](docs/STAGE14.md) acrescenta revisão/liberação humana por versão.
+A instalação real e a homologação continuam pendentes.
 O motor local não altera estados nem envia mensagens.
 Ver [política de admissão](docs/STAGE12.md). Sem acesso à produção.

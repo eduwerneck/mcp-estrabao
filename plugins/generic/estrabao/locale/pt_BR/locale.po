@@ -14,3 +14,57 @@ msgstr "A submissão não foi aceita: foram identificadas incompatibilidades com
 
 msgid "plugins.generic.estrabao.apaReviewRequired"
 msgstr "A submissão não pôde ser concluída: a conformidade com APA 7 exige revisão editorial. Isso não significa que ABNT tenha sido identificada. Entre em contato com a equipe editorial."
+
+msgid "plugins.generic.estrabao.reviewTitle"
+msgstr "Revisão editorial de APA 7"
+
+msgid "plugins.generic.estrabao.reviewScope"
+msgstr "Área restrita à gerência editorial. A revisão libera apenas a conclusão da submissão; não significa aceite para publicação."
+
+msgid "plugins.generic.estrabao.reviewSubmission"
+msgstr "Número da submissão"
+
+msgid "plugins.generic.estrabao.reviewOpen"
+msgstr "Abrir revisão"
+
+msgid "plugins.generic.estrabao.reviewSaved"
+msgstr "Decisão editorial registrada."
+
+msgid "plugins.generic.estrabao.reviewNotSaved"
+msgstr "A decisão não foi registrada. Confira sua permissão, atualize a página e revise a versão atual do manuscrito."
+
+msgid "plugins.generic.estrabao.reviewUnavailable"
+msgstr "Revisão indisponível. Confira a submissão e a configuração do laboratório."
+
+msgid "plugins.generic.estrabao.reviewReadFile"
+msgstr "Antes de liberar, abra e confira o manuscrito atual no fluxo do OJS. A liberação vale apenas para a versão analisada; se o arquivo mudar, uma nova revisão será necessária."
+
+msgid "plugins.generic.estrabao.reviewDeclaration"
+msgstr "Conferi as citações e referências do manuscrito atual e confirmo sua adequação à APA 7."
+
+msgid "plugins.generic.estrabao.reviewApprove"
+msgstr "Liberar conclusão da submissão"
+
+msgid "plugins.generic.estrabao.reviewRevoke"
+msgstr "Revogar liberação"
+
+msgid "plugins.generic.estrabao.reviewHistory"
+msgstr "Histórico de decisões"
+
+msgid "plugins.generic.estrabao.reviewEditor"
+msgstr "Responsável"
+
+msgid "plugins.generic.estrabao.reviewApproved"
+msgstr "Liberação registrada para a versão revisada"
+
+msgid "plugins.generic.estrabao.reviewRevoked"
+msgstr "Liberação revogada"
+
+msgid "plugins.generic.estrabao.reviewNoHistory"
+msgstr "Nenhuma decisão registrada."
+
+msgid "plugins.generic.estrabao.reviewActive"
+msgstr "Há liberação editorial válida para esta versão do manuscrito."
+
+msgid "plugins.generic.estrabao.reviewDownload"
+msgstr "Baixar a versão atual do manuscrito para revisão"

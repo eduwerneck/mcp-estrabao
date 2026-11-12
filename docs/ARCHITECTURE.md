@@ -69,3 +69,11 @@ admission_gate é habilitada: registra o hook de validação da confirmação do
 wizard, resolve o arquivo no servidor e impede execute em caso de não aceite
 ou revisão pendente. Ver STAGE13.md. Não há instalação real validada, interface
 de liberação humana, cobertura de outros canais ou ativação em produção.
+
+## Revisão humana — Etapa 14
+
+O adaptador inclui handler restrito à gerência editorial, revisão manual e
+liberação vinculada ao fingerprint corrente, com revogação e ledger privado.
+Falhas APA comprovadas continuam bloqueadas; só casos inconclusivos com fonte
+disponível admitem liberação humana. Não substitui validações nativas do OJS.
+Instalação real e concorrência com uploads continuam pendentes (STAGE14.md).

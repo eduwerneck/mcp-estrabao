@@ -5,6 +5,7 @@ use Estrabao\Contracts\{Submission, Rule};
 
 final class Report
 {
+    const ENGINE_VERSION = '0.12.0';
     /** Não escreve em disco, não comunica a serviços, não altera estado editorial. */
     public static function generate(Submission $submission, array $rules): array
     {
@@ -18,7 +19,7 @@ final class Report
             }
         }
         return [
-            'schema_version' => '1.0', 'engine_version' => '0.12.0',
+            'schema_version' => '1.0', 'engine_version' => self::ENGINE_VERSION,
             'generated_at' => gmdate('Y-m-d\TH:i:s\Z'),
             'input_sha256' => $submission->digest(),
             'locale_profile' => ['pt_BR', 'en_US', 'es_ES'],

@@ -395,3 +395,32 @@ transações, bloqueio de outros canais ou ausência real de e-mails no OJS.
 Não foi iniciada instalação/banco OJS. Interface de revisão/liberação pendente;
 ativação é exclusivamente futura e em homologação. Nenhuma configuração de
 ambiente foi alterada, nem produção ou VM Oracle acessada.
+
+## Etapa 14 — plugin 0.3.0.0, motor 0.12.0
+
+Validação local em 12/11/2026, base 197ad29 (merge do PR #13). PHP 8.4.27
+com DOM/ZIP, sem dependências novas. Fontes públicas exatas de autorização,
+roteamento, CSRF, download e ações do plugin foram conferidas (STAGE14.md).
+Assinaturas de LinkAction e RedirectAction também conferidas no mesmo pkp-lib.
+
+- 651 testes sintéticos, zero falhas (24 novos).
+- Lint de 54 arquivos PHP sem erros de sintaxe.
+- Entradas CLI 1.0/1.1 e relatórios válidos no schema existente: 45 resultados,
+  versão de motor preservada. XML do plugin válido, versão 0.3.0.0.
+- Testes de revisão: gerente do contexto, negação a autor/outro contexto,
+  POST/CSRF/declaração, recusa de liberação ABNT, liberação inconclusiva,
+  preservação de erros nativos, revogação e perda de papel do responsável.
+- Testes de versão: arquivo/IDs/idioma alterados e aba antiga invalidam a
+  liberação; arquivo ilegível continua retido. Revogação funciona mesmo após
+  corrupção do arquivo e não revive ao restaurar seus bytes anteriores.
+- Testes de registro: permissões 0700/0600, privacidade, corrupção, separação
+  por contexto/submissão, lock ocupado e limite de histórico com reserva para
+  revogação. Testes de handler/modelo, rota explícita, ação no plugin e download.
+- `git diff --check` sem erros. CI remoto ainda não verificado.
+
+O dublê do TemplateManager verifica o modelo e o caminho do template, sem
+renderizar Smarty. Não houve instalação OJS, teste visual em navegador, banco,
+email real ou homologação end-to-end. Rotas com/sem PATH_INFO e concorrência com
+upload permanecem para homologação. Registro privado não foi configurado fora
+dos diretórios temporários dos testes. Sem produção, VM Oracle ou publicação
+nova do ambiente.
