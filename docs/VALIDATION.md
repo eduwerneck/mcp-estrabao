@@ -239,3 +239,31 @@ PHP 7.4/8.3 permanece na matriz CI; execução remota da branch não foi verific
 nesta validação local. STAGE7.md descreve o subconjunto estrutural e as pendências
 sobre figuras compostas, função editorial e ampliação da cobertura. Não houve
 renderização, decodificação de imagens, análise de DPI ou integração OJS.
+
+## Etapa 8 — motor 0.8.0
+
+Validação local em 12/11/2026, branch `feat/etapa-8-caixa-titulos`, após o merge
+`77ecc21` do PR #7. Mesmo PHP 8.4.27 com DOM/ZIP. Sem novas dependências,
+instalação de plugins, produção, VM Oracle ou alteração/publicação do ambiente.
+
+- Runner: 430 testes executados, zero falhas, nenhum ignorado (55 novos).
+- Lint: 39 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12: entrada 1.0 e 1.1 válidas, casos inválidos rejeitados em
+  concordância com o contrato PHP, relatório 1.0 válido. CLI com as duas fixtures:
+  41 resultados; com artigo DOCX: 43 resultados. Exercitados caixa mista conforme,
+  caixa alta literal e por estilo não conformes, sigla UNESCO indeterminada.
+- `git diff --check`: sem erros de whitespace.
+
+Testes novos cobrem texto nos três idiomas, caixa mista/minúsculas, siglas,
+conectores, Unicode/HTML, metadados sem reescrita, subtítulos opcionais, snapshots
+legados e novos, objetos/listas e valores inválidos. No Word, cobrem presença de
+seção independente da caixa, títulos do snapshot, outline, candidato só em negrito,
+prosa não classificada como título, defaults, `basedOn`, estilo de caractere,
+alternância de caps, override direto, capitaletes indeterminados, propriedades
+inválidas/duplicadas/conflitantes, herança cíclica, runs parcialmente em caps,
+extração incompleta e evidência limitada com violação tardia sem texto bruto.
+
+PHP 7.4/8.3 permanece na matriz CI; execução remota desta branch não verificada
+nesta validação local. Não houve alteração dos formulários ou CSS do OJS nem
+instalação de plugins. Notas de rodapé e indicador de submissão seguem nas etapas
+planejadas.

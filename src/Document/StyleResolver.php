@@ -228,6 +228,58 @@ final class StyleResolver
         } catch (\RuntimeException $error) { return $unknown; }
     }
 
+    /** Effective caps/smallCaps through defaults, style toggles and direct run formatting. */
+    public function letterCase(\DOMElement $paragraph): array
+    {
+        $unknown = ['available' => false, 'caps' => null, 'small_caps' => null, 'uppercase_rendered' => null];
+        if (!$this->valid) { return $unknown; }
+        try {
+            $x = $this->xpath($paragraph->ownerDocument); $this->containers($paragraph);
+            if ($x->query('.//w:r[w:t]', $paragraph)->length > self::MAX_RUNS_PER_PARAGRAPH) { return $unknown; }
+            $state = ['caps' => false, 'smallCaps' => false];
+            if ($this->styleXml !== null) {
+                $sx = $this->xpath($this->styleXml);
+                if ($sx->query('/w:styles/w:docDefaults')->length > 1) { return $unknown; }
+                foreach ($sx->query('/w:styles/w:docDefaults | /w:styles/w:docDefaults/w:rPrDefault') as $node) { $this->containers($node); }
+                foreach ($sx->query('/w:styles/w:docDefaults/w:rPrDefault/w:rPr') as $node) { $this->caseProperties($node, $state, false); }
+            }
+            $id = $this->value($paragraph, './w:pPr/w:pStyle') ?? ($this->defaults['paragraph'] ?? null);
+            foreach ($this->chain($id, 'paragraph') as $style) {
+                foreach ($this->xpath($style->ownerDocument)->query('./w:rPr', $style) as $node) { $this->caseProperties($node, $state, true); }
+            }
+            $hasText = false; $caps = false; $small = false; $lowerRemaining = false;
+            foreach ($x->query('.//w:r[w:t]', $paragraph) as $run) {
+                $text = ''; foreach ($x->query('./w:t', $run) as $node) { $text .= $node->textContent; }
+                if (!preg_match('/[\p{Lu}\p{Ll}\p{Lt}]/u', $text)) { continue; }
+                $this->containers($run); $effective = $state; $hasText = true;
+                $id = $this->value($run, './w:rPr/w:rStyle') ?? ($this->defaults['character'] ?? null);
+                foreach ($this->chain($id, 'character') as $style) {
+                    foreach ($this->xpath($style->ownerDocument)->query('./w:rPr', $style) as $node) { $this->caseProperties($node, $effective, true); }
+                }
+                foreach ($x->query('./w:rPr', $run) as $node) { $this->caseProperties($node, $effective, false); }
+                if ($effective['caps'] && $effective['smallCaps']) { return $unknown; }
+                $lowerRemaining = $lowerRemaining || (!$effective['caps'] && preg_match('/[\p{Ll}\p{Lt}]/u', $text));
+                $caps = $caps || $effective['caps']; $small = $small || $effective['smallCaps'];
+            }
+            return ['available' => $hasText, 'caps' => $hasText ? $caps : null, 'small_caps' => $hasText ? $small : null, 'uppercase_rendered' => $hasText ? !$lowerRemaining : null];
+        } catch (\RuntimeException $error) { return $unknown; }
+    }
+
+    private function caseProperties(\DOMNode $node, array &$state, bool $toggle): void
+    {
+        $x = $this->xpath($node->ownerDocument);
+        if ($x->query('./w:cs|./w:rtl|./w:rPrChange', $node)->length) { throw new \RuntimeException(); }
+        foreach (['caps', 'smallCaps'] as $property) {
+            $nodes = $x->query('./w:' . $property, $node);
+            if ($nodes->length > 1) { throw new \RuntimeException(); }
+            if (!$nodes->length) { continue; }
+            $value = $nodes->item(0)->getAttributeNS(DocxReader::W, 'val');
+            if (!in_array($value, ['', '1', 'true', 'on', '0', 'false', 'off'], true)) { throw new \RuntimeException(); }
+            $on = in_array($value, ['', '1', 'true', 'on'], true);
+            $state[$property] = $toggle ? ($on ? !$state[$property] : $state[$property]) : $on;
+        }
+    }
+
     private function chain(?string $id, string $type): array
     {
         $chain = []; $seen = [];

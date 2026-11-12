@@ -105,3 +105,12 @@ Motor 0.7.0: `manuscript.visuals.count` 1.0.0 registra inventário estrutural
 independente da cobertura textual, com hash do DOCX e amostras limitadas. Não
 converte desenhos/pictures automaticamente em figuras editoriais. O máximo 6
 aplica-se apenas a comunicações. Schemas 1.0 e CLI preservados. Ver STAGE7.md.
+
+## Etapa 8
+
+Motor 0.8.0: entrada aceita 1.0 sem subtítulo e 1.1 com `subtitle` opcional.
+O schema de entrada é revisado para 1.1, com validação das duas variantes; relatório
+permanece schema 1.0. As regras `metadata.title.case`, `metadata.subtitle.case` e
+`manuscript.headings.case` 1.0.0 sinalizam caixa alta sem reescrita. O hash do
+snapshot cobre o subtítulo quando fornecido; o hash DOCX permanece separado nas
+evidências. Exemplo: tests/fixtures/with-subtitles.json. Ver STAGE8.md.
