@@ -39,7 +39,7 @@ final class DocxReader
             if (@$zip->open($temporary, \ZipArchive::CHECKCONS) !== true) { return $unknown; }
             $opened = true;
             if ($zip->numFiles < 3 || $zip->numFiles > self::MAX_ENTRIES) { return $unknown; }
-            $parts = []; $seen = []; $total = 0;
+            $parts = []; $seen = []; $entries = []; $total = 0;
             for ($i = 0; $i < $zip->numFiles; $i++) {
                 $stat = $zip->statIndex($i);
                 if ($stat === false) { return $unknown; }
@@ -47,7 +47,7 @@ final class DocxReader
                 if ($name === '' || preg_match('~[\\\\\x00-\x1f:]|^/|(?:^|/)\.\.?(?:/|$)~', $name)
                     || isset($seen[$key]) || strpos($key, 'vbaproject') !== false
                     || strpos($key, 'word/embeddings/') === 0) { return $unknown; }
-                $seen[$key] = true;
+                $seen[$key] = true; $entries[$name] = true;
                 $total += $stat['size'];
                 if ($stat['size'] > self::MAX_PART || $total > self::MAX_TOTAL
                     || $stat['size'] > max(1, $stat['comp_size']) * 200
@@ -69,6 +69,9 @@ final class DocxReader
             $rels = new \DOMXPath($parts['_rels/.rels']);
             $rels->registerNamespace('r', 'http://schemas.openxmlformats.org/package/2006/relationships');
             if ($rels->query('/r:Relationships/r:Relationship[@Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" and (@Target="word/document.xml" or @Target="/word/document.xml") and not(@TargetMode="External")]')->length !== 1) { return $unknown; }
+            $compatibility = DocxCompatibility::normalize($parts);
+            $parts = $compatibility['parts'];
+            $unknown['compatibility'] = $compatibility['counts'];
             $xpath = new \DOMXPath($parts['word/document.xml']); $xpath->registerNamespace('w', self::W);
             if ($xpath->query('/w:document/w:body')->length !== 1) { return $unknown; }
             $unknown['visuals'] = VisualInventory::read($parts);
@@ -76,11 +79,25 @@ final class DocxReader
             $linkedNotes = $unknown['footnotes']['coverage_complete'] && $unknown['footnotes']['note_count'] > 0;
             $allowedNoteNode = $linkedNotes ? ' or self::w:footnoteReference' : '';
             // Unsupported containers/fields/revisions can hide or change section labels.
-            if ($xpath->query('/w:document/w:body//*[namespace-uri()!="' . self::W . '"]')->length
+            if (!BodyTextProfile::validTextLocations($xpath)
+                || $xpath->query('/w:document/w:body/w:p')->length > BodyTextProfile::MAX_PARAGRAPHS
+                || $xpath->query('/w:document/w:body//*[namespace-uri()!="' . self::W . '"]')->length
                 || $xpath->query('/w:document/w:body/w:p//*[not(ancestor::w:pPr or ancestor::w:rPr) and not(self::w:r or self::w:t or self::w:tab or self::w:br or self::w:cr or self::w:pPr or self::w:rPr or self::w:hyperlink or self::w:bookmarkStart or self::w:bookmarkEnd or self::w:proofErr' . $allowedNoteNode . ')]')->length
                 || $xpath->query('/w:document/w:body/*[not(self::w:p or self::w:sectPr)]')->length
                 || $xpath->query('//w:altChunk|//w:txbxContent|//w:ins|//w:del|//w:moveFrom|//w:moveTo|//w:fldChar|//w:fldSimple|//w:instrText|//w:sdt|//w:tbl|//w:object|//w:pict|//w:sym|//w:vanish')->length
                 || $xpath->query('//*[namespace-uri()="http://schemas.openxmlformats.org/markup-compatibility/2006"]')->length) {
+                $profile = BodyTextProfile::inspect($parts, $entries, $unknown['footnotes']);
+                if ($profile !== null) {
+                    $resolver = new StyleResolver($parts); $mainParagraphs = []; $valid = true;
+                    foreach ($xpath->query('/w:document/w:body/w:p') as $index => $paragraph) {
+                        $item = $this->paragraph($xpath, $paragraph, $index, $resolver, $linkedNotes);
+                        if ($item === null) { $valid = false; break; }
+                        $mainParagraphs[] = $item;
+                    }
+                    if ($valid) { $unknown['main_text'] = ['available'=>true,'sha256'=>$unknown['sha256'],
+                        'reason'=>'verified_main_word_text','paragraphs'=>$mainParagraphs,'layout'=>PageLayout::read($parts),
+                        'coverage_complete'=>false,'coverage'=>$profile]; }
+                }
                 $tail = $this->referenceTail($parts, $xpath, $unknown['footnotes'], $unknown['sha256']);
                 if ($tail !== null) { $unknown['reference_tail'] = $tail; }
                 $unknown['reason'] = 'incomplete_coverage'; return $unknown;
@@ -103,7 +120,7 @@ final class DocxReader
                 $unknown['reference_body'] = ['available' => true, 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
                 return $unknown;
             }
-            return ['footnotes' => $unknown['footnotes'], 'visuals' => $unknown['visuals'], 'layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
+            return ['compatibility' => $unknown['compatibility'], 'footnotes' => $unknown['footnotes'], 'visuals' => $unknown['visuals'], 'layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
         } catch (\Throwable $error) {
             return $unknown; // No document text, paths, XML errors or exception details in reports.
         } finally {
@@ -144,7 +161,7 @@ final class DocxReader
         }
         $children = $xpath->query('/w:document/w:body/*'); $markers = [];
         foreach ($children as $index => $child) {
-            if ($child->namespaceURI !== self::W || $child->localName !== 'p') { continue; }
+            if ($child->namespaceURI !== self::W || $child->localName !== 'p' || !BodyTextProfile::validTextLocations($xpath, $child)) { continue; }
             $text = ''; foreach ($xpath->query('.//w:t', $child) as $node) { $text .= $node->textContent; }
             $text = trim(preg_replace('/\s+/u', ' ', $text));
             if (preg_match('/^(?:[0-9]+(?:\.[0-9]+)*[.)]?\s+)?(?:Referências|References|Referencias|Bibliografia|Bibliography|Bibliografía)$/iuD', $text)) { $markers[] = $index; }
@@ -163,6 +180,7 @@ final class DocxReader
             if ($xpath->query('.//*[namespace-uri()!="' . self::W . '"]', $child)->length
                 || $xpath->query('.//*[not(ancestor::w:pPr or ancestor::w:rPr) and not(self::w:r or self::w:t or self::w:tab or self::w:br or self::w:cr or self::w:pPr or self::w:rPr or self::w:hyperlink or self::w:bookmarkStart or self::w:bookmarkEnd or self::w:proofErr' . $allowedNote . ')]', $child)->length
                 || $xpath->query('.//w:altChunk|.//w:txbxContent|.//w:ins|.//w:del|.//w:moveFrom|.//w:moveTo|.//w:fldChar|.//w:fldSimple|.//w:instrText|.//w:sdt|.//w:tbl|.//w:object|.//w:pict|.//w:sym|.//w:vanish', $child)->length) { return null; }
+            if (!BodyTextProfile::validTextLocations($xpath, $child)) { return null; }
             $item = $this->paragraph($xpath, $child, $position, $resolver, $linked);
             if ($item === null || count($paragraphs) >= ReferenceAnalysis::MAX_ENTRIES + 1) { return null; }
             $paragraphs[] = $item;

@@ -1,0 +1,95 @@
+{
+  "schema_version": "1.0",
+  "template_version": "1.0.0",
+  "editor_review_required": true,
+  "send_authorized": false,
+  "source_input_sha256": "f078cfc17f279bd905e50a9269cf4966d19a51d2df600c9356c862861717a2ec",
+  "source_document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+  "source_engine_version": "0.13.0",
+  "decision": "corrections_required",
+  "subject": "Adequação às diretrizes editoriais",
+  "body": "Prezados(as) autores(as),\n\nNa triagem inicial, identificamos ajustes necessários para que o manuscrito possa seguir à avaliação:\n\n1. Tamanho da fonte: O tamanho exigido é 12 pontos. Foi identificado tamanho de fonte divergente. Conferir o tamanho dos trechos e estilos do documento.\n\n2. Referências e citações: Citações e referências devem seguir APA 7. Foram identificadas incompatibilidades comprovadas de formato ou correspondência entre citações e referências. Correções identificadas: posicionar a data após a autoria, no início da referência; substituir os padrões ABNT reconhecidos pela estrutura APA 7.\n\nHá também itens que dependem de conferência editorial; eles não foram classificados como descumprimentos comprovados.\n\nApós os ajustes, o material passará por nova triagem editorial.\n\nAtenciosamente,\nEquipe editorial da Revista Estrabão\n",
+  "corrections": [
+    {
+      "area": "Tamanho da fonte",
+      "requirement": "O tamanho exigido é 12 pontos.",
+      "finding": "Foi identificado tamanho de fonte divergente.",
+      "correction": "Conferir o tamanho dos trechos e estilos do documento."
+    },
+    {
+      "area": "Referências e citações",
+      "requirement": "Citações e referências devem seguir APA 7.",
+      "finding": "Foram identificadas incompatibilidades comprovadas de formato ou correspondência entre citações e referências.",
+      "correction": "Correções identificadas: posicionar a data após a autoria, no início da referência; substituir os padrões ABNT reconhecidos pela estrutura APA 7."
+    }
+  ],
+  "pending_review_count": 13,
+  "pending_review": [
+    {
+      "rule_id": "author.orcid.identity",
+      "location": "/authors/0/orcid",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "location": "/authors/1/orcid",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.funding",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.body.font",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.body.line_spacing",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.word_limit",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.visuals.count",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "location": "/subtitle/pt_BR",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "location": "/subtitle/en_US",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "location": "/subtitle/es_ES",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.headings.case",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "references.citation_matching",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "references.apa7.citation_format",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    }
+  ],
+  "unmapped_check_count": 0
+}

@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Estrabao\Rules;
 use Estrabao\Contracts\{Rule, Submission, CheckResult};
+use Estrabao\Document\DocumentSource;
 use Estrabao\Document\ManuscriptSegments;
 use Estrabao\Text\{PlainText, TitleCase};
 
@@ -16,6 +17,8 @@ final class ManuscriptTitleCase implements Rule
 
     public function evaluate(Submission $submission): array
     {
+        $source = DocumentSource::mainText($this->document);
+        $full = $source['full_document_text_available'] ?? false;
         $counts = [CheckResult::PASS => 0, CheckResult::FAIL => 0, CheckResult::UNKNOWN => 0];
         $samples = []; $prefix = true; $titles = [];
         foreach (['title', 'subtitle'] as $field) {
@@ -27,8 +30,8 @@ final class ManuscriptTitleCase implements Rule
                 }
             }
         }
-        if ($this->document['available'] ?? false) {
-            foreach ($this->document['paragraphs'] as $paragraph) {
+        if ($source['available'] ?? false) {
+            foreach ($source['paragraphs'] as $paragraph) {
                 $text = $paragraph['text']; if (!preg_match('/[\p{Lu}\p{Ll}\p{Lt}]/u', $text)) { continue; }
                 $knownHeading = self::knownHeading($text);
                 $outline = $paragraph['outline'] ?? ['known' => false, 'level' => null];
@@ -57,14 +60,15 @@ final class ManuscriptTitleCase implements Rule
                 }
             }
         }
-        $status = $counts[CheckResult::FAIL] ? CheckResult::FAIL : ($counts[CheckResult::PASS] && !$counts[CheckResult::UNKNOWN] ? CheckResult::PASS : CheckResult::UNKNOWN);
+        $status = $counts[CheckResult::FAIL] ? CheckResult::FAIL : ($full && $counts[CheckResult::PASS] && !$counts[CheckResult::UNKNOWN] ? CheckResult::PASS : CheckResult::UNKNOWN);
         return [new CheckResult('manuscript.headings.case', $status,
-            ['policy_version' => TitleCase::POLICY, 'scope' => 'recognized_titles_and_heading_candidates',
+            ['source_profile'=>$source['source_profile']??'unavailable','full_document_text_available'=>$full,
+                'coverage'=>$source['coverage']??[], 'policy_version' => TitleCase::POLICY, 'scope' => 'recognized_titles_and_heading_candidates',
                 'document_sha256' => $this->document['sha256'] ?? null,
-                'source_available' => $this->document['available'] ?? false,
+                'source_available' => $source['available'] ?? false,
                 'counts' => $counts, 'samples' => $samples, 'samples_omitted' => max(0, array_sum($counts) - count($samples)),
                 'automatic_rewrite' => false], '/manuscript',
-            'Evitar caixa alta integral nos títulos; revisar siglas e candidatos ambíguos sem reescrever o manuscrito.')];
+            'Evitar caixa alta integral nos títulos; revisar siglas e candidatos ambíguos sem reescrever o manuscrito.', '2.0.0')];
     }
 
     private static function knownHeading(string $text): bool

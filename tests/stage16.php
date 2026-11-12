@@ -58,12 +58,12 @@ test('ORCID exige cadastro sem nomes, índice de autor ou identificação no man
 test('estrutura usa somente seções comprovadamente ausentes, sem acusar ausência de método',function(){
     $c=deskCheck('manuscript.docx.structure',['sections'=>[
         ['required_label'=>'Metodologia','status'=>'não conforme'],['required_label'=>'Créditos (CRediT)','status'=>'não conforme'],
-        ['required_label'=>'Resultados e Discussão','status'=>'indeterminado'],['required_label'=>'PRIVATE_SECTION','status'=>'não conforme']]],'não conforme','2.0.0');
+        ['required_label'=>'Resultados e Discussão','status'=>'indeterminado'],['required_label'=>'PRIVATE_SECTION','status'=>'não conforme']]],'não conforme','3.0.0');
     $r=deskFromChecks([$c]);same(true,strpos($r['body'],'Metodologia; Créditos (CRediT)')!==false);
     same(false,strpos($r['body'],'PRIVATE_SECTION')!==false);same(true,strpos($r['body'],'ausência de seção não comprova ausência de método')!==false);
 });
 test('formatação declarada produz exigência e correção de margem/fonte',function(){
-    $r=deskFromChecks([deskCheck('manuscript.page.margins'),deskCheck('manuscript.body.font_size')]);
+    $r=deskFromChecks([deskCheck('manuscript.page.margins',[],'não conforme','2.0.0'),deskCheck('manuscript.body.font_size',[],'não conforme','2.0.0')]);
     same(2,count($r['corrections']));same(true,strpos($r['body'],'3 cm')!==false);same(true,strpos($r['body'],'12 pontos')!==false);
 });
 foreach(['article'=>[4000,8000,8001],'research_communication'=>[1000,3500,3501]]as$type=>$numbers){
@@ -108,11 +108,11 @@ test('evidência desconhecida e recomendação arbitrária não entram na carta'
     $r=deskFromChecks([$c]);same(false,strpos(json_encode($r),'PRIVATE')!==false);same(false,strpos($r['body'],'/title')!==false);
 });
 test('proveniência vincula snapshot e DOCX fora do texto aos autores',function(){
-    $r=deskFromChecks([deskCheck('manuscript.page.a4',['document_sha256'=>str_repeat('a',64)])]);
+    $r=deskFromChecks([deskCheck('manuscript.page.a4',['document_sha256'=>str_repeat('a',64)],'não conforme','2.0.0')]);
     same(str_repeat('a',64),$r['source_document_sha256']);same(false,strpos($r['body'],str_repeat('a',64))!==false);
 });
 test('relatório misturando dois documentos é recusado',function(){
-    rejects(function(){deskFromChecks([deskCheck('manuscript.page.a4',['document_sha256'=>str_repeat('a',64)]),deskCheck('manuscript.page.margins',['document_sha256'=>str_repeat('b',64)])]);});
+    rejects(function(){deskFromChecks([deskCheck('manuscript.page.a4',['document_sha256'=>str_repeat('a',64)],'não conforme','2.0.0'),deskCheck('manuscript.page.margins',['document_sha256'=>str_repeat('b',64)])]);});
 });
 test('entrada malformada e limite técnico são recusados',function(){
     rejects(function(){DeskResponse::generate([]);});
