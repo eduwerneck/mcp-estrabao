@@ -68,3 +68,11 @@ quantidade de palavras-chave, descritos em STAGE2.md. `rule_version` e
 `engine_version` aceitam versões numéricas em três componentes no schema.
 O resultado `abstract.labels` passa de pendência 1.0.0 para regra 2.0.0.
 Resultados anteriores continuam identificáveis pelas versões registradas.
+
+## Etapa 3
+
+Motor 0.3.0: a CLI recebe opcionalmente DOCX, tipo e idioma fora do snapshot.
+`input_sha256` continua cobrindo apenas o snapshot; o hash independente do DOCX
+faz parte da evidência de `manuscript.docx.structure` 2.0.0. A estrutura deixa
+de ser pendência quando há extração suportada e contexto editorial conhecido.
+Ver STAGE3.md para resultados adicionais de formatação e fomento e seus limites.
