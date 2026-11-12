@@ -26,3 +26,10 @@ quantidade de palavras-chave, conforme [STAGE2.md](STAGE2.md). As
 Nenhuma política ausente foi preenchida por suposição. Os limites da arquitetura
 original continuam válidos. Alterações editoriais exigem aprovação explícita
 em trabalho futuro e não são parte desta implementação.
+
+## Devolutiva consolidada
+
+Modelo aprovado em DESK_RESPONSE.md e gerador local implementado na Etapa 16.
+A emissão no painel OJS, a conferência de metadados reais autorizados e um fluxo
+específico de envio revisado continuam pendentes. Aprovar modelo/gerar minuta
+não autoriza comunicação automática aos autores.

@@ -172,3 +172,11 @@ Plugin 0.3.1.0: callback de bloqueio acrescenta erros e devolve false ao hook
 para preservar a notificação e o resultado isValid nativos. A análise interna
 passa orientações comprovadas e limitadas ao formulário. Nenhuma alteração
 nos schemas, motor 0.12.0 ou quantidade de checks. Ensaios locais em STAGE15.md.
+
+## Etapa 16
+
+CLI bin/desk.php e DeskResponse 1.0.0 geram saída nova conforme
+contracts/desk-response.schema.json. O relatório de triagem 1.0, motor 0.12.0,
+plugin 0.3.1.0 e snapshots 1.0/1.1 permanecem preservados. A minuta contém
+texto para revisão e ficha interna separada, sem autorização de envio nem aceite.
+Proveniência e mapeamento conservador de regras estão em STAGE16.md.

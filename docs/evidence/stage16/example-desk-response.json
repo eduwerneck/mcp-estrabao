@@ -1,0 +1,146 @@
+{
+  "schema_version": "1.0",
+  "template_version": "1.0.0",
+  "editor_review_required": true,
+  "send_authorized": false,
+  "source_input_sha256": "1ff455febeb0946e97b433c3fdcd178eb2bb5dc39d53d5dbd366245d63cc1ba1",
+  "source_document_sha256": null,
+  "source_engine_version": "0.12.0",
+  "decision": "corrections_required",
+  "subject": "Adequação às diretrizes editoriais",
+  "body": "Prezados(as) autores(as),\n\nNa triagem inicial, identificamos ajustes necessários para que o manuscrito possa seguir à avaliação:\n\n1. Metadados em espanhol: A revista exige título, resumo e palavras-chave nos três idiomas. Não foi encontrado conteúdo visível no campo de título em espanhol nos dados da submissão examinados. Preencher esse campo na submissão e conferir sua apresentação no OJS.\n\n2. ORCID: Todos os autores devem informar ORCID nos dados da submissão. Há autor com ORCID não preenchido. Conferir e completar os ORCIDs no cadastro da submissão, preservando a anonimização do manuscrito.\n\n3. Títulos em português: Os títulos e subtítulos devem evitar caixa alta integral. Foi identificada caixa alta integral em título ou subtítulo nos metadados. Usar capitalização convencional, preservando nomes próprios e siglas.\n\nHá também itens que dependem de conferência editorial; eles não foram classificados como descumprimentos comprovados.\n\nApós os ajustes, o material passará por nova triagem editorial.\n\nAtenciosamente,\nEquipe editorial da Revista Estrabão\n",
+  "corrections": [
+    {
+      "area": "Metadados em espanhol",
+      "requirement": "A revista exige título, resumo e palavras-chave nos três idiomas.",
+      "finding": "Não foi encontrado conteúdo visível no campo de título em espanhol nos dados da submissão examinados.",
+      "correction": "Preencher esse campo na submissão e conferir sua apresentação no OJS."
+    },
+    {
+      "area": "ORCID",
+      "requirement": "Todos os autores devem informar ORCID nos dados da submissão.",
+      "finding": "Há autor com ORCID não preenchido.",
+      "correction": "Conferir e completar os ORCIDs no cadastro da submissão, preservando a anonimização do manuscrito."
+    },
+    {
+      "area": "Títulos em português",
+      "requirement": "Os títulos e subtítulos devem evitar caixa alta integral.",
+      "finding": "Foi identificada caixa alta integral em título ou subtítulo nos metadados.",
+      "correction": "Usar capitalização convencional, preservando nomes próprios e siglas."
+    }
+  ],
+  "pending_review_count": 22,
+  "pending_review": [
+    {
+      "rule_id": "author.orcid.syntax",
+      "location": "/authors/0/orcid",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "location": "/authors/0/orcid",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "location": "/authors/1/orcid",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.docx.structure",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.page.a4",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.page.margins",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.body.font",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.body.font_size",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.body.line_spacing",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.word_limit",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.visuals.count",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "location": "/title/es_ES",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "location": "/subtitle/pt_BR",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "location": "/subtitle/en_US",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "location": "/subtitle/es_ES",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.headings.case",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.footnotes.count",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "manuscript.footnotes.lines",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "references.apa7",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "references.citation_matching",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "references.apa7.recognized_formats",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    },
+    {
+      "rule_id": "references.apa7.citation_format",
+      "location": "/manuscript",
+      "reason": "indeterminate"
+    }
+  ],
+  "unmapped_check_count": 0
+}

@@ -19,3 +19,4 @@ jobs:
       - run: find src bin plugins tests -name '*.php' -print0 | xargs -0 -n1 php -l
       - run: php tests/run.php
       - run: php bin/triage.php tests/fixtures/complete.json > /tmp/estrabao-report.json
+      - run: php bin/desk.php tests/fixtures/complete.json > /tmp/estrabao-desk-response.json

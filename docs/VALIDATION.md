@@ -453,3 +453,29 @@ ARM64, outros canais de admissão, backup ou ausência de corridas com uploads.
 Não houve email externo, acesso à produção/Oracle ou republicação do ambiente.
 O documento real enviado pelo usuário foi examinado separadamente, a pedido,
 sem cópia para o laboratório, Git ou evidências sintéticas.
+
+## Etapa 16 — gerador de devolutiva 1.0.0
+
+Validação local em 12/11/2026, após 73b13c9 (merge do modelo definitivo).
+Motor 0.12.0 e plugin 0.3.1.0 preservados. Sem novas dependências.
+
+- Runner: 687 testes, zero falhas (32 novos), em PHP 8.4.27 do workspace e
+  PHP 8.1.27 da imagem OJS, executada sem rede e com repositório read-only.
+- Lint: 62 arquivos PHP sem erros de sintaxe.
+- Schema novo 2020-12 válido; snapshots 1.0/1.1 e fixture de correções válidos.
+  CLI baseline: nenhuma correção inventada, revisão editorial pendente. Fixture
+  de correções: exatamente três pedidos. DOCX ABNT sintético: correções APA e
+  hash documental correspondente, sem nomes/título/DOI ou caminho na minuta.
+- Fixture e exemplos de saída da etapa são integralmente sintéticos.
+- `git diff --check` sem erros. CI atualizado com smoke da nova CLI, mas execução
+  remota ainda não verificada.
+
+Os testes novos cobrem ausência versus indeterminação, idiomas, título privado,
+rótulos, extensão, palavras-chave, ORCID, seções/CRediT, margem/fonte, limites por
+tipo, notas, APA/ABNT versus DOI, deduplicação, não aprovação automática,
+fontes/versões desconhecidas, conteúdo privado/instruções arbitrárias, proveniência,
+mistura de documentos, limites técnicos, erros da CLI e pendências separadas.
+
+Não houve alteração no fluxo OJS nem novo ensaio de navegador: a entrega é o
+formatador/CLI local. Nenhuma comunicação, alteração de estado, acesso à produção
+ou VM Oracle; o documento real da conversa não foi usado nesta validação.
