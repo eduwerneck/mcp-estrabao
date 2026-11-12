@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: en_US\n"
+
+msgid "plugins.generic.estrabao.displayName"
+msgstr "MCP Estrabão — preliminary screening"
+
+msgid "plugins.generic.estrabao.description"
+msgstr "APA screening with an experimental confirmation gate, separately enabled in staging."
+
+msgid "plugins.generic.estrabao.apaNotAccepted"
+msgstr "The submission was not accepted: incompatibilities with APA 7 were found. ABNT references are not accepted. Correct the manuscript before trying again."
+
+msgid "plugins.generic.estrabao.apaReviewRequired"
+msgstr "The submission could not be completed: APA 7 compliance requires editorial review. This does not mean that ABNT was detected. Contact the editorial team."
+
+msgid "plugins.generic.estrabao.reviewTitle"
+msgstr "APA 7 editorial review"
+
+msgid "plugins.generic.estrabao.reviewScope"
+msgstr "Restricted to journal managers. This review releases submission completion only; it does not accept the article for publication."
+
+msgid "plugins.generic.estrabao.reviewSubmission"
+msgstr "Submission number"
+
+msgid "plugins.generic.estrabao.reviewOpen"
+msgstr "Open review"
+
+msgid "plugins.generic.estrabao.reviewSaved"
+msgstr "Editorial decision recorded."
+
+msgid "plugins.generic.estrabao.reviewNotSaved"
+msgstr "The decision was not recorded. Check your permissions, refresh this page and review the current manuscript version."
+
+msgid "plugins.generic.estrabao.reviewUnavailable"
+msgstr "Review unavailable. Check the submission and staging configuration."
+
+msgid "plugins.generic.estrabao.reviewReadFile"
+msgstr "Download and review the current manuscript before releasing it. The release is valid only for the analyzed version; changing the file requires another review."
+
+msgid "plugins.generic.estrabao.reviewDeclaration"
+msgstr "I checked the citations and references in the current manuscript and confirm compliance with APA 7."
+
+msgid "plugins.generic.estrabao.reviewApprove"
+msgstr "Release submission completion"
+
+msgid "plugins.generic.estrabao.reviewRevoke"
+msgstr "Revoke release"
+
+msgid "plugins.generic.estrabao.reviewHistory"
+msgstr "Decision history"
+
+msgid "plugins.generic.estrabao.reviewEditor"
+msgstr "Reviewer"
+
+msgid "plugins.generic.estrabao.reviewApproved"
+msgstr "Release recorded for the reviewed version"
+
+msgid "plugins.generic.estrabao.reviewRevoked"
+msgstr "Release revoked"
+
+msgid "plugins.generic.estrabao.reviewNoHistory"
+msgstr "No decisions recorded."
+
+msgid "plugins.generic.estrabao.reviewActive"
+msgstr "There is a valid editorial release for this manuscript version."
+
+msgid "plugins.generic.estrabao.reviewDownload"
+msgstr "Download the current manuscript for review"

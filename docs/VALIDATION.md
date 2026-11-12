@@ -424,3 +424,32 @@ email real ou homologação end-to-end. Rotas com/sem PATH_INFO e concorrência 
 upload permanecem para homologação. Registro privado não foi configurado fora
 dos diretórios temporários dos testes. Sem produção, VM Oracle ou publicação
 nova do ambiente.
+
+## Etapa 15 — plugin 0.3.1.0, motor 0.12.0
+
+Validação em 12/11/2026, base 0bd0a1e (PR #14). Laboratório Docker internal local,
+OJS 3.3.0.20 real instalado, PHP 8.1.27, MariaDB 10.6, Chromium 156.0.8078.79,
+Selenium 4.52.0. Fontes e digests em STAGE15.md. Só fixtures sintéticas no OJS.
+
+- Runner: 655 testes aprovados, zero falhas (4 novos), tanto em PHP 8.4.27 do
+  workspace quanto em PHP 8.1.27 da imagem OJS.
+- Lint: 59 arquivos PHP, incluindo scripts opcionais do laboratório, sem erros.
+- 17 verificações reais HTTP/UI aprovadas, com sessões de autor/gerente e
+  conferência de progresso/data no banco. Cobrem ABNT, liberação/conclusão,
+  revogação, CSRF, autorização/download, troca de fileId/bytes e rotas com/sem
+  PATH_INFO. Capturas inspecionadas e JSON em docs/evidence/stage15.
+- Relatórios CLI 1.0/1.1 válidos no schema existente, 45 checks. XML plugin
+  válido na versão 0.3.1.0; scripts Python analisados sem erro de sintaxe.
+- `git diff --check` sem erros. CI remoto ainda não verificado.
+
+A homologação encontrou e corrigiu a ausência do catálogo mestre en_US e o
+retorno precoce do hook que impedia a notificação nativa. O motivo e orientações
+APA comprovadas agora aparecem ao autor. Aviso nativo de “pronta para finalizar”
+e chave de navegação do núcleo estão registrados como limites visuais existentes.
+
+A substituição da versão usou os serviços/DAO no seed local, sem ensaio visual
+do componente de upload nem concorrência. Não comprova tema/infraestrutura real,
+ARM64, outros canais de admissão, backup ou ausência de corridas com uploads.
+Não houve email externo, acesso à produção/Oracle ou republicação do ambiente.
+O documento real enviado pelo usuário foi examinado separadamente, a pedido,
+sem cópia para o laboratório, Git ou evidências sintéticas.

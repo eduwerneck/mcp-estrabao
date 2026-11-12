@@ -87,7 +87,7 @@ test('adaptador resolve arquivo atual no servidor e detecta ABNT', function () {
 test('hook retorna validação falsa antes de executar conclusão e aviso de recebimento', function () {
     withAdmissionDoc(function ($path) {
         $form = admissionSetup($path); $value = null; $executed = false;
-        $p = new EstrabaoPlugin(); $p->enabled = true; same(true, $p->validateAdmission('submissionsubmitstep4form::validate', [$form, &$value]));
+        $p = new EstrabaoPlugin(); $p->enabled = true; same(false, $p->validateAdmission('submissionsubmitstep4form::validate', [$form, &$value]));
         if ($value) { $executed = true; }
         same(false, $value); same(false, $executed);
         same('plugins.generic.estrabao.apaNotAccepted', $form->errors['estrabaoAdmission']);

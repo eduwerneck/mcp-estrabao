@@ -165,3 +165,10 @@ quantidade de resultados ou a política de não aceitação APA. Motor 0.12.0 us
 constante compartilhada para sua versão. A liberação se vincula a fingerprint
 de arquivo/idioma/IDs/versões; nunca altera a regra para “APA conforme”.
 Formato privado de histórico, autorização e revogação em STAGE14.md.
+
+## Etapa 15
+
+Plugin 0.3.1.0: callback de bloqueio acrescenta erros e devolve false ao hook
+para preservar a notificação e o resultado isValid nativos. A análise interna
+passa orientações comprovadas e limitadas ao formulário. Nenhuma alteração
+nos schemas, motor 0.12.0 ou quantidade de checks. Ensaios locais em STAGE15.md.

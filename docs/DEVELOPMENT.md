@@ -83,3 +83,10 @@ review_dir 0700 dentro de files_dir, além das configurações da Etapa 13.
 Não foi criado diretório operacional, instalado OJS nem ativada a integração.
 O alerta anterior sobre ausência de interface é histórico da Etapa 13; agora
 a interface existe no código, mas ainda exige homologação real/visual.
+
+## Homologação local — Etapa 15
+
+O plugin 0.3.1.0 foi exercitado em OJS 3.3.0.20 real com PHP 8.1, MariaDB e
+Chromium em Docker internal, só com dados sintéticos. Procedimento, scripts
+opcionais e capturas estão em [STAGE15.md](STAGE15.md). Os registros anteriores
+de ausência de instalação descrevem as etapas anteriores. Sem produção ou VM.

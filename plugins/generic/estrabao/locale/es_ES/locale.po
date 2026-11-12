@@ -1,0 +1,70 @@
+msgid ""
+msgstr ""
+"Content-Type: text/plain; charset=UTF-8\n"
+"Language: es_ES\n"
+
+msgid "plugins.generic.estrabao.displayName"
+msgstr "MCP Estrabão — revisión preliminar"
+
+msgid "plugins.generic.estrabao.description"
+msgstr "Revisión APA con bloqueo experimental de la confirmación, habilitado por separado en pruebas."
+
+msgid "plugins.generic.estrabao.apaNotAccepted"
+msgstr "No se aceptó el envío: se identificaron incompatibilidades con APA 7. No se aceptan referencias en ABNT. Corrija el manuscrito antes de intentarlo de nuevo."
+
+msgid "plugins.generic.estrabao.apaReviewRequired"
+msgstr "No se pudo completar el envío: el cumplimiento de APA 7 requiere revisión editorial. Esto no significa que se haya identificado ABNT. Contacte con el equipo editorial."
+
+msgid "plugins.generic.estrabao.reviewTitle"
+msgstr "Revisión editorial de APA 7"
+
+msgid "plugins.generic.estrabao.reviewScope"
+msgstr "Área restringida a gestores de la revista. Esta revisión permite completar el envío; no acepta el artículo para publicación."
+
+msgid "plugins.generic.estrabao.reviewSubmission"
+msgstr "Número del envío"
+
+msgid "plugins.generic.estrabao.reviewOpen"
+msgstr "Abrir revisión"
+
+msgid "plugins.generic.estrabao.reviewSaved"
+msgstr "Decisión editorial registrada."
+
+msgid "plugins.generic.estrabao.reviewNotSaved"
+msgstr "No se registró la decisión. Compruebe sus permisos, actualice la página y revise la versión actual del manuscrito."
+
+msgid "plugins.generic.estrabao.reviewUnavailable"
+msgstr "Revisión no disponible. Compruebe el envío y la configuración de pruebas."
+
+msgid "plugins.generic.estrabao.reviewReadFile"
+msgstr "Descargue y revise el manuscrito actual antes de autorizarlo. La autorización solo es válida para la versión analizada; cambiar el archivo requiere otra revisión."
+
+msgid "plugins.generic.estrabao.reviewDeclaration"
+msgstr "Revisé las citas y referencias del manuscrito actual y confirmo su adecuación a APA 7."
+
+msgid "plugins.generic.estrabao.reviewApprove"
+msgstr "Permitir completar el envío"
+
+msgid "plugins.generic.estrabao.reviewRevoke"
+msgstr "Revocar autorización"
+
+msgid "plugins.generic.estrabao.reviewHistory"
+msgstr "Historial de decisiones"
+
+msgid "plugins.generic.estrabao.reviewEditor"
+msgstr "Responsable"
+
+msgid "plugins.generic.estrabao.reviewApproved"
+msgstr "Autorización registrada para la versión revisada"
+
+msgid "plugins.generic.estrabao.reviewRevoked"
+msgstr "Autorización revocada"
+
+msgid "plugins.generic.estrabao.reviewNoHistory"
+msgstr "No hay decisiones registradas."
+
+msgid "plugins.generic.estrabao.reviewActive"
+msgstr "Hay una autorización editorial válida para esta versión del manuscrito."
+
+msgid "plugins.generic.estrabao.reviewDownload"
+msgstr "Descargar la versión actual del manuscrito para revisión"
