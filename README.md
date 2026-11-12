@@ -1,13 +1,14 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 e 2 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 3 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um esqueleto de plugin. Não há integração funcional com submissões do OJS,
-processamento Word, análise APA ou servidor MCP.
+análise APA ou servidor MCP. Há leitura local limitada de DOCX e
+verificação lexical de seções, descritas em docs/STAGE3.md.
 
 ## Executar localmente
 
-Requer PHP CLI 7.4 ou superior, com JSON, hash e PCRE; sem dependências Composer.
+Requer PHP CLI 7.4 ou superior, com JSON, hash e PCRE; DOCX requer DOM/libxml e ZIP. Sem Composer.
 PHP 7.4 é alvo de compatibilidade do código e está fora de suporte: não expor
 um ambiente com essa versão à internet. O runtime de homologação OJS precisa
 ser escolhido conforme a distribuição exata e suas dependências.
@@ -27,13 +28,14 @@ relatórios em disco. Use exclusivamente fixtures sintéticas nesta etapa.
 - `plugins/generic/estrabao/`: esqueleto baseado na API legada do OJS 3.3.0.20.
 - `src/Contracts/`: contratos PHP de snapshot, regra e resultado.
 - `src/Rules/`: presença trilíngue, ORCID, marcadores e extensão dos resumos,
-  quantidade de palavras-chave; pendências explícitas de Word e referências.
+  quantidade de palavras-chave e seções DOCX; referências ainda pendentes.
+- `src/Document/`: leitura DOCX local com limites ZIP/XML, sem extração em disco.
 - `src/Reporting/`: relatório versionado com evidências e hash do snapshot.
 - `contracts/`: JSON Schemas 2020-12 de entrada e saída.
 - `mcp/`: limites e requisitos do serviço opcional, ainda não implementado.
 - `tests/`: testes e dados sintéticos, sem dependências do OJS.
 
-Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [regras da Etapa 2](docs/STAGE2.md),
+Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [regras da Etapa 2](docs/STAGE2.md), [DOCX e seções da Etapa 3](docs/STAGE3.md),
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
 [diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),

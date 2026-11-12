@@ -135,7 +135,7 @@ test('JSON malformado rejeitado', function () {
 });
 test('políticas pendentes são explicitamente indeterminadas', function () {
     $checks = (new PendingPolicy())->evaluate(new Submission(fixture()));
-    same(3, count($checks));
+    same(2, count($checks));
     foreach ($checks as $check) {
         same('indeterminado', $check->jsonSerialize()['status']);
         same(false, $check->jsonSerialize()['evidence']['implemented']);
@@ -144,7 +144,7 @@ test('políticas pendentes são explicitamente indeterminadas', function () {
 test('relatório auditável, sem ORCID nem textos brutos', function () {
     $data = fixture(); $snapshot = new Submission($data);
     $report = Report::generate($snapshot, [new MetadataPresence(), new Orcid(), new PendingPolicy()]);
-    same(18, count($report['checks']));
+    same(17, count($report['checks']));
     same(true, $report['human_review_required']);
     same($snapshot->digest(), $report['input_sha256']);
     $data['title']['pt_BR'] = 'Outro título sintético';
@@ -234,6 +234,7 @@ foreach (['invalid-json' => '{"token":"synthetic-secret",', 'invalid-contract' =
 }
 
 require __DIR__ . '/stage2.php';
+require __DIR__ . '/stage3.php';
 
 echo "$tests testes, $failed falhas\n";
 exit($failed ? 1 : 0);

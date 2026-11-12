@@ -89,3 +89,36 @@ pelos testes. A definição técnica e os limites estão em STAGE2.md. A versão
 confundir históricos. A CI remota desta branch deve ser conferida no PR.
 Nenhum acesso à revista em produção ou à VM foi realizado. O plugin continua
 somente um esqueleto; esta validação não demonstra integração OJS funcional.
+
+## Etapa 3 — motor 0.3.0
+
+Validação local em 12/11/2026, branch `feat/etapa-3-docx-secoes`, após o merge
+`4afdb1c` do PR #2. Debian 13 amd64, PHP CLI 8.4.27 com DOM e ZIP, extraído
+sem privilégios de pacotes oficiais Debian. APT preservou assinaturas de índices,
+checksums e TLS. Runtime fora do checkout em `/workspace/php-runtime`.
+
+- `php tests/run.php`: 161 testes executados, zero falhas, nenhum ignorado.
+- Lint: 22 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12 e instâncias: snapshot, relatório sem DOCX (27 resultados) e
+  relatório com DOCX sintético de artigo em português (29 resultados) válidos.
+- CLI: seções sintéticas completas reconhecidas; sem copiar corpo ou caminho no
+  relatório, com hash independente do DOCX e revisão humana obrigatória.
+- Script de instalação/atualização executado e repetido com sucesso; runner,
+  lint e CLI exercitados. `install_script` e `start_skill` salvos no rascunho
+  do ambiente; publicação e restauração em nova tarefa não verificadas.
+- `git diff --check`: sem erros de whitespace.
+
+Os 51 testes novos cobrem seções obrigatórias por tipo, ordem livre, fomento
+condicional, menção em prosa, Resultados/Discussão separados, idiomas pendentes,
+contexto inválido, runs fragmentados, hash, numeração literal e OOXML (inclusive
+cancelamento), negrito direto versus herança não resolvida, DOC sem parser,
+URLs/wrappers, ZIP corrompido, CRC alterado, symlink, criptografia, caminhos
+inseguros, duplicatas por caixa, tamanho/razão/quantidade de membros, pacote
+incompleto, macros, objetos, XML malformado/UTF-16, DTD e entidades externas,
+texto oculto, campos/revisões/tabelas/caixas de texto e Unicode decomposto.
+Hyperlinks externos permanecem locais, sem seguir o destino.
+
+A matriz CI agora requer DOM e ZIP em PHP 7.4/8.3; a execução remota dessas versões
+não foi verificada nesta etapa. Não houve acesso a produção nem à VM Oracle.
+DOCX tem cobertura deliberadamente limitada; herança de estilos, `.doc`, OJS,
+MCP e as demais verificações indicadas em STAGE3.md continuam pendentes.

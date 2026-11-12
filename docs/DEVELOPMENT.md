@@ -3,7 +3,8 @@
 ## Ambiente local
 
 Use o checkout existente da tarefa em nuvem; não é necessário criar worktree.
-Não há pacotes PHP adicionais, banco de dados ou serviço a iniciar para o motor.
+Para DOCX, instalar as extensões DOM/libxml e ZIP além do PHP CLI. Não há
+banco de dados ou serviço a iniciar para o motor.
 Em uma máquina de desenvolvimento administrada pelo operador, instale PHP CLI
 pelo gerenciador oficial da distribuição; use versões suportadas para novas
 implantações, respeitando também as restrições da versão exata do OJS.
@@ -60,8 +61,8 @@ em fontes exatas; compatibilidade operacional depende do teste acima.
 
 Não usar produção nem arquivos editoriais reais. Não incluir credenciais no Git,
 em fixtures ou exemplos. Saídas de dados reais exigirão armazenamento privado,
-autorização e política de retenção. Não executar DOCX fornecidos como código,
-nem instalar parsers antes de definir limites de ZIP, XML, tamanho e extração.
+autorização e política de retenção. Não executar DOCX fornecidos como código.
+A leitura DOCX implementada usa os limites de ZIP, XML e tamanho de STAGE3.md.
 Não há chamadas de rede no motor ou CLI. Nenhum endpoint HTTP é disponibilizado.
 
 Faça alterações em branch e submeta Pull Request; não integre automaticamente.
