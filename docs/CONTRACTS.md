@@ -114,3 +114,11 @@ permanece schema 1.0. As regras `metadata.title.case`, `metadata.subtitle.case` 
 `manuscript.headings.case` 1.0.0 sinalizam caixa alta sem reescrita. O hash do
 snapshot cobre o subtítulo quando fornecido; o hash DOCX permanece separado nas
 evidências. Exemplo: tests/fixtures/with-subtitles.json. Ver STAGE8.md.
+
+## Etapa 9
+
+Motor 0.9.0: `manuscript.footnotes.count` e `manuscript.footnotes.lines` 1.0.0,
+com inventário de vínculos independente da extração textual. Contagem conclusiva
+exige cobertura completa; linhas permanecem indeterminadas com notas presentes,
+sem renderizador. Hash DOCX, contagens e amostras limitadas, sem texto ou IDs.
+Entradas 1.0/1.1, relatório 1.0 e CLI preservados. Ver STAGE9.md.

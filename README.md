@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 8 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 9 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um esqueleto de plugin. Não há integração funcional com submissões do OJS,
 análise APA ou servidor MCP. Há leitura local limitada de DOCX e
 verificação lexical de seções (docs/STAGE3.md), com resolução limitada de estilos
@@ -11,6 +11,7 @@ com exclusões documentadas (docs/STAGE6.md). O inventário visual e o limite da
 comunicações estão em docs/STAGE7.md; figuras ambíguas exigem revisão humana.
 A sinalização de caixa alta em títulos e subtítulos está em docs/STAGE8.md,
 com snapshot 1.1 opcional para subtítulos e compatibilidade com entradas 1.0.
+A contagem de notas Word está em docs/STAGE9.md; linhas exigem renderização.
 
 ## Executar localmente
 
@@ -47,6 +48,7 @@ Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [r
 [extensão do manuscrito da Etapa 6](docs/STAGE6.md),
 [inventário visual da Etapa 7](docs/STAGE7.md),
 [caixa de títulos da Etapa 8](docs/STAGE8.md),
+[notas de rodapé da Etapa 9](docs/STAGE9.md),
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
 [diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),

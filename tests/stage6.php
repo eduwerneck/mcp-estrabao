@@ -180,7 +180,7 @@ foreach (['conforme' => 4000, 'não conforme' => 3999, 'indeterminado' => 4000] 
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
             $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-            same('0.8.0', $report['engine_version']);
+            same('0.9.0', $report['engine_version']);
             $result = array_column($report['checks'], null, 'rule_id')['manuscript.word_limit'];
             same($status, $result['status']);
             same(hash_file('sha256', $path), $result['evidence']['document_sha256']);
