@@ -130,3 +130,11 @@ Resultado indeterminado exige revisão e também não libera avanço automático
 não constitui prova de ABNT. A ausência de erros detectados não certifica APA.
 Esta autorização define a política do motor; não publica mudanças na revista.
 A integração que efetivamente impedirá avanço no OJS permanece pendente.
+
+## Devolutiva da triagem — modelo aprovado em 12/11/2026
+
+O responsável aprovou como definitivo o [modelo de devolução editorial](DESK_RESPONSE.md).
+Toda devolutiva deve relacionar exigência, problema confirmado e correção
+necessária, adaptando os itens ao manuscrito. Pendências inconclusivas ficam
+separadas das não conformidades. Não acusar ABNT sem comprovação nem confundir
+limitação de leitura com infração. O modelo não autoriza envio automático.
