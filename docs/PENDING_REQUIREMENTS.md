@@ -8,6 +8,7 @@
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
 | Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); `.doc`, títulos equivalentes e variações ainda pendentes. |
 | Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; ampliar cobertura, listas vinculadas e scripts complexos em etapa futura. Página e tipografia declaradas implementadas no subconjunto de STAGE5.md; intervalo de extensão com exclusões em STAGE6.md, sem convenção editorial oficial de palavra. |
+| Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
 | APA 7 | Escopo determinístico aprovado, exemplos sintéticos e tratamento humano de ambiguidades e correspondências de citações. |
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
 | Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |

@@ -184,7 +184,7 @@ test('CLI gera relatório JSON local', function () {
     list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json']);
     same(0, $code); same('', $err);
     $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-    same(33, count($report['checks']));
+    same(34, count($report['checks']));
     same(true, $report['human_review_required']);
 });
 test('CLI preserva inicialização configurada em arquivos ini', function () {
@@ -204,7 +204,7 @@ test('CLI preserva inicialização configurada em arquivos ini', function () {
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json']);
         same(0, $code); same('', $err);
         same(true, is_file($dir . '/loaded'));
-        same(33, count(json_decode($out, true, 64, JSON_THROW_ON_ERROR)['checks']));
+        same(34, count(json_decode($out, true, 64, JSON_THROW_ON_ERROR)['checks']));
     } finally {
         putenv($original === false ? 'PHP_INI_SCAN_DIR' : 'PHP_INI_SCAN_DIR=' . $original);
         foreach (glob($dir . '/*') as $path) { unlink($path); }
@@ -238,6 +238,7 @@ require __DIR__ . '/stage3.php';
 require __DIR__ . '/stage4.php';
 require __DIR__ . '/stage5.php';
 require __DIR__ . '/stage6.php';
+require __DIR__ . '/stage7.php';
 
 echo "$tests testes, $failed falhas\n";
 exit($failed ? 1 : 0);

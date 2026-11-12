@@ -71,6 +71,7 @@ final class DocxReader
             if ($rels->query('/r:Relationships/r:Relationship[@Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/officeDocument" and (@Target="word/document.xml" or @Target="/word/document.xml") and not(@TargetMode="External")]')->length !== 1) { return $unknown; }
             $xpath = new \DOMXPath($parts['word/document.xml']); $xpath->registerNamespace('w', self::W);
             if ($xpath->query('/w:document/w:body')->length !== 1) { return $unknown; }
+            $unknown['visuals'] = VisualInventory::read($parts);
             // Unsupported containers/fields/revisions can hide or change section labels.
             if ($xpath->query('/w:document/w:body//*[namespace-uri()!="' . self::W . '"]')->length
                 || $xpath->query('/w:document/w:body/w:p//*[not(ancestor::w:pPr or ancestor::w:rPr) and not(self::w:r or self::w:t or self::w:tab or self::w:br or self::w:cr or self::w:pPr or self::w:rPr or self::w:hyperlink or self::w:bookmarkStart or self::w:bookmarkEnd or self::w:proofErr)]')->length
@@ -106,7 +107,7 @@ final class DocxReader
                 $paragraphs[] = ['outline' => $resolver->outline($paragraph), 'typography' => $resolver->typography($paragraph), 'format' => $resolver->paragraph($paragraph), 'direct_bold' => $hasText ? $bold : null, 'index' => $index, 'text' => trim(preg_replace('/\s+/u', ' ', $text)),
                     'numbered' => $xpath->query('./w:pPr/w:numPr[w:numId and not(w:numId/@w:val="0")]', $paragraph)->length > 0];
             }
-            return ['layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
+            return ['visuals' => $unknown['visuals'], 'layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
         } catch (\Throwable $error) {
             return $unknown; // No document text, paths, XML errors or exception details in reports.
         } finally {

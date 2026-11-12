@@ -210,3 +210,32 @@ PHP 7.4/8.3 segue na matriz CI; a execução remota da branch não foi verificad
 nesta validação local. STAGE6.md documenta o intervalo técnico e suas limitações;
 a convenção oficial de palavra e materiais condicionais ainda requer confirmação
 editorial. Nenhuma contagem foi feita com manuscrito real.
+
+## Etapa 7 — motor 0.7.0
+
+Validação local em 12/11/2026, branch `feat/etapa-7-figuras-tabelas`, após o merge
+`79a4b83` do PR #6. Mesmo PHP 8.4.27 com DOM/ZIP. Sem novas dependências,
+configuração/publicação do ambiente, produção, VM Oracle ou manuscritos reais.
+
+- Runner: 375 testes executados, zero falhas, nenhum ignorado (44 novos).
+- Lint: 35 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12 e relatórios da CLI válidos: 34 resultados sem DOCX, 35 com
+  comunicação e 36 com artigo. Exercitados 6 tabelas conformes, 7 não conformes,
+  mistura de 6 tabelas e desenho indeterminada e artigo sem limite publicado.
+  A regra de extensão permaneceu indeterminada com tabelas, sem extração parcial.
+- `git diff --check`: sem erros de whitespace.
+
+Os testes novos cobrem 0/1/6/7 tabelas simples, limite por tipo, independência de
+idioma, preservação da cobertura textual, imagens inline/anchor, recurso repetido,
+grupos, objetos legados, tabelas vazias, de layout, mescladas, flutuantes,
+aninhadas, com imagens e revisadas. Cobrem conteúdo não suportado, altChunk,
+campos, notas, cabeçalhos, fundo, texto oculto, visuais em outra parte, mídias não
+inseridas, vínculos externos não seguidos, pacote com DTD recusado, DOC sem parser,
+limite técnico de tabelas e evidência limitada sem texto, nomes ou IDs privados.
+A CLI exercitou limite e excesso com hash real do DOCX. Imagens não são unidades
+editoriais confirmadas; sete inserções não causam reprovação por si sós.
+
+PHP 7.4/8.3 permanece na matriz CI; execução remota da branch não foi verificada
+nesta validação local. STAGE7.md descreve o subconjunto estrutural e as pendências
+sobre figuras compostas, função editorial e ampliação da cobertura. Não houve
+renderização, decodificação de imagens, análise de DPI ou integração OJS.

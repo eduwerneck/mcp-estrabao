@@ -98,3 +98,10 @@ técnico, cobertura, categorias e regiões limitadas por posição, sem texto br
 Snapshot, schemas 1.0 e argumentos CLI preservados. `input_sha256` cobre o
 snapshot; a regra inclui o hash separado do DOCX. Ver STAGE6.md para exclusões,
 marcadores, normalização e limitações de idioma e contagem.
+
+## Etapa 7
+
+Motor 0.7.0: `manuscript.visuals.count` 1.0.0 registra inventário estrutural
+independente da cobertura textual, com hash do DOCX e amostras limitadas. Não
+converte desenhos/pictures automaticamente em figuras editoriais. O máximo 6
+aplica-se apenas a comunicações. Schemas 1.0 e CLI preservados. Ver STAGE7.md.
