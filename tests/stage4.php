@@ -31,7 +31,7 @@ function checkStyleParts(array $parts, ?bool $bold, ?bool $numbered, string $sta
         same(true, $doc['available']);
         same($bold, $doc['paragraphs'][0]['format']['bold']);
         same($numbered, $doc['paragraphs'][0]['format']['numbered']);
-        $result = structure($doc)[1]; same($status, $result['status']); same('2.0.0', $result['rule_version']);
+        $result = structure($doc)[1]; same($status, $result['status']); same('3.0.0', $result['rule_version']);
     });
 }
 $heading = '<w:pStyle w:val="Heading"/>';
@@ -177,7 +177,7 @@ foreach (['conforme', 'não conforme', 'indeterminado'] as $expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
             $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-            same('0.12.0', $report['engine_version']);
+            same('0.13.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
             same($expected, $checks['manuscript.headings.format']['status']);
             same('conforme', $checks['manuscript.docx.structure']['status']);

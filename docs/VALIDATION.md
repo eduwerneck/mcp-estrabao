@@ -509,3 +509,31 @@ Testes usam apenas dados sintéticos, sem artigo real, produção, VM Oracle,
 envio aos autores, gravação de cartas no ledger ou configuração publicada nova.
 Permanecem os limites de concorrência após exibição, tema/infraestrutura real,
 outros canais e normalização adicional de locales descritos em STAGE17.md.
+
+## Etapa 18 — cobertura segura de DOCX
+
+Validação local em 12/11/2026, base e1aa1ec (merge do PR #18), motor 0.13.0.
+Plugin 0.4.0.0 e gerador de minuta 1.0.0 preservados.
+
+- 750 testes sintéticos, zero falhas, em PHP 8.4.27 e PHP 8.1.27; 44 testes novos.
+- Lint: 68 arquivos PHP sem erros de sintaxe; `git diff --check` sem erros.
+- CLI de triagem/minuta e schemas JSON validados com snapshots sintéticos e
+  DOCX composto sintético: 47 checks, cobertura parcial explícita, divergência
+  de fonte e padrão ABNT reconhecido presentes na minuta. Evidências em
+  docs/evidence/stage18; nenhum conteúdo de manuscrito real nesses exemplos.
+- Integração do serviço do painel exercitada com motor real e dublês do OJS.
+  Liberação vinculada à versão anterior do motor é invalidada pelo fingerprint.
+  Não houve novo ensaio de navegador nem alteração de interface nesta etapa.
+- Testes existentes ajustados para versões das regras e presença comprovável
+  de títulos em texto Word parcial; contagem integral continua indeterminada.
+
+Cobertura inclui marcadores Word conhecidos, DOM original preservado, imagens
+locais e camadas de efeito, tabelas, caminhos/relacionamentos inválidos, campos,
+revisões, texto em propriedades, limites, cauda bibliográfica e privacidade.
+Mantidos os controles de ZIP/XML; dados gráficos não são renderizados ou lidos
+por OCR. CI remoto ainda não verificado.
+
+O manuscrito autorizado na conversa foi retestado separadamente, fora do Git,
+sem alteração do original ou da carta anteriormente aprovada. Não foi inserido
+no laboratório OJS. Sem produção, VM Oracle, comunicação com autores, publicação
+ou atualização de ambiente.

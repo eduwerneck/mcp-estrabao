@@ -166,7 +166,7 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.12.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.13.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
             same($expected, $checks['references.citation_matching']['status']); same('3.0.0', $checks['references.citation_matching']['rule_version']);
             same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);

@@ -75,7 +75,7 @@ final class VisualInventory
         return $index;
     }
 
-    private static function simpleTable(\DOMXPath $x, \DOMElement $table): bool
+    public static function simpleTable(\DOMXPath $x, \DOMElement $table): bool
     {
         // Count only top-level, rectangular, textual tables. Layout/nested/merged tables need review.
         if ($table->parentNode->namespaceURI !== DocxReader::W || $table->parentNode->localName !== 'body'

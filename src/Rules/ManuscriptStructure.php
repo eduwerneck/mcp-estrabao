@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Estrabao\Rules;
 use Estrabao\Contracts\{Rule, Submission, CheckResult};
+use Estrabao\Document\DocumentSource;
 
 final class ManuscriptStructure implements Rule
 {
@@ -20,16 +21,19 @@ final class ManuscriptStructure implements Rule
 
     public function evaluate(Submission $submission): array
     {
-        $evidence = ['implemented' => true, 'policy_version' => 'diretrizes-fornecidas-2026-11-11',
+        $source = DocumentSource::mainText($this->document);
+        $full = $source['full_document_text_available'] ?? false;
+        $evidence = ['source_profile'=>$source['source_profile']??'unavailable','full_document_text_available'=>$full,
+            'coverage'=>$source['coverage']??[], 'implemented' => true, 'policy_version' => 'diretrizes-fornecidas-2026-11-11',
             'document_sha256' => $this->document['sha256'] ?? null,
-            'extraction' => $this->document['reason'] ?? 'not_supplied',
+            'extraction' => $source['reason'] ?? 'not_supplied',
             'manuscript_type' => $this->type, 'language' => $this->language];
         $status = CheckResult::UNKNOWN;
-        if (($this->document['available'] ?? false) && $this->type !== null && $this->language === 'pt') {
+        if (($source['available'] ?? false) && $this->type !== null && $this->language === 'pt') {
             $sections = []; $status = CheckResult::PASS;
             foreach (['Introdução', 'Metodologia', 'Resultados e Discussão', 'Considerações Finais', 'Créditos (CRediT)', 'Referências'] as $label) {
                 $matches = []; $ambiguous = false;
-                foreach ($this->document['paragraphs'] as $paragraph) {
+                foreach ($source['paragraphs'] as $paragraph) {
                     $text = $paragraph['text'];
                     // Exact standalone labels, optionally with explicit numeric prefix.
                     $pattern = '/^(?:[0-9]+(?:\.[0-9]+)*[.)]?\s+)?' . preg_quote($label, '/') . '$/iuD';
@@ -41,11 +45,11 @@ final class ManuscriptStructure implements Rule
                     } elseif (preg_match('/' . preg_quote($label, '/') . '/iu', $text)) { $ambiguous = true; }
                 }
                 if ($label === 'Resultados e Discussão' && !$matches) {
-                    foreach ($this->document['paragraphs'] as $paragraph) {
+                    foreach ($source['paragraphs'] as $paragraph) {
                         if (preg_match('/^(Resultados|Discussão)$/iuD', $paragraph['text'])) { $ambiguous = true; }
                     }
                 }
-                $sectionStatus = $matches ? CheckResult::PASS : ($ambiguous ? CheckResult::UNKNOWN : CheckResult::FAIL);
+                $sectionStatus = $matches ? CheckResult::PASS : (($ambiguous || !$full) ? CheckResult::UNKNOWN : CheckResult::FAIL);
                 $sections[] = ['required_label' => $label, 'status' => $sectionStatus, 'matches' => $matches];
                 if ($sectionStatus === CheckResult::FAIL) { $status = CheckResult::FAIL; }
                 elseif ($sectionStatus === CheckResult::UNKNOWN && $status === CheckResult::PASS) { $status = CheckResult::UNKNOWN; }
@@ -54,7 +58,7 @@ final class ManuscriptStructure implements Rule
             $evidence['order_enforced'] = false;
         }
         $results = [new CheckResult('manuscript.docx.structure', $status, $evidence, '/manuscript',
-            'Revisar a presença dos títulos; traduções, variantes e cobertura incompleta exigem revisão humana.', '2.0.0')];
+            'Revisar a presença dos títulos; traduções, variantes e cobertura incompleta exigem revisão humana.', '3.0.0')];
         if ($this->document !== null) {
             $numbered = false; $nonBold = false; $resolvedBold = true; $resolvedNumbering = true;
             $formatStatus = isset($evidence['sections']) ? CheckResult::PASS : CheckResult::UNKNOWN;
@@ -84,7 +88,7 @@ final class ManuscriptStructure implements Rule
                     'effective_bold_resolved' => $headings && $resolvedBold,
                     'inherited_numbering_resolved' => $headings && $resolvedNumbering,
                     'headings' => $headings], '/manuscript',
-                'Revisar títulos não numerados e em negrito; herança não suportada permanece indeterminada.', '2.0.0');
+                'Revisar títulos não numerados e em negrito; herança não suportada permanece indeterminada.', '3.0.0');
             if ($this->type === 'article') {
                 $results[] = new CheckResult('manuscript.funding', CheckResult::UNKNOWN,
                     ['conditional' => true, 'applicability_known' => false], '/manuscript',

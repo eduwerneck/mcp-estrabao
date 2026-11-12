@@ -35,11 +35,13 @@ foreach ([0 => 'conforme', 1 => 'conforme', 6 => 'conforme', 7 => 'não conforme
         });
     });
 }
-test('tabelas não liberam extração textual parcial para regras anteriores', function () {
+test('tabela textual mantém cobertura parcial e não libera contagem de palavras', function () {
     visualDocxTest(docxParts(docxBody(labels()) . simpleVisualTable()), function ($document) {
         same('conforme', visualCheck($document)['status']);
         same([], $document['paragraphs']); same(false, $document['available']);
-        same('indeterminado', structure($document)[0]['status']);
+        same('conforme', structure($document)[0]['status']);
+        same(false, structure($document)[0]['evidence']['full_document_text_available']);
+        same('verified_main_word_text', structure($document)[0]['evidence']['source_profile']);
         same('indeterminado', manuscriptLength($document)['status']);
     });
 });
@@ -156,7 +158,7 @@ foreach ([6 => 'conforme', 7 => 'não conforme'] as $count => $status) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json', $path, 'research_communication', 'pt']);
             same(0, $code); same('', $err);
             $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-            same('0.12.0', $report['engine_version']);
+            same('0.13.0', $report['engine_version']);
             same($status, array_column($report['checks'], null, 'rule_id')['manuscript.visuals.count']['status']);
             same(false, strpos($out, 'Coluna A') !== false); same(false, strpos($out, $path) !== false);
         });

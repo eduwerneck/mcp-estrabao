@@ -104,3 +104,11 @@ Plugin 0.4.0.0 acrescenta gerar/revisar/copiar no painel já autorizado, sem env
 Atualizar também src/ privado para incluir o gerador da Etapa 16. Limpar caches
 de idioma/template no laboratório após atualização. Procedimento e evidências
 locais em STAGE17.md; sem implantação na revista ou configuração na VM.
+
+## Leitor DOCX — Etapa 18
+
+Atualizar src/ privado como conjunto para o motor 0.13.0, incluindo as novas
+classes DocxCompatibility, BodyTextProfile e DocumentSource. Não misturar
+classes de leitores diferentes. A versão nova exige nova revisão de liberações
+que estavam vinculadas ao motor anterior. Schemas, CLI e plugin preservados;
+parcialidade e limites em STAGE18.md. Sem atualização da revista nesta entrega.

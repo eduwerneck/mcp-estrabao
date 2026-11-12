@@ -2,6 +2,7 @@
 declare(strict_types=1);
 namespace Estrabao\Rules;
 use Estrabao\Contracts\{Rule, Submission, CheckResult};
+use Estrabao\Document\DocumentSource;
 
 /** Declared page/body formatting, with explicit coverage and no rendering claims. */
 final class ManuscriptFormatting implements Rule
@@ -15,9 +16,11 @@ final class ManuscriptFormatting implements Rule
         foreach (['page.a4', 'page.margins', 'body.font', 'body.font_size', 'body.line_spacing'] as $id) {
             $buckets[$id] = ['counts' => [CheckResult::PASS => 0, CheckResult::FAIL => 0, CheckResult::UNKNOWN => 0], 'samples' => []];
         }
-        $available = $this->document['available'] ?? false;
+        $source = DocumentSource::mainText($this->document);
+        $available = $source['available'] ?? false;
+        $full = $source['full_document_text_available'] ?? false;
         if ($available) {
-            foreach ($this->document['layout']['sections'] ?? [] as $section) {
+            foreach ($source['layout']['sections'] ?? [] as $section) {
                 $page = null; $margin = null; $size = $section['size_twips']; $margins = $section['margins_twips'];
                 if ($section['valid'] && $size !== null && $size['w'] !== null && $size['h'] !== null) {
                     $dimensions = [$size['w'], $size['h']]; sort($dimensions);
@@ -33,7 +36,7 @@ final class ManuscriptFormatting implements Rule
                 $this->record($buckets['page.a4'], $page, ['section_index' => $section['section_index'], 'size_twips' => $size]);
                 $this->record($buckets['page.margins'], $margin, ['section_index' => $section['section_index'], 'margins_twips' => $margins]);
             }
-            foreach ($this->document['paragraphs'] as $paragraph) {
+            foreach ($source['paragraphs'] as $paragraph) {
                 if (!preg_match('/[^\s\p{Z}]/u', $paragraph['text'])) { continue; }
                 $type = $paragraph['typography'] ?? ['available' => false];
                 $position = ['paragraph_index' => $paragraph['index']];
@@ -56,23 +59,24 @@ final class ManuscriptFormatting implements Rule
                 $spacing = $type['spacing'] ?? ['line' => null, 'rule' => null];
                 $line = $spacing['line']; $mode = $spacing['rule'] ?? 'auto';
                 $result = $type['available'] && $line !== null && $line > 0 && $mode === 'auto'
-                    && !($this->document['layout']['grid'] ?? true) ? $line === 360 : null;
+                    && !($source['layout']['grid'] ?? true) ? $line === 360 : null;
                 $this->record($buckets['body.line_spacing'], $result, $position + ['line_units' => $line, 'automatic' => $mode === 'auto']);
             }
         }
         $results = [];
         foreach ($buckets as $id => $bucket) {
             $counts = $bucket['counts']; $count = array_sum($counts);
-            $complete = $available && (strpos($id, 'page.') !== 0 || ($this->document['layout']['complete'] ?? false));
+            $complete = $available && (strpos($id, 'page.') === 0 ? ($source['layout']['complete'] ?? false) : $full);
             $status = $counts[CheckResult::FAIL] ? CheckResult::FAIL
                 : ($complete && $count > 0 && !$counts[CheckResult::UNKNOWN] ? CheckResult::PASS : CheckResult::UNKNOWN);
             $results[] = new CheckResult('manuscript.' . $id, $status,
-                ['implemented' => true, 'policy_version' => 'diretrizes-fornecidas-2026-11-11',
+                ['source_profile'=>$source['source_profile']??'unavailable','full_document_text_available'=>$full,
+                    'coverage'=>$source['coverage']??[], 'implemented' => true, 'policy_version' => 'diretrizes-fornecidas-2026-11-11',
                     'document_sha256' => $this->document['sha256'] ?? null,
-                    'scope' => strpos($id, 'page.') === 0 ? 'document_sections' : 'main_body_text',
+                    'scope' => strpos($id, 'page.') === 0 ? 'document_sections' : (($full || !$available) ? 'main_body_text' : 'verified_direct_body_word_runs'),
                     'coverage_complete' => $complete, 'counts' => $counts, 'samples' => $bucket['samples'],
                     'samples_omitted' => max(0, $count - count($bucket['samples']))], '/manuscript',
-                'Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana.');
+                'Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana.', '2.0.0');
         }
         return $results;
     }

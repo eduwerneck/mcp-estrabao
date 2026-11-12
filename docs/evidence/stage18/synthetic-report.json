@@ -1,0 +1,1500 @@
+{
+  "schema_version": "1.0",
+  "engine_version": "0.13.0",
+  "generated_at": "2026-11-12T20:35:55Z",
+  "input_sha256": "f078cfc17f279bd905e50a9269cf4966d19a51d2df600c9356c862861717a2ec",
+  "locale_profile": [
+    "pt_BR",
+    "en_US",
+    "es_ES"
+  ],
+  "scope": "local_snapshot_only",
+  "human_review_required": true,
+  "checks": [
+    {
+      "rule_id": "metadata.title.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "pt_BR",
+        "visible_content_present": true
+      },
+      "location": "/title/pt_BR",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.title.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "en_US",
+        "visible_content_present": true
+      },
+      "location": "/title/en_US",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.title.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "es_ES",
+        "visible_content_present": true
+      },
+      "location": "/title/es_ES",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.abstract.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "pt_BR",
+        "visible_content_present": true
+      },
+      "location": "/abstract/pt_BR",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.abstract.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "en_US",
+        "visible_content_present": true
+      },
+      "location": "/abstract/en_US",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.abstract.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "es_ES",
+        "visible_content_present": true
+      },
+      "location": "/abstract/es_ES",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.keywords.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "pt_BR",
+        "visible_content_present": true
+      },
+      "location": "/keywords/pt_BR",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.keywords.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "en_US",
+        "visible_content_present": true
+      },
+      "location": "/keywords/en_US",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "metadata.keywords.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_available": true,
+        "locale": "es_ES",
+        "visible_content_present": true
+      },
+      "location": "/keywords/es_ES",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "author.orcid.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "present": true
+      },
+      "location": "/authors/0/orcid",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "author.orcid.syntax",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "format_and_checksum_valid": true,
+        "algorithm": "ISO 7064 MOD 11-2"
+      },
+      "location": "/authors/0/orcid",
+      "recommendation": "Validade sintática não comprova identidade."
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "external_verification_performed": false
+      },
+      "location": "/authors/0/orcid",
+      "recommendation": "Verificação de identidade depende de fluxo autenticado autorizado; não realizada nesta etapa."
+    },
+    {
+      "rule_id": "author.orcid.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "present": true
+      },
+      "location": "/authors/1/orcid",
+      "recommendation": "Nenhuma correção de presença necessária."
+    },
+    {
+      "rule_id": "author.orcid.syntax",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "format_and_checksum_valid": true,
+        "algorithm": "ISO 7064 MOD 11-2"
+      },
+      "location": "/authors/1/orcid",
+      "recommendation": "Validade sintática não comprova identidade."
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "external_verification_performed": false
+      },
+      "location": "/authors/1/orcid",
+      "recommendation": "Verificação de identidade depende de fluxo autenticado autorizado; não realizada nesta etapa."
+    },
+    {
+      "rule_id": "abstract.labels",
+      "rule_version": "2.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "source_available": true,
+        "normalization_available": true,
+        "groups": [
+          {
+            "group": 1,
+            "accepted": [
+              "Contexto",
+              "Introdução"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 0
+          },
+          {
+            "group": 2,
+            "accepted": [
+              "Metodologia",
+              "Método"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 29
+          },
+          {
+            "group": 3,
+            "accepted": [
+              "Resultados",
+              "Conclusões"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 58
+          }
+        ]
+      },
+      "location": "/abstract/pt_BR",
+      "recommendation": "Marcadores presentes; revisar o conteúdo editorialmente."
+    },
+    {
+      "rule_id": "abstract.labels",
+      "rule_version": "2.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "source_available": true,
+        "normalization_available": true,
+        "groups": [
+          {
+            "group": 1,
+            "accepted": [
+              "Background",
+              "Introduction"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 0
+          },
+          {
+            "group": 2,
+            "accepted": [
+              "Methodology",
+              "Method"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 29
+          },
+          {
+            "group": 3,
+            "accepted": [
+              "Results",
+              "Conclusions"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 53
+          }
+        ]
+      },
+      "location": "/abstract/en_US",
+      "recommendation": "Marcadores presentes; revisar o conteúdo editorialmente."
+    },
+    {
+      "rule_id": "abstract.labels",
+      "rule_version": "2.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "source_available": true,
+        "normalization_available": true,
+        "groups": [
+          {
+            "group": 1,
+            "accepted": [
+              "Contexto",
+              "Introducción"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 0
+          },
+          {
+            "group": 2,
+            "accepted": [
+              "Metodología",
+              "Método"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 35
+          },
+          {
+            "group": 3,
+            "accepted": [
+              "Resultados",
+              "Conclusiones"
+            ],
+            "state": "marker_found",
+            "normalized_byte_offset": 66
+          }
+        ]
+      },
+      "location": "/abstract/es_ES",
+      "recommendation": "Marcadores presentes; revisar o conteúdo editorialmente."
+    },
+    {
+      "rule_id": "abstract.word_limit",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "maximum": 250,
+        "counting_method": "conservative_interval_v1",
+        "minimum_count": 6,
+        "maximum_count": 9,
+        "source_available": true,
+        "normalization_available": true
+      },
+      "location": "/abstract/pt_BR",
+      "recommendation": "Dentro do limite nas duas contagens técnicas; não avalia qualidade do resumo."
+    },
+    {
+      "rule_id": "abstract.word_limit",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "maximum": 250,
+        "counting_method": "conservative_interval_v1",
+        "minimum_count": 6,
+        "maximum_count": 9,
+        "source_available": true,
+        "normalization_available": true
+      },
+      "location": "/abstract/en_US",
+      "recommendation": "Dentro do limite nas duas contagens técnicas; não avalia qualidade do resumo."
+    },
+    {
+      "rule_id": "abstract.word_limit",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "maximum": 250,
+        "counting_method": "conservative_interval_v1",
+        "minimum_count": 6,
+        "maximum_count": 9,
+        "source_available": true,
+        "normalization_available": true
+      },
+      "location": "/abstract/es_ES",
+      "recommendation": "Dentro do limite nas duas contagens técnicas; não avalia qualidade do resumo."
+    },
+    {
+      "rule_id": "metadata.keywords.count",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "source_available": true,
+        "normalization_available": true,
+        "count": 3,
+        "minimum": 3,
+        "maximum": 4,
+        "empty_items": 0,
+        "unreadable_items": 0,
+        "exact_duplicates": 0
+      },
+      "location": "/keywords/pt_BR",
+      "recommendation": "Quantidade válida; duplicatas e adequação temática dependem de revisão humana."
+    },
+    {
+      "rule_id": "metadata.keywords.count",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "source_available": true,
+        "normalization_available": true,
+        "count": 3,
+        "minimum": 3,
+        "maximum": 4,
+        "empty_items": 0,
+        "unreadable_items": 0,
+        "exact_duplicates": 0
+      },
+      "location": "/keywords/en_US",
+      "recommendation": "Quantidade válida; duplicatas e adequação temática dependem de revisão humana."
+    },
+    {
+      "rule_id": "metadata.keywords.count",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "source_available": true,
+        "normalization_available": true,
+        "count": 3,
+        "minimum": 3,
+        "maximum": 4,
+        "empty_items": 0,
+        "unreadable_items": 0,
+        "exact_duplicates": 0
+      },
+      "location": "/keywords/es_ES",
+      "recommendation": "Quantidade válida; duplicatas e adequação temática dependem de revisão humana."
+    },
+    {
+      "rule_id": "manuscript.docx.structure",
+      "rule_version": "3.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "extraction": "verified_main_word_text",
+        "manuscript_type": "article",
+        "language": "pt",
+        "sections": [
+          {
+            "required_label": "Introdução",
+            "status": "conforme",
+            "matches": [
+              {
+                "paragraph_index": 1,
+                "direct_bold": true,
+                "format": {
+                  "bold": true,
+                  "numbered": false,
+                  "reason": "resolved_supported_styles"
+                },
+                "literal_numbering": false,
+                "explicit_numbering": false
+              }
+            ]
+          },
+          {
+            "required_label": "Metodologia",
+            "status": "conforme",
+            "matches": [
+              {
+                "paragraph_index": 3,
+                "direct_bold": true,
+                "format": {
+                  "bold": true,
+                  "numbered": false,
+                  "reason": "resolved_supported_styles"
+                },
+                "literal_numbering": false,
+                "explicit_numbering": false
+              }
+            ]
+          },
+          {
+            "required_label": "Resultados e Discussão",
+            "status": "conforme",
+            "matches": [
+              {
+                "paragraph_index": 4,
+                "direct_bold": true,
+                "format": {
+                  "bold": true,
+                  "numbered": false,
+                  "reason": "resolved_supported_styles"
+                },
+                "literal_numbering": false,
+                "explicit_numbering": false
+              }
+            ]
+          },
+          {
+            "required_label": "Considerações Finais",
+            "status": "conforme",
+            "matches": [
+              {
+                "paragraph_index": 5,
+                "direct_bold": true,
+                "format": {
+                  "bold": true,
+                  "numbered": false,
+                  "reason": "resolved_supported_styles"
+                },
+                "literal_numbering": false,
+                "explicit_numbering": false
+              }
+            ]
+          },
+          {
+            "required_label": "Créditos (CRediT)",
+            "status": "conforme",
+            "matches": [
+              {
+                "paragraph_index": 6,
+                "direct_bold": true,
+                "format": {
+                  "bold": true,
+                  "numbered": false,
+                  "reason": "resolved_supported_styles"
+                },
+                "literal_numbering": false,
+                "explicit_numbering": false
+              }
+            ]
+          },
+          {
+            "required_label": "Referências",
+            "status": "conforme",
+            "matches": [
+              {
+                "paragraph_index": 7,
+                "direct_bold": true,
+                "format": {
+                  "bold": true,
+                  "numbered": false,
+                  "reason": "resolved_supported_styles"
+                },
+                "literal_numbering": false,
+                "explicit_numbering": false
+              }
+            ]
+          }
+        ],
+        "order_enforced": false
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar a presença dos títulos; traduções, variantes e cobertura incompleta exigem revisão humana."
+    },
+    {
+      "rule_id": "manuscript.headings.format",
+      "rule_version": "3.0.0",
+      "status": "conforme",
+      "evidence": {
+        "numbering_found": false,
+        "nonbold_found": false,
+        "effective_bold_resolved": true,
+        "inherited_numbering_resolved": true,
+        "headings": [
+          {
+            "paragraph_index": 1,
+            "bold": true,
+            "numbered": false,
+            "resolution": "resolved_supported_styles"
+          },
+          {
+            "paragraph_index": 3,
+            "bold": true,
+            "numbered": false,
+            "resolution": "resolved_supported_styles"
+          },
+          {
+            "paragraph_index": 4,
+            "bold": true,
+            "numbered": false,
+            "resolution": "resolved_supported_styles"
+          },
+          {
+            "paragraph_index": 5,
+            "bold": true,
+            "numbered": false,
+            "resolution": "resolved_supported_styles"
+          },
+          {
+            "paragraph_index": 6,
+            "bold": true,
+            "numbered": false,
+            "resolution": "resolved_supported_styles"
+          },
+          {
+            "paragraph_index": 7,
+            "bold": true,
+            "numbered": false,
+            "resolution": "resolved_supported_styles"
+          }
+        ]
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar títulos não numerados e em negrito; herança não suportada permanece indeterminada."
+    },
+    {
+      "rule_id": "manuscript.funding",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "conditional": true,
+        "applicability_known": false
+      },
+      "location": "/manuscript",
+      "recommendation": "Verificar se houve fomento e, quando aplicável, a seção Fontes de Fomento."
+    },
+    {
+      "rule_id": "manuscript.page.a4",
+      "rule_version": "2.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "document_sections",
+        "coverage_complete": true,
+        "counts": {
+          "conforme": 1,
+          "não conforme": 0,
+          "indeterminado": 0
+        },
+        "samples": [
+          {
+            "section_index": 0,
+            "size_twips": {
+              "w": 11906,
+              "h": 16838
+            },
+            "status": "conforme"
+          }
+        ],
+        "samples_omitted": 0
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana."
+    },
+    {
+      "rule_id": "manuscript.page.margins",
+      "rule_version": "2.0.0",
+      "status": "conforme",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "document_sections",
+        "coverage_complete": true,
+        "counts": {
+          "conforme": 1,
+          "não conforme": 0,
+          "indeterminado": 0
+        },
+        "samples": [
+          {
+            "section_index": 0,
+            "margins_twips": {
+              "top": 1701,
+              "right": 1701,
+              "bottom": 1701,
+              "left": 1701,
+              "gutter": 0
+            },
+            "status": "conforme"
+          }
+        ],
+        "samples_omitted": 0
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana."
+    },
+    {
+      "rule_id": "manuscript.body.font",
+      "rule_version": "2.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "verified_direct_body_word_runs",
+        "coverage_complete": false,
+        "counts": {
+          "conforme": 8,
+          "não conforme": 0,
+          "indeterminado": 0
+        },
+        "samples": [
+          {
+            "paragraph_index": 1,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 2,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 3,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 4,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 5,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 6,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 7,
+            "run_index": 0,
+            "status": "conforme"
+          },
+          {
+            "paragraph_index": 8,
+            "run_index": 0,
+            "status": "conforme"
+          }
+        ],
+        "samples_omitted": 0
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana."
+    },
+    {
+      "rule_id": "manuscript.body.font_size",
+      "rule_version": "2.0.0",
+      "status": "não conforme",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "verified_direct_body_word_runs",
+        "coverage_complete": false,
+        "counts": {
+          "conforme": 0,
+          "não conforme": 8,
+          "indeterminado": 0
+        },
+        "samples": [
+          {
+            "paragraph_index": 1,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 2,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 3,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 4,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 5,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 6,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 7,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          },
+          {
+            "paragraph_index": 8,
+            "run_index": 0,
+            "size_half_points": 20,
+            "status": "não conforme"
+          }
+        ],
+        "samples_omitted": 0
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana."
+    },
+    {
+      "rule_id": "manuscript.body.line_spacing",
+      "rule_version": "2.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "verified_direct_body_word_runs",
+        "coverage_complete": false,
+        "counts": {
+          "conforme": 0,
+          "não conforme": 0,
+          "indeterminado": 8
+        },
+        "samples": [
+          {
+            "paragraph_index": 1,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 2,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 3,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 4,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 5,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 6,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 7,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          },
+          {
+            "paragraph_index": 8,
+            "line_units": null,
+            "automatic": true,
+            "status": "indeterminado"
+          }
+        ],
+        "samples_omitted": 0
+      },
+      "location": "/manuscript",
+      "recommendation": "Revisar as propriedades declaradas conforme STAGE5.md; exceções editoriais e renderização exigem avaliação humana."
+    },
+    {
+      "rule_id": "manuscript.word_limit",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "source_available": false,
+        "manuscript_type": "article",
+        "language": "pt",
+        "minimum": 4000,
+        "maximum": 8000,
+        "counting_method": "body_conservative_interval_v1",
+        "minimum_count": null,
+        "maximum_count": null,
+        "normalization_available": null,
+        "segmentation_complete": false
+      },
+      "location": "/manuscript",
+      "recommendation": "Conferir intervalo e exclusões segundo STAGE6.md; convenção editorial, títulos ambíguos, créditos e fomento exigem revisão humana."
+    },
+    {
+      "rule_id": "manuscript.visuals.count",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "main_body_structural_inventory",
+        "manuscript_type": "article",
+        "numeric_limit_published": false,
+        "maximum": null,
+        "counting_method": "simple_word_tables_with_unresolved_figures_v1",
+        "inventory": {
+          "available": true,
+          "coverage_complete": true,
+          "simple_tables": 0,
+          "table_candidates": 0,
+          "ambiguous_tables": 0,
+          "drawing_instances": 1,
+          "picture_instances": 1,
+          "legacy_objects": 0,
+          "minimum_count": 0,
+          "maximum_count": null,
+          "counting_units_resolved": false,
+          "reasons": [
+            "editorial_figure_units_unresolved"
+          ],
+          "visual_samples": [
+            {
+              "instance_index": 0,
+              "kind": "drawing",
+              "body_child_index": 0
+            }
+          ],
+          "visual_samples_omitted": 0,
+          "samples": [],
+          "samples_omitted": 0
+        }
+      },
+      "location": "/manuscript",
+      "recommendation": "Não aplicar limite numérico a artigos nem inferir tipo; o máximo de 6 foi publicado apenas para Comunicações de Pesquisa."
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "stored_metadata_text",
+        "source_available": true,
+        "all_caps": false,
+        "reason": "not_full_uppercase",
+        "automatic_rewrite": false
+      },
+      "location": "/title/pt_BR",
+      "recommendation": "Evitar caixa alta integral; preservar siglas e revisar casos ambíguos. Subtítulo é opcional."
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "stored_metadata_text",
+        "source_available": true,
+        "all_caps": false,
+        "reason": "not_full_uppercase",
+        "automatic_rewrite": false
+      },
+      "location": "/title/en_US",
+      "recommendation": "Evitar caixa alta integral; preservar siglas e revisar casos ambíguos. Subtítulo é opcional."
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "stored_metadata_text",
+        "source_available": true,
+        "all_caps": false,
+        "reason": "not_full_uppercase",
+        "automatic_rewrite": false
+      },
+      "location": "/title/es_ES",
+      "recommendation": "Evitar caixa alta integral; preservar siglas e revisar casos ambíguos. Subtítulo é opcional."
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "stored_metadata_text",
+        "source_available": false,
+        "all_caps": null,
+        "reason": "text_unavailable",
+        "automatic_rewrite": false
+      },
+      "location": "/subtitle/pt_BR",
+      "recommendation": "Evitar caixa alta integral; preservar siglas e revisar casos ambíguos. Subtítulo é opcional."
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "stored_metadata_text",
+        "source_available": false,
+        "all_caps": null,
+        "reason": "text_unavailable",
+        "automatic_rewrite": false
+      },
+      "location": "/subtitle/en_US",
+      "recommendation": "Evitar caixa alta integral; preservar siglas e revisar casos ambíguos. Subtítulo é opcional."
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "stored_metadata_text",
+        "source_available": false,
+        "all_caps": null,
+        "reason": "text_unavailable",
+        "automatic_rewrite": false
+      },
+      "location": "/subtitle/es_ES",
+      "recommendation": "Evitar caixa alta integral; preservar siglas e revisar casos ambíguos. Subtítulo é opcional."
+    },
+    {
+      "rule_id": "manuscript.headings.case",
+      "rule_version": "2.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "source_profile": "verified_main_word_text",
+        "full_document_text_available": false,
+        "coverage": {
+          "tables_excluded": 0,
+          "drawings_excluded": 1,
+          "table_paragraphs_excluded": 0,
+          "footnote_content_excluded": false,
+          "image_text_read": false
+        },
+        "policy_version": "evitar-caixa-alta-confirmado-2026-11-12",
+        "scope": "recognized_titles_and_heading_candidates",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "source_available": true,
+        "counts": {
+          "conforme": 6,
+          "não conforme": 0,
+          "indeterminado": 2
+        },
+        "samples": [
+          {
+            "paragraph_index": 1,
+            "heading_confirmed": true,
+            "status": "conforme",
+            "all_caps": false,
+            "reason": "not_full_uppercase"
+          },
+          {
+            "paragraph_index": 2,
+            "heading_confirmed": false,
+            "status": "indeterminado",
+            "all_caps": false,
+            "reason": "heading_identity_uncertain"
+          },
+          {
+            "paragraph_index": 3,
+            "heading_confirmed": true,
+            "status": "conforme",
+            "all_caps": false,
+            "reason": "not_full_uppercase"
+          },
+          {
+            "paragraph_index": 4,
+            "heading_confirmed": true,
+            "status": "conforme",
+            "all_caps": false,
+            "reason": "not_full_uppercase"
+          },
+          {
+            "paragraph_index": 5,
+            "heading_confirmed": true,
+            "status": "conforme",
+            "all_caps": false,
+            "reason": "not_full_uppercase"
+          },
+          {
+            "paragraph_index": 6,
+            "heading_confirmed": true,
+            "status": "conforme",
+            "all_caps": false,
+            "reason": "not_full_uppercase"
+          },
+          {
+            "paragraph_index": 7,
+            "heading_confirmed": true,
+            "status": "conforme",
+            "all_caps": false,
+            "reason": "not_full_uppercase"
+          },
+          {
+            "paragraph_index": 8,
+            "heading_confirmed": false,
+            "status": "indeterminado",
+            "all_caps": false,
+            "reason": "heading_identity_uncertain"
+          }
+        ],
+        "samples_omitted": 0,
+        "automatic_rewrite": false
+      },
+      "location": "/manuscript",
+      "recommendation": "Evitar caixa alta integral nos títulos; revisar siglas e candidatos ambíguos sem reescrever o manuscrito."
+    },
+    {
+      "rule_id": "manuscript.footnotes.count",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "scope": "linked_word_footnotes",
+        "maximum": 3,
+        "inventory": {
+          "available": true,
+          "coverage_complete": true,
+          "note_count": 0,
+          "references_seen": 0,
+          "normal_definitions": 0,
+          "separator_definitions": 0,
+          "repeated_references": 0,
+          "unreferenced_definitions": 0,
+          "reasons": [],
+          "samples": [],
+          "samples_omitted": 0
+        }
+      },
+      "location": "/manuscript",
+      "recommendation": "Conferir até 3 notas de rodapé; fonte incompleta e vínculos ambíguos exigem revisão segundo STAGE9.md."
+    },
+    {
+      "rule_id": "manuscript.footnotes.lines",
+      "rule_version": "1.0.0",
+      "status": "conforme",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "maximum_lines_per_note": 2,
+        "note_count": 0,
+        "renderer_available": false,
+        "reason": "no_linked_footnotes"
+      },
+      "location": "/manuscript",
+      "recommendation": "Conferir até 2 linhas por nota no documento renderizado; quebras e parágrafos XML não comprovam o total visual."
+    },
+    {
+      "rule_id": "references.apa7",
+      "rule_version": "4.0.0",
+      "status": "não conforme",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "source_available": true,
+        "source_profile": "verified_reference_tail",
+        "main_body_available": false,
+        "full_document_text_available": false,
+        "footnote_content_analyzed": false,
+        "language": "pt",
+        "scope": "apa7_structural_and_declared_format_checks",
+        "style_profile": "apa7_reference_patterns_v1",
+        "full_apa_validation": false,
+        "external_lookup_performed": false,
+        "style_audit": {
+          "coverage_complete": true,
+          "heading_review_required": false,
+          "inspection_limit_reached": false,
+          "reference_count": 1,
+          "counts": {
+            "conforme": 0,
+            "não conforme": 1,
+            "indeterminado": 0
+          },
+          "types": {
+            "abnt_like": 1
+          },
+          "abnt_like_entries": 1,
+          "recognized_formats_status": "não conforme",
+          "alphabetical_order_status": "indeterminado",
+          "order_scope": "distinct_ascii_first_personal_surnames",
+          "order_samples": [],
+          "samples": [
+            {
+              "reference_index": 0,
+              "paragraph_index": 8,
+              "type": "abnt_like",
+              "status": "não conforme",
+              "checks": [
+                {
+                  "check": "author_date_position",
+                  "status": "não conforme",
+                  "message": "Padrão semelhante à ABNT: a data está após a fonte. Em APA 7, autor e data iniciam a referência."
+                },
+                {
+                  "check": "style_family",
+                  "status": "não conforme",
+                  "message": "Há vários sinais de outro padrão bibliográfico; reestruturar a entrada em APA 7. Maiúsculas isoladas não determinam a norma."
+                }
+              ]
+            }
+          ],
+          "samples_omitted": 0
+        },
+        "known_incompatibility_components": [
+          "recognized_reference_formats"
+        ],
+        "admission_policy": {
+          "policy_version": "apa-required-2026-11-12",
+          "decision": "not_accepted",
+          "automatic_progression_allowed": false,
+          "reason": "proven_apa_incompatibility",
+          "blocking_components": [
+            "recognized_reference_formats"
+          ],
+          "ojs_enforcement_implemented": false,
+          "editorial_state_changed": false
+        }
+      },
+      "location": "/manuscript",
+      "recommendation": "Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente."
+    },
+    {
+      "rule_id": "references.citation_matching",
+      "rule_version": "3.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "source_available": true,
+        "source_profile": "verified_reference_tail",
+        "main_body_available": false,
+        "full_document_text_available": false,
+        "footnote_content_analyzed": false,
+        "language": "pt",
+        "scope": "apa7_structural_and_declared_format_checks",
+        "style_profile": "apa7_reference_patterns_v1",
+        "full_apa_validation": false,
+        "external_lookup_performed": false,
+        "style_audit": {
+          "coverage_complete": true,
+          "heading_review_required": false,
+          "inspection_limit_reached": false,
+          "reference_count": 1,
+          "counts": {
+            "conforme": 0,
+            "não conforme": 1,
+            "indeterminado": 0
+          },
+          "types": {
+            "abnt_like": 1
+          },
+          "abnt_like_entries": 1,
+          "recognized_formats_status": "não conforme",
+          "alphabetical_order_status": "indeterminado",
+          "order_scope": "distinct_ascii_first_personal_surnames",
+          "order_samples": [],
+          "samples": [
+            {
+              "reference_index": 0,
+              "paragraph_index": 8,
+              "type": "abnt_like",
+              "status": "não conforme",
+              "checks": [
+                {
+                  "check": "author_date_position",
+                  "status": "não conforme",
+                  "message": "Padrão semelhante à ABNT: a data está após a fonte. Em APA 7, autor e data iniciam a referência."
+                },
+                {
+                  "check": "style_family",
+                  "status": "não conforme",
+                  "message": "Há vários sinais de outro padrão bibliográfico; reestruturar a entrada em APA 7. Maiúsculas isoladas não determinam a norma."
+                }
+              ]
+            }
+          ],
+          "samples_omitted": 0
+        },
+        "known_incompatibility_components": [
+          "recognized_reference_formats"
+        ],
+        "admission_policy": {
+          "policy_version": "apa-required-2026-11-12",
+          "decision": "not_accepted",
+          "automatic_progression_allowed": false,
+          "reason": "proven_apa_incompatibility",
+          "blocking_components": [
+            "recognized_reference_formats"
+          ],
+          "ojs_enforcement_implemented": false,
+          "editorial_state_changed": false
+        },
+        "matching_direction": "recognized_citations_to_references"
+      },
+      "location": "/manuscript",
+      "recommendation": "Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente."
+    },
+    {
+      "rule_id": "references.apa7.recognized_formats",
+      "rule_version": "1.0.0",
+      "status": "não conforme",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "source_available": true,
+        "source_profile": "verified_reference_tail",
+        "main_body_available": false,
+        "full_document_text_available": false,
+        "footnote_content_analyzed": false,
+        "language": "pt",
+        "scope": "apa7_structural_and_declared_format_checks",
+        "style_profile": "apa7_reference_patterns_v1",
+        "full_apa_validation": false,
+        "external_lookup_performed": false,
+        "style_audit": {
+          "coverage_complete": true,
+          "heading_review_required": false,
+          "inspection_limit_reached": false,
+          "reference_count": 1,
+          "counts": {
+            "conforme": 0,
+            "não conforme": 1,
+            "indeterminado": 0
+          },
+          "types": {
+            "abnt_like": 1
+          },
+          "abnt_like_entries": 1,
+          "recognized_formats_status": "não conforme",
+          "alphabetical_order_status": "indeterminado",
+          "order_scope": "distinct_ascii_first_personal_surnames",
+          "order_samples": [],
+          "samples": [
+            {
+              "reference_index": 0,
+              "paragraph_index": 8,
+              "type": "abnt_like",
+              "status": "não conforme",
+              "checks": [
+                {
+                  "check": "author_date_position",
+                  "status": "não conforme",
+                  "message": "Padrão semelhante à ABNT: a data está após a fonte. Em APA 7, autor e data iniciam a referência."
+                },
+                {
+                  "check": "style_family",
+                  "status": "não conforme",
+                  "message": "Há vários sinais de outro padrão bibliográfico; reestruturar a entrada em APA 7. Maiúsculas isoladas não determinam a norma."
+                }
+              ]
+            }
+          ],
+          "samples_omitted": 0
+        },
+        "known_incompatibility_components": [
+          "recognized_reference_formats"
+        ],
+        "admission_policy": {
+          "policy_version": "apa-required-2026-11-12",
+          "decision": "not_accepted",
+          "automatic_progression_allowed": false,
+          "reason": "proven_apa_incompatibility",
+          "blocking_components": [
+            "recognized_reference_formats"
+          ],
+          "ojs_enforcement_implemented": false,
+          "editorial_state_changed": false
+        }
+      },
+      "location": "/manuscript",
+      "recommendation": "Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão."
+    },
+    {
+      "rule_id": "references.apa7.citation_format",
+      "rule_version": "1.0.0",
+      "status": "indeterminado",
+      "evidence": {
+        "implemented": true,
+        "policy_version": "diretrizes-fornecidas-2026-11-11",
+        "document_sha256": "6a142344e231113e567326c9e9d5ae26f774f3b62e8e6517268f997389d14525",
+        "source_available": true,
+        "source_profile": "verified_reference_tail",
+        "main_body_available": false,
+        "full_document_text_available": false,
+        "footnote_content_analyzed": false,
+        "language": "pt",
+        "scope": "apa7_structural_and_declared_format_checks",
+        "style_profile": "apa7_reference_patterns_v1",
+        "full_apa_validation": false,
+        "external_lookup_performed": false,
+        "style_audit": {
+          "coverage_complete": true,
+          "heading_review_required": false,
+          "inspection_limit_reached": false,
+          "reference_count": 1,
+          "counts": {
+            "conforme": 0,
+            "não conforme": 1,
+            "indeterminado": 0
+          },
+          "types": {
+            "abnt_like": 1
+          },
+          "abnt_like_entries": 1,
+          "recognized_formats_status": "não conforme",
+          "alphabetical_order_status": "indeterminado",
+          "order_scope": "distinct_ascii_first_personal_surnames",
+          "order_samples": [],
+          "samples": [
+            {
+              "reference_index": 0,
+              "paragraph_index": 8,
+              "type": "abnt_like",
+              "status": "não conforme",
+              "checks": [
+                {
+                  "check": "author_date_position",
+                  "status": "não conforme",
+                  "message": "Padrão semelhante à ABNT: a data está após a fonte. Em APA 7, autor e data iniciam a referência."
+                },
+                {
+                  "check": "style_family",
+                  "status": "não conforme",
+                  "message": "Há vários sinais de outro padrão bibliográfico; reestruturar a entrada em APA 7. Maiúsculas isoladas não determinam a norma."
+                }
+              ]
+            }
+          ],
+          "samples_omitted": 0
+        },
+        "known_incompatibility_components": [
+          "recognized_reference_formats"
+        ],
+        "admission_policy": {
+          "policy_version": "apa-required-2026-11-12",
+          "decision": "not_accepted",
+          "automatic_progression_allowed": false,
+          "reason": "proven_apa_incompatibility",
+          "blocking_components": [
+            "recognized_reference_formats"
+          ],
+          "ojs_enforcement_implemented": false,
+          "editorial_state_changed": false
+        }
+      },
+      "location": "/manuscript",
+      "recommendation": "Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT."
+    }
+  ]
+}

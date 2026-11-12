@@ -6,8 +6,8 @@
 | Locales | Confirmar códigos configurados no OJS e mapeamento para pt_BR/en_US/es_ES, inclusive variantes regionais. |
 | Autoria | Extração completa e ordenada de autores da publicação corrente; política para ausência de autoria e múltiplas afiliações. |
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
-| Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); `.doc`, títulos equivalentes e variações ainda pendentes. |
-| Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; ampliar cobertura, listas vinculadas e scripts complexos em etapa futura. Página e tipografia declaradas implementadas no subconjunto de STAGE5.md; intervalo de extensão com exclusões em STAGE6.md, sem convenção editorial oficial de palavra. |
+| Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); Etapa 18 acrescenta normalização de marcadores Word e perfil de texto parcial para imagens/tabelas simples. `.doc`, títulos equivalentes e conteúdos complexos continuam pendentes. |
+| Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; Etapa 18 amplia cobertura de texto Word com figuras/tabelas simples e registra exclusões, sem certificar leitura integral. Listas vinculadas e scripts complexos continuam pendentes. Página e tipografia declaradas implementadas no subconjunto de STAGE5.md; intervalo de extensão com exclusões em STAGE6.md, sem convenção editorial oficial de palavra. |
 | Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
 | Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Integração de formulários/CSS OJS e tratamento semântico de siglas continuam pendentes. |
 | Notas de rodapé | Contagem de até 3 notas Word implementada no subconjunto de STAGE9.md; 2 linhas por nota ainda exige renderização/conferência humana. Ampliar vínculos/cobertura e definir tratamento de notas manuais e de fim. |
@@ -34,3 +34,15 @@ Etapa 17 integra a geração/cópia ao painel e lê os metadados da publicação
 autorizada; validação local somente com registros sintéticos. Homologação no
 ambiente/tema da revista e um fluxo específico de envio revisado continuam pendentes. Aprovar modelo/gerar minuta
 não autoriza comunicação automática aos autores.
+
+## Ordem de retomada aprovada
+
+1. Leitura DOCX: ampliação entregue na Etapa 18; limites restantes documentados.
+2. Títulos/subtítulos: revisar a sinalização e completar o tratamento no OJS.
+3. Notas de rodapé: revisar contagem e a conferência do limite de duas linhas.
+4. APA 7: ampliar tipos e exceções ainda não reconhecidos.
+5. Datas no HTML: acrescentar Submetido em junto a Publicado, após validar o tema.
+
+Fomento, CRediT e demais declarações seguem depois, sem pressupor aplicabilidade
+ou ausência a partir de fonte incompleta. Um item/PR por vez; o histórico de
+devolutivas não foi priorizado sobre essas pendências.

@@ -188,3 +188,13 @@ corrente autorizada e DOCX resolvido no servidor. Motor, regra APA, schemas do
 relatório e gerador 1.0.0 preservados. Documento bruto não integra o modelo
 padrão da tela; inclusão opt-in é apenas interna. Geração/cópia não constitui
 liberação ou envio. Fonte, tipos declarados e guardas de versão em STAGE17.md.
+
+## Etapa 18
+
+Motor 0.13.0: estrutura/formatação de títulos 3.0.0, página/tipografia e caixa
+dos títulos do manuscrito 2.0.0. Perfil interno main_text é parcial e tem
+exclusões explícitas; campos originais available/paragraphs preservam seu sentido.
+Documento/hash original não é reescrito pela normalização Word. Evidências
+registram source_profile, full_document_text_available e coverage.
+Schemas e quantidades de resultados preservados. O gerador 1.0.0 reconhece
+as novas versões; plugin 0.4.0.0 preservado. Ver STAGE18.md.
