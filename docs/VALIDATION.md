@@ -267,3 +267,32 @@ PHP 7.4/8.3 permanece na matriz CI; execução remota desta branch não verifica
 nesta validação local. Não houve alteração dos formulários ou CSS do OJS nem
 instalação de plugins. Notas de rodapé e indicador de submissão seguem nas etapas
 planejadas.
+
+## Etapa 9 — motor 0.9.0
+
+Validação local em 12/11/2026, branch `feat/etapa-9-notas-rodape`, após o merge
+`a525ef0` do PR #8. Mesmo runtime PHP 8.4.27 com DOM/ZIP. Sem novas dependências,
+renderizador, plugins, produção, VM Oracle ou alteração/publicação do ambiente.
+
+- Runner: 477 testes executados, zero falhas, nenhum ignorado (47 novos).
+- Lint: 42 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12 e as entradas 1.0/1.1 válidos. CLI sem DOCX: 43 resultados;
+  com artigo DOCX: 45. Exercitados zero e três notas conformes, quatro notas não
+  conformes e quatro chamadas sem definição indeterminadas, com relatórios válidos.
+  Linhas ficam conformes apenas no caso de zero notas confirmado; nos demais,
+  indeterminadas, sem contagem visual simulada.
+- `git diff --check`: sem erros de whitespace.
+
+Testes novos cobrem limites 0/1/3/4, tipos normal e separadores com IDs não fixos,
+vínculos ausentes, externos, duplicados, órfãos e com target/content type inválido,
+IDs de nota ausentes/desconhecidos/repetidos, notas sem chamada, grafo de
+relacionamentos inválido, caminho local alternativo, conteúdo não suportado,
+revisões, campos, chamadas em cabeçalho, texto oculto, tabelas, posição inválida
+de chamada, endnotes fora do escopo, notas longas/quebras explícitas sem inferir
+linhas visuais, DTD recusado, fonte indisponível, limites técnicos e amostras
+limitadas. A CLI confirmou sigilo de conteúdo/caminho e hash independente do DOCX.
+As limitações de extração textual anteriores foram preservadas.
+
+PHP 7.4/8.3 segue na matriz CI; execução remota da branch não verificada nesta
+validação local. STAGE9.md define a cobertura estrutural; limite de linhas exige
+conferência renderizada. Nenhum manuscrito real, fonte privada ou OJS foi acessado.

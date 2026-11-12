@@ -18,7 +18,7 @@ final class Report
             }
         }
         return [
-            'schema_version' => '1.0', 'engine_version' => '0.8.0',
+            'schema_version' => '1.0', 'engine_version' => '0.9.0',
             'generated_at' => gmdate('Y-m-d\TH:i:s\Z'),
             'input_sha256' => $submission->digest(),
             'locale_profile' => ['pt_BR', 'en_US', 'es_ES'],
