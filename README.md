@@ -59,6 +59,7 @@ Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [r
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
 [diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),
+[modelo definitivo de devolutiva editorial](docs/DESK_RESPONSE.md),
 [procedimentos futuros do laboratório](docs/LAB.md) e
 [resultados de validação](docs/VALIDATION.md).
 
