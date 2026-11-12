@@ -47,7 +47,7 @@ class EstrabaoPlugin extends GenericPlugin
 
     function loadReviewHandler($hookName, $args)
     {
-        if ($args[0] !== 'estrabaoAdmission' || !in_array($args[1], ['review', 'saveReview', 'download'], true)) { return false; }
+        if ($args[0] !== 'estrabaoAdmission' || !in_array($args[1], ['review', 'saveReview', 'download', 'deskDraft'], true)) { return false; }
         $context = Application::get()->getRequest()->getContext();
         if (!$context || !$this->getEnabled($context->getId())
             || Config::getVar('estrabao', 'admission_gate') !== true) { return false; }

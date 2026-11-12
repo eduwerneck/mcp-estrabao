@@ -180,3 +180,11 @@ contracts/desk-response.schema.json. O relatório de triagem 1.0, motor 0.12.0,
 plugin 0.3.1.0 e snapshots 1.0/1.1 permanecem preservados. A minuta contém
 texto para revisão e ficha interna separada, sem autorização de envio nem aceite.
 Proveniência e mapeamento conservador de regras estão em STAGE16.md.
+
+## Etapa 17
+
+Plugin 0.4.0.0 gera a devolutiva pelo painel com snapshot 1.1 lido da publicação
+corrente autorizada e DOCX resolvido no servidor. Motor, regra APA, schemas do
+relatório e gerador 1.0.0 preservados. Documento bruto não integra o modelo
+padrão da tela; inclusão opt-in é apenas interna. Geração/cópia não constitui
+liberação ou envio. Fonte, tipos declarados e guardas de versão em STAGE17.md.

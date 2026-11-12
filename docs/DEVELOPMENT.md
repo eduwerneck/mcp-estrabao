@@ -97,3 +97,10 @@ de ausência de instalação descrevem as etapas anteriores. Sem produção ou V
 gera minuta local revisável e ficha interna conforme STAGE16.md. O runner e a CI
 exercitam a nova CLI sem OJS, banco ou rede. Gerar JSON não autoriza envio; para
 comunicação, revisar apenas subject/body e conferir a versão dos dados analisados.
+
+## Painel de devolutiva — Etapa 17
+
+Plugin 0.4.0.0 acrescenta gerar/revisar/copiar no painel já autorizado, sem envio.
+Atualizar também src/ privado para incluir o gerador da Etapa 16. Limpar caches
+de idioma/template no laboratório após atualização. Procedimento e evidências
+locais em STAGE17.md; sem implantação na revista ou configuração na VM.

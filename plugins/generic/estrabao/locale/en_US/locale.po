@@ -68,3 +68,75 @@ msgstr "There is a valid editorial release for this manuscript version."
 
 msgid "plugins.generic.estrabao.reviewDownload"
 msgstr "Download the current manuscript for review"
+
+msgid "plugins.generic.estrabao.deskTitle"
+msgstr "Draft response for review"
+
+msgid "plugins.generic.estrabao.deskType"
+msgstr "Editorial manuscript type"
+
+msgid "plugins.generic.estrabao.deskChooseType"
+msgstr "Select to apply the correct limits"
+
+msgid "plugins.generic.estrabao.deskArticle"
+msgstr "Article"
+
+msgid "plugins.generic.estrabao.deskCommunication"
+msgstr "Research communication"
+
+msgid "plugins.generic.estrabao.deskGenerate"
+msgstr "Generate response"
+
+msgid "plugins.generic.estrabao.deskGenerated"
+msgstr "Response generated. Review before copying."
+
+msgid "plugins.generic.estrabao.deskUnavailable"
+msgstr "The response could not be generated. Refresh the review, select the manuscript type and check the available sources."
+
+msgid "plugins.generic.estrabao.deskNotice"
+msgstr "Review and edit before copying. Edits stay on this page and are not saved. Generate a new response if the manuscript or metadata changes. Nothing is sent to authors."
+
+msgid "plugins.generic.estrabao.deskLanguage"
+msgstr "The approved template produces the letter in Portuguese."
+
+msgid "plugins.generic.estrabao.deskSubject"
+msgstr "Subject"
+
+msgid "plugins.generic.estrabao.deskBody"
+msgstr "Message to authors"
+
+msgid "plugins.generic.estrabao.deskCopy"
+msgstr "Copy subject and message"
+
+msgid "plugins.generic.estrabao.deskCopied"
+msgstr "Subject and message copied. Internal pending checks were not included."
+
+msgid "plugins.generic.estrabao.deskCopyManual"
+msgstr "Automatic copy is unavailable. The message is selected: copy it manually and also check the subject."
+
+msgid "plugins.generic.estrabao.deskInternal"
+msgstr "Internal editorial checks"
+
+msgid "plugins.generic.estrabao.deskPendingNotice"
+msgstr "Inconclusive checks for review, not proven violations. This list is not copied into the letter."
+
+msgid "plugins.generic.estrabao.deskNoPending"
+msgstr "No pending checks identified by the available checks."
+
+msgid "plugins.generic.estrabao.deskPendingFunding"
+msgstr "Funding applicability"
+
+msgid "plugins.generic.estrabao.deskPendingMetadata"
+msgstr "Metadata and title presentation"
+
+msgid "plugins.generic.estrabao.deskPendingAbstracts"
+msgstr "Abstracts"
+
+msgid "plugins.generic.estrabao.deskPendingAuthors"
+msgstr "Author data and identification"
+
+msgid "plugins.generic.estrabao.deskPendingReferences"
+msgstr "References and citations"
+
+msgid "plugins.generic.estrabao.deskPendingManuscript"
+msgstr "Manuscript structure, formatting and other checks"

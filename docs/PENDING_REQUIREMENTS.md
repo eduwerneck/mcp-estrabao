@@ -30,6 +30,7 @@ em trabalho futuro e não são parte desta implementação.
 ## Devolutiva consolidada
 
 Modelo aprovado em DESK_RESPONSE.md e gerador local implementado na Etapa 16.
-A emissão no painel OJS, a conferência de metadados reais autorizados e um fluxo
-específico de envio revisado continuam pendentes. Aprovar modelo/gerar minuta
+Etapa 17 integra a geração/cópia ao painel e lê os metadados da publicação
+autorizada; validação local somente com registros sintéticos. Homologação no
+ambiente/tema da revista e um fluxo específico de envio revisado continuam pendentes. Aprovar modelo/gerar minuta
 não autoriza comunicação automática aos autores.

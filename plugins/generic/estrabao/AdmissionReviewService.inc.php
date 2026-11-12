@@ -44,6 +44,47 @@ class EstrabaoAdmissionReviewService
             'release_active' => $this->allows($form, $analysis)];
     }
 
+    function draft($request, $submissionId)
+    {
+        $this->requireEditor($request);
+        if (!$request->isPost() || !$request->getUserVar('csrfToken') || !$request->checkCSRF()) { throw new RuntimeException('review_forbidden'); }
+        $type = $request->getUserVar('manuscriptType');
+        $expected = $request->getUserVar('fingerprint');
+        if (!in_array($type, ['article', 'research_communication'], true) || !is_string($expected)
+            || !preg_match('/^[a-f0-9]{64}$/D', $expected)) { throw new RuntimeException('desk_source_unavailable'); }
+        $form = $this->form($request, $submissionId);
+        $bridge = new EstrabaoAdmissionBridge(); $analysis = $bridge->analyze($form, true);
+        if (!$analysis['fingerprint'] || !hash_equals($expected, $analysis['fingerprint']) || !isset($analysis['document'])
+            || !class_exists('Estrabao\\Reporting\\DeskResponse')) { throw new RuntimeException('desk_source_unavailable'); }
+        require_once __DIR__ . '/SubmissionSnapshot.inc.php';
+        $source = (new EstrabaoSubmissionSnapshot())->read($form);
+        $snapshot = $source['snapshot'];
+        $report = \Estrabao\Reporting\Report::generate($snapshot,
+            \Estrabao\Rules\DefaultRules::all($analysis['document'], $type, $analysis['binding']['language']));
+        $draft = \Estrabao\Reporting\DeskResponse::generate($report);
+        // Recheck both document and current publication before returning any draft.
+        $fresh = $this->form($request, $submissionId);
+        $after = $bridge->analyze($fresh);
+        $current = (new EstrabaoSubmissionSnapshot())->read($fresh);
+        if (!$after['fingerprint'] || !hash_equals($expected, $after['fingerprint'])
+            || !hash_equals($snapshot->digest(), $current['snapshot']->digest())
+            || $source['publication_id'] !== $current['publication_id']
+            || $source['publication_version'] !== $current['publication_version']) { throw new RuntimeException('desk_source_changed'); }
+        $groups = [];
+        foreach ($draft['pending_review'] as $pending) {
+            $id = $pending['rule_id'] ?? '';
+            $key = $id === 'manuscript.funding' ? 'deskPendingFunding'
+                : (strpos($id, 'metadata.') === 0 ? 'deskPendingMetadata'
+                : (strpos($id, 'abstract.') === 0 ? 'deskPendingAbstracts'
+                : (strpos($id, 'author.') === 0 ? 'deskPendingAuthors'
+                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript'))));
+            $groups[$key] = ($groups[$key] ?? 0) + 1;
+        }
+        return ['draft' => $draft, 'pending_groups' => $groups, 'manuscript_type' => $type,
+            'fingerprint' => hash('sha256', json_encode([$expected, $snapshot->digest(), $source['publication_id'],
+                $source['publication_version'], $type, $report['engine_version'], $draft['template_version']]))];
+    }
+
     function download($request, $submissionId)
     {
         $form = $this->form($request, $submissionId);
