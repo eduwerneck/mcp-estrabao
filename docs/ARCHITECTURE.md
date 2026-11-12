@@ -61,3 +61,11 @@ O motor 0.2.0 acrescenta regras locais de marcadores, extensão dos resumos e
 quantidade de palavras-chave por idioma. A descrição técnica em STAGE2.md
 registra normalização, evidências e tratamento de casos ambíguos. O esqueleto
 do plugin continua sem invocar o motor, consultar submissões ou publicar rotas.
+
+## Adaptador experimental — Etapa 13
+
+O plugin deixa de ser apenas esqueleto quando a configuração de homologação
+admission_gate é habilitada: registra o hook de validação da confirmação do
+wizard, resolve o arquivo no servidor e impede execute em caso de não aceite
+ou revisão pendente. Ver STAGE13.md. Não há instalação real validada, interface
+de liberação humana, cobertura de outros canais ou ativação em produção.

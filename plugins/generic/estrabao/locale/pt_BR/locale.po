@@ -7,4 +7,10 @@ msgid "plugins.generic.estrabao.displayName"
 msgstr "MCP Estrabão — triagem preliminar"
 
 msgid "plugins.generic.estrabao.description"
-msgstr "Esqueleto de integração para triagem formal. Não executa verificações no OJS nem ações editoriais nesta versão."
+msgstr "Triagem APA com bloqueio experimental da confirmação, habilitado separadamente em homologação."
+
+msgid "plugins.generic.estrabao.apaNotAccepted"
+msgstr "A submissão não foi aceita: foram identificadas incompatibilidades com APA 7. Referências em ABNT não são aceitas. Adeque o manuscrito antes de tentar novamente."
+
+msgid "plugins.generic.estrabao.apaReviewRequired"
+msgstr "A submissão não pôde ser concluída: a conformidade com APA 7 exige revisão editorial. Isso não significa que ABNT tenha sido identificada. Entre em contato com a equipe editorial."

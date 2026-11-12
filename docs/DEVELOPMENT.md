@@ -66,3 +66,11 @@ A leitura DOCX implementada usa os limites de ZIP, XML e tamanho de STAGE3.md.
 Não há chamadas de rede no motor ou CLI. Nenhum endpoint HTTP é disponibilizado.
 
 Faça alterações em branch e submeta Pull Request; não integre automaticamente.
+
+## Adaptador de admissão — Etapa 13
+
+As descrições de esqueleto acima registram a base inicial. O plugin 0.2.0.0
+adiciona um hook de validação opt-in, documentado em [STAGE13.md](STAGE13.md),
+com engine_bootstrap privado e configuração explícita de homologação. Copiar
+só a pasta do plugin não instala o motor. Não ativar em produção: ainda não
+há interface de revisão/liberação e o bloqueio retém todos os casos pendentes.
