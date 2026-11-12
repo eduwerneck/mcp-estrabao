@@ -1,9 +1,9 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 9 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 10 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um esqueleto de plugin. Não há integração funcional com submissões do OJS,
-análise APA ou servidor MCP. Há leitura local limitada de DOCX e
+certificação completa de APA ou servidor MCP. Há leitura local limitada de DOCX e
 verificação lexical de seções (docs/STAGE3.md), com resolução limitada de estilos
 e herança de negrito/numeração (docs/STAGE4.md) e verificação de página e
 tipografia declaradas (docs/STAGE5.md) e intervalo de extensão por tipo
@@ -12,6 +12,8 @@ comunicações estão em docs/STAGE7.md; figuras ambíguas exigem revisão human
 A sinalização de caixa alta em títulos e subtítulos está em docs/STAGE8.md,
 com snapshot 1.1 opcional para subtítulos e compatibilidade com entradas 1.0.
 A contagem de notas Word está em docs/STAGE9.md; linhas exigem renderização.
+A pré-checagem autor–ano de referências e citações está em docs/STAGE10.md,
+sem certificar APA 7 nem consultar fontes externas.
 
 ## Executar localmente
 
@@ -35,7 +37,7 @@ relatórios em disco. Use exclusivamente fixtures sintéticas nesta etapa.
 - `plugins/generic/estrabao/`: esqueleto baseado na API legada do OJS 3.3.0.20.
 - `src/Contracts/`: contratos PHP de snapshot, regra e resultado.
 - `src/Rules/`: presença trilíngue, ORCID, marcadores e extensão dos resumos,
-  quantidade de palavras-chave e seções DOCX; referências ainda pendentes.
+  quantidade de palavras-chave, seções DOCX e pré-checagem autor–ano; APA completa pendente.
 - `src/Document/`: leitura DOCX local com limites ZIP/XML, sem extração em disco.
 - `src/Reporting/`: relatório versionado com evidências e hash do snapshot.
 - `contracts/`: JSON Schemas 2020-12 de entrada e saída.
@@ -49,6 +51,7 @@ Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [r
 [inventário visual da Etapa 7](docs/STAGE7.md),
 [caixa de títulos da Etapa 8](docs/STAGE8.md),
 [notas de rodapé da Etapa 9](docs/STAGE9.md),
+[referências e citações da Etapa 10](docs/STAGE10.md),
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
 [diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),

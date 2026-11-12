@@ -106,7 +106,7 @@ test('palavras-chave indisponíveis e dados não extraíveis são indeterminados
 });
 test('regras novas cobrem os três idiomas sem copiar textos para evidências', function () {
     $report = \Estrabao\Reporting\Report::generate(new \Estrabao\Contracts\Submission(fixture()), \Estrabao\Rules\DefaultRules::all());
-    same(43, count($report['checks'])); same('0.9.0', $report['engine_version']);
+    same(43, count($report['checks'])); same('0.10.0', $report['engine_version']);
     $ids = array_count_values(array_column($report['checks'], 'rule_id'));
     same(3, $ids['abstract.labels']); same(3, $ids['abstract.word_limit']); same(3, $ids['metadata.keywords.count']);
     same(18, count(array_filter($report['checks'], function ($r) { return $r['status'] === 'indeterminado'; })));
