@@ -64,8 +64,8 @@ editor, utilizando os motivos aplicáveis. Aprovar este modelo não autoriza
 mensagens automáticas, publicação de dados de manuscritos ou mudanças no OJS.
 
 A Etapa 16 implementa a consolidação local dos resultados reconhecidos em
-minuta revisável, sem envio, pela CLI bin/desk.php (STAGE16.md). A emissão pelo
-painel OJS ainda não está implementada. O adaptador atual exibe motivos e
+minuta revisável, sem envio, pela CLI bin/desk.php (STAGE16.md). A Etapa 17 acrescenta geração, revisão e cópia no painel OJS, validada
+em laboratório local. O envio segue manual e não está implementado. O adaptador atual exibe motivos e
 correções APA no formulário, conforme STAGE15.md.
 
 O documento real usado para aprovar a redação, sua carta específica e suas notas

@@ -43,6 +43,68 @@
             <button type="submit" name="reviewAction" value="revoke">{translate key="plugins.generic.estrabao.reviewRevoke"}</button>
         </form>
         {/if}
+        {if $reviewModel.analysis.fingerprint}
+        <h3>{translate key="plugins.generic.estrabao.deskTitle"}</h3>
+        <form method="post" action="{$deskDraftUrl|escape}">
+            {csrf}
+            <input type="hidden" name="submissionId" value="{$reviewModel.submission_id|escape}">
+            <input type="hidden" name="fingerprint" value="{$reviewModel.analysis.fingerprint|escape}">
+            <label for="estrabaoManuscriptType">{translate key="plugins.generic.estrabao.deskType"}</label>
+            <select id="estrabaoManuscriptType" name="manuscriptType" required>
+                <option value="">{translate key="plugins.generic.estrabao.deskChooseType"}</option>
+                <option value="article">{translate key="plugins.generic.estrabao.deskArticle"}</option>
+                <option value="research_communication">{translate key="plugins.generic.estrabao.deskCommunication"}</option>
+            </select>
+            <button type="submit">{translate key="plugins.generic.estrabao.deskGenerate"}</button>
+        </form>
+        {/if}
+        {if $deskDraftModel}
+        <section aria-labelledby="estrabaoDeskDraftTitle">
+            <h3 id="estrabaoDeskDraftTitle">{translate key="plugins.generic.estrabao.deskTitle"}</h3>
+            <p>{translate key="plugins.generic.estrabao.deskNotice"}</p>
+            <p>{translate key="plugins.generic.estrabao.deskLanguage"}</p>
+            <label for="estrabaoDeskSubject">{translate key="plugins.generic.estrabao.deskSubject"}</label>
+            <input id="estrabaoDeskSubject" type="text" value="{$deskDraftModel.draft.subject|escape}" style="width:100%">
+            <label for="estrabaoDeskBody">{translate key="plugins.generic.estrabao.deskBody"}</label>
+            <textarea id="estrabaoDeskBody" rows="20" style="width:100%">{$deskDraftModel.draft.body|escape}</textarea>
+            <button id="estrabaoCopyDesk" type="button">{translate key="plugins.generic.estrabao.deskCopy"}</button>
+            <p id="estrabaoDeskCopyStatus" role="status" aria-live="polite"></p>
+            <span id="estrabaoDeskCopySuccess" hidden>{translate key="plugins.generic.estrabao.deskCopied"}</span>
+            <span id="estrabaoDeskCopyFallback" hidden>{translate key="plugins.generic.estrabao.deskCopyManual"}</span>
+            <details>
+                <summary>{translate key="plugins.generic.estrabao.deskInternal"} ({$deskDraftModel.draft.pending_review_count|escape})</summary>
+                <p>{translate key="plugins.generic.estrabao.deskPendingNotice"}</p>
+                <ul>
+                {foreach from=$deskDraftModel.pending_groups key=group item=count}
+                    <li>{translate key="plugins.generic.estrabao.$group"}: {$count|escape}</li>
+                {foreachelse}
+                    <li>{translate key="plugins.generic.estrabao.deskNoPending"}</li>
+                {/foreach}
+                </ul>
+            </details>
+        </section>
+        <script>
+        {literal}
+        (function () {
+            var button = document.getElementById('estrabaoCopyDesk');
+            button.addEventListener('click', function () {
+                var body = document.getElementById('estrabaoDeskBody');
+                var subject = document.getElementById('estrabaoDeskSubject');
+                var status = document.getElementById('estrabaoDeskCopyStatus');
+                var text = subject.value + '\n\n' + body.value;
+                function fallback() {
+                    body.focus(); body.select();
+                    status.textContent = document.getElementById('estrabaoDeskCopyFallback').textContent;
+                }
+                if (!navigator.clipboard || !navigator.clipboard.writeText) { fallback(); return; }
+                navigator.clipboard.writeText(text).then(function () {
+                    status.textContent = document.getElementById('estrabaoDeskCopySuccess').textContent;
+                }).catch(fallback);
+            });
+        }());
+        {/literal}
+        </script>
+        {/if}
         <h3>{translate key="plugins.generic.estrabao.reviewHistory"}</h3>
         <ul>
         {foreach from=$reviewModel.events item=event}

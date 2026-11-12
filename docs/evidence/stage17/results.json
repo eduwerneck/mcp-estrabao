@@ -1,0 +1,54 @@
+[
+  {
+    "case": "real OJS renders draft and translations",
+    "passed": true
+  },
+  {
+    "case": "source is current OJS publication",
+    "passed": true
+  },
+  {
+    "case": "ABNT letter does not grant admission",
+    "passed": true
+  },
+  {
+    "case": "pending editorial checks stay outside author body",
+    "passed": true
+  },
+  {
+    "case": "copy includes reviewed subject and edited body",
+    "passed": true
+  },
+  {
+    "case": "copy excludes internal panel, technical fields and hashes",
+    "passed": true
+  },
+  {
+    "case": "copy reports success",
+    "passed": true
+  },
+  {
+    "case": "generation and copying do not change submission state",
+    "passed": true
+  },
+  {
+    "case": "copy failure provides a usable manual fallback",
+    "passed": true
+  },
+  {
+    "case": "GET request cannot generate",
+    "passed": true
+  },
+  {
+    "case": "invalid CSRF cannot generate",
+    "passed": true
+  },
+  {
+    "case": "author cannot access draft route",
+    "passed": true
+  },
+  {
+    "case": "query-based form generates real draft",
+    "passed": true
+  }
+]

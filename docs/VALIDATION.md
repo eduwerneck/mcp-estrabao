@@ -479,3 +479,33 @@ mistura de documentos, limites técnicos, erros da CLI e pendências separadas.
 Não houve alteração no fluxo OJS nem novo ensaio de navegador: a entrega é o
 formatador/CLI local. Nenhuma comunicação, alteração de estado, acesso à produção
 ou VM Oracle; o documento real da conversa não foi usado nesta validação.
+
+## Etapa 17 — plugin 0.4.0.0
+
+Validação local em 12/11/2026, gerador 1.0.0 e motor 0.12.0 preservados.
+Base final 7ebf393 (merge do PR #17), confirmada e incorporada antes do envio.
+Sem reaplicar conteúdo ou publicar ambiente.
+
+- 706 testes sintéticos, zero falhas (19 novos), em PHP 8.4.27 e PHP 8.1.27.
+- Lint: 64 arquivos PHP sem erros de sintaxe.
+- 13 verificações reais no OJS 3.3.0.20 local, PHP 8.1.27/MariaDB/Chromium do
+  laboratório internal da Etapa 15. Cobrem geração com DAO real, traduções,
+  edição/cópia real ao clipboard, exclusão da ficha interna da cópia, fallback
+  manual, permanência do bloqueio ABNT, GET/CSRF/acesso de autor e rota por query.
+  Estado das submissões comparado antes/depois: nenhuma alteração editorial.
+- XML do plugin 0.4.0.0 e contrato da minuta válidos; nova CLI preservada.
+  Script tests/lab/desk-panel.py analisado e executado no laboratório. Captura
+  inspecionada e JSON em docs/evidence/stage17.
+- `git diff --check` sem erros. CI remoto ainda não verificado.
+
+Testes novos incluem publicação atual e IDs, snapshot 1.1, metadados do DAO em
+vez de campos postados, variantes de locale conservadoras, autoria indisponível,
+limites técnicos, geração sem aprovação, fonte ABNT bloqueada, proveniência,
+alteração de documento/metadados durante geração, privacidade e handler.
+
+Catálogo/cache de idioma antigo foi atualizado somente no laboratório; na
+atualização do plugin, usar limpeza administrativa de caches em homologação.
+Testes usam apenas dados sintéticos, sem artigo real, produção, VM Oracle,
+envio aos autores, gravação de cartas no ledger ou configuração publicada nova.
+Permanecem os limites de concorrência após exibição, tema/infraestrutura real,
+outros canais e normalização adicional de locales descritos em STAGE17.md.

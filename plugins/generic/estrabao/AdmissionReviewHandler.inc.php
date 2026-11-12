@@ -19,6 +19,16 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $this->renderReview($request, $request->getUserVar('submissionId'), null);
     }
 
+    function deskDraft($args, $request)
+    {
+        try {
+            $draft = (new EstrabaoAdmissionReviewService())->draft($request, $request->getUserVar('submissionId'));
+            $this->renderReview($request, $request->getUserVar('submissionId'), 'plugins.generic.estrabao.deskGenerated', $draft);
+        } catch (\Throwable $error) {
+            $this->renderReview($request, $request->getUserVar('submissionId'), 'plugins.generic.estrabao.deskUnavailable');
+        }
+    }
+
     function download($args, $request)
     {
         try { (new EstrabaoAdmissionReviewService())->download($request, $request->getUserVar('submissionId')); }
@@ -36,7 +46,7 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $this->renderReview($request, $request->getUserVar('submissionId'), $message);
     }
 
-    private function renderReview($request, $submissionId, $message)
+    private function renderReview($request, $submissionId, $message, $draft = null)
     {
         try { (new EstrabaoAdmissionReviewService())->requireEditor($request); }
         catch (\Throwable $error) { http_response_code(403); return; }
@@ -50,6 +60,8 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $manager->assign('downloadReviewUrl', $model && $model['analysis']['fingerprint']
             ? $request->getRouter()->url($request, null, 'estrabaoAdmission', 'download', null,
                 ['submissionId' => $model['submission_id'], 'fingerprint' => $model['analysis']['fingerprint']]) : null);
+        $manager->assign('deskDraftModel', $draft);
+        $manager->assign('deskDraftUrl', $request->getRouter()->url($request, null, 'estrabaoAdmission', 'deskDraft'));
         $manager->assign('reviewModel', $model);
         $manager->assign('reviewMessage', $message);
         $reviewUrl = $request->getRouter()->url($request, null, 'estrabaoAdmission', 'review');

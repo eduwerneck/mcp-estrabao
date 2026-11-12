@@ -68,3 +68,75 @@ msgstr "Hay una autorización editorial válida para esta versión del manuscrit
 
 msgid "plugins.generic.estrabao.reviewDownload"
 msgstr "Descargar la versión actual del manuscrito para revisión"
+
+msgid "plugins.generic.estrabao.deskTitle"
+msgstr "Devolución para revisar"
+
+msgid "plugins.generic.estrabao.deskType"
+msgstr "Tipo editorial del manuscrito"
+
+msgid "plugins.generic.estrabao.deskChooseType"
+msgstr "Seleccione para aplicar los límites correctos"
+
+msgid "plugins.generic.estrabao.deskArticle"
+msgstr "Artículo"
+
+msgid "plugins.generic.estrabao.deskCommunication"
+msgstr "Comunicación de investigación"
+
+msgid "plugins.generic.estrabao.deskGenerate"
+msgstr "Generar devolución"
+
+msgid "plugins.generic.estrabao.deskGenerated"
+msgstr "Devolución generada. Revise antes de copiar."
+
+msgid "plugins.generic.estrabao.deskUnavailable"
+msgstr "No se pudo generar la devolución. Actualice la revisión, seleccione el tipo editorial y compruebe las fuentes disponibles."
+
+msgid "plugins.generic.estrabao.deskNotice"
+msgstr "Revise y ajuste el texto antes de copiar. Los cambios solo permanecen en esta página y no se guardan. Si cambian el manuscrito o los metadatos, genere una nueva devolución. No se envía nada a los autores."
+
+msgid "plugins.generic.estrabao.deskLanguage"
+msgstr "El modelo aprobado genera la carta en portugués."
+
+msgid "plugins.generic.estrabao.deskSubject"
+msgstr "Asunto"
+
+msgid "plugins.generic.estrabao.deskBody"
+msgstr "Texto para los autores"
+
+msgid "plugins.generic.estrabao.deskCopy"
+msgstr "Copiar asunto y texto"
+
+msgid "plugins.generic.estrabao.deskCopied"
+msgstr "Asunto y texto copiados. No se incluyeron las comprobaciones internas pendientes."
+
+msgid "plugins.generic.estrabao.deskCopyManual"
+msgstr "La copia automática no está disponible. El texto está seleccionado: cópielo manualmente y compruebe también el asunto."
+
+msgid "plugins.generic.estrabao.deskInternal"
+msgstr "Comprobación interna del editor"
+
+msgid "plugins.generic.estrabao.deskPendingNotice"
+msgstr "Comprobaciones inconclusas para revisión; no son infracciones comprobadas y esta lista no se copia en la carta."
+
+msgid "plugins.generic.estrabao.deskNoPending"
+msgstr "No se identificaron comprobaciones pendientes."
+
+msgid "plugins.generic.estrabao.deskPendingFunding"
+msgstr "Aplicabilidad de la financiación"
+
+msgid "plugins.generic.estrabao.deskPendingMetadata"
+msgstr "Metadatos y presentación de títulos"
+
+msgid "plugins.generic.estrabao.deskPendingAbstracts"
+msgstr "Resúmenes"
+
+msgid "plugins.generic.estrabao.deskPendingAuthors"
+msgstr "Datos e identificación de autores"
+
+msgid "plugins.generic.estrabao.deskPendingReferences"
+msgstr "Referencias y citas"
+
+msgid "plugins.generic.estrabao.deskPendingManuscript"
+msgstr "Estructura, formato y otras comprobaciones del manuscrito"

@@ -8,7 +8,7 @@ class EstrabaoAdmissionBridge
         return $this->analyze($form)['decision'];
     }
 
-    function analyze($form)
+    function analyze($form, $includeDocument = false)
     {
         $request = Application::get()->getRequest();
         $context = $request->getContext();
@@ -89,9 +89,11 @@ class EstrabaoAdmissionBridge
                 foreach ($result['evidence']['analysis']['citation_style_samples'] ?? [] as $sample) {
                     if (($sample['status'] ?? null) === 'não conforme') { $corrections = array_merge($corrections, $sample['guidance'] ?? []); }
                 }
-                return ['decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
+                $response = ['decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
                     'fingerprint' => hash('sha256', json_encode($binding)),
                     'binding' => $binding, 'reviewable' => $reviewable];
+                if ($includeDocument) { $response['document'] = $document; }
+                return $response;
             }
         }
         return ['decision' => 'manual_review_required', 'fingerprint' => null];
