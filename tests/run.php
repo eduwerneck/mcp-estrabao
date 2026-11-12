@@ -135,7 +135,7 @@ test('JSON malformado rejeitado', function () {
 });
 test('políticas pendentes são explicitamente indeterminadas', function () {
     $checks = (new PendingPolicy())->evaluate(new Submission(fixture()));
-    same(4, count($checks));
+    same(3, count($checks));
     foreach ($checks as $check) {
         same('indeterminado', $check->jsonSerialize()['status']);
         same(false, $check->jsonSerialize()['evidence']['implemented']);
@@ -144,7 +144,7 @@ test('políticas pendentes são explicitamente indeterminadas', function () {
 test('relatório auditável, sem ORCID nem textos brutos', function () {
     $data = fixture(); $snapshot = new Submission($data);
     $report = Report::generate($snapshot, [new MetadataPresence(), new Orcid(), new PendingPolicy()]);
-    same(19, count($report['checks']));
+    same(18, count($report['checks']));
     same(true, $report['human_review_required']);
     same($snapshot->digest(), $report['input_sha256']);
     $data['title']['pt_BR'] = 'Outro título sintético';
@@ -184,7 +184,7 @@ test('CLI gera relatório JSON local', function () {
     list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json']);
     same(0, $code); same('', $err);
     $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-    same(19, count($report['checks']));
+    same(27, count($report['checks']));
     same(true, $report['human_review_required']);
 });
 test('CLI preserva inicialização configurada em arquivos ini', function () {
@@ -204,7 +204,7 @@ test('CLI preserva inicialização configurada em arquivos ini', function () {
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json']);
         same(0, $code); same('', $err);
         same(true, is_file($dir . '/loaded'));
-        same(19, count(json_decode($out, true, 64, JSON_THROW_ON_ERROR)['checks']));
+        same(27, count(json_decode($out, true, 64, JSON_THROW_ON_ERROR)['checks']));
     } finally {
         putenv($original === false ? 'PHP_INI_SCAN_DIR' : 'PHP_INI_SCAN_DIR=' . $original);
         foreach (glob($dir . '/*') as $path) { unlink($path); }
@@ -232,6 +232,8 @@ foreach (['invalid-json' => '{"token":"synthetic-secret",', 'invalid-contract' =
         } finally { unlink($path); }
     });
 }
+
+require __DIR__ . '/stage2.php';
 
 echo "$tests testes, $failed falhas\n";
 exit($failed ? 1 : 0);

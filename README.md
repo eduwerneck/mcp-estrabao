@@ -1,9 +1,9 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-Esta etapa implementa um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 e 2 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um esqueleto de plugin. Não há integração funcional com submissões do OJS,
-processamento DOCX, análise APA ou servidor MCP.
+processamento Word, análise APA ou servidor MCP.
 
 ## Executar localmente
 
@@ -26,15 +26,17 @@ relatórios em disco. Use exclusivamente fixtures sintéticas nesta etapa.
 
 - `plugins/generic/estrabao/`: esqueleto baseado na API legada do OJS 3.3.0.20.
 - `src/Contracts/`: contratos PHP de snapshot, regra e resultado.
-- `src/Rules/`: presença trilíngue e ORCID; lacunas explícitas de políticas.
+- `src/Rules/`: presença trilíngue, ORCID, marcadores e extensão dos resumos,
+  quantidade de palavras-chave; pendências explícitas de Word e referências.
 - `src/Reporting/`: relatório versionado com evidências e hash do snapshot.
 - `contracts/`: JSON Schemas 2020-12 de entrada e saída.
 - `mcp/`: limites e requisitos do serviço opcional, ainda não implementado.
 - `tests/`: testes e dados sintéticos, sem dependências do OJS.
 
-Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md),
+Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [regras da Etapa 2](docs/STAGE2.md),
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
+[diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),
 [procedimentos futuros do laboratório](docs/LAB.md) e
 [resultados de validação](docs/VALIDATION.md).
 

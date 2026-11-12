@@ -63,3 +63,29 @@ inicialização em um arquivo ini temporário. Com o comando antigo (`-n`), ele
 falhou como esperado (57 testes, 1 falha); com a correção, passou (57 testes,
 0 falhas). Isso demonstra a preservação de configuração sem depender da forma
 como JSON foi compilada na imagem. Arquivos temporários são removidos ao final.
+
+## Etapa 2 — motor 0.2.0
+
+Validação local da branch `feat/etapa-2-resumos` em 11/11/2026:
+
+| Verificação | Resultado |
+| --- | --- |
+| Runner no PHP 8.4.24 | 110 testes executados, 0 falhas, nenhum ignorado |
+| Runner no PHP 7.4.33 em imagem oficial, sem rede e checkout somente leitura | 110 testes executados, 0 falhas, nenhum ignorado |
+| Lint PHP 8.4 | 19 arquivos sem erros |
+| Schemas/instâncias JSON Schema 2020-12 | Snapshot e relatório válidos |
+| CLI com fixture completa | 27 resultados: 22 conformes e 5 indeterminados |
+
+Os testes novos cobrem todas as combinações dos rótulos aprovados nos três
+idiomas, plurais e rótulos não aprovados, menções ambíguas em prosa, delimitadores,
+HTML, limites de 249/250/251 palavras, divergência de contagem por hífen/rótulos,
+quantidade de palavras-chave, itens vazios, fonte desconhecida e normalização
+indisponível. O Unicode decomposto ainda sem normalização suportada produz
+indeterminado nas regras novas, sem falsa prova de ausência.
+
+As novas regras foram integradas à CLI e seu conjunto centralizado foi exercitado
+pelos testes. A definição técnica e os limites estão em STAGE2.md. A versão
+2.0.0 da regra abstract.labels substitui o resultado-pendência anterior sem
+confundir históricos. A CI remota desta branch deve ser conferida no PR.
+Nenhum acesso à revista em produção ou à VM foi realizado. O plugin continua
+somente um esqueleto; esta validação não demonstra integração OJS funcional.

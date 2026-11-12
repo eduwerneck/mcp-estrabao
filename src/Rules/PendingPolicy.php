@@ -3,15 +3,14 @@ declare(strict_types=1);
 namespace Estrabao\Rules;
 use Estrabao\Contracts\{Rule, Submission, CheckResult};
 
-/** Expõe lacunas; não implementa análise de DOCX, APA ou rótulos. */
+/** Expõe lacunas; não implementa análise de Word nem APA. */
 final class PendingPolicy implements Rule
 {
     public function evaluate(Submission $submission): array
     {
         $results = [];
         foreach ([
-            'abstract.labels' => 'Fornecer política e rótulos obrigatórios por idioma.',
-            'manuscript.docx.structure' => 'Fornecer template oficial e implementar extração segura de DOCX.',
+            'manuscript.docx.structure' => 'Implementar extração segura de Word e verificar a estrutura das diretrizes; a revista não exige template.',
             'references.apa7' => 'Definir escopo verificável de APA 7 e implementar análise com revisão humana.',
             'references.citation_matching' => 'Implementar extração e correspondência entre citações e referências.',
         ] as $id => $message) {
