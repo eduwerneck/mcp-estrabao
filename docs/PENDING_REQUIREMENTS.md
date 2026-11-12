@@ -12,11 +12,11 @@
 | Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Integração de formulários/CSS OJS e tratamento semântico de siglas continuam pendentes. |
 | Notas de rodapé | Contagem de até 3 notas Word implementada no subconjunto de STAGE9.md; 2 linhas por nota ainda exige renderização/conferência humana. Ampliar vínculos/cobertura e definir tratamento de notas manuais e de fim. |
 | Datas no HTML | Adiado conforme planejamento: acrescentar Submetido em acima do box Publicado, com data do fluxo OJS; definir tema e validar em laboratório antes de integrar. |
-| APA 7 | Pré-checagem autor–ano implementada no subconjunto de STAGE10.md; APA completa, tipos documentais, autoria institucional/composta, citações secundárias e ampliação de formatos exigem revisão e evolução futura. Não consulta DOI nem reprova sua ausência. |
+| APA 7 | Etapa 11 detecta incompatibilidades concretas, padrões semelhantes a ABNT, itálicos de formatos reconhecidos, DOI informado e formato de citações (STAGE11.md). Certificação completa, autoria institucional/composta, citações secundárias, confirmação bibliográfica e formatos fora do subconjunto continuam pendentes. Não consulta DOI nem reprova sua ausência. |
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
 | Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |
 | Relatórios | Persistência privada, retenção, identidade do operador, vínculo à revisão da submissão, auditoria de acesso e decisão humana. |
-| Rejeição preliminar | Critérios editoriais e autorização de editor; futura recomendação não executará rejeição, mensagens nem alteração de estado. |
+| Rejeição preliminar | Política APA autorizada em 12/11/2026: incompatibilidade comprovada implica submissão não aceita; indeterminado exige revisão sem avanço automático (STAGE12.md). Integração autenticada no OJS, execução do bloqueio e auditoria permanecem pendentes. |
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
 | Homologação | Runtime compatível, extensões, banco, TLS e recursos do laboratório; não houve acesso à VM. |
 

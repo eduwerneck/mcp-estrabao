@@ -6,7 +6,7 @@ Construir um plugin nativo para OJS 3.3.0.20 e um serviço MCP opcional para apo
 ## Limites operacionais
 - Ambiente de homologação separado da revista em produção.
 - Nenhuma rejeição, comunicação a autores ou alteração de estado editorial sem aprovação explícita de editor autorizado.
-- Resultados automáticos são recomendações com evidências, não decisões finais.
+- Política de admissão autorizada: incompatibilidade APA comprovada implica submissão não aceita; indeterminação exige revisão sem avanço automático. A execução no OJS permanece pendente (STAGE12.md).
 - Dados de submissões, tokens, credenciais e chaves privadas não entram no GitHub.
 - Falhas de extração e verificações inconclusivas devem ser registradas como indeterminadas, não como não conformidades comprovadas.
 

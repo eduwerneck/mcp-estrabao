@@ -120,3 +120,13 @@ sentence case, não proíbe siglas e não autoriza reescrita automática de text
 A sinalização local está descrita em STAGE8.md. Siglas e casos ambíguos exigem
 revisão humana; capitaletes não foram definidos como infração. O preenchimento e
 a apresentação efetivos no OJS continuam dependendo de integração futura.
+
+## Esclarecimento de admissão — 12/11/2026
+
+O responsável definiu expressamente: **a submissão não será aceita se estiver
+em ABNT**. APA 7 é condição de admissão, não apenas recomendação.
+Incompatibilidade comprovada implica `not_accepted` e impede avanço automático.
+Resultado indeterminado exige revisão e também não libera avanço automático;
+não constitui prova de ABNT. A ausência de erros detectados não certifica APA.
+Esta autorização define a política do motor; não publica mudanças na revista.
+A integração que efetivamente impedirá avanço no OJS permanece pendente.

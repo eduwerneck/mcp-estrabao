@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 10 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 12 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um esqueleto de plugin. Não há integração funcional com submissões do OJS,
 certificação completa de APA ou servidor MCP. Há leitura local limitada de DOCX e
 verificação lexical de seções (docs/STAGE3.md), com resolução limitada de estilos
@@ -13,7 +13,9 @@ A sinalização de caixa alta em títulos e subtítulos está em docs/STAGE8.md,
 com snapshot 1.1 opcional para subtítulos e compatibilidade com entradas 1.0.
 A contagem de notas Word está em docs/STAGE9.md; linhas exigem renderização.
 A pré-checagem autor–ano de referências e citações está em docs/STAGE10.md,
-sem certificar APA 7 nem consultar fontes externas.
+sem certificar APA 7 nem consultar fontes externas. A Etapa 11 amplia a detecção
+de incompatibilidades com APA, padrões semelhantes a ABNT, itálicos e formato
+de citações, com orientações de correção: [escopo e limites](docs/STAGE11.md).
 
 ## Executar localmente
 
@@ -52,11 +54,15 @@ Consulte [arquitetura](docs/ARCHITECTURE.md), [contratos](docs/CONTRACTS.md), [r
 [caixa de títulos da Etapa 8](docs/STAGE8.md),
 [notas de rodapé da Etapa 9](docs/STAGE9.md),
 [referências e citações da Etapa 10](docs/STAGE10.md),
+[APA e padrões ABNT da Etapa 11](docs/STAGE11.md),
 [desenvolvimento e instalação](docs/DEVELOPMENT.md),
 [requisitos pendentes](docs/PENDING_REQUIREMENTS.md),
 [diretrizes editoriais recebidas](docs/EDITORIAL_POLICY.md),
 [procedimentos futuros do laboratório](docs/LAB.md) e
 [resultados de validação](docs/VALIDATION.md).
 
-O sistema não rejeita submissões, não envia mensagens, não altera estados
-editoriais e não acessa a revista em produção. Todo relatório exige revisão humana.
+A Etapa 12 registra submissão não aceita diante de incompatibilidade comprovada
+com APA 7, incluindo padrões ABNT reconhecidos. Casos indeterminados exigem
+revisão, sem liberação automática. O bloqueio efetivo no OJS ainda depende
+da integração: o motor local não altera estados nem envia mensagens.
+Ver [política de admissão](docs/STAGE12.md). Sem acesso à produção.

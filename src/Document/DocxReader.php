@@ -73,12 +73,16 @@ final class DocxReader
             if ($xpath->query('/w:document/w:body')->length !== 1) { return $unknown; }
             $unknown['visuals'] = VisualInventory::read($parts);
             $unknown['footnotes'] = FootnoteInventory::read($parts);
+            $linkedNotes = $unknown['footnotes']['coverage_complete'] && $unknown['footnotes']['note_count'] > 0;
+            $allowedNoteNode = $linkedNotes ? ' or self::w:footnoteReference' : '';
             // Unsupported containers/fields/revisions can hide or change section labels.
             if ($xpath->query('/w:document/w:body//*[namespace-uri()!="' . self::W . '"]')->length
-                || $xpath->query('/w:document/w:body/w:p//*[not(ancestor::w:pPr or ancestor::w:rPr) and not(self::w:r or self::w:t or self::w:tab or self::w:br or self::w:cr or self::w:pPr or self::w:rPr or self::w:hyperlink or self::w:bookmarkStart or self::w:bookmarkEnd or self::w:proofErr)]')->length
+                || $xpath->query('/w:document/w:body/w:p//*[not(ancestor::w:pPr or ancestor::w:rPr) and not(self::w:r or self::w:t or self::w:tab or self::w:br or self::w:cr or self::w:pPr or self::w:rPr or self::w:hyperlink or self::w:bookmarkStart or self::w:bookmarkEnd or self::w:proofErr' . $allowedNoteNode . ')]')->length
                 || $xpath->query('/w:document/w:body/*[not(self::w:p or self::w:sectPr)]')->length
                 || $xpath->query('//w:altChunk|//w:txbxContent|//w:ins|//w:del|//w:moveFrom|//w:moveTo|//w:fldChar|//w:fldSimple|//w:instrText|//w:sdt|//w:tbl|//w:object|//w:pict|//w:sym|//w:vanish')->length
                 || $xpath->query('//*[namespace-uri()="http://schemas.openxmlformats.org/markup-compatibility/2006"]')->length) {
+                $tail = $this->referenceTail($parts, $xpath, $unknown['footnotes'], $unknown['sha256']);
+                if ($tail !== null) { $unknown['reference_tail'] = $tail; }
                 $unknown['reason'] = 'incomplete_coverage'; return $unknown;
             }
             foreach ($parts as $part) {
@@ -90,12 +94,32 @@ final class DocxReader
             $resolver = new StyleResolver($parts);
             $paragraphs = [];
             foreach ($xpath->query('/w:document/w:body/w:p') as $index => $paragraph) {
+                $item = $this->paragraph($xpath, $paragraph, $index, $resolver, $linkedNotes);
+                if ($item === null) { $unknown['reason'] = 'unicode_coverage'; return $unknown; }
+                $paragraphs[] = $item;
+            }
+            if ($linkedNotes) {
+                $unknown['reason'] = 'linked_notes_main_body_only';
+                $unknown['reference_body'] = ['available' => true, 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
+                return $unknown;
+            }
+            return ['footnotes' => $unknown['footnotes'], 'visuals' => $unknown['visuals'], 'layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
+        } catch (\Throwable $error) {
+            return $unknown; // No document text, paths, XML errors or exception details in reports.
+        } finally {
+            if ($opened) { $zip->close(); }
+            if (is_string($temporary) && is_file($temporary)) { unlink($temporary); }
+        }
+    }
+
+    private function paragraph(\DOMXPath $xpath, \DOMElement $paragraph, int $index, StyleResolver $resolver, bool $linkedNotes): ?array
+    {
                 $text = '';
-                foreach ($xpath->query('.//w:t|.//w:tab|.//w:br|.//w:cr', $paragraph) as $node) {
+                foreach ($xpath->query('.//w:t|.//w:tab|.//w:br|.//w:cr' . ($linkedNotes ? '|.//w:footnoteReference' : ''), $paragraph) as $node) {
                     $text .= $node->localName === 't' ? $node->textContent : ' ';
                 }
                 // Combining marks are deferred rather than mistaken for missing accents.
-                if (preg_match('/\p{M}/u', $text)) { $unknown['reason'] = 'unicode_coverage'; return $unknown; }
+                if (preg_match('/\p{M}/u', $text)) { return null; }
                 $bold = true; $hasText = false;
                 foreach ($xpath->query('.//w:r[w:t]', $paragraph) as $run) {
                     if (trim($run->textContent) === '') { continue; }
@@ -105,16 +129,45 @@ final class DocxReader
                     if (in_array($value, ['0', 'false', 'off'], true)) { $bold = false; break; }
                     if ($value === null || !in_array($value, ['', '1', 'true', 'on'], true)) { $bold = null; }
                 }
-                $paragraphs[] = ['letter_case' => $resolver->letterCase($paragraph), 'outline' => $resolver->outline($paragraph), 'typography' => $resolver->typography($paragraph), 'format' => $resolver->paragraph($paragraph), 'direct_bold' => $hasText ? $bold : null, 'index' => $index, 'text' => trim(preg_replace('/\s+/u', ' ', $text)),
+                $normalized = trim(preg_replace('/\s+/u', ' ', $text));
+                return ['reference_formatting' => $resolver->referenceFormatting($paragraph, $normalized), 'letter_case' => $resolver->letterCase($paragraph), 'outline' => $resolver->outline($paragraph), 'typography' => $resolver->typography($paragraph), 'format' => $resolver->paragraph($paragraph), 'direct_bold' => $hasText ? $bold : null, 'index' => $index, 'text' => $normalized,
                     'numbered' => $xpath->query('./w:pPr/w:numPr[w:numId and not(w:numId/@w:val="0")]', $paragraph)->length > 0];
-            }
-            return ['footnotes' => $unknown['footnotes'], 'visuals' => $unknown['visuals'], 'layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];
-        } catch (\Throwable $error) {
-            return $unknown; // No document text, paths, XML errors or exception details in reports.
-        } finally {
-            if ($opened) { $zip->close(); }
-            if (is_string($temporary) && is_file($temporary)) { unlink($temporary); }
+    }
+
+    /** A safe bibliography tail can be checked even when earlier body objects are unreadable. */
+    private function referenceTail(array $parts, \DOMXPath $xpath, array $footnotes, string $digest): ?array
+    {
+        if (!$footnotes['coverage_complete'] || $xpath->query('/w:document/w:body/w:p')->length > ReferenceAnalysis::MAX_PARAGRAPHS) { return null; }
+        foreach ($parts as $part) {
+            $x = new \DOMXPath($part); $x->registerNamespace('w', self::W);
+            if ($x->query('//w:vanish|//w:webHidden')->length) { return null; }
         }
+        $children = $xpath->query('/w:document/w:body/*'); $markers = [];
+        foreach ($children as $index => $child) {
+            if ($child->namespaceURI !== self::W || $child->localName !== 'p') { continue; }
+            $text = ''; foreach ($xpath->query('.//w:t', $child) as $node) { $text .= $node->textContent; }
+            $text = trim(preg_replace('/\s+/u', ' ', $text));
+            if (preg_match('/^(?:[0-9]+(?:\.[0-9]+)*[.)]?\s+)?(?:Referências|References|Referencias|Bibliografia|Bibliography|Bibliografía)$/iuD', $text)) { $markers[] = $index; }
+        }
+        if (count($markers) !== 1) { return null; }
+        $linked = $footnotes['note_count'] > 0; $allowedNote = $linked ? ' or self::w:footnoteReference' : '';
+        $resolver = new StyleResolver($parts); $paragraphs = []; $paragraphIndex = 0;
+        foreach ($children as $index => $child) {
+            if ($child->namespaceURI !== self::W) { if ($index >= $markers[0]) { return null; } continue; }
+            if ($child->localName !== 'p') {
+                if ($index >= $markers[0] && $child->localName !== 'sectPr') { return null; }
+                continue;
+            }
+            $position = $paragraphIndex++;
+            if ($index < $markers[0]) { continue; }
+            if ($xpath->query('.//*[namespace-uri()!="' . self::W . '"]', $child)->length
+                || $xpath->query('.//*[not(ancestor::w:pPr or ancestor::w:rPr) and not(self::w:r or self::w:t or self::w:tab or self::w:br or self::w:cr or self::w:pPr or self::w:rPr or self::w:hyperlink or self::w:bookmarkStart or self::w:bookmarkEnd or self::w:proofErr' . $allowedNote . ')]', $child)->length
+                || $xpath->query('.//w:altChunk|.//w:txbxContent|.//w:ins|.//w:del|.//w:moveFrom|.//w:moveTo|.//w:fldChar|.//w:fldSimple|.//w:instrText|.//w:sdt|.//w:tbl|.//w:object|.//w:pict|.//w:sym|.//w:vanish', $child)->length) { return null; }
+            $item = $this->paragraph($xpath, $child, $position, $resolver, $linked);
+            if ($item === null || count($paragraphs) >= ReferenceAnalysis::MAX_ENTRIES + 1) { return null; }
+            $paragraphs[] = $item;
+        }
+        return ['available' => true, 'sha256' => $digest, 'paragraphs' => $paragraphs];
     }
 
     private function xml(string $body): \DOMDocument

@@ -328,3 +328,49 @@ PHP 7.4/8.3 permanece na matriz CI; execução remota da branch não foi verific
 nesta validação local. STAGE10.md delimita os sinais e formatos reconhecidos;
 esta etapa não certifica APA 7, existência de obras ou identidade de autores.
 Nenhuma bibliografia real, OJS ou base de dados foi acessada.
+
+## Etapa 11 — motor 0.11.0
+
+Validação local em 12/11/2026, branch `feat/etapa-11-apa7-abnt`, após o merge
+`974cc9c` do PR #10. PHP 8.4.27 com DOM/ZIP, sem novas dependências ou mudanças
+no ambiente. Apenas documentos e referências sintéticos.
+
+- Runner: 613 testes, zero falhas, nenhum ignorado (70 novos).
+- Lint: 47 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12, entradas 1.0/1.1 e relatórios CLI válidos. Sem DOCX: 45
+  resultados (25 conformes/20 indeterminados no fixture legado;
+  28 conformes/17 indeterminados com subtítulos). DOCX sintético com padrão ABNT:
+  47 resultados para artigo e 46 para comunicação; APA não conforme, sem nomes,
+  títulos ou editora da referência no relatório.
+- `git diff --check`: sem erros de whitespace.
+
+Os testes cobrem sinais compostos ABNT, cautela com caixa alta e fontes jurídicas,
+artigo/capítulo/obra/página web, itálicos efetivos, editores, datas, DOI legado e
+pontuação ambígua, DOI ausente, numeração e ordem alfabética limitada, conjunções
+e espaços em citações, três idiomas, limites e amostra tardia. Incluem Word real
+sintético com estilos de caractere e itálico direto, corpo com notas verificadas,
+cauda segura após tabela, corrupção na bibliografia, DTD e sigilo de conteúdo.
+A certificação completa permanece explicitamente falsa/indeterminada.
+
+PHP 7.4/8.3 permanece na matriz CI; execução remota desta branch ainda não
+verificada. A implementação comunitária CSL foi consultada como apoio durante
+o desenvolvimento (STAGE11.md); não há consulta bibliográfica externa no motor.
+Nenhum manuscrito real, produção, OJS ou VM Oracle foi acessado.
+
+## Etapa 12 — motor 0.12.0
+
+Validação local em 12/11/2026, sobre o commit 152c96d da Etapa 11.
+A referência main observada no remoto ainda estava em 974cc9c; o merge informado
+pelo usuário não pôde ser confirmado nessa referência. A nova branch preserva
+152c96d como ancestral, sem reescrever ou reaplicar seu conteúdo.
+
+- 617 testes sintéticos, zero falhas (4 novos).
+- Lint de 48 arquivos PHP sem erros.
+- Relatórios CLI com entradas 1.0/1.1 válidos no schema existente; ambos com
+  revisão obrigatória e avanço automático desabilitado na ausência de DOCX.
+- Testes confirmam ABNT comprovada e outras incompatibilidades como não aceitas;
+  ausência de fonte e formatos parcialmente conformes não liberam aceite.
+- `git diff --check` sem erros. CI remoto não verificado.
+
+A mudança calcula política de admissão local. Não implementa o impedimento
+no OJS, não altera estados nem comunica autores. Sem produção ou VM Oracle.
