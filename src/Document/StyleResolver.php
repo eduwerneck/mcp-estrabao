@@ -205,6 +205,29 @@ final class StyleResolver
         return preg_match('/^[0-9]{1,7}$/D', $value) ? (int) $value : null;
     }
 
+    /** Outline 0..8 denotes a heading; absent/default 9 denotes body text. */
+    public function outline(\DOMElement $paragraph): array
+    {
+        $unknown = ['known' => false, 'level' => null];
+        if (!$this->valid) { return $unknown; }
+        try {
+            $this->containers($paragraph); $level = '9';
+            if ($this->styleXml !== null) {
+                $x = $this->xpath($this->styleXml);
+                if ($x->query('/w:styles/w:docDefaults')->length > 1) { return $unknown; }
+                foreach ($x->query('/w:styles/w:docDefaults | /w:styles/w:docDefaults/w:pPrDefault') as $node) { $this->containers($node); }
+                $root = $this->styleXml->documentElement;
+                $level = $this->value($root, './w:docDefaults/w:pPrDefault/w:pPr/w:outlineLvl') ?? $level;
+            }
+            $id = $this->value($paragraph, './w:pPr/w:pStyle') ?? ($this->defaults['paragraph'] ?? null);
+            foreach ($this->chain($id, 'paragraph') as $style) {
+                $level = $this->value($style, './w:pPr/w:outlineLvl') ?? $level;
+            }
+            $level = $this->value($paragraph, './w:pPr/w:outlineLvl') ?? $level;
+            return preg_match('/^[0-9]$/D', $level) ? ['known' => true, 'level' => (int) $level] : $unknown;
+        } catch (\RuntimeException $error) { return $unknown; }
+    }
+
     private function chain(?string $id, string $type): array
     {
         $chain = []; $seen = [];
