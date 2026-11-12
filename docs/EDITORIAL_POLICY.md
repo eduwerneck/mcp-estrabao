@@ -107,3 +107,16 @@ seções. Falha ou cobertura incompleta de extração será indeterminado.
 Não haverá envio de textos a serviços externos, acesso à produção, alterações
 editoriais nem acesso remoto à VM por causa deste registro documental. A avaliação
 automática continuará sendo recomendação sujeita à decisão humana.
+
+## Adendo confirmado em 12/11/2026 — caixa de títulos
+
+O responsável acrescentou nesta conversa a preferência editorial de evitar
+**caixa alta integral em títulos e subtítulos**, confirmando o escopo tanto nos
+metadados do artigo no OJS quanto nos títulos do manuscrito. É uma orientação
+adicional recebida do responsável; não afirma alteração ou nova consulta da fonte
+pública registrada acima. Não exige uma convenção específica de Title Case ou
+sentence case, não proíbe siglas e não autoriza reescrita automática de textos.
+
+A sinalização local está descrita em STAGE8.md. Siglas e casos ambíguos exigem
+revisão humana; capitaletes não foram definidos como infração. O preenchimento e
+a apresentação efetivos no OJS continuam dependendo de integração futura.

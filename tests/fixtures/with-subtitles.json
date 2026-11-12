@@ -1,0 +1,43 @@
+{
+  "schema_version": "1.1",
+  "title": {
+    "pt_BR": "Título sintético",
+    "en_US": "Synthetic title",
+    "es_ES": "Título sintético"
+  },
+  "abstract": {
+    "pt_BR": "Contexto: Estudo sintético. Metodologia: Análise local. Resultados: Evidências sintéticas.",
+    "en_US": "Background: Synthetic study. Method: Local analysis. Conclusions: Synthetic evidence.",
+    "es_ES": "Introducción: Estudio sintético. Metodología: Análisis local. Resultados: Evidencia sintética."
+  },
+  "keywords": {
+    "pt_BR": [
+      "geografia",
+      "pesquisa",
+      "dados sintéticos"
+    ],
+    "en_US": [
+      "geography",
+      "research",
+      "synthetic data"
+    ],
+    "es_ES": [
+      "geografía",
+      "investigación",
+      "datos sintéticos"
+    ]
+  },
+  "authors": [
+    {
+      "orcid": "0000-0000-0000-001X"
+    },
+    {
+      "orcid": "https://orcid.org/0000-0000-0000-0028"
+    }
+  ],
+  "subtitle": {
+    "pt_BR": "Análise de dados sintéticos",
+    "en_US": "A synthetic data analysis",
+    "es_ES": "Análisis de datos sintéticos"
+  }
+}
