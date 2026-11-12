@@ -90,3 +90,11 @@ Motor 0.5.0: cinco regras 1.0.0 de página e tipografia documentadas em STAGE5.m
 Resultados incluem hash do DOCX, escopo, cobertura, contagens e amostras limitadas
 por posição, sem texto bruto nem nomes de fontes/estilos. Sem manuscrito, as cinco
 regras retornam indeterminado. Snapshot, schemas 1.0 e argumentos da CLI preservados.
+
+## Etapa 6
+
+Motor 0.6.0: `manuscript.word_limit` 1.0.0 registra faixa por tipo, intervalo
+técnico, cobertura, categorias e regiões limitadas por posição, sem texto bruto.
+Snapshot, schemas 1.0 e argumentos CLI preservados. `input_sha256` cobre o
+snapshot; a regra inclui o hash separado do DOCX. Ver STAGE6.md para exclusões,
+marcadores, normalização e limitações de idioma e contagem.

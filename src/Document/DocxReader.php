@@ -103,7 +103,7 @@ final class DocxReader
                     if (in_array($value, ['0', 'false', 'off'], true)) { $bold = false; break; }
                     if ($value === null || !in_array($value, ['', '1', 'true', 'on'], true)) { $bold = null; }
                 }
-                $paragraphs[] = ['typography' => $resolver->typography($paragraph), 'format' => $resolver->paragraph($paragraph), 'direct_bold' => $hasText ? $bold : null, 'index' => $index, 'text' => trim(preg_replace('/\s+/u', ' ', $text)),
+                $paragraphs[] = ['outline' => $resolver->outline($paragraph), 'typography' => $resolver->typography($paragraph), 'format' => $resolver->paragraph($paragraph), 'direct_bold' => $hasText ? $bold : null, 'index' => $index, 'text' => trim(preg_replace('/\s+/u', ' ', $text)),
                     'numbered' => $xpath->query('./w:pPr/w:numPr[w:numId and not(w:numId/@w:val="0")]', $paragraph)->length > 0];
             }
             return ['layout' => PageLayout::read($parts), 'available' => true, 'reason' => 'body_paragraphs', 'sha256' => $unknown['sha256'], 'paragraphs' => $paragraphs];

@@ -180,3 +180,33 @@ caminho. Testes anteriores permanecem exercitados, com contagens/versão atualiz
 PHP 7.4/8.3 segue na matriz CI; a execução remota da nova branch não foi
 verificada nesta validação local. Não houve renderização nem instalação de Word,
 fontes ou OJS. Os escopos de página e corpo e as limitações estão em STAGE5.md.
+
+## Etapa 6 — motor 0.6.0
+
+Validação local em 12/11/2026, branch `feat/etapa-6-extensao-manuscrito`, após o
+merge `852fabe` do PR #5. Mesmo runtime PHP 8.4.27 com DOM/ZIP, sem novas
+dependências, alteração/publicação do ambiente, acesso a produção ou VM Oracle.
+
+- Runner: 331 testes executados, zero falhas, nenhum ignorado (49 novos).
+- Lint: 32 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12, snapshot e relatórios da CLI válidos. Sem DOCX: 33 resultados;
+  com artigo DOCX: 35; com comunicação: 34. Exercitados artigo conforme,
+  comunicação abaixo do mínimo, comunicação com hífen cruzando o máximo e idioma
+  inglês com títulos do corpo ainda pendentes (indeterminado).
+- `git diff --check`: sem erros de whitespace.
+
+Os testes novos cobrem 3999/4000/8000/8001 palavras em artigos e
+999/1000/3500/3501 em comunicações, hífens, apóstrofos, números e espaços Unicode.
+Cobrem títulos correspondentes ao snapshot, resumos/keywords trilíngues,
+referências, ordem livre, títulos numerados, menções em prosa, prefixo desconhecido,
+créditos/fomento e legendas incertos, subtítulos em negrito/outline, herança e
+override de outline, parágrafos vazios, limites ausentes/duplicados, ambiguidade
+resumo/corpo, idiomas/tipo pendentes, extração/normalização indisponível e amostras
+limitadas sem texto bruto. A CLI executou casos conforme, não conforme e
+indeterminado com hash real do DOCX. Fixtures de longas repetições usam ZIP store,
+sem desativar CRC ou os limites do leitor.
+
+PHP 7.4/8.3 segue na matriz CI; a execução remota da branch não foi verificada
+nesta validação local. STAGE6.md documenta o intervalo técnico e suas limitações;
+a convenção oficial de palavra e materiais condicionais ainda requer confirmação
+editorial. Nenhuma contagem foi feita com manuscrito real.
