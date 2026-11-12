@@ -2,7 +2,7 @@
 declare(strict_types=1);
 require_once __DIR__ . '/../src/bootstrap.php';
 use Estrabao\Contracts\{Submission, CheckResult};
-use Estrabao\Rules\{MetadataPresence, Orcid, PendingPolicy};
+use Estrabao\Rules\{MetadataPresence, Orcid, References};
 use Estrabao\Reporting\Report;
 
 $tests = 0;
@@ -133,17 +133,17 @@ test('JSON malformado rejeitado', function () {
     try { Submission::fromJson('{'); } catch (JsonException $e) { return; }
     throw new RuntimeException('JSON inválido aceito.');
 });
-test('políticas pendentes são explicitamente indeterminadas', function () {
-    $checks = (new PendingPolicy())->evaluate(new Submission(fixture()));
+test('pré-checagem de referências sem fonte é indeterminada', function () {
+    $checks = (new References())->evaluate(new Submission(fixture()));
     same(2, count($checks));
     foreach ($checks as $check) {
         same('indeterminado', $check->jsonSerialize()['status']);
-        same(false, $check->jsonSerialize()['evidence']['implemented']);
+        same(true, $check->jsonSerialize()['evidence']['implemented']);
     }
 });
 test('relatório auditável, sem ORCID nem textos brutos', function () {
     $data = fixture(); $snapshot = new Submission($data);
-    $report = Report::generate($snapshot, [new MetadataPresence(), new Orcid(), new PendingPolicy()]);
+    $report = Report::generate($snapshot, [new MetadataPresence(), new Orcid(), new References()]);
     same(17, count($report['checks']));
     same(true, $report['human_review_required']);
     same($snapshot->digest(), $report['input_sha256']);
@@ -241,6 +241,7 @@ require __DIR__ . '/stage6.php';
 require __DIR__ . '/stage7.php';
 require __DIR__ . '/stage8.php';
 require __DIR__ . '/stage9.php';
+require __DIR__ . '/stage10.php';
 
 echo "$tests testes, $failed falhas\n";
 exit($failed ? 1 : 0);

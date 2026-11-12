@@ -122,3 +122,12 @@ com inventário de vínculos independente da extração textual. Contagem conclu
 exige cobertura completa; linhas permanecem indeterminadas com notas presentes,
 sem renderizador. Hash DOCX, contagens e amostras limitadas, sem texto ou IDs.
 Entradas 1.0/1.1, relatório 1.0 e CLI preservados. Ver STAGE9.md.
+
+## Etapa 10
+
+Motor 0.10.0: `references.apa7` e `references.citation_matching` passam à versão
+2.0.0, substituindo pendências por pré-checagem lexical. APA 7 completa permanece
+indeterminada; correspondência só é conclusiva no subconjunto fechado de STAGE10.md.
+Mesmos dois IDs e quantidade de resultados, sem novos campos de entrada ou mudança
+de schema 1.0 do relatório. Evidências limitadas sem nomes, títulos ou identificadores
+bibliográficos. Entradas 1.0/1.1 e CLI preservadas.

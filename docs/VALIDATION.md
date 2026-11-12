@@ -296,3 +296,35 @@ As limitações de extração textual anteriores foram preservadas.
 PHP 7.4/8.3 segue na matriz CI; execução remota da branch não verificada nesta
 validação local. STAGE9.md define a cobertura estrutural; limite de linhas exige
 conferência renderizada. Nenhum manuscrito real, fonte privada ou OJS foi acessado.
+
+## Etapa 10 — motor 0.10.0
+
+Validação local em 12/11/2026, branch `feat/etapa-10-referencias-citacoes`, após o
+merge `d5e0431` do PR #9. Mesmo PHP 8.4.27 com DOM/ZIP. Sem novas dependências,
+consultas bibliográficas externas, produção, VM Oracle ou alteração do ambiente.
+
+- Runner: 543 testes executados, zero falhas, nenhum ignorado (66 novos).
+- Lint: 44 arquivos PHP sem erros de sintaxe.
+- Schemas 2020-12, snapshots 1.0/1.1 e relatórios da CLI válidos. Mesmos 43
+  resultados sem DOCX, 45 com artigo. Exercitados correspondência conforme,
+  chave literal sem referência não conforme e referência institucional fora do
+  subconjunto indeterminada. `references.apa7` permaneceu indeterminado nos três.
+- `git diff --check`: sem erros de whitespace.
+
+Os testes novos cobrem um/dois autores, et al., narrativa simples, múltiplas
+citações parentéticas, página, ano/sufixo, Unicode, hífen/apóstrofo, chaves não
+encontradas, autoria divergente e ambígua, referências duplicadas, institucional,
+composta, sem data, data completa, iniciais fora do padrão, entrada repartida ou
+múltiplas no mesmo parágrafo. Cobrem comunicação pessoal, citação secundária,
+múltiplos anos, narrativa não suportada, parênteses, candidato numérico,
+símbolos de uma letra, DOI ausente/antigo/moderno sem consulta externa, referência
+não observada sem reprovação, fronteiras ausentes/duplicadas/ambíguas, ordem livre,
+idiomas pendentes, fonte/normalização indisponível, limites de entradas/citações/
+parágrafos e amostras limitadas com ocorrência tardia sem dados privados.
+A CLI confirmou hash DOCX, versões 2.0.0 e ausência de texto/caminho no relatório.
+Extração parcial com notas/tabelas permaneceu indeterminada.
+
+PHP 7.4/8.3 permanece na matriz CI; execução remota da branch não foi verificada
+nesta validação local. STAGE10.md delimita os sinais e formatos reconhecidos;
+esta etapa não certifica APA 7, existência de obras ou identidade de autores.
+Nenhuma bibliografia real, OJS ou base de dados foi acessada.

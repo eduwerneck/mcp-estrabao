@@ -206,7 +206,7 @@ test('evidências limitadas e sem textos nem nomes arbitrários de fonte', funct
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/complete.json', $path, 'article', 'pt']);
         same(0, $code); same('', $err);
         same(false, strpos($out, 'SYNTHETIC PRIVATE') !== false); same(false, strpos($out, $path) !== false);
-        same('0.9.0', json_decode($out, true, 64, JSON_THROW_ON_ERROR)['engine_version']);
+        same('0.10.0', json_decode($out, true, 64, JSON_THROW_ON_ERROR)['engine_version']);
     });
 });
 test('violação tardia preserva posição na amostra limitada', function () {
