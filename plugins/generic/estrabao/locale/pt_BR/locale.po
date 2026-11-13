@@ -143,3 +143,30 @@ msgstr "Estrutura, formatação e outras verificações do manuscrito"
 
 msgid "plugins.generic.estrabao.titleGuidance"
 msgstr "Evite títulos e subtítulos inteiramente em CAIXA ALTA, nos metadados e no manuscrito. Preserve siglas e nomes próprios; revise casos ambíguos. Subtítulo é opcional. Não há conversão automática do texto."
+
+msgid "plugins.generic.estrabao.deskPendingFootnotes"
+msgstr "Notas de rodapé e conferência de linhas"
+
+msgid "plugins.generic.estrabao.footnoteReviewInstructions"
+msgstr "Abra o arquivo atual em um editor, no modo de impressão, com as fontes e a configuração de página corretas. Confira no máximo duas linhas visuais por nota, somando eventuais continuações em outra página. O total deve ser conferido na página; o comprimento do texto não substitui essa conferência. Esta ficha não registra aprovação."
+
+msgid "plugins.generic.estrabao.footnoteReviewDownload"
+msgstr "Baixar o manuscrito atual para conferência"
+
+msgid "plugins.generic.estrabao.footnoteReviewCount"
+msgstr "Notas Word vinculadas confirmadas (limite: 3):"
+
+msgid "plugins.generic.estrabao.footnoteReviewCall"
+msgstr "Conferir chamada Word na posição de leitura (não é o número impresso da nota):"
+
+msgid "plugins.generic.estrabao.footnoteReviewMore"
+msgstr "Chamadas adicionais não listadas; conferir também:"
+
+msgid "plugins.generic.estrabao.footnoteReviewUnresolved"
+msgstr "O inventário está inconclusivo. Resolva os vínculos ou confira todas as notas no arquivo; não presuma zero notas."
+
+msgid "plugins.generic.estrabao.footnoteReviewEndnotes"
+msgstr "Há indicadores de notas de fim. Elas não foram contadas como rodapés nem aprovadas; confira separadamente seu tratamento editorial."
+
+msgid "plugins.generic.estrabao.footnoteReviewManual"
+msgstr "Anotações manuais, texto em imagens e a necessidade editorial das notas não são verificados por esta contagem. Uma pendência não constitui descumprimento comprovado e não entra automaticamente na carta aos autores."

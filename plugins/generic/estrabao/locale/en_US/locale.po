@@ -143,3 +143,30 @@ msgstr "Manuscript structure, formatting and other checks"
 
 msgid "plugins.generic.estrabao.titleGuidance"
 msgstr "Avoid titles and subtitles entirely in UPPERCASE, in metadata and the manuscript. Preserve acronyms and proper names; review ambiguous cases. Subtitles are optional. Text is not converted automatically."
+
+msgid "plugins.generic.estrabao.deskPendingFootnotes"
+msgstr "Footnotes and visual line review"
+
+msgid "plugins.generic.estrabao.footnoteReviewInstructions"
+msgstr "Open the current file in an editor in print layout with the correct fonts and page settings. Check at most two visual lines per note, including continuations on another page. Check the total on the page; text length does not replace this review. This checklist does not record approval."
+
+msgid "plugins.generic.estrabao.footnoteReviewDownload"
+msgstr "Download the current manuscript for review"
+
+msgid "plugins.generic.estrabao.footnoteReviewCount"
+msgstr "Confirmed linked Word footnotes (limit: 3):"
+
+msgid "plugins.generic.estrabao.footnoteReviewCall"
+msgstr "Review Word call in reading order (not the printed note number):"
+
+msgid "plugins.generic.estrabao.footnoteReviewMore"
+msgstr "Additional calls not listed; review these too:"
+
+msgid "plugins.generic.estrabao.footnoteReviewUnresolved"
+msgstr "The inventory is inconclusive. Resolve the links or review all notes in the file; do not assume zero notes."
+
+msgid "plugins.generic.estrabao.footnoteReviewEndnotes"
+msgstr "Endnote indicators were found. They were not counted as footnotes or approved; review their editorial treatment separately."
+
+msgid "plugins.generic.estrabao.footnoteReviewManual"
+msgstr "Manual annotations, text in images and the editorial need for notes are outside this count. An unresolved item is not a confirmed violation and is not automatically included in the author letter."
