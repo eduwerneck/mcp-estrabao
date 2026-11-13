@@ -170,3 +170,6 @@ msgstr "Se encontraron indicadores de notas finales. No fueron contadas como not
 
 msgid "plugins.generic.estrabao.footnoteReviewManual"
 msgstr "Las anotaciones manuales, el texto en imágenes y la necesidad editorial de las notas quedan fuera de este conteo. Un elemento pendiente no es una infracción confirmada y no se incluye automáticamente en la carta a los autores."
+
+msgid "plugins.generic.estrabao.submittedOn"
+msgstr "Enviado el"

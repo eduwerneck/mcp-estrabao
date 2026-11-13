@@ -170,3 +170,6 @@ msgstr "Endnote indicators were found. They were not counted as footnotes or app
 
 msgid "plugins.generic.estrabao.footnoteReviewManual"
 msgstr "Manual annotations, text in images and the editorial need for notes are outside this count. An unresolved item is not a confirmed violation and is not automatically included in the author letter."
+
+msgid "plugins.generic.estrabao.submittedOn"
+msgstr "Submitted on"

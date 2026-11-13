@@ -593,3 +593,21 @@ e plugin 0.7.0.0.
 Testes exclusivamente sintéticos; sem PDF/manuscritos reais, produção, VM Oracle,
 envio a autores ou publicação do ambiente. Não certifica APA completa; CI remoto
 ainda não verificado.
+
+## Etapa 22 — data de submissão pública
+
+Validação em 13/11/2026, base b11c063 (merge do PR #22), plugin 0.8.0.0,
+motor 0.16.0 preservado.
+
+- 837 testes sintéticos, zero falhas, em PHP 8.4.27 e PHP 8.1.27; 31 novos.
+- Lint de 76 arquivos PHP sem erros e `git diff --check` aprovado.
+- 10 verificações em OJS 3.3.0.20/tema padrão/Chromium local: visitante anônimo,
+  data de calendário, posição antes de Publicado no mesmo box, data publicada
+  preservada, sem duplicação, sem mudança de estado/datas pelo indicador,
+  renderização sem JavaScript, ausência/incoerência e prévia sem indicador,
+  restauração dos registros sintéticos. Captura inspecionada.
+
+Fixture simulou artigo publicado somente no laboratório internal e restaurou os
+registros originais. Não chamou rotinas de publicação/e-mail. Sem dados reais,
+produção, VM Oracle, comunicação com autores ou publicação do ambiente.
+Tema real não identificado nem homologado. CI remoto ainda não verificado.
