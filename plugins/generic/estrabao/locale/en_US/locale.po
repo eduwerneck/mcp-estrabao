@@ -176,3 +176,12 @@ msgstr "Submitted on"
 
 msgid "plugins.generic.estrabao.deskPendingCredit"
 msgstr "CRediT: review taxonomy, attribution to all authors and veracity"
+
+msgid "plugins.generic.estrabao.fundingReviewBoth"
+msgstr "Both sources declare support/funding. Compare agencies, projects and award numbers when provided. Acronyms and full names may identify the same institution; equivalence was not verified automatically."
+
+msgid "plugins.generic.estrabao.fundingReviewOjsOnly"
+msgstr "OJS records support, but no corresponding funding declaration was recognized in Word. Confirm whether the support is financial; if so, complete the manuscript declaration. Nonfinancial institutional support does not prove omitted funding."
+
+msgid "plugins.generic.estrabao.fundingReviewUnavailable"
+msgstr "The funding comparison is inconclusive. Review Word and the availability of the supporting agencies field during submission. A disabled or editorial-only field, or incomplete reading, does not prove omission."

@@ -14,7 +14,7 @@ final class DeskResponse
         'metadata.title.case'=>'1.0.0', 'metadata.subtitle.case'=>'1.0.0', 'metadata.keywords.count'=>'1.0.0',
         'abstract.labels'=>'2.0.0', 'abstract.word_limit'=>'1.0.0',
         'author.orcid.presence'=>'1.0.0', 'author.orcid.syntax'=>'1.0.0', 'author.orcid.identity'=>'1.0.0',
-        'manuscript.docx.structure'=>'3.0.0', 'manuscript.headings.format'=>'3.0.0', 'manuscript.funding'=>'1.0.0',
+        'manuscript.docx.structure'=>'3.0.0', 'manuscript.headings.format'=>'3.0.0', 'manuscript.funding'=>'2.0.0',
         'manuscript.page.a4'=>'2.0.0', 'manuscript.page.margins'=>'2.0.0', 'manuscript.body.font'=>'2.0.0',
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
@@ -145,6 +145,18 @@ final class DeskResponse
             return self::item('Estrutura','O manuscrito deve apresentar as seções previstas nas diretrizes.',
                 'Não foram identificados os títulos explícitos: '.implode('; ',array_unique($missing)).'.',
                 'Organizar o conteúdo sob os títulos exigidos; ausência de seção não comprova ausência de método. Observar a anonimização na declaração CRediT.');
+        }
+        if($id==='manuscript.funding' && ($e['word_state']??null)==='declared'){
+            if(($e['reason']??null)==='word_declared_ojs_empty' && ($e['ojs_state']??null)==='absent'){
+                return self::item('Consistência do fomento','Manter coerentes as declarações de fomento no manuscrito e nos metadados do OJS.',
+                    'Há declaração de fomento no Word, mas o campo disponível de agências de apoio está vazio no OJS.',
+                    'Completar o campo correspondente no OJS e conferir os dados com a declaração do manuscrito.');
+            }
+            if(($e['reason']??null)==='word_declared_ojs_explicit_none' && ($e['ojs_state']??null)==='none'){
+                return self::item('Consistência do fomento','Manter coerentes as declarações de fomento no manuscrito e nos metadados do OJS.',
+                    'O Word declara fomento, enquanto o campo do OJS contém declaração explícita de ausência ou não aplicabilidade.',
+                    'Conferir qual informação corresponde ao estudo e harmonizar as duas fontes, sem criar financiamento ou agências.');
+            }
         }
         if($id==='manuscript.credit.content' && ($e['reason']??null)==='credit_section_empty'
             && ($e['full_document_text_available']??false)===true && ($e['section_count']??null)===1

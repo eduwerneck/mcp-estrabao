@@ -1,0 +1,18 @@
+[
+  {
+    "case": "funding comparison has translated internal guidance",
+    "passed": true
+  },
+  {
+    "case": "disabled or editorial-only fields are not called omissions",
+    "passed": true
+  },
+  {
+    "case": "internal funding guidance is excluded from letter",
+    "passed": true
+  },
+  {
+    "case": "reading and generating do not change editorial state",
+    "passed": true
+  }
+]

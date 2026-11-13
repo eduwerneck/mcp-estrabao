@@ -176,3 +176,12 @@ msgstr "Submetido em"
 
 msgid "plugins.generic.estrabao.deskPendingCredit"
 msgstr "CRediT: conferir taxonomia, atribuição a todos os autores e veracidade"
+
+msgid "plugins.generic.estrabao.fundingReviewBoth"
+msgstr "As duas fontes declaram apoio/fomento. Compare agências, projetos e números de financiamento, quando informados. Siglas e nomes completos podem representar a mesma instituição; a equivalência não foi verificada automaticamente."
+
+msgid "plugins.generic.estrabao.fundingReviewOjsOnly"
+msgstr "O OJS registra apoio, mas o Word não tem declaração correspondente de fomento reconhecida. Confirme se o apoio é financeiro; nesse caso, complete a declaração no manuscrito. Apoio institucional não financeiro não comprova omissão de fomento."
+
+msgid "plugins.generic.estrabao.fundingReviewUnavailable"
+msgstr "A comparação de fomento está inconclusiva. Confira o Word e a disponibilidade do campo de agências de apoio na submissão. Campo desabilitado, exclusivo do fluxo editorial ou leitura incompleta não comprovam omissão."

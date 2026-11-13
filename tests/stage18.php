@@ -196,7 +196,7 @@ test('painel consome perfil parcial e versões novas sem expor conteúdo excluí
         withDocx($p,function($path)use($service,$request){
             Services::$files[0]->data['path']=basename($path);
             $form=$service->form($request,17);$request->vars['fingerprint']=(new EstrabaoAdmissionBridge())->analyze($form)['fingerprint'];
-            $r=$service->draft($request,17);same('0.17.0',$r['draft']['source_engine_version']);
+            $r=$service->draft($request,17);same('0.18.0',$r['draft']['source_engine_version']);
             same(true,strpos($r['draft']['body'],'12 pontos')!==false);same(hash_file('sha256',$path),$r['draft']['source_document_sha256']);
             same(false,strpos(json_encode($r),'Dado A')!==false);
         });

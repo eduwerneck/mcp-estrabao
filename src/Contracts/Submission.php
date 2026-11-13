@@ -13,15 +13,17 @@ final class Submission
         if (!$object instanceof \stdClass) {
             throw new \InvalidArgumentException('Snapshot deve ser objeto JSON.');
         }
-        foreach (['title', 'subtitle', 'abstract', 'keywords'] as $field) {
+        foreach (['title', 'subtitle', 'abstract', 'keywords', 'supporting_agencies'] as $field) {
             if (isset($object->$field) && !$object->$field instanceof \stdClass) {
                 throw new \InvalidArgumentException('Metadados devem ser objetos JSON.');
             }
         }
-        if (isset($object->keywords)) {
-            foreach ($object->keywords as $keywords) {
-                if (!is_array($keywords)) {
-                    throw new \InvalidArgumentException('Palavras-chave devem ser listas JSON.');
+        foreach (['keywords', 'supporting_agencies'] as $listField) {
+            if (isset($object->$listField)) {
+                foreach ($object->$listField as $values) {
+                    if (!is_array($values)) {
+                        throw new \InvalidArgumentException('Valores devem ser listas JSON.');
+                    }
                 }
             }
         }
@@ -40,13 +42,14 @@ final class Submission
 
     public function __construct(array $data)
     {
-        if (!in_array($data['schema_version'] ?? null, ['1.0', '1.1'], true)) {
-            throw new \InvalidArgumentException('schema_version deve ser 1.0 ou 1.1.');
+        if (!in_array($data['schema_version'] ?? null, ['1.0', '1.1', '1.2'], true)) {
+            throw new \InvalidArgumentException('schema_version deve ser 1.0, 1.1 ou 1.2.');
         }
         if ($data['schema_version'] === '1.0' && array_key_exists('subtitle', $data)) {
             throw new \InvalidArgumentException('subtitle requer snapshot 1.1.');
         }
-        foreach (['title', 'subtitle', 'abstract', 'keywords'] as $field) {
+        if ($data['schema_version'] !== '1.2' && array_key_exists('supporting_agencies', $data)) { throw new \InvalidArgumentException('supporting_agencies requer snapshot 1.2.'); }
+        foreach (['title', 'subtitle', 'abstract', 'keywords', 'supporting_agencies'] as $field) {
             if (!array_key_exists($field, $data) || $data[$field] === null) {
                 continue; // Desconhecido: extração não disponível.
             }
@@ -57,7 +60,7 @@ final class Submission
                 if (!is_string($locale) || !preg_match('/^[a-z]{2}_[A-Z]{2}$/D', $locale)) {
                     throw new \InvalidArgumentException('Locale inválido.');
                 }
-                if ($field === 'keywords') {
+                if (in_array($field, ['keywords','supporting_agencies'], true)) {
                     if (!is_array($value) || array_values($value) !== $value) {
                         throw new \InvalidArgumentException('Palavras-chave devem ser listas.');
                     }
@@ -83,7 +86,7 @@ final class Submission
             }
         }
         // Aceitar apenas o contrato; nomes, manuscritos e campos adicionais são rejeitados.
-        if (array_diff(array_keys($data), ['schema_version', 'title', 'subtitle', 'abstract', 'keywords', 'authors'])) {
+        if (array_diff(array_keys($data), ['schema_version', 'title', 'subtitle', 'abstract', 'keywords', 'authors', 'supporting_agencies'])) {
             throw new \InvalidArgumentException('Campo desconhecido no snapshot.');
         }
         foreach ($data['authors'] ?? [] as $author) {

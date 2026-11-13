@@ -53,8 +53,7 @@ foreach (['article', 'research_communication'] as $type) {
         withDocx(docxParts(docxBody(array_reverse(labels()))), function ($path) use ($type) {
             $checks = structure((new DocxReader())->read($path), $type);
             same('conforme', $checks[0]['status']); same('não conforme', $checks[1]['status']);
-            same($type === 'article' ? 3 : 2, count($checks));
-            if ($type === 'article') { same('indeterminado', $checks[2]['status']); }
+            same(2, count($checks));
         });
     });
 }

@@ -127,7 +127,7 @@ test('CLI recusa caminhos remotos e argumentos inválidos sem expor detalhes',fu
 });
 
 test('pendências são identificadas separadamente e fomento desconhecido não vira cobrança',function(){
-    $r=deskFromChecks([deskCheck('manuscript.funding',[],'indeterminado')]);
+    $r=deskFromChecks([deskCheck('manuscript.funding',[],'indeterminado','2.0.0')]);
     same([['rule_id'=>'manuscript.funding','location'=>'/manuscript','reason'=>'indeterminate']],$r['pending_review']);
     same(false,strpos($r['body'],'fomento')!==false);same([],$r['corrections']);
 });

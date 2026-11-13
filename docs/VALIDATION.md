@@ -628,3 +628,21 @@ plugin 0.9.0.0.
 Presença de texto não certifica taxonomia/atribuição/veracidade. Não houve dados
 reais, produção, VM Oracle, envio a autores ou publicação do ambiente.
 CI remoto ainda não verificado.
+
+## Etapa 24 — consistência de fomento
+
+Validação em 13/11/2026, base 9b75673 (merge do PR #24), motor 0.18.0 e
+plugin 0.10.0.0.
+
+- 884 testes sintéticos, zero falhas, em PHP 8.4.27 e 8.1.27; 32 novos.
+- Lint de 80 arquivos PHP aprovado e `git diff --check` sem erros.
+- 4 verificações de leitura no OJS 3.3.0.20/Chromium local: orientação interna
+  traduzida, indisponibilidade sem acusação de omissão, separação da carta e
+  estado editorial preservado. Não houve edição de configurações ou metadados.
+- Contrato 1.2, direções da comparação e disponibilidade request/require versus
+  enable/0/ausente validados sinteticamente com adaptador, leitor e serviço reais
+  sob dublês OJS. Campos postados não substituem o DAO. Captura inspecionada.
+
+Não certifica financiamento, equivalência de agências ou números de projetos.
+Sem manuscritos reais, produção, VM Oracle, envio a autores ou publicação do
+ambiente. CI remoto ainda não verificado.

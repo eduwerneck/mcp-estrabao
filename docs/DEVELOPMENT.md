@@ -130,3 +130,10 @@ O gerador conhece as duas regras CRediT e o painel agrupa pendências com tradu�
 novas; limpar caches de idioma. Liberações de motor anterior exigem nova revisão.
 Não houve implantação nem mudança de política de fomento ou validação integral
 de contribuições.
+
+Na Etapa 24, motor 0.18.0 e plugin 0.10.0.0 devem ser atualizados juntos em
+homologação. O adaptador passa a produzir snapshot 1.2, incluindo supportingAgencies
+quando Context.agencies é request/require. Desabilitado, ausente ou enable
+(editorial-only) permanece fonte indisponível para comparação na submissão. Não
+habilitar campos nem impor obrigatoriedade por suposição. Limpar caches de idioma;
+liberações antigas exigem nova revisão. Nenhuma implantação foi realizada.

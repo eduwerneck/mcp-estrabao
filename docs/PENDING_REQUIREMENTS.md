@@ -11,6 +11,7 @@
 | Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
 | Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Etapa 19 acrescenta orientação nos formulários OJS e reconhecimento de título/subtítulo combinados no Word. Homologação no tema/CSS da revista e tratamento semântico de siglas continuam pendentes. |
 | Notas de rodapé | Contagem de até 3 notas Word implementada no subconjunto de STAGE9.md; Etapa 20 acrescenta indicadores de notas de fim e ficha interna para conferir duas linhas; o total visual continua exigindo documento paginado e revisão humana. Ampliar vínculos/cobertura, definir tratamento editorial de notas manuais/de fim e registrar revisão visual auditável. |
+| Fomento | Etapa 24 compara Word e supportingAgencies quando a disponibilidade do campo na submissão é confirmada. Sem presumir fomento ou omissão de apoio financeiro; equivalência de agências/projetos, variantes e declarações fora dos padrões exigem revisão. Configuração real da revista e homologação permanecem pendentes. |
 | CRediT | Etapa 23 distingue seção vazia, presença de texto e revisão humana de taxonomia/atribuição/veracidade. Não certifica contribuições; ampliar cobertura de estruturas, idiomas e registro de conferência sem quebrar anonimização. |
 | Datas no HTML | Etapa 22 implementa Submetido em antes de Publicado no mesmo box, com data do fluxo OJS, validada no tema padrão do laboratório. Identificar tema/versão reais e homologar markup, formato e dados históricos antes de implantar. |
 | APA 7 | Etapa 11 detecta incompatibilidades concretas, padrões semelhantes a ABNT, itálicos de formatos reconhecidos, DOI informado e formato de citações (STAGE11.md). Etapa 21 acrescenta separadores de autoria pessoal, limite de lista não abreviada e rótulos de periódico em formatos mistos. Certificação completa, autoria institucional/composta, citações secundárias, confirmação bibliográfica e formatos fora do subconjunto continuam pendentes. Não consulta DOI nem reprova sua ausência. |
@@ -44,6 +45,6 @@ não autoriza comunicação automática aos autores.
 4. APA 7: formatos mistos e listas pessoais ampliados na Etapa 21; instituições, nomes compostos e exceções continuam pendentes.
 5. Datas no HTML: indicador entregue na Etapa 22 para o tema padrão; homologação com tema/configuração reais permanece pendente.
 
-CRediT recebeu a primeira verificação de conteúdo na Etapa 23. Fomento e demais declarações seguem depois, sem pressupor aplicabilidade
+CRediT recebeu a primeira verificação de conteúdo na Etapa 23. A Etapa 24 acrescenta consistência de fomento Word/OJS. Ética e IA seguem depois, sem pressupor aplicabilidade
 ou ausência a partir de fonte incompleta. Um item/PR por vez; o histórico de
 devolutivas não foi priorizado sobre essas pendências.
