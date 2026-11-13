@@ -663,3 +663,19 @@ plugin 0.11.0.0.
 A regra permanece indeterminada: não certifica ética nem cria bloqueio ou
 exigência automática aos autores. Sem dados reais, produção, VM Oracle, mensagens
 a autores ou publicação do ambiente. CI remoto ainda não verificado.
+
+## Etapa 26 — declaração de IA no manuscrito
+
+Validação em 13/11/2026 sobre 5fccd40 (Etapa 25), motor 0.20.0 e
+plugin 0.12.0.0. Base ética ainda não mergeada em main durante a preparação.
+
+- 922 testes sintéticos, zero falhas, em PHP 8.4.27 e PHP 8.1.27; 19 novos.
+- Lint de 84 arquivos PHP e `git diff --check` aprovados.
+- 4 verificações de leitura no OJS 3.3.0.20/Chromium local: ficha traduzida,
+  manuscrito com uso/não uso sem repetição OJS, marcador ausente sem acusação,
+  ficha fora da carta e estado editorial preservado. Captura inspecionada.
+- Cenários de declaração exercitados pelo leitor e serviço reais sob dublês.
+  Título vazio e expressões não reconhecidas permanecem para revisão humana.
+
+Não detecta uso real de IA nem lê discussão privada. Sem dados reais, produção,
+VM Oracle, envio a autores ou publicação do ambiente. CI remoto não verificado.

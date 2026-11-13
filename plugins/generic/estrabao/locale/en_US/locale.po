@@ -206,3 +206,21 @@ msgstr "Extracted Word paragraph position (not a page number):"
 
 msgid "plugins.generic.estrabao.ethicsReviewMore"
 msgstr "Additional mentions not listed; review these too:"
+
+msgid "plugins.generic.estrabao.deskPendingAi"
+msgstr "Declaration of AI use or non-use"
+
+msgid "plugins.generic.estrabao.aiReviewNonUse"
+msgstr "An explicit textual non-use statement was observed. This records what the authors declared; it does not verify actual tool use."
+
+msgid "plugins.generic.estrabao.aiReviewTextPresent"
+msgstr "Text was found under the declaration heading. Text presence does not prove that all required details were supplied or that the purpose is permitted."
+
+msgid "plugins.generic.estrabao.aiReviewEmpty"
+msgstr "The declaration heading was found without text. Check whether the declaration appears elsewhere in the manuscript; no specific heading is required. If review confirms it is missing, request a use or non-use declaration."
+
+msgid "plugins.generic.estrabao.aiReviewUnresolved"
+msgstr "The reading does not establish the declaration. Review the manuscript, including material outside automatic reading; missing markers do not prove a missing declaration."
+
+msgid "plugins.generic.estrabao.aiReviewInstructions"
+msgstr "Authors must declare AI use or non-use in the manuscript. For declared use, review the tool, purpose and interaction level; only technical support for language revision, translation, formatting and illustrative figures is permitted. For declared non-use, do not require tool details. Duplication in Comments for the Editor is not required. This checklist does not detect actual use, record approval or enter the author letter."

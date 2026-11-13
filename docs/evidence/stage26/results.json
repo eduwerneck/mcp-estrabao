@@ -1,0 +1,18 @@
+[
+  {
+    "case": "AI checklist translated and requires use or non-use in manuscript",
+    "passed": true
+  },
+  {
+    "case": "does not require OJS duplication",
+    "passed": true
+  },
+  {
+    "case": "absence of markers is not automatic accusation",
+    "passed": true
+  },
+  {
+    "case": "guidance remains outside letter and does not change state",
+    "passed": true
+  }
+]

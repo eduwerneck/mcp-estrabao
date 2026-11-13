@@ -206,3 +206,21 @@ msgstr "Posição de parágrafo Word extraído (não é número de página):"
 
 msgid "plugins.generic.estrabao.ethicsReviewMore"
 msgstr "Menções adicionais não listadas; conferir também:"
+
+msgid "plugins.generic.estrabao.deskPendingAi"
+msgstr "Declaração de uso ou não uso de IA"
+
+msgid "plugins.generic.estrabao.aiReviewNonUse"
+msgstr "Foi observada uma declaração textual explícita de não uso. Isso registra o que os autores declararam; não verifica o uso real de ferramentas."
+
+msgid "plugins.generic.estrabao.aiReviewTextPresent"
+msgstr "Há texto sob o título da declaração. A presença de texto não comprova que todos os detalhes exigidos foram informados ou que a finalidade esteja permitida."
+
+msgid "plugins.generic.estrabao.aiReviewEmpty"
+msgstr "O título da declaração foi encontrado sem texto. Confira se a declaração consta em outro trecho do manuscrito; não é exigido um título específico. Caso a ausência seja confirmada na revisão, solicite a declaração de uso ou não uso."
+
+msgid "plugins.generic.estrabao.aiReviewUnresolved"
+msgstr "A leitura não permite concluir sobre a declaração. Confira o manuscrito, inclusive trechos fora da leitura automática; ausência de marcador não comprova ausência da declaração."
+
+msgid "plugins.generic.estrabao.aiReviewInstructions"
+msgstr "Os autores devem declarar no manuscrito uso ou não uso de IA. Quando houve uso, confira ferramenta, finalidade e nível de interação; são permitidos apenas apoios técnicos de revisão linguística, tradução, formatação e figuras ilustrativas. Quando foi declarado não uso, não exija detalhes de ferramenta. Não é necessário repetir em Comentários ao Editor. Esta ficha não detecta uso real, não registra aprovação e não é copiada para a carta."

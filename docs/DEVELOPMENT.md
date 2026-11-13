@@ -142,3 +142,9 @@ Na Etapa 25, atualizar motor 0.19.0 e plugin 0.11.0.0 juntos em homologação e
 limpar caches de idioma. A ficha interna de ética não registra uma conferência
 concluída nem muda o gate APA. Liberações antigas exigem nova revisão pelo
 fingerprint do motor. Nenhuma implantação/publicação foi realizada.
+
+Etapa 26: motor 0.20.0 e plugin 0.12.0.0, com base na Etapa 25. Atualizar juntos
+em homologação e limpar caches de idioma. A declaração de IA fica no manuscrito;
+não há extração de Comentários ao Editor ou detector de uso real. Não cria gate
+de IA nem registra revisão concluída. Liberações de motor anterior exigem nova
+revisão. Confirmar merge da base ética antes de abrir esta etapa contra main.

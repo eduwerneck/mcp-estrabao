@@ -81,6 +81,13 @@
                     <li>{translate key="plugins.generic.estrabao.deskNoPending"}</li>
                 {/foreach}
                 </ul>
+                {if $deskDraftModel.ai_review}
+                <section id="estrabaoAiReview">
+                    <h4>{translate key="plugins.generic.estrabao.deskPendingAi"}</h4>
+                    <p>{translate key="plugins.generic.estrabao.{$deskDraftModel.ai_review.message}"}</p>
+                    <p>{translate key="plugins.generic.estrabao.aiReviewInstructions"}</p>
+                </section>
+                {/if}
                 {if $deskDraftModel.ethics_review}
                 <section id="estrabaoEthicsReview">
                     <h4>{translate key="plugins.generic.estrabao.deskPendingEthics"}</h4>

@@ -243,3 +243,11 @@ sem declaração, nomes ou números de parecer. Não certifica aplicabilidade,
 aprovação ou dispensa. marker_scan_complete limita-se ao texto Word disponível
 antes da bibliografia. Schemas e snapshots preservados; são 49 checks sem DOCX
 e 50 com artigo/comunicação. O catálogo da minuta mantém a regra como pendência.
+
+## Etapa 26 — declaração de IA
+
+Motor 0.20.0 acrescenta manuscript.ai.declaration e manuscript.ai.verification,
+1.0.0. A primeira limita conforme à presença textual; título vazio/falta de
+marcador não comprovam ausência. A segunda permanece indeterminada. Evidências
+não contêm declaração ou ferramenta. Snapshots e schemas preservados; 51 checks
+sem DOCX e 52 para artigo/comunicação. Não há leitura de discussão privada OJS.

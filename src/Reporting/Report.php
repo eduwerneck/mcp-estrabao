@@ -5,7 +5,7 @@ use Estrabao\Contracts\{Submission, Rule};
 
 final class Report
 {
-    const ENGINE_VERSION = '0.19.0';
+    const ENGINE_VERSION = '0.20.0';
     /** Não escreve em disco, não comunica a serviços, não altera estado editorial. */
     public static function generate(Submission $submission, array $rules): array
     {

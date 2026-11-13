@@ -11,6 +11,7 @@
 | Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
 | Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Etapa 19 acrescenta orientação nos formulários OJS e reconhecimento de título/subtítulo combinados no Word. Homologação no tema/CSS da revista e tratamento semântico de siglas continuam pendentes. |
 | Notas de rodapé | Contagem de até 3 notas Word implementada no subconjunto de STAGE9.md; Etapa 20 acrescenta indicadores de notas de fim e ficha interna para conferir duas linhas; o total visual continua exigindo documento paginado e revisão humana. Ampliar vínculos/cobertura, definir tratamento editorial de notas manuais/de fim e registrar revisão visual auditável. |
+| IA | Etapa 26 registra uso ou não uso obrigatório no manuscrito, sem duplicação OJS. Confere presença em padrões limitados e acrescenta ficha interna; veracidade, finalidade e interação continuam humanas. Não usa detector ou presume ausência por falta de marcador. |
 | Ética | Etapa 25 acrescenta ficha interna e localizador limitado de possíveis menções no Word. Aplicabilidade, aprovação, autenticidade/número do parecer e declaração formal continuam para revisão humana; sem bloqueio automático ou inferência de dispensa. |
 | Fomento | Etapa 24 compara Word e supportingAgencies quando a disponibilidade do campo na submissão é confirmada. Sem presumir fomento ou omissão de apoio financeiro; equivalência de agências/projetos, variantes e declarações fora dos padrões exigem revisão. Configuração real da revista e homologação permanecem pendentes. |
 | CRediT | Etapa 23 distingue seção vazia, presença de texto e revisão humana de taxonomia/atribuição/veracidade. Não certifica contribuições; ampliar cobertura de estruturas, idiomas e registro de conferência sem quebrar anonimização. |
@@ -46,6 +47,6 @@ não autoriza comunicação automática aos autores.
 4. APA 7: formatos mistos e listas pessoais ampliados na Etapa 21; instituições, nomes compostos e exceções continuam pendentes.
 5. Datas no HTML: indicador entregue na Etapa 22 para o tema padrão; homologação com tema/configuração reais permanece pendente.
 
-CRediT recebeu a primeira verificação de conteúdo na Etapa 23. A Etapa 24 acrescenta consistência de fomento Word/OJS. A Etapa 25 acrescenta conferência de ética sem inferir aplicabilidade. Declaração de IA segue depois, com o tratamento de não uso ainda a confirmar
+CRediT recebeu a primeira verificação de conteúdo na Etapa 23. A Etapa 24 acrescenta consistência de fomento Word/OJS. A Etapa 25 acrescenta conferência de ética sem inferir aplicabilidade. A Etapa 26 acrescenta declaração de IA; confirmado uso ou não uso no manuscrito, sem duplicação OJS
 ou ausência a partir de fonte incompleta. Um item/PR por vez; o histórico de
 devolutivas não foi priorizado sobre essas pendências.
