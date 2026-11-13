@@ -173,3 +173,6 @@ msgstr "Manual annotations, text in images and the editorial need for notes are 
 
 msgid "plugins.generic.estrabao.submittedOn"
 msgstr "Submitted on"
+
+msgid "plugins.generic.estrabao.deskPendingCredit"
+msgstr "CRediT: review taxonomy, attribution to all authors and veracity"

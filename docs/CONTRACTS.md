@@ -216,3 +216,11 @@ personal_author_separators, personal_author_list_length e journal_legacy_labels.
 Nenhum campo de entrada ou schema novo. O catálogo da minuta e a vinculação do
 adaptador foram atualizados conjuntamente; correspondência de citações permanece
 na versão 3.0.0, com seu conjunto fechado anterior.
+
+## Etapa 23 — CRediT
+
+Motor 0.17.0 acrescenta manuscript.credit.content e manuscript.credit.verification,
+ambas 1.0.0. Conforme na primeira significa apenas presença de texto; a segunda
+permanece indeterminada e requer revisão humana. Evidências não incluem autores
+ou declaração. Quantidades passam a 47 sem DOCX, 49 artigo e 48 comunicação.
+Schemas preservados; catálogo da minuta atualizado para as duas regras.

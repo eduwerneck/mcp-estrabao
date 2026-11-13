@@ -1,0 +1,18 @@
+[
+  {
+    "case": "CRediT manual verification has a translated internal group",
+    "passed": true
+  },
+  {
+    "case": "missing heading is not accused of containing an empty declaration",
+    "passed": true
+  },
+  {
+    "case": "manual verification stays outside author letter",
+    "passed": true
+  },
+  {
+    "case": "no editorial state change",
+    "passed": true
+  }
+]

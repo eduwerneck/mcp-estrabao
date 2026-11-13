@@ -73,11 +73,11 @@ class EstrabaoAdmissionReviewService
         $groups = [];
         foreach ($draft['pending_review'] as $pending) {
             $id = $pending['rule_id'] ?? '';
-            $key = strpos($id, 'manuscript.footnotes.') === 0 ? 'deskPendingFootnotes' : ($id === 'manuscript.funding' ? 'deskPendingFunding'
+            $key = strpos($id, 'manuscript.credit.') === 0 ? 'deskPendingCredit' : (strpos($id, 'manuscript.footnotes.') === 0 ? 'deskPendingFootnotes' : ($id === 'manuscript.funding' ? 'deskPendingFunding'
                 : (strpos($id, 'metadata.') === 0 ? 'deskPendingMetadata'
                 : (strpos($id, 'abstract.') === 0 ? 'deskPendingAbstracts'
                 : (strpos($id, 'author.') === 0 ? 'deskPendingAuthors'
-                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript')))));
+                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript'))))));
             $groups[$key] = ($groups[$key] ?? 0) + 1;
         }
         $footnoteReview = null;

@@ -124,3 +124,9 @@ e limpar caches de template/idioma em homologação. Confirmar tema e versão re
 o perfil de inserção foi validado apenas no markup do tema padrão OJS 3.3.0.20.
 Data ausente/incoerente ou markup incompatível não é substituído por data estimada
 ou posição alternativa. Nenhuma implantação/publicação foi realizada.
+
+Na Etapa 23, atualizar juntos motor 0.17.0 e plugin 0.9.0.0 em homologação.
+O gerador conhece as duas regras CRediT e o painel agrupa pendências com traduções
+novas; limpar caches de idioma. Liberações de motor anterior exigem nova revisão.
+Não houve implantação nem mudança de política de fomento ou validação integral
+de contribuições.
