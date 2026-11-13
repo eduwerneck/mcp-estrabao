@@ -9,7 +9,7 @@
 | Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); Etapa 18 acrescenta normalização de marcadores Word e perfil de texto parcial para imagens/tabelas simples. `.doc`, títulos equivalentes e conteúdos complexos continuam pendentes. |
 | Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; Etapa 18 amplia cobertura de texto Word com figuras/tabelas simples e registra exclusões, sem certificar leitura integral. Listas vinculadas e scripts complexos continuam pendentes. Página e tipografia declaradas implementadas no subconjunto de STAGE5.md; intervalo de extensão com exclusões em STAGE6.md, sem convenção editorial oficial de palavra. |
 | Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
-| Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Integração de formulários/CSS OJS e tratamento semântico de siglas continuam pendentes. |
+| Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Etapa 19 acrescenta orientação nos formulários OJS e reconhecimento de título/subtítulo combinados no Word. Homologação no tema/CSS da revista e tratamento semântico de siglas continuam pendentes. |
 | Notas de rodapé | Contagem de até 3 notas Word implementada no subconjunto de STAGE9.md; 2 linhas por nota ainda exige renderização/conferência humana. Ampliar vínculos/cobertura e definir tratamento de notas manuais e de fim. |
 | Datas no HTML | Adiado conforme planejamento: acrescentar Submetido em acima do box Publicado, com data do fluxo OJS; definir tema e validar em laboratório antes de integrar. |
 | APA 7 | Etapa 11 detecta incompatibilidades concretas, padrões semelhantes a ABNT, itálicos de formatos reconhecidos, DOI informado e formato de citações (STAGE11.md). Certificação completa, autoria institucional/composta, citações secundárias, confirmação bibliográfica e formatos fora do subconjunto continuam pendentes. Não consulta DOI nem reprova sua ausência. |
@@ -38,7 +38,7 @@ não autoriza comunicação automática aos autores.
 ## Ordem de retomada aprovada
 
 1. Leitura DOCX: ampliação entregue na Etapa 18; limites restantes documentados.
-2. Títulos/subtítulos: revisar a sinalização e completar o tratamento no OJS.
+2. Títulos/subtítulos: orientação nos formulários e reconhecimento ampliado entregues na Etapa 19; limites documentados.
 3. Notas de rodapé: revisar contagem e a conferência do limite de duas linhas.
 4. APA 7: ampliar tipos e exceções ainda não reconhecidos.
 5. Datas no HTML: acrescentar Submetido em junto a Publicado, após validar o tema.

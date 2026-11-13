@@ -7,11 +7,45 @@ class EstrabaoPlugin extends GenericPlugin
     function register($category, $path, $mainContextId = null)
     {
         if (!parent::register($category, $path, $mainContextId)) { return false; }
+        if ($this->getEnabled($mainContextId)) {
+            HookRegistry::register('Form::config::after', [$this, 'titleFormConfig']);
+            HookRegistry::register('TemplateManager::display', [$this, 'titleFormAssets']);
+        }
         if ($this->getEnabled($mainContextId) && Config::getVar('estrabao', 'admission_gate') === true) {
             HookRegistry::register('submissionsubmitstep4form::validate', [$this, 'validateAdmission']);
             HookRegistry::register('LoadHandler', [$this, 'loadReviewHandler']);
         }
         return true;
+    }
+
+    /** Advisory descriptions in the publication metadata form (author/editor). */
+    function titleFormConfig($hookName, $args)
+    {
+        $context = Application::get()->getRequest()->getContext();
+        if (!$context || !$this->getEnabled($context->getId())) { return false; }
+        $config =& $args[0];
+        if (($config['id'] ?? null) !== 'titleAbstract') { return false; }
+        foreach ($config['fields'] as &$field) {
+            if (!in_array($field['name'] ?? null, ['title', 'subtitle'], true)) { continue; }
+            $hint = htmlspecialchars(__('plugins.generic.estrabao.titleGuidance'), ENT_QUOTES, 'UTF-8');
+            $field['description'] = ($field['description'] ?? '') . '<p>' . $hint . '</p>';
+        }
+        unset($field);
+        return false;
+    }
+
+    /** Legacy wizard fields are inserted by AJAX; the script only adds help text. */
+    function titleFormAssets($hookName, $args)
+    {
+        $request = Application::get()->getRequest(); $context = $request->getContext();
+        if (!$context || !$this->getEnabled($context->getId())) { return false; }
+        $manager = $args[0];
+        $manager->addJavaScript('estrabao-title-guidance-config', 'window.estrabaoTitleGuidance=' .
+            json_encode(__('plugins.generic.estrabao.titleGuidance'), JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';',
+            ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
+        $manager->addJavaScript('estrabao-title-guidance', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/title-guidance.js',
+            ['contexts'=>['backend'], 'priority'=>20]);
+        return false;
     }
 
     function validateAdmission($hookName, $args)

@@ -92,7 +92,7 @@ test('tamanho de página divergente pode ser comprovado com tabela textual',func
 });
 test('caixa alta em título Word reconhecido pode ser sinalizada no perfil parcial',function(){
     $p=compoundDocxParts();$p['word/document.xml']=str_replace('Introdução','INTRODUÇÃO',$p['word/document.xml']);
-    withDocx($p,function($path){$c=scopedChecks((new DocxReader())->read($path))['manuscript.headings.case'];same('não conforme',$c['status']);same('2.0.0',$c['rule_version']);same(false,$c['evidence']['full_document_text_available']);});
+    withDocx($p,function($path){$c=scopedChecks((new DocxReader())->read($path))['manuscript.headings.case'];same('não conforme',$c['status']);same('3.0.0',$c['rule_version']);same(false,$c['evidence']['full_document_text_available']);});
 });
 foreach(['external','missing','wrong-type','wrong-mime','duplicate','svg','bad-embed']as$case){
     test('imagem não resolvida ou não suportada não libera perfil '.$case,function()use($case){
@@ -196,7 +196,7 @@ test('painel consome perfil parcial e versões novas sem expor conteúdo excluí
         withDocx($p,function($path)use($service,$request){
             Services::$files[0]->data['path']=basename($path);
             $form=$service->form($request,17);$request->vars['fingerprint']=(new EstrabaoAdmissionBridge())->analyze($form)['fingerprint'];
-            $r=$service->draft($request,17);same('0.13.0',$r['draft']['source_engine_version']);
+            $r=$service->draft($request,17);same('0.14.0',$r['draft']['source_engine_version']);
             same(true,strpos($r['draft']['body'],'12 pontos')!==false);same(hash_file('sha256',$path),$r['draft']['source_document_sha256']);
             same(false,strpos(json_encode($r),'Dado A')!==false);
         });

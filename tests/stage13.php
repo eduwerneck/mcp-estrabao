@@ -73,7 +73,8 @@ function withAdmissionDoc(callable $callback): void {
 test('hook só é registrado com plugin e configuração explicitamente habilitados', function () {
     $p = new EstrabaoPlugin(); HookRegistry::$hooks = []; Config::$values = ['estrabao' => ['admission_gate' => true]];
     same(true, $p->register('generic', 'synthetic', 3)); same([], HookRegistry::$hooks);
-    $p->enabled = true; Config::$values = []; $p->register('generic', 'synthetic', 3); same([], HookRegistry::$hooks);
+    $p->enabled = true; Config::$values = []; $p->register('generic', 'synthetic', 3); same(false, isset(HookRegistry::$hooks['submissionsubmitstep4form::validate']));
+    same(true, isset(HookRegistry::$hooks['Form::config::after']));
     Config::$values = ['estrabao' => ['admission_gate' => true]]; $p->register('generic', 'synthetic', 3);
     same(true, isset(HookRegistry::$hooks['submissionsubmitstep4form::validate']));
     $p->registrationResult = false; same(false, $p->register('generic', 'synthetic', 3));

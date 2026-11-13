@@ -140,3 +140,6 @@ msgstr "Referencias y citas"
 
 msgid "plugins.generic.estrabao.deskPendingManuscript"
 msgstr "Estructura, formato y otras comprobaciones del manuscrito"
+
+msgid "plugins.generic.estrabao.titleGuidance"
+msgstr "Evite títulos y subtítulos íntegramente en MAYÚSCULAS, en los metadatos y el manuscrito. Conserve siglas y nombres propios; revise casos ambiguos. El subtítulo es opcional. El texto no se convierte automáticamente."
