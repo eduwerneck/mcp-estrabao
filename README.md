@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 19 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 20 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). Não há
 integração homologada com submissões do OJS,
 certificação completa de APA ou servidor MCP. Há leitura local limitada de DOCX e
@@ -14,7 +14,8 @@ A sinalização de caixa alta em títulos e subtítulos está em docs/STAGE8.md,
 com snapshot 1.1 opcional para subtítulos e compatibilidade com entradas 1.0.
 A [Etapa 19](docs/STAGE19.md) orienta o preenchimento no OJS e reconhece títulos
 e subtítulos combinados no Word, sem conversão automática.
-A contagem de notas Word está em docs/STAGE9.md; linhas exigem renderização.
+A contagem de notas Word está em docs/STAGE9.md; a [Etapa 20](docs/STAGE20.md)
+acrescenta ficha interna para conferir as duas linhas e indicadores de notas de fim.
 A Etapa 18 amplia a leitura com tratamento de marcadores Word e perfil explícito
 de texto parcial em documentos com imagens/tabelas (docs/STAGE18.md).
 A pré-checagem autor–ano de referências e citações está em docs/STAGE10.md,

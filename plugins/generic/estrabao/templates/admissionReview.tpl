@@ -81,6 +81,24 @@
                     <li>{translate key="plugins.generic.estrabao.deskNoPending"}</li>
                 {/foreach}
                 </ul>
+                {if $deskDraftModel.footnote_review}
+                <section id="estrabaoFootnoteReview">
+                    <h4>{translate key="plugins.generic.estrabao.deskPendingFootnotes"}</h4>
+                    <p>{translate key="plugins.generic.estrabao.footnoteReviewInstructions"}</p>
+                    {if $downloadReviewUrl}<p><a href="{$downloadReviewUrl|escape}">{translate key="plugins.generic.estrabao.footnoteReviewDownload"}</a></p>{/if}
+                    {if $deskDraftModel.footnote_review.inventory_complete}
+                    <p>{translate key="plugins.generic.estrabao.footnoteReviewCount"} {$deskDraftModel.footnote_review.note_count|escape}</p>
+                    <ul>
+                    {foreach from=$deskDraftModel.footnote_review.samples item=note}
+                        <li>{translate key="plugins.generic.estrabao.footnoteReviewCall"} {$note.reference_index+1|escape}.</li>
+                    {/foreach}
+                    </ul>
+                    {if $deskDraftModel.footnote_review.samples_omitted}<p>{translate key="plugins.generic.estrabao.footnoteReviewMore"} {$deskDraftModel.footnote_review.samples_omitted|escape}</p>{/if}
+                    {else}<p>{translate key="plugins.generic.estrabao.footnoteReviewUnresolved"}</p>{/if}
+                    {if $deskDraftModel.footnote_review.endnote_indicators}<p>{translate key="plugins.generic.estrabao.footnoteReviewEndnotes"}</p>{/if}
+                    <p>{translate key="plugins.generic.estrabao.footnoteReviewManual"}</p>
+                </section>
+                {/if}
             </details>
         </section>
         <script>

@@ -556,3 +556,21 @@ Validação concluída em 13/11/2026 após retomada do ambiente.
 Homologação no tema real permanece pendente. Sem acesso à produção, VM Oracle,
 comunicação com autores, mudança de estado editorial ou publicação do ambiente.
 CI remoto ainda não verificado.
+
+## Etapa 20 — conferência de notas
+
+Validação em 13/11/2026, base f706ea9 (merge do PR #20), motor 0.15.0,
+plugin 0.6.0.0.
+
+- 779 testes sintéticos aprovados em PHP 8.4.27 e 8.1.27, zero falhas; 14 novos.
+- Lint de 71 arquivos PHP aprovado; `git diff --check` sem erros.
+- 9 verificações reais no OJS 3.3.0.20 local com Chromium: três chamadas e
+  instruções traduzidas, vínculo de download, linhas fora da carta, clipboard
+  sem ficha interna, excesso de quatro notas, indicador de notas de fim, zero
+  sem ficha e estado editorial preservado. Captura inspecionada.
+- Fixture temporária exclusivamente sintética restaurada após cada suíte; não
+  houve alteração de DAO, metadados, decisões ou avanço de submissão.
+
+As duas linhas continuam indeterminadas sem renderização e conferência humana.
+Não se usou manuscrito real, produção, VM Oracle ou envio a autores. Sem publicação
+do ambiente. CI remoto ainda não verificado.

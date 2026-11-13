@@ -198,3 +198,12 @@ Documento/hash original não é reescrito pela normalização Word. Evidências
 registram source_profile, full_document_text_available e coverage.
 Schemas e quantidades de resultados preservados. O gerador 1.0.0 reconhece
 as novas versões; plugin 0.4.0.0 preservado. Ver STAGE18.md.
+
+## Etapa 20 — notas
+
+Motor 0.15.0 e manuscript.footnotes.lines 2.0.0. A evidência de linhas acrescenta
+SHA-256 e review_plan limitado, com contagem confirmada, índices de chamadas e
+indicadores de notas de fim. São dados produzidos pelo leitor, não entradas do
+snapshot. Nenhum texto/ID de nota é exposto. Os schemas permanecem compatíveis;
+indeterminação continua sem gerar infração na minuta. Zero rodapés com indicadores
+de notas de fim exige revisão de linhas, sem converter notas de fim em rodapés.

@@ -73,14 +73,19 @@ class EstrabaoAdmissionReviewService
         $groups = [];
         foreach ($draft['pending_review'] as $pending) {
             $id = $pending['rule_id'] ?? '';
-            $key = $id === 'manuscript.funding' ? 'deskPendingFunding'
+            $key = strpos($id, 'manuscript.footnotes.') === 0 ? 'deskPendingFootnotes' : ($id === 'manuscript.funding' ? 'deskPendingFunding'
                 : (strpos($id, 'metadata.') === 0 ? 'deskPendingMetadata'
                 : (strpos($id, 'abstract.') === 0 ? 'deskPendingAbstracts'
                 : (strpos($id, 'author.') === 0 ? 'deskPendingAuthors'
-                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript'))));
+                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript')))));
             $groups[$key] = ($groups[$key] ?? 0) + 1;
         }
-        return ['draft' => $draft, 'pending_groups' => $groups, 'manuscript_type' => $type,
+        $footnoteReview = null;
+        foreach ($report['checks'] as $check) {
+            if ($check['rule_id'] === 'manuscript.footnotes.lines' && $check['rule_version'] === '2.0.0'
+                && $check['status'] === 'indeterminado') { $footnoteReview = $check['evidence']['review_plan']; }
+        }
+        return ['draft' => $draft, 'pending_groups' => $groups, 'footnote_review'=>$footnoteReview, 'manuscript_type' => $type,
             'fingerprint' => hash('sha256', json_encode([$expected, $snapshot->digest(), $source['publication_id'],
                 $source['publication_version'], $type, $report['engine_version'], $draft['template_version']]))];
     }

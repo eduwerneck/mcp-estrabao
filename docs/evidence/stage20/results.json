@@ -1,0 +1,38 @@
+[
+  {
+    "case": "three linked notes have three internal call positions",
+    "passed": true
+  },
+  {
+    "case": "instructions translated and show two visual lines",
+    "passed": true
+  },
+  {
+    "case": "current manuscript download offered",
+    "passed": true
+  },
+  {
+    "case": "unknown visual lines not accused in letter",
+    "passed": true
+  },
+  {
+    "case": "copied text excludes internal note checklist",
+    "passed": true
+  },
+  {
+    "case": "four confirmed notes produce a correction",
+    "passed": true
+  },
+  {
+    "case": "endnotes warning is internal",
+    "passed": true
+  },
+  {
+    "case": "zero notes without other indicators has no pending checklist",
+    "passed": true
+  },
+  {
+    "case": "review and copying do not change submission state",
+    "passed": true
+  }
+]

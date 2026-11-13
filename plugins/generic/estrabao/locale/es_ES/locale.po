@@ -143,3 +143,30 @@ msgstr "Estructura, formato y otras comprobaciones del manuscrito"
 
 msgid "plugins.generic.estrabao.titleGuidance"
 msgstr "Evite títulos y subtítulos íntegramente en MAYÚSCULAS, en los metadatos y el manuscrito. Conserve siglas y nombres propios; revise casos ambiguos. El subtítulo es opcional. El texto no se convierte automáticamente."
+
+msgid "plugins.generic.estrabao.deskPendingFootnotes"
+msgstr "Notas al pie y revisión de líneas"
+
+msgid "plugins.generic.estrabao.footnoteReviewInstructions"
+msgstr "Abra el archivo actual en un editor en vista de impresión con las fuentes y la configuración de página correctas. Compruebe un máximo de dos líneas visuales por nota, incluidas las continuaciones en otra página. Compruebe el total en la página; la longitud del texto no sustituye esta revisión. Esta ficha no registra aprobación."
+
+msgid "plugins.generic.estrabao.footnoteReviewDownload"
+msgstr "Descargar el manuscrito actual para revisión"
+
+msgid "plugins.generic.estrabao.footnoteReviewCount"
+msgstr "Notas Word vinculadas confirmadas (límite: 3):"
+
+msgid "plugins.generic.estrabao.footnoteReviewCall"
+msgstr "Revisar llamada Word por orden de lectura (no es el número impreso de la nota):"
+
+msgid "plugins.generic.estrabao.footnoteReviewMore"
+msgstr "Llamadas adicionales no enumeradas; revisar también:"
+
+msgid "plugins.generic.estrabao.footnoteReviewUnresolved"
+msgstr "El inventario es inconcluso. Resuelva los vínculos o revise todas las notas en el archivo; no suponga cero notas."
+
+msgid "plugins.generic.estrabao.footnoteReviewEndnotes"
+msgstr "Se encontraron indicadores de notas finales. No fueron contadas como notas al pie ni aprobadas; revise su tratamiento editorial por separado."
+
+msgid "plugins.generic.estrabao.footnoteReviewManual"
+msgstr "Las anotaciones manuales, el texto en imágenes y la necesidad editorial de las notas quedan fuera de este conteo. Un elemento pendiente no es una infracción confirmada y no se incluye automáticamente en la carta a los autores."

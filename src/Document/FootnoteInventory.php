@@ -14,7 +14,7 @@ final class FootnoteInventory
         $references = $x->query('/w:document/w:body//w:footnoteReference');
         $known = true; $part = PackageRelationships::part($parts, 'footnotes', $known);
         $complete = $known; $reasons = []; $definitions = []; $normal = 0; $separators = 0;
-        $samples = []; $seen = []; $duplicates = 0; $unused = 0;
+        $samples = []; $seen = []; $duplicates = 0; $unused = 0; $endnotes = false;
         if (!$known) { $reasons[] = 'footnotes_relationship_unresolved'; }
         if (isset($parts['word/_rels/document.xml.rels'])) {
             $rx = new \DOMXPath($parts['word/_rels/document.xml.rels']);
@@ -42,6 +42,9 @@ final class FootnoteInventory
         }
         foreach ($parts as $name => $xml) {
             $px = self::xpath($xml);
+            $px->registerNamespace('r', 'http://schemas.openxmlformats.org/package/2006/relationships');
+            $px->registerNamespace('c', 'http://schemas.openxmlformats.org/package/2006/content-types');
+            if ($px->query('//w:endnotes|//w:endnote|//w:endnoteReference|//w:endnoteRef|/r:Relationships/r:Relationship[@Type="http://schemas.openxmlformats.org/officeDocument/2006/relationships/endnotes"]|/c:Types/c:Override[@ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.endnotes+xml"]')->length) { $endnotes = true; }
             if ($px->query('//w:vanish|//w:webHidden')->length) { $complete = false; $reasons[] = 'hidden_content'; }
             if ($name !== 'word/document.xml' && $px->query('//w:footnoteReference')->length) {
                 $complete = false; $reasons[] = 'references_outside_main_body';
@@ -106,6 +109,7 @@ final class FootnoteInventory
             if ($unused) { $complete = false; $reasons[] = 'unreferenced_normal_definitions'; }
         }
         return ['available' => true, 'coverage_complete' => $complete, 'note_count' => $complete ? $normal : null,
+            'endnote_indicators' => $endnotes, 'manual_notes_inspected' => false,
             'references_seen' => $references->length, 'normal_definitions' => $limit ? null : $normal,
             'separator_definitions' => $limit ? null : $separators, 'repeated_references' => $duplicates,
             'unreferenced_definitions' => $limit ? null : $unused, 'reasons' => array_values(array_unique($reasons)),
