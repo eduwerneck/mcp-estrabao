@@ -224,3 +224,13 @@ ambas 1.0.0. Conforme na primeira significa apenas presença de texto; a segunda
 permanece indeterminada e requer revisão humana. Evidências não incluem autores
 ou declaração. Quantidades passam a 47 sem DOCX, 49 artigo e 48 comunicação.
 Schemas preservados; catálogo da minuta atualizado para as duas regras.
+
+## Etapa 24 — fomento Word/OJS
+
+Snapshot 1.2 acrescenta supporting_agencies: mapa opcional/null de listas textuais
+por locale, vazio apenas quando a fonte foi lida e o campo estava disponível.
+1.0/1.1 continuam aceitos e rejeitam o campo novo. Motor 0.18.0 e manuscript.funding
+2.0.0 com estados fixos, contagem de entradas e hash; sem nomes de agências/projetos
+ou texto declarado. Schemas de relatório/minuta 1.0 preservados. A regra agora
+integra DefaultRules, em vez de depender do tipo dentro de ManuscriptStructure:
+48 checks sem DOCX, 49 para artigo ou comunicação.

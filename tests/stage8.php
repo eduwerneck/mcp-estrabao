@@ -58,7 +58,7 @@ foreach ([
     ['schema_version' => '1.1', 'subtitle' => ['pt' => 'texto']],
     ['schema_version' => '1.1', 'subtitle' => ['pt_BR' => 123]],
     ['schema_version' => '1.1', 'token' => 'synthetic'],
-    ['schema_version' => '1.2'],
+    ['schema_version' => '1.3'],
 ] as $i => $data) {
     test('contrato de subtítulo rejeita entrada inválida ' . $i, function () use ($data) {
         rejects(function () use ($data) { new \Estrabao\Contracts\Submission($data); });
@@ -164,6 +164,6 @@ test('CLI mantém compatibilidade 1.0 e aceita 1.1 com subtítulo', function () 
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/' . $fixture]);
         same(0, $code); same('', $err);
         $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-        same('0.17.0', $report['engine_version']); same(47, count($report['checks']));
+        same('0.18.0', $report['engine_version']); same(48, count($report['checks']));
     }
 });

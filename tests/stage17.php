@@ -13,7 +13,7 @@ function withDeskPanel(callable $callback,bool $abnt=false):void {
         $callback($service,$request,$form,$publication,$path,$dir);
     },$abnt);
 }
-test('painel gera devolutiva com snapshot 1.1 da publicação autorizada',function(){
+test('painel gera devolutiva com snapshot 1.2 da publicação autorizada',function(){
     withDeskPanel(function($service,$request,$form,$publication){
         $result=$service->draft($request,17);same(false,$result['draft']['send_authorized']);same(true,$result['draft']['editor_review_required']);
         $source=(new EstrabaoSubmissionSnapshot())->read($form);

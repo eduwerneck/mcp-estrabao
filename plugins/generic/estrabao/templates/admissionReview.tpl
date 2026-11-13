@@ -81,6 +81,9 @@
                     <li>{translate key="plugins.generic.estrabao.deskNoPending"}</li>
                 {/foreach}
                 </ul>
+                {if $deskDraftModel.funding_review}
+                <p id="estrabaoFundingReview">{translate key="plugins.generic.estrabao.{$deskDraftModel.funding_review}"}</p>
+                {/if}
                 {if $deskDraftModel.footnote_review}
                 <section id="estrabaoFootnoteReview">
                     <h4>{translate key="plugins.generic.estrabao.deskPendingFootnotes"}</h4>

@@ -89,11 +89,7 @@ final class ManuscriptStructure implements Rule
                     'inherited_numbering_resolved' => $headings && $resolvedNumbering,
                     'headings' => $headings], '/manuscript',
                 'Revisar títulos não numerados e em negrito; herança não suportada permanece indeterminada.', '3.0.0');
-            if ($this->type === 'article') {
-                $results[] = new CheckResult('manuscript.funding', CheckResult::UNKNOWN,
-                    ['conditional' => true, 'applicability_known' => false], '/manuscript',
-                    'Verificar se houve fomento e, quando aplicável, a seção Fontes de Fomento.');
-            }
+
         }
         return $results;
     }
