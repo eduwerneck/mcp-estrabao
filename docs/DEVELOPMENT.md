@@ -117,3 +117,10 @@ Na Etapa 21, motor 0.16.0 e plugin 0.7.0.0 devem ser atualizados juntos em
 homologação: o adaptador reconhece references.apa7 5.0.0 e o gerador reconhece
 recognized_formats 2.0.0. Liberações de versão anterior exigem nova revisão.
 Não houve implantação na revista.
+
+Na Etapa 22, plugin 0.8.0.0 acrescenta o indicador público de submissão sem mudar
+o motor 0.16.0. Instalar todos os arquivos do plugin, inclusive helper e template,
+e limpar caches de template/idioma em homologação. Confirmar tema e versão reais:
+o perfil de inserção foi validado apenas no markup do tema padrão OJS 3.3.0.20.
+Data ausente/incoerente ou markup incompatível não é substituído por data estimada
+ou posição alternativa. Nenhuma implantação/publicação foi realizada.

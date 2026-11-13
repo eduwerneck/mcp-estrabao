@@ -11,7 +11,7 @@
 | Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
 | Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Etapa 19 acrescenta orientação nos formulários OJS e reconhecimento de título/subtítulo combinados no Word. Homologação no tema/CSS da revista e tratamento semântico de siglas continuam pendentes. |
 | Notas de rodapé | Contagem de até 3 notas Word implementada no subconjunto de STAGE9.md; Etapa 20 acrescenta indicadores de notas de fim e ficha interna para conferir duas linhas; o total visual continua exigindo documento paginado e revisão humana. Ampliar vínculos/cobertura, definir tratamento editorial de notas manuais/de fim e registrar revisão visual auditável. |
-| Datas no HTML | Adiado conforme planejamento: acrescentar Submetido em acima do box Publicado, com data do fluxo OJS; definir tema e validar em laboratório antes de integrar. |
+| Datas no HTML | Etapa 22 implementa Submetido em antes de Publicado no mesmo box, com data do fluxo OJS, validada no tema padrão do laboratório. Identificar tema/versão reais e homologar markup, formato e dados históricos antes de implantar. |
 | APA 7 | Etapa 11 detecta incompatibilidades concretas, padrões semelhantes a ABNT, itálicos de formatos reconhecidos, DOI informado e formato de citações (STAGE11.md). Etapa 21 acrescenta separadores de autoria pessoal, limite de lista não abreviada e rótulos de periódico em formatos mistos. Certificação completa, autoria institucional/composta, citações secundárias, confirmação bibliográfica e formatos fora do subconjunto continuam pendentes. Não consulta DOI nem reprova sua ausência. |
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
 | Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |
@@ -41,7 +41,7 @@ não autoriza comunicação automática aos autores.
 2. Títulos/subtítulos: orientação nos formulários e reconhecimento ampliado entregues na Etapa 19; limites documentados.
 3. Notas de rodapé: contagem revisada e ficha de conferência entregues na Etapa 20; contagem visual automática e registro da revisão permanecem pendentes.
 4. APA 7: formatos mistos e listas pessoais ampliados na Etapa 21; instituições, nomes compostos e exceções continuam pendentes.
-5. Datas no HTML: acrescentar Submetido em junto a Publicado, após validar o tema.
+5. Datas no HTML: indicador entregue na Etapa 22 para o tema padrão; homologação com tema/configuração reais permanece pendente.
 
 Fomento, CRediT e demais declarações seguem depois, sem pressupor aplicabilidade
 ou ausência a partir de fonte incompleta. Um item/PR por vez; o histórico de

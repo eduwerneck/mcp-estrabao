@@ -8,6 +8,7 @@ class EstrabaoPlugin extends GenericPlugin
     {
         if (!parent::register($category, $path, $mainContextId)) { return false; }
         if ($this->getEnabled($mainContextId)) {
+            HookRegistry::register('TemplateManager::display', [$this, 'articleSubmittedDate']);
             HookRegistry::register('Form::config::after', [$this, 'titleFormConfig']);
             HookRegistry::register('TemplateManager::display', [$this, 'titleFormAssets']);
         }
@@ -16,6 +17,29 @@ class EstrabaoPlugin extends GenericPlugin
             HookRegistry::register('LoadHandler', [$this, 'loadReviewHandler']);
         }
         return true;
+    }
+
+    /** Only the public article landing page; no galley, preview or metadata writes. */
+    function articleSubmittedDate($hookName, $args)
+    {
+        if (($args[1] ?? null) !== 'frontend/pages/article.tpl') { return false; }
+        $request = Application::get()->getRequest(); $context = $request->getContext();
+        if (!$context || !$this->getEnabled($context->getId())) { return false; }
+        try {
+            $manager = $args[0];
+            require_once __DIR__ . '/ArticleSubmittedDate.inc.php';
+            $model = EstrabaoArticleSubmittedDate::model($manager->getTemplateVars('article'),
+                $manager->getTemplateVars('publication'), $manager->getTemplateVars('firstPublication'), $context->getId());
+            if ($model === null) { return false; }
+            $manager->assign('estrabaoSubmittedDate', $model);
+            $markup = $manager->fetch($this->getTemplateResource('articleSubmittedDate.tpl'));
+            $manager->registerFilter('output', function ($html) use ($markup) {
+                return EstrabaoArticleSubmittedDate::insert($html, $markup);
+            });
+        } catch (\Throwable $error) {
+            // Date unavailable: leave the native published box intact, without guessing.
+        }
+        return false;
     }
 
     /** Advisory descriptions in the publication metadata form (author/editor). */

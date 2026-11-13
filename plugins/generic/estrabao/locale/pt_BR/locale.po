@@ -170,3 +170,6 @@ msgstr "Há indicadores de notas de fim. Elas não foram contadas como rodapés 
 
 msgid "plugins.generic.estrabao.footnoteReviewManual"
 msgstr "Anotações manuais, texto em imagens e a necessidade editorial das notas não são verificados por esta contagem. Uma pendência não constitui descumprimento comprovado e não entra automaticamente na carta aos autores."
+
+msgid "plugins.generic.estrabao.submittedOn"
+msgstr "Submetido em"
