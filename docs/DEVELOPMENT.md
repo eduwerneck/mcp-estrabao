@@ -112,3 +112,8 @@ classes DocxCompatibility, BodyTextProfile e DocumentSource. Não misturar
 classes de leitores diferentes. A versão nova exige nova revisão de liberações
 que estavam vinculadas ao motor anterior. Schemas, CLI e plugin preservados;
 parcialidade e limites em STAGE18.md. Sem atualização da revista nesta entrega.
+
+Na Etapa 21, motor 0.16.0 e plugin 0.7.0.0 devem ser atualizados juntos em
+homologação: o adaptador reconhece references.apa7 5.0.0 e o gerador reconhece
+recognized_formats 2.0.0. Liberações de versão anterior exigem nova revisão.
+Não houve implantação na revista.

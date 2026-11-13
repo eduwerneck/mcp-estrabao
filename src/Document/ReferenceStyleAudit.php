@@ -9,9 +9,9 @@ final class ReferenceStyleAudit
     public static function analyze(array $document, string $language): array
     {
         $list = self::referenceList($document, $language); $counts = [CheckResult::PASS => 0, CheckResult::FAIL => 0, CheckResult::UNKNOWN => 0];
-        $samples = []; $abnt = 0; $types = []; $orderKeys = []; $orderUnknown = false;
+        $samples = []; $abnt = 0; $mixed = 0; $types = []; $orderKeys = []; $orderUnknown = false;
         foreach ($list['paragraphs'] as $index => $paragraph) {
-            $text = $paragraph['text']; $checks = []; $type = 'unresolved'; $head = self::head($text);
+            $text = $paragraph['text']; $checks = []; $type = 'unresolved'; $head = self::head($text); $mixedEntry = false;
             if (strlen($text) > 8192) {
                 self::check($checks, 'reference_size', null, 'Entrada extensa demais para esta análise; revisar manualmente.');
             } elseif ($head === null && self::abntLike($text)) {
@@ -29,6 +29,12 @@ final class ReferenceStyleAudit
                 self::check($checks, 'date_token_format', $head['date_format_resolved'] ? true : null, 'Conferir data completa e localização; reconhecer o formato não confirma a data real da publicação.');
                 if ($head['kind'] !== 'personal') { self::check($checks, 'group_author_role', null, 'Confirmar autoria institucional ou obra sem autor antes de tratar o primeiro campo como autoria.'); }
                 if ($head['kind'] === 'personal') {
+                    $authorList = $head['author_list'] ?? null;
+                    if ($authorList !== null) {
+                        self::check($checks, 'personal_author_separators', $authorList['separators_valid'], 'Na lista de autores pessoais da referência, separar nomes por vírgulas e usar vírgula seguida de & antes do último; não usar ponto e vírgula ou conjunção narrativa.');
+                        self::check($checks, 'personal_author_list_length', $authorList['unabridged_list_length_valid'], 'Listar todos os autores até 20; com 21 ou mais, apresentar os 19 primeiros, reticências e o último, sem &. Confirmar autoria na fonte.');
+                        $mixedEntry = !$authorList['separators_valid'];
+                    }
                     $uppercase = false;
                     foreach ($head['authors'] as $name) { $uppercase = $uppercase || (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)); }
                     self::check($checks, 'personal_author_case', $uppercase ? null : true, 'Conferir capitalização dos nomes; sobrenome em maiúsculas sozinho não prova ABNT nem autoriza reescrita.');
@@ -43,6 +49,10 @@ final class ReferenceStyleAudit
                 } elseif ($link['modern_doi']) { self::check($checks, 'doi_url_format', true, 'DOI apresentado como URL doi.org; existência e metadados não foram consultados.'); }
                 // Missing DOI never fails: the journal recommends DOI when available.
                 $base = $link['base']; $fields = self::fields($base, $offset);
+                if ($head['kind'] === 'personal' && self::legacyJournal($base)) {
+                    $mixedEntry = true;
+                    self::check($checks, 'journal_legacy_labels', false, 'Na referência de periódico APA 7, remover os rótulos v., n. e p./pp.; apresentar volume(número), páginas ou identificador, com a formatação correspondente.');
+                }
                 if ($fields !== null && $fields['type'] === 'journal_article') {
                     $type = 'journal_article';
                     self::check($checks, 'article_title_plain', self::emphasis($paragraph, $fields['title'], false), 'No artigo de periódico, o título do artigo não fica em itálico.');
@@ -76,6 +86,7 @@ final class ReferenceStyleAudit
                 if ($link['punctuation_review']) { self::check($checks, 'identifier_punctuation', null, 'Conferir a pontuação final do identificador; o ponto pode pertencer ao próprio DOI/URL.'); }
             }
             if ($head === null) { $orderUnknown = true; }
+            if ($mixedEntry) { $mixed++; }
             $status = self::status($checks); $counts[$status]++; $types[$type] = ($types[$type] ?? 0) + 1;
             $sample = ['reference_index' => $index, 'paragraph_index' => $paragraph['index'], 'type' => $type, 'status' => $status, 'checks' => $checks];
             self::sample($samples, $sample);
@@ -94,7 +105,7 @@ final class ReferenceStyleAudit
                 : (!$counts[CheckResult::UNKNOWN] && $order === CheckResult::PASS && !$list['heading_review_required'] ? CheckResult::PASS : CheckResult::UNKNOWN));
         return ['coverage_complete' => $list['complete'], 'heading_review_required' => $list['heading_review_required'], 'inspection_limit_reached' => $list['limit'],
             'reference_count' => count($list['paragraphs']), 'counts' => $counts, 'types' => $types,
-            'abnt_like_entries' => $abnt, 'recognized_formats_status' => $status,
+            'abnt_like_entries' => $abnt, 'mixed_format_entries'=>$mixed, 'recognized_formats_status' => $status,
             'alphabetical_order_status' => $order, 'order_scope' => 'distinct_ascii_first_personal_surnames',
             'order_samples' => $orderSamples, 'samples' => $samples, 'samples_omitted' => max(0, count($list['paragraphs']) - count($samples))];
     }
@@ -130,7 +141,7 @@ final class ReferenceStyleAudit
     {
         if (strlen($text) > 8192) { return null; }
         $head = ReferenceAnalysis::parseEntry($text);
-        if ($head !== null) { $head['kind'] = 'personal'; $head['date_format_resolved'] = true; return $head; }
+        if ($head !== null) { $head['kind'] = 'personal'; $head['date_format_resolved'] = true; $head['author_list'] = ApaPersonalAuthors::inspect($head['author_key']); return $head; }
         if (strlen($text) > 8192 || !preg_match('/\((n\.d\.|s\.d\.|in press|no prelo|[0-9]{4}, [\p{L}]+(?: [0-9]{1,2})?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) {
             // Institutional author with an ordinary year.
             if (!preg_match('/\(([0-9]{4}[a-z]?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) { return null; }
@@ -138,6 +149,9 @@ final class ReferenceStyleAudit
         $dateResolved = self::dateFormat($date[1][0]);
         $prefix = trim(substr($text, 0, $date[0][1])); $contentStart = $date[0][1] + strlen($date[0][0]);
         $content = trim(substr($text, $contentStart)); if ($content === '' || strlen($prefix) > 2048) { return null; }
+        $authorList = ApaPersonalAuthors::inspect($prefix);
+        if ($authorList !== null) { return ['kind'=>'personal', 'date_format_resolved'=>$dateResolved,
+            'authors'=>$authorList['authors'], 'author_list'=>$authorList, 'content'=>$content, 'content_start'=>$contentStart]; }
         $synthetic = ReferenceAnalysis::parseEntry($prefix . ' (2020). Placeholder. Publisher.');
         if ($synthetic !== null) { return ['kind' => 'personal', 'date_format_resolved' => $dateResolved, 'authors' => $synthetic['authors'], 'content' => $content, 'content_start' => $contentStart]; }
         if (preg_match('/^[\p{L}\p{N}\s&\p{Pd}\x{2019}\x{0027}]{2,256}\.$/uD', $prefix)) {
@@ -168,6 +182,18 @@ final class ReferenceStyleAudit
         $serial = (int) preg_match('/\bv\.\s*[0-9]+/iu', $base) + (int) preg_match('/\bn\.\s*[0-9]+/iu', $base) + (int) preg_match('/\bp\.\s*[0-9]+[-–][0-9]+/iu', $base);
         $web = preg_match('/Disponível em:\s*https?:\/\//iu', $text) && preg_match('/Acesso em:/iu', $text);
         return $place || $serial >= 2 || $web;
+    }
+
+    /** Diagnose only an unambiguous numeric serial suffix, never a phrase inside a title. */
+    private static function legacyJournal(string $content): bool
+    {
+        $content = rtrim($content, " .\t\r\n"); $matches = 0;
+        preg_match_all('/[.?!]\s+/u', $content, $separators, PREG_OFFSET_CAPTURE);
+        foreach ($separators[0] as $separator) {
+            $tail = substr($content, $separator[1] + strlen($separator[0]));
+            if (preg_match('/^[^,():;]+,\s*v\.\s*[0-9]+(?:,\s*n\.\s*[0-9]+)?,\s*pp?\.\s*[0-9]+(?:[-–][0-9]+)?(?:,\s*[0-9]{4})?$/iuD', $tail)) { $matches++; }
+        }
+        return $matches === 1;
     }
 
     private static function stripLink(string $content): array

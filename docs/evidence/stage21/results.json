@@ -1,0 +1,22 @@
+[
+  {
+    "case": "mixed APA head and legacy fields cannot be released",
+    "passed": true
+  },
+  {
+    "case": "draft maps new diagnostics to corrections",
+    "passed": true
+  },
+  {
+    "case": "mixed pattern is not called an entirely ABNT bibliography",
+    "passed": true
+  },
+  {
+    "case": "draft excludes reference content and DOI",
+    "passed": true
+  },
+  {
+    "case": "wizard blocks mixed reference with valid native form",
+    "passed": true
+  }
+]
