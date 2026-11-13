@@ -22,7 +22,7 @@ foreach([
 foreach([
  ['Fontes de Fomento','Referências'],['Fontes de Fomento','A preencher.'],['Fontes de Fomento','Financiamento com recursos próprios.'],
  ['Fontes de Fomento','Não houve financiamento público, mas houve apoio privado.'],['Agradecimentos','Agradecemos aos colegas pela leitura.'],
- ['O projeto recebeu financiamento privado.'],['Fontes de Fomento','Apoio institucional da Universidade Sintética.'],
+ ['O projeto recebeu financiamento privado.'],['Fontes de Fomento','Apoio institucional da Universidade Sintética.'],['Fontes de Fomento','N/A'],['Fontes de Fomento','—'],
 ]as$i=>$texts){test('declaração financeira não é inventada '.$i,function()use($texts,$i){$c=fundingCheck($texts,[]);same($i===4?'conforme':'indeterminado',$c['status']);});}
 test('fontes parciais e metadado indisponível não geram omissão',function(){
  same('indeterminado',fundingCheck(['Fontes de Fomento','Agência Sintética.'],null)['status']);

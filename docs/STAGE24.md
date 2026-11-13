@@ -87,7 +87,7 @@ schema de entrada 1.2 preserva as versões anteriores.
 
 ## Validação
 
-882 testes sintéticos, zero falhas, em PHP 8.4.27 e 8.1.27; 30 novos.
+884 testes sintéticos, zero falhas, em PHP 8.4.27 e 8.1.27; 32 novos.
 Lint de 80 arquivos PHP. Cobrem direções da comparação, ausência explícita,
 apoio não financeiro, recursos próprios, referências, fonte parcial, contrato,
 locales, configuração, DAO contra request, privacidade e integração com DOCX/minuta.

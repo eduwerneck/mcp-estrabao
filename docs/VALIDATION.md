@@ -634,7 +634,7 @@ CI remoto ainda não verificado.
 Validação em 13/11/2026, base 9b75673 (merge do PR #24), motor 0.18.0 e
 plugin 0.10.0.0.
 
-- 882 testes sintéticos, zero falhas, em PHP 8.4.27 e 8.1.27; 30 novos.
+- 884 testes sintéticos, zero falhas, em PHP 8.4.27 e 8.1.27; 32 novos.
 - Lint de 80 arquivos PHP aprovado e `git diff --check` sem erros.
 - 4 verificações de leitura no OJS 3.3.0.20/Chromium local: orientação interna
   traduzida, indisponibilidade sem acusação de omissão, separação da carta e

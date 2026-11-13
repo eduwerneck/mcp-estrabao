@@ -41,6 +41,7 @@ final class FundingConsistency implements Rule
     private static function statement(string $text,bool $section):string
     {
         if($text===''){return 'empty';}
+        if(!preg_match('/\p{L}/u',$text)||preg_match('/^(?:n\/?a|n\.a\.)[.!]?$/iuD',$text)){return 'unresolved';}
         if(self::none($text,$section)){return 'none';}
         if(preg_match('/\b(?:não|sem|nenhum|nenhuma|recursos próprios|autofinanciamento|financiamento próprio|apoio institucional|apoio técnico|apoio logístico|inexistente|a preencher|pendente|informar)\b/iu',$text)){return 'unresolved';}
         $explicit=preg_match('/^(?:esta pesquisa|este estudo|este trabalho) (?:foi|é) financiad[oa] (?:pela|pelo|por|com recursos de) .{2,}[.!]?$/iuD',$text)===1;
