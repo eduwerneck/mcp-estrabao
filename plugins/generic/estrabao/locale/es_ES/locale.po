@@ -185,3 +185,24 @@ msgstr "OJS registra apoyo, pero no se reconoció una declaración correspondien
 
 msgid "plugins.generic.estrabao.fundingReviewUnavailable"
 msgstr "La comparación de financiación es inconclusa. Revise Word y la disponibilidad del campo de agencias de apoyo en la entrega. Un campo desactivado o exclusivo del flujo editorial, o una lectura incompleta, no prueban omisión."
+
+msgid "plugins.generic.estrabao.deskPendingEthics"
+msgstr "Ética: aplicabilidad y declaración"
+
+msgid "plugins.generic.estrabao.ethicsReviewCandidates"
+msgstr "Se encontraron posibles menciones de ética en los párrafos indicados. Pueden ser discusión, cita o negación; no prueban aprobación ni una declaración adecuada."
+
+msgid "plugins.generic.estrabao.ethicsReviewNoMarkers"
+msgstr "No se encontraron menciones en el texto examinado. Esto no prueba ausencia de declaración ni exención ética: revise los materiales del flujo editorial."
+
+msgid "plugins.generic.estrabao.ethicsReviewUnavailable"
+msgstr "La lectura no permite establecer declaraciones éticas. Revise los materiales del flujo editorial; ninguna omisión o infracción fue probada automáticamente."
+
+msgid "plugins.generic.estrabao.ethicsReviewInstructions"
+msgstr "Confirme la aplicabilidad al estudio. Cuando corresponda, revise la aprobación del comité y el número del dictamen; cuando no corresponda, revise la declaración formal. La autenticidad y la adecuación no fueron validadas. Esta ficha no registra aprobación ni envía requisitos a los autores."
+
+msgid "plugins.generic.estrabao.ethicsReviewPosition"
+msgstr "Posición del párrafo Word extraído (no es número de página):"
+
+msgid "plugins.generic.estrabao.ethicsReviewMore"
+msgstr "Menciones adicionales no enumeradas; revisar también:"

@@ -234,3 +234,12 @@ por locale, vazio apenas quando a fonte foi lida e o campo estava disponível.
 ou texto declarado. Schemas de relatório/minuta 1.0 preservados. A regra agora
 integra DefaultRules, em vez de depender do tipo dentro de ManuscriptStructure:
 48 checks sem DOCX, 49 para artigo ou comunicação.
+
+## Etapa 25 — ética
+
+Motor 0.19.0 acrescenta manuscript.ethics.review 1.0.0, sempre indeterminada.
+Evidências contêm apenas perfil, hash, contagem de indícios e posições limitadas;
+sem declaração, nomes ou números de parecer. Não certifica aplicabilidade,
+aprovação ou dispensa. marker_scan_complete limita-se ao texto Word disponível
+antes da bibliografia. Schemas e snapshots preservados; são 49 checks sem DOCX
+e 50 com artigo/comunicação. O catálogo da minuta mantém a regra como pendência.

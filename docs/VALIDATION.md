@@ -646,3 +646,20 @@ plugin 0.10.0.0.
 Não certifica financiamento, equivalência de agências ou números de projetos.
 Sem manuscritos reais, produção, VM Oracle, envio a autores ou publicação do
 ambiente. CI remoto ainda não verificado.
+
+## Etapa 25 — conferência de ética
+
+Validação em 13/11/2026, base 2c05671 (merge do PR #25), motor 0.19.0 e
+plugin 0.11.0.0.
+
+- 903 testes sintéticos, zero falhas, em PHP 8.4.27 e PHP 8.1.27; 19 novos.
+- Lint de 82 arquivos PHP aprovado e `git diff --check` sem erros.
+- 4 verificações de leitura no OJS 3.3.0.20/Chromium local: ficha traduzida,
+  ausência de marcador sem presumir ausência/dispensa, ficha fora da carta e
+  estado editorial preservado. Captura inspecionada. Nenhum dado foi editado.
+- Cenários com indícios, negações e texto clínico sintético exercitados pelo
+  leitor e serviço reais sob dublês, sem copiar nomes ou protocolos na saída.
+
+A regra permanece indeterminada: não certifica ética nem cria bloqueio ou
+exigência automática aos autores. Sem dados reais, produção, VM Oracle, mensagens
+a autores ou publicação do ambiente. CI remoto ainda não verificado.
