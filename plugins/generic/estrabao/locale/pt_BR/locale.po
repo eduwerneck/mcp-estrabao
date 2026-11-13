@@ -140,3 +140,6 @@ msgstr "Referências e citações"
 
 msgid "plugins.generic.estrabao.deskPendingManuscript"
 msgstr "Estrutura, formatação e outras verificações do manuscrito"
+
+msgid "plugins.generic.estrabao.titleGuidance"
+msgstr "Evite títulos e subtítulos inteiramente em CAIXA ALTA, nos metadados e no manuscrito. Preserve siglas e nomes próprios; revise casos ambíguos. Subtítulo é opcional. Não há conversão automática do texto."

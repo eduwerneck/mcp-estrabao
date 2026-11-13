@@ -140,3 +140,6 @@ msgstr "References and citations"
 
 msgid "plugins.generic.estrabao.deskPendingManuscript"
 msgstr "Manuscript structure, formatting and other checks"
+
+msgid "plugins.generic.estrabao.titleGuidance"
+msgstr "Avoid titles and subtitles entirely in UPPERCASE, in metadata and the manuscript. Preserve acronyms and proper names; review ambiguous cases. Subtitles are optional. Text is not converted automatically."

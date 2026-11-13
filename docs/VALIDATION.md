@@ -537,3 +537,22 @@ O manuscrito autorizado na conversa foi retestado separadamente, fora do Git,
 sem alteração do original ou da carta anteriormente aprovada. Não foi inserido
 no laboratório OJS. Sem produção, VM Oracle, comunicação com autores, publicação
 ou atualização de ambiente.
+
+## Etapa 19 — títulos e subtítulos
+
+Base e149d16 (merge do PR #19). Motor 0.14.0, plugin 0.5.0.0.
+Validação concluída em 13/11/2026 após retomada do ambiente.
+
+- 765 testes sintéticos aprovados, zero falhas, em PHP 8.4.27 e PHP 8.1.27;
+  15 novos testes de reconhecimento, idioma, caixa efetiva, minuta e hooks.
+- Lint de 69 arquivos PHP sem erros. `git diff --check` sem erros.
+- Conferência manual anterior à suspensão, em OJS 3.3.0.20/Chromium local:
+  dois campos do wizard AJAX com orientação traduzida; dois campos de título e
+  subtítulo no formulário de publicação também com orientação. Não houve save.
+  Não constitui uma nova suíte automatizada de navegador.
+- Schemas e formato da minuta não foram alterados; versões das regras e do motor
+  propagadas ao catálogo da devolutiva e às expectativas dos testes existentes.
+
+Homologação no tema real permanece pendente. Sem acesso à produção, VM Oracle,
+comunicação com autores, mudança de estado editorial ou publicação do ambiente.
+CI remoto ainda não verificado.
