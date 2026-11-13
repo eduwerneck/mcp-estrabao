@@ -611,3 +611,20 @@ Fixture simulou artigo publicado somente no laboratório internal e restaurou os
 registros originais. Não chamou rotinas de publicação/e-mail. Sem dados reais,
 produção, VM Oracle, comunicação com autores ou publicação do ambiente.
 Tema real não identificado nem homologado. CI remoto ainda não verificado.
+
+## Etapa 23 — conteúdo CRediT
+
+Validação em 13/11/2026, base ae27b68 (merge do PR #23), motor 0.17.0 e
+plugin 0.9.0.0.
+
+- 852 testes sintéticos, zero falhas, em PHP 8.4.27 e PHP 8.1.27; 15 novos.
+- Lint de 78 arquivos PHP sem erros; `git diff --check` aprovado.
+- 4 verificações no OJS 3.3.0.20 local real com Chromium: grupo CRediT traduzido,
+  ausência de título sem acusação de seção vazia, pendências fora da carta e
+  estado editorial preservado. Teste apenas leu registros sintéticos existentes.
+- Novas regras exercitadas com leitor DOCX real e serviço do painel em testes
+  sintéticos. Ajustadas contagens/versionamento anteriores para duas regras novas.
+
+Presença de texto não certifica taxonomia/atribuição/veracidade. Não houve dados
+reais, produção, VM Oracle, envio a autores ou publicação do ambiente.
+CI remoto ainda não verificado.

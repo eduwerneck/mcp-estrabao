@@ -18,7 +18,7 @@ final class DeskResponse
         'manuscript.page.a4'=>'2.0.0', 'manuscript.page.margins'=>'2.0.0', 'manuscript.body.font'=>'2.0.0',
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
-        'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
+        'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
         'references.apa7'=>'5.0.0', 'references.citation_matching'=>'3.0.0',
         'references.apa7.recognized_formats'=>'2.0.0', 'references.apa7.citation_format'=>'1.0.0',
     ];
@@ -145,6 +145,13 @@ final class DeskResponse
             return self::item('Estrutura','O manuscrito deve apresentar as seções previstas nas diretrizes.',
                 'Não foram identificados os títulos explícitos: '.implode('; ',array_unique($missing)).'.',
                 'Organizar o conteúdo sob os títulos exigidos; ausência de seção não comprova ausência de método. Observar a anonimização na declaração CRediT.');
+        }
+        if($id==='manuscript.credit.content' && ($e['reason']??null)==='credit_section_empty'
+            && ($e['full_document_text_available']??false)===true && ($e['section_count']??null)===1
+            && ($e['content_paragraph_count']??null)===0){
+            return self::item('Contribuições CRediT','Descrever as contribuições dos autores conforme a taxonomia CRediT.',
+                'Foi identificado o título da seção, mas não texto de contribuições sob ele.',
+                'Preencher a descrição das contribuições, preservando a anonimização na versão de avaliação. O autor correspondente responde pela veracidade.');
         }
         if($id==='manuscript.headings.format'){
             return self::item('Formatação dos títulos','Os títulos das seções devem estar em negrito e sem numeração.',
