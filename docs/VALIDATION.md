@@ -574,3 +574,22 @@ plugin 0.6.0.0.
 As duas linhas continuam indeterminadas sem renderização e conferência humana.
 Não se usou manuscrito real, produção, VM Oracle ou envio a autores. Sem publicação
 do ambiente. CI remoto ainda não verificado.
+
+## Etapa 21 — APA 7 com formatos mistos
+
+Validação local em 13/11/2026, base 52f5417 (merge do PR #21), motor 0.16.0
+e plugin 0.7.0.0.
+
+- 806 testes sintéticos aprovados, zero falhas, em PHP 8.4.27 e PHP 8.1.27;
+  27 novos. Incluem listas de 20/21 autores, separadores, formatos válidos,
+  instituições e títulos como controles negativos, cauda parcial, privacidade,
+  minuta e bloqueio de liberação no painel.
+- Lint de 73 arquivos PHP e `git diff --check` sem erros.
+- 5 verificações em OJS 3.3.0.20 local real/Chromium: ausência de liberação,
+  correções específicas, sem acusação genérica de ABNT, carta sem conteúdo da
+  referência/DOI e POST do wizard bloqueado com formulário nativo válido.
+  Estado editorial inalterado e fixture restaurada. Captura inspecionada.
+
+Testes exclusivamente sintéticos; sem PDF/manuscritos reais, produção, VM Oracle,
+envio a autores ou publicação do ambiente. Não certifica APA completa; CI remoto
+ainda não verificado.

@@ -79,7 +79,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '4.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '5.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {

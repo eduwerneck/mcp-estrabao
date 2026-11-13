@@ -6,7 +6,7 @@ test('ABNT comprovada implica submissão não aceita, sem avanço automático', 
         'SILVA, João. Livro. São Paulo: Editora, 2020.',
     ]));
     $apa = $results['references.apa7']; $policy = $apa['evidence']['admission_policy'];
-    same('4.0.0', $apa['rule_version']); same('não conforme', $apa['status']);
+    same('5.0.0', $apa['rule_version']); same('não conforme', $apa['status']);
     same('not_accepted', $policy['decision']); same(false, $policy['automatic_progression_allowed']);
     same('proven_apa_incompatibility', $policy['reason']);
     same(true, in_array('recognized_reference_formats', $policy['blocking_components'], true));

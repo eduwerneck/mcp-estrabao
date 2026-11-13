@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'4.0.0', 'references.citation_matching'=>'3.0.0',
-        'references.apa7.recognized_formats'=>'1.0.0', 'references.apa7.citation_format'=>'1.0.0',
+        'references.apa7'=>'5.0.0', 'references.citation_matching'=>'3.0.0',
+        'references.apa7.recognized_formats'=>'2.0.0', 'references.apa7.citation_format'=>'1.0.0',
     ];
 
     public static function generate(array $report): array
@@ -184,6 +184,9 @@ final class DeskResponse
                 'journal_italic'=>'aplicar itálico ao nome do periódico',
                 'volume_italic'=>'aplicar itálico ao volume do periódico',
                 'issue_plain'=>'retirar o itálico do fascículo entre parênteses',
+                'personal_author_separators'=>'usar vírgulas entre autores e vírgula seguida de & antes do último autor, sem ponto e vírgula ou conjunção narrativa na referência',
+                'personal_author_list_length'=>'listar todos os autores até 20; com 21 ou mais, apresentar os 19 primeiros, reticências e o último, sem &',
+                'journal_legacy_labels'=>'substituir rótulos v., n. e p./pp. pelo formato APA 7 de volume(número), páginas ou identificador',
                 'journal_page_prefix'=>'retirar p./pp. da paginação da referência de artigo de periódico',
                 'chapter_title_plain'=>'retirar o itálico do título do capítulo',
                 'book_title_italic'=>'aplicar itálico ao título do livro que contém o capítulo',

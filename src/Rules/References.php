@@ -19,7 +19,7 @@ final class References implements Rule
             'document_sha256' => $this->document['sha256'] ?? null,
             'source_available' => $styleSource['available'] ?? false, 'source_profile' => $profile, 'main_body_available' => $source['available'] ?? false,
             'full_document_text_available' => $this->document['available'] ?? false, 'footnote_content_analyzed' => false, 'language' => $this->language,
-            'scope' => 'apa7_structural_and_declared_format_checks', 'style_profile' => 'apa7_reference_patterns_v1', 'full_apa_validation' => false,
+            'scope' => 'apa7_structural_and_declared_format_checks', 'style_profile' => 'apa7_reference_patterns_v2', 'full_apa_validation' => false,
             'external_lookup_performed' => false];
         $matching = CheckResult::UNKNOWN; $formats = CheckResult::UNKNOWN; $citationStyle = CheckResult::UNKNOWN;
         if ($source['available'] ?? false) {
@@ -55,11 +55,11 @@ final class References implements Rule
         ];
         return [
             new CheckResult('references.apa7', $apa, $evidence, '/manuscript',
-                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '4.0.0'),
+                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '5.0.0'),
             new CheckResult('references.citation_matching', $matching, $evidence + ['matching_direction' => 'recognized_citations_to_references'], '/manuscript',
                 'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '3.0.0'),
             new CheckResult('references.apa7.recognized_formats', $formats, $evidence, '/manuscript',
-                'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.'),
+                'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.', '2.0.0'),
             new CheckResult('references.apa7.citation_format', $citationStyle, $evidence, '/manuscript',
                 'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.'),
         ];

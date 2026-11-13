@@ -207,3 +207,12 @@ indicadores de notas de fim. São dados produzidos pelo leitor, não entradas do
 snapshot. Nenhum texto/ID de nota é exposto. Os schemas permanecem compatíveis;
 indeterminação continua sem gerar infração na minuta. Zero rodapés com indicadores
 de notas de fim exige revisão de linhas, sem converter notas de fim em rodapés.
+
+## Etapa 21 — formatos mistos APA
+
+Motor 0.16.0, references.apa7 5.0.0 e recognized_formats 2.0.0. Style profile
+apa7_reference_patterns_v2 acrescenta mixed_format_entries e diagnósticos fixos
+personal_author_separators, personal_author_list_length e journal_legacy_labels.
+Nenhum campo de entrada ou schema novo. O catálogo da minuta e a vinculação do
+adaptador foram atualizados conjuntamente; correspondência de citações permanece
+na versão 3.0.0, com seu conjunto fechado anterior.

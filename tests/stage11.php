@@ -311,8 +311,8 @@ test('CLI distingue incompatibilidade detectada de certificação APA completa',
     withDocx($parts, function ($path) {
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
         same(0, $code); same('', $err); $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-        same('0.15.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
-        same('4.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
+        same('0.16.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
+        same('5.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
         same(false, $checks['references.apa7']['evidence']['full_apa_validation']); same(false, strpos($out, 'São Paulo') !== false);
     });
 });
