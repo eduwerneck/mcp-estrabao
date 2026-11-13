@@ -18,7 +18,7 @@ final class DeskResponse
         'manuscript.page.a4'=>'2.0.0', 'manuscript.page.margins'=>'2.0.0', 'manuscript.body.font'=>'2.0.0',
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
-        'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
+        'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
         'references.apa7'=>'5.0.0', 'references.citation_matching'=>'3.0.0',
         'references.apa7.recognized_formats'=>'2.0.0', 'references.apa7.citation_format'=>'1.0.0',
     ];

@@ -73,12 +73,21 @@ class EstrabaoAdmissionReviewService
         $groups = [];
         foreach ($draft['pending_review'] as $pending) {
             $id = $pending['rule_id'] ?? '';
-            $key = strpos($id, 'manuscript.credit.') === 0 ? 'deskPendingCredit' : (strpos($id, 'manuscript.footnotes.') === 0 ? 'deskPendingFootnotes' : ($id === 'manuscript.funding' ? 'deskPendingFunding'
+            $key = $id === 'manuscript.ethics.review' ? 'deskPendingEthics' : (strpos($id, 'manuscript.credit.') === 0 ? 'deskPendingCredit' : (strpos($id, 'manuscript.footnotes.') === 0 ? 'deskPendingFootnotes' : ($id === 'manuscript.funding' ? 'deskPendingFunding'
                 : (strpos($id, 'metadata.') === 0 ? 'deskPendingMetadata'
                 : (strpos($id, 'abstract.') === 0 ? 'deskPendingAbstracts'
                 : (strpos($id, 'author.') === 0 ? 'deskPendingAuthors'
-                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript'))))));
+                : (strpos($id, 'references.') === 0 ? 'deskPendingReferences' : 'deskPendingManuscript')))))));
             $groups[$key] = ($groups[$key] ?? 0) + 1;
+        }
+        $ethicsReview = null;
+        foreach ($report['checks'] as $check) {
+            if ($check['rule_id'] !== 'manuscript.ethics.review' || $check['rule_version'] !== '1.0.0') { continue; }
+            $ethicsReview = ['message'=>[
+                'candidates_require_editorial_review'=>'ethicsReviewCandidates',
+                'no_markers_in_scanned_text'=>'ethicsReviewNoMarkers',
+            ][$check['evidence']['reason']] ?? 'ethicsReviewUnavailable',
+                'samples'=>$check['evidence']['samples'], 'samples_omitted'=>$check['evidence']['samples_omitted']];
         }
         $fundingReview = null;
         foreach ($report['checks'] as $check) {
@@ -94,7 +103,7 @@ class EstrabaoAdmissionReviewService
             if ($check['rule_id'] === 'manuscript.footnotes.lines' && $check['rule_version'] === '2.0.0'
                 && $check['status'] === 'indeterminado') { $footnoteReview = $check['evidence']['review_plan']; }
         }
-        return ['draft' => $draft, 'pending_groups' => $groups, 'footnote_review'=>$footnoteReview, 'funding_review'=>$fundingReview, 'manuscript_type' => $type,
+        return ['draft' => $draft, 'pending_groups' => $groups, 'footnote_review'=>$footnoteReview, 'funding_review'=>$fundingReview, 'ethics_review'=>$ethicsReview, 'manuscript_type' => $type,
             'fingerprint' => hash('sha256', json_encode([$expected, $snapshot->digest(), $source['publication_id'],
                 $source['publication_version'], $type, $report['engine_version'], $draft['template_version']]))];
     }

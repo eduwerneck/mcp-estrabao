@@ -137,3 +137,8 @@ quando Context.agencies é request/require. Desabilitado, ausente ou enable
 (editorial-only) permanece fonte indisponível para comparação na submissão. Não
 habilitar campos nem impor obrigatoriedade por suposição. Limpar caches de idioma;
 liberações antigas exigem nova revisão. Nenhuma implantação foi realizada.
+
+Na Etapa 25, atualizar motor 0.19.0 e plugin 0.11.0.0 juntos em homologação e
+limpar caches de idioma. A ficha interna de ética não registra uma conferência
+concluída nem muda o gate APA. Liberações antigas exigem nova revisão pelo
+fingerprint do motor. Nenhuma implantação/publicação foi realizada.

@@ -81,6 +81,17 @@
                     <li>{translate key="plugins.generic.estrabao.deskNoPending"}</li>
                 {/foreach}
                 </ul>
+                {if $deskDraftModel.ethics_review}
+                <section id="estrabaoEthicsReview">
+                    <h4>{translate key="plugins.generic.estrabao.deskPendingEthics"}</h4>
+                    <p>{translate key="plugins.generic.estrabao.{$deskDraftModel.ethics_review.message}"}</p>
+                    <p>{translate key="plugins.generic.estrabao.ethicsReviewInstructions"}</p>
+                    <ul>{foreach from=$deskDraftModel.ethics_review.samples item=sample}
+                        <li>{translate key="plugins.generic.estrabao.ethicsReviewPosition"} {$sample.paragraph_index+1|escape}</li>
+                    {/foreach}</ul>
+                    {if $deskDraftModel.ethics_review.samples_omitted}<p>{translate key="plugins.generic.estrabao.ethicsReviewMore"} {$deskDraftModel.ethics_review.samples_omitted|escape}</p>{/if}
+                </section>
+                {/if}
                 {if $deskDraftModel.funding_review}
                 <p id="estrabaoFundingReview">{translate key="plugins.generic.estrabao.{$deskDraftModel.funding_review}"}</p>
                 {/if}

@@ -185,3 +185,24 @@ msgstr "OJS records support, but no corresponding funding declaration was recogn
 
 msgid "plugins.generic.estrabao.fundingReviewUnavailable"
 msgstr "The funding comparison is inconclusive. Review Word and the availability of the supporting agencies field during submission. A disabled or editorial-only field, or incomplete reading, does not prove omission."
+
+msgid "plugins.generic.estrabao.deskPendingEthics"
+msgstr "Ethics: applicability and declaration"
+
+msgid "plugins.generic.estrabao.ethicsReviewCandidates"
+msgstr "Possible ethics mentions were found in the listed paragraphs. They may be discussion, quotation or negation; they do not prove approval or an adequate declaration."
+
+msgid "plugins.generic.estrabao.ethicsReviewNoMarkers"
+msgstr "No mentions were found in the scanned text. This does not prove a missing declaration or exemption: review the materials provided in the editorial workflow."
+
+msgid "plugins.generic.estrabao.ethicsReviewUnavailable"
+msgstr "The reading does not establish ethics declarations. Review the materials provided in the editorial workflow; no omission or violation was proved automatically."
+
+msgid "plugins.generic.estrabao.ethicsReviewInstructions"
+msgstr "Confirm applicability to the study. Where applicable, review committee approval and the opinion number; where not applicable, review the formal declaration. Authenticity and adequacy were not validated. This checklist neither records approval nor sends requirements to authors."
+
+msgid "plugins.generic.estrabao.ethicsReviewPosition"
+msgstr "Extracted Word paragraph position (not a page number):"
+
+msgid "plugins.generic.estrabao.ethicsReviewMore"
+msgstr "Additional mentions not listed; review these too:"
