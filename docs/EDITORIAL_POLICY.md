@@ -49,7 +49,7 @@ traduções oficiais dos títulos para manuscritos em inglês e espanhol.
 | Notas de rodapé | Até 3, com máximo de 2 linhas | Contagem futura; linhas dependem da renderização e não só do XML |
 | Ética | Quando aplicável, aprovação por comitê, com número do parecer, ou declaração formal de não aplicabilidade | Não inferir aplicabilidade nem validade da aprovação automaticamente |
 | IA generativa | Permitida apenas como apoio técnico: revisão linguística, tradução, formatação e figuras ilustrativas | Finalidade e conformidade substancial dependem de revisão humana |
-| Declaração de IA | Obrigatória, informando ferramenta, finalidade e nível de interação, em Comentários ao Editor no OJS | Confirmar tratamento quando não houve uso; nunca concluir ausência com extração indisponível |
+| Declaração de IA | Confirmado em 13/11/2026: uso ou não uso no próprio manuscrito; quando houve uso, ferramenta, finalidade e nível de interação | Sem exigir duplicação em Comentários ao Editor; nunca concluir ausência com extração indisponível |
 | Revisão profissional | Após aprovação editorial, comprovar revisão gramatical e textual profissional; sem novos autores após essa etapa | Controle posterior à triagem inicial; depende do estado editorial e do histórico de autoria |
 
 ## Recomendações e possibilidades, sem reprovação automática
@@ -88,8 +88,8 @@ O reconhecimento automático está implementado com os limites descritos em STAG
 3. Convenção para contar palavras (hífens, números, siglas, tabelas, legendas,
    notas, CRediT e fomento) e delimitar as exclusões do corpo do manuscrito. A Etapa 2 aplica 250 palavras
    e 3 a 4 palavras-chave em cada idioma; métodos de contagem ficam explícitos.
-4. Se toda submissão deve declarar uso ou não uso de IA; quais campos permitem
-   distinguir “não utilizado” de ausência de informação.
+4. Confirmado em 13/11/2026: declarar uso ou não uso no manuscrito; quando houve
+   uso, informar ferramenta, finalidade e nível de interação, sem duplicação OJS.
 5. Como declarar ausência de fomento e aplicabilidade ética; não presumir que a
    falta de uma seção condicional comprove descumprimento.
 6. Contagem de figuras compostas, objetos e tabelas em Comunicações; regra de
@@ -138,3 +138,14 @@ Toda devolutiva deve relacionar exigência, problema confirmado e correção
 necessária, adaptando os itens ao manuscrito. Pendências inconclusivas ficam
 separadas das não conformidades. Não acusar ABNT sem comprovação nem confundir
 limitação de leitura com infração. O modelo não autoriza envio automático.
+
+## Adendo confirmado em 13/11/2026 — declaração de IA
+
+O responsável preferiu informar no próprio texto e confirmou expressamente:
+“devem declarar o uso e não uso”. Essa decisão atualiza a orientação anterior
+que indicava Comentários ao Editor, sem exigir repetição nos dois locais.
+A declaração é obrigatória no manuscrito para uso ou não uso; ferramenta,
+finalidade e nível de interação se aplicam quando houve uso. Não estabelece título
+fixo. A adequação e a veracidade continuam humanas. É confirmação nesta conversa,
+sem afirmar publicação de alteração nas diretrizes públicas. Implementação e
+limites em STAGE26.md.

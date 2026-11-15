@@ -185,3 +185,42 @@ msgstr "OJS registra apoyo, pero no se reconoció una declaración correspondien
 
 msgid "plugins.generic.estrabao.fundingReviewUnavailable"
 msgstr "La comparación de financiación es inconclusa. Revise Word y la disponibilidad del campo de agencias de apoyo en la entrega. Un campo desactivado o exclusivo del flujo editorial, o una lectura incompleta, no prueban omisión."
+
+msgid "plugins.generic.estrabao.deskPendingEthics"
+msgstr "Ética: aplicabilidad y declaración"
+
+msgid "plugins.generic.estrabao.ethicsReviewCandidates"
+msgstr "Se encontraron posibles menciones de ética en los párrafos indicados. Pueden ser discusión, cita o negación; no prueban aprobación ni una declaración adecuada."
+
+msgid "plugins.generic.estrabao.ethicsReviewNoMarkers"
+msgstr "No se encontraron menciones en el texto examinado. Esto no prueba ausencia de declaración ni exención ética: revise los materiales del flujo editorial."
+
+msgid "plugins.generic.estrabao.ethicsReviewUnavailable"
+msgstr "La lectura no permite establecer declaraciones éticas. Revise los materiales del flujo editorial; ninguna omisión o infracción fue probada automáticamente."
+
+msgid "plugins.generic.estrabao.ethicsReviewInstructions"
+msgstr "Confirme la aplicabilidad al estudio. Cuando corresponda, revise la aprobación del comité y el número del dictamen; cuando no corresponda, revise la declaración formal. La autenticidad y la adecuación no fueron validadas. Esta ficha no registra aprobación ni envía requisitos a los autores."
+
+msgid "plugins.generic.estrabao.ethicsReviewPosition"
+msgstr "Posición del párrafo Word extraído (no es número de página):"
+
+msgid "plugins.generic.estrabao.ethicsReviewMore"
+msgstr "Menciones adicionales no enumeradas; revisar también:"
+
+msgid "plugins.generic.estrabao.deskPendingAi"
+msgstr "Declaración de uso o no uso de IA"
+
+msgid "plugins.generic.estrabao.aiReviewNonUse"
+msgstr "Se observó una declaración textual explícita de no uso. Registra lo declarado por los autores; no verifica el uso real de herramientas."
+
+msgid "plugins.generic.estrabao.aiReviewTextPresent"
+msgstr "Hay texto bajo el título de la declaración. Su presencia no prueba que se hayan informado todos los detalles exigidos ni que la finalidad esté permitida."
+
+msgid "plugins.generic.estrabao.aiReviewEmpty"
+msgstr "Se encontró el título de la declaración sin texto. Revise si la declaración aparece en otro fragmento del manuscrito; no se exige un título específico. Si la revisión confirma la ausencia, solicite una declaración de uso o no uso."
+
+msgid "plugins.generic.estrabao.aiReviewUnresolved"
+msgstr "La lectura no permite establecer la declaración. Revise el manuscrito, incluidos fragmentos fuera de la lectura automática; la falta de marcadores no prueba ausencia de declaración."
+
+msgid "plugins.generic.estrabao.aiReviewInstructions"
+msgstr "Los autores deben declarar uso o no uso de IA en el manuscrito. Si hubo uso, revise herramienta, finalidad y nivel de interacción; solo se permite apoyo técnico para revisión lingüística, traducción, formato y figuras ilustrativas. Si se declaró no uso, no exija detalles de herramientas. No se exige duplicación en Comentarios al Editor. Esta ficha no detecta uso real, no registra aprobación y no se copia en la carta."
