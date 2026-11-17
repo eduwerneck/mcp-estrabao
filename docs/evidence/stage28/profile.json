@@ -1,0 +1,167 @@
+{
+  "reported_profile": {
+    "source": "user-provided screenshots and statement",
+    "theme": "Tema Padr\u00e3o",
+    "font": "Noto Sans",
+    "header_color": "#1E6292",
+    "additional_css_reported": false,
+    "actual_theme_version_not_observed": true
+  },
+  "lab_profile": {
+    "theme_setting": "default",
+    "typography": "notoSans",
+    "header_color": "#1E6292",
+    "additional_css_present": false,
+    "lab_theme_version": "1.0.0.0",
+    "lab_article_template_sha256": "373747eff955e00a70401940d179b6f1d57cc985f8f2cb9246824ae45071c480"
+  },
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.12.0.0",
+    "plugin_files": "0.12.0.0",
+    "engine": "0.20.0"
+  },
+  "viewport_metrics": [
+    {
+      "viewport": "1440x1000",
+      "count": 1,
+      "date": {
+        "bottom": 391.96875,
+        "height": 50.015625,
+        "left": 870.015625,
+        "right": 1129.984375,
+        "top": 341.953125,
+        "width": 259.96875
+      },
+      "first": true,
+      "font": "\"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "headerColor": "rgb(30, 98, 146)",
+      "iso": "2026-01-02",
+      "loadedFont": true,
+      "published": {
+        "bottom": 462,
+        "height": 50.015625,
+        "left": 870.015625,
+        "right": 1129.984375,
+        "top": 411.984375,
+        "width": 259.96875
+      },
+      "publishedRetained": true,
+      "scrollWidth": 1440,
+      "width": 1440
+    },
+    {
+      "viewport": "1024x768",
+      "count": 1,
+      "date": {
+        "bottom": 391.96875,
+        "height": 50.015625,
+        "left": 550.515625,
+        "right": 810.484375,
+        "top": 341.953125,
+        "width": 259.96875
+      },
+      "first": true,
+      "font": "\"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "headerColor": "rgb(30, 98, 146)",
+      "iso": "2026-01-02",
+      "loadedFont": true,
+      "published": {
+        "bottom": 462,
+        "height": 50.015625,
+        "left": 550.515625,
+        "right": 810.484375,
+        "top": 411.984375,
+        "width": 259.96875
+      },
+      "publishedRetained": true,
+      "scrollWidth": 1009,
+      "width": 1024
+    },
+    {
+      "viewport": "768x1024",
+      "count": 1,
+      "date": {
+        "bottom": 252.015625,
+        "height": 50.015625,
+        "left": 468.015625,
+        "right": 727.984375,
+        "top": 202,
+        "width": 259.96875
+      },
+      "first": true,
+      "font": "\"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "headerColor": "rgb(30, 98, 146)",
+      "iso": "2026-01-02",
+      "loadedFont": true,
+      "published": {
+        "bottom": 322.046875,
+        "height": 50.015625,
+        "left": 468.015625,
+        "right": 727.984375,
+        "top": 272.03125,
+        "width": 259.96875
+      },
+      "publishedRetained": true,
+      "scrollWidth": 768,
+      "width": 768
+    },
+    {
+      "viewport": "390x844",
+      "count": 1,
+      "date": {
+        "bottom": 312.015625,
+        "height": 50.015625,
+        "left": 19.96875,
+        "right": 370.03125,
+        "top": 262,
+        "width": 350.0625
+      },
+      "first": true,
+      "font": "\"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "headerColor": "rgb(30, 98, 146)",
+      "iso": "2026-01-02",
+      "loadedFont": true,
+      "published": {
+        "bottom": 382.046875,
+        "height": 50.015625,
+        "left": 19.96875,
+        "right": 370.03125,
+        "top": 332.03125,
+        "width": 350.0625
+      },
+      "publishedRetained": true,
+      "scrollWidth": 390,
+      "width": 390
+    },
+    {
+      "viewport": "320x700",
+      "count": 1,
+      "date": {
+        "bottom": 342.015625,
+        "height": 50.015625,
+        "left": 19.96875,
+        "right": 300.03125,
+        "top": 292,
+        "width": 280.0625
+      },
+      "first": true,
+      "font": "\"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, Oxygen-Sans, Ubuntu, Cantarell, \"Helvetica Neue\", sans-serif",
+      "headerColor": "rgb(30, 98, 146)",
+      "iso": "2026-01-02",
+      "loadedFont": true,
+      "published": {
+        "bottom": 412.046875,
+        "height": 50.015625,
+        "left": 19.96875,
+        "right": 300.03125,
+        "top": 362.03125,
+        "width": 280.0625
+      },
+      "publishedRetained": true,
+      "scrollWidth": 320,
+      "width": 320
+    }
+  ]
+}

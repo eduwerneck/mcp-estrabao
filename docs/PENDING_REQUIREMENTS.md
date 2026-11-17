@@ -15,14 +15,14 @@
 | Ética | Etapa 25 acrescenta ficha interna e localizador limitado de possíveis menções no Word. Aplicabilidade, aprovação, autenticidade/número do parecer e declaração formal continuam para revisão humana; sem bloqueio automático ou inferência de dispensa. |
 | Fomento | Etapa 24 compara Word e supportingAgencies quando a disponibilidade do campo na submissão é confirmada. Sem presumir fomento ou omissão de apoio financeiro; equivalência de agências/projetos, variantes e declarações fora dos padrões exigem revisão. Configuração real da revista e homologação permanecem pendentes. |
 | CRediT | Etapa 23 distingue seção vazia, presença de texto e revisão humana de taxonomia/atribuição/veracidade. Não certifica contribuições; ampliar cobertura de estruturas, idiomas e registro de conferência sem quebrar anonimização. |
-| Datas no HTML | Etapa 22 implementa Submetido em antes de Publicado no mesmo box, com data do fluxo OJS, validada no tema padrão do laboratório. Identificar tema/versão reais e homologar markup, formato e dados históricos antes de implantar. |
+| Datas no HTML | Etapa 22 implementa Submetido em antes de Publicado no mesmo box, com data do fluxo OJS, validada no tema padrão do laboratório. Etapa 28 verifica o perfil informado (Tema Padrão, Noto Sans, #1E6292, sem CSS adicional) em cinco telas locais. Arquivos/versão reais, formato e dados históricos permanecem pendentes antes de implantar. |
 | APA 7 | Etapa 11 detecta incompatibilidades concretas, padrões semelhantes a ABNT, itálicos de formatos reconhecidos, DOI informado e formato de citações (STAGE11.md). Etapa 21 acrescenta separadores de autoria pessoal, limite de lista não abreviada e rótulos de periódico em formatos mistos. Certificação completa, autoria institucional/composta, citações secundárias, confirmação bibliográfica e formatos fora do subconjunto continuam pendentes. Não consulta DOI nem reprova sua ausência. |
 | OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
 | Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |
 | Relatórios | Persistência privada, retenção, identidade do operador, vínculo à revisão da submissão, auditoria de acesso e decisão humana. |
 | Rejeição preliminar | Política APA autorizada em 12/11/2026: incompatibilidade comprovada implica submissão não aceita; indeterminado exige revisão sem avanço automático (STAGE12.md). Adaptador opt-in do wizard implementado na Etapa 13, validado só com dublês. Etapa 14 acrescenta interface de gerente, liberação por versão e registro privado, validados com dublês. Etapa 15 exercitou o wizard em OJS 3.3.0.20 local real e corrigiu feedback/traduções. Homologação no tema/infraestrutura da revista, auditoria operacional, concorrência com uploads e outros canais permanecem pendentes; não ativar em produção. |
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
-| Homologação | Etapa 27 aprova o conjunto no laboratório OJS 3.3.0.20/tema padrão, com versões instaladas alinhadas e ensaios integrados. Tema/configuração/infraestrutura reais, ARM64, TLS/proxy, operação e outros canais continuam pendentes; sem acesso à VM. |
+| Homologação | Etapa 27 aprova o conjunto no laboratório OJS 3.3.0.20/tema padrão, com versões instaladas alinhadas e ensaios integrados. Etapa 28 reproduz o perfil de aparência informado, com 25 verificações. Arquivos/versão do tema, configuração de campos/infraestrutura reais, ARM64, TLS/proxy, operação e outros canais continuam pendentes; sem acesso à VM. |
 
 As regras da Etapa 2 verificam também marcadores e extensão dos resumos e
 quantidade de palavras-chave, conforme [STAGE2.md](STAGE2.md). As
@@ -45,7 +45,7 @@ não autoriza comunicação automática aos autores.
 2. Títulos/subtítulos: orientação nos formulários e reconhecimento ampliado entregues na Etapa 19; limites documentados.
 3. Notas de rodapé: contagem revisada e ficha de conferência entregues na Etapa 20; contagem visual automática e registro da revisão permanecem pendentes.
 4. APA 7: formatos mistos e listas pessoais ampliados na Etapa 21; instituições, nomes compostos e exceções continuam pendentes.
-5. Datas no HTML: indicador entregue na Etapa 22 para o tema padrão; homologação com tema/configuração reais permanece pendente.
+5. Datas no HTML: indicador entregue na Etapa 22 para o tema padrão; perfil informado validado localmente na Etapa 28; arquivos/versão e configuração reais permanecem pendentes.
 
 CRediT recebeu a primeira verificação de conteúdo na Etapa 23. A Etapa 24 acrescenta consistência de fomento Word/OJS. A Etapa 25 acrescenta conferência de ética sem inferir aplicabilidade. A Etapa 26 acrescenta declaração de IA; confirmado uso ou não uso no manuscrito, sem duplicação OJS
 ou ausência a partir de fonte incompleta. Um item/PR por vez; o histórico de

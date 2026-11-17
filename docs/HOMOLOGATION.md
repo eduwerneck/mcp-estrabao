@@ -4,9 +4,21 @@ Resultado em 17/11/2026: **aprovado no escopo do laboratório**, sobre o código
 112485b (merge do PR #27). Motor 0.20.0, plugin instalado/arquivos 0.12.0.0 e OJS
 3.3.0.20. Sem alterações funcionais no motor ou plugin nesta entrega.
 
-Isso não é uma homologação da instalação real da revista. Tema/versão reais,
+Isso não é uma homologação da instalação real da revista. Arquivos/versão reais do tema,
 infraestrutura, permissões do usuário de serviço e operação continuam pendentes.
 Não houve produção, VM Oracle, envio externo ou publicação do ambiente.
+
+## Complemento — perfil informado (Etapa 28)
+
+Sobre 038aa84 (merge do PR #28), foram aprovadas 25 verificações adicionais em
+cinco tamanhos de tela, reproduzindo o perfil informado: Tema Padrão, Noto Sans,
+#1E6292 e sem CSS adicional. Datas permanecem no mesmo box sem sobreposição ou
+rolagem horizontal, inclusive em 320 px. Produto e opções do tema inalterados;
+datas/estado sintéticos restaurados. O tema 1.0.0.0 é o da imagem local, não uma
+versão confirmada da revista. [Escopo e evidências](STAGE28.md).
+
+Os números abaixo pertencem à execução da Etapa 27 e não foram reexecutados
+no complemento; os 59 hashes do produto foram reconferidos.
 
 ## Resultado consolidado
 
@@ -122,7 +134,7 @@ IDs fixos para conclusão, revogação e substituição de versão.
 
 O escopo local está aprovado. Permanecem fora dele:
 
-- Tema/versão e configuração de campos reais; instalação, atualização e rollback
+- Arquivos/versão do tema e configuração de campos reais; instalação, atualização e rollback
   em uma homologação representativa da revista.
 - Usuário de serviço/permissões, ARM64, TLS/proxy, concorrência com uploads,
   outros canais (API/importação/quickSubmit), backup e recuperação operacional.
@@ -138,6 +150,6 @@ já existente na imagem. É um achado visual não bloqueante; textos do plugin f
 conferidos traduzidos. Não foi alterado o núcleo/locale do OJS para ocultá-lo.
 Esse ponto deve ser conferido junto ao tema e idiomas da homologação representativa.
 
-Não há sinal verde para implantação na revista a partir deste ensaio. O próximo
-passo é obter tema/versão e configuração sanitizada para uma homologação equivalente,
+Não há sinal verde para implantação na revista a partir deste ensaio. O perfil informado foi reproduzido na Etapa 28. Restam arquivos/versão do tema
+e configuração sanitizada para uma homologação equivalente,
 sem acessar produção ou a VM Oracle nesta conversa.

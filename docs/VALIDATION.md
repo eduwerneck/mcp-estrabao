@@ -706,3 +706,22 @@ navigation.backTo sem tradução foi registrada como achado visual não bloquean
 Containers desligados ao final. Sem produção, VM Oracle, mensagens externas ou
 publicação do ambiente. Tema/infraestrutura reais e limites semânticos continuam
 pendentes conforme HOMOLOGATION.md. CI desta nova branch ainda não verificado.
+
+## Etapa 28 — perfil informado do Tema Padrão
+
+Validação em 17/11/2026, base 038aa84 (merge PR #28), OJS 3.3.0.20 local.
+Motor 0.20.0 e plugin instalado/arquivos 0.12.0.0 sem alteração.
+
+- 25 verificações aprovadas em cinco telas, de 320 a 1440 px.
+- Perfil informado conferido: Tema Padrão, Noto Sans, #1E6292, sem CSS adicional.
+- Datas no mesmo box, sem duplicação, sobreposição ou rolagem horizontal.
+- Perfil inalterado e datas/estado sintéticos restaurados.
+- 59 hashes coincidem com a base; 922 testes por PHP e 72 casos integrados
+  são resultados anteriores da Etapa 27, não reexecutados nesta etapa.
+- Lint do novo helper PHP, compilação do runner Python e diff aprovados.
+- Capturas sintéticas de desktop e celular inspecionadas; evidências em
+  evidence/stage28. Nenhuma captura pessoal do usuário foi incluída.
+
+Containers desligados ao final. Sem produção, VM Oracle, mensagens externas ou
+publicação do ambiente. Arquivos/versão do tema real e infraestrutura não
+inspecionados. CI da nova branch ainda não verificado.

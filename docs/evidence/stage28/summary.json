@@ -1,0 +1,14 @@
+{
+  "overall_passed": true,
+  "checks": 25,
+  "viewport_count": 5,
+  "product_changed": false,
+  "theme_settings_changed": false,
+  "original_workflow_records_restored": true,
+  "production_accessed": false,
+  "limitations": [
+    "reported_profile_reproduced_in_lab_only",
+    "real_theme_files_and_version_not_inspected",
+    "real_infrastructure_not_homologated"
+  ]
+}

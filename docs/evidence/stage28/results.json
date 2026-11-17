@@ -1,0 +1,102 @@
+[
+  {
+    "case": "lab matches reported default theme Noto Sans color and no uploaded stylesheet",
+    "passed": true
+  },
+  {
+    "case": "product files still match integrated homologation",
+    "passed": true
+  },
+  {
+    "case": "installed plugin and engine match homologated versions",
+    "passed": true
+  },
+  {
+    "case": "1440x1000 native profile has loaded Noto Sans and header color",
+    "passed": true
+  },
+  {
+    "case": "1440x1000 submitted precedes published once in the same box",
+    "passed": true
+  },
+  {
+    "case": "1440x1000 dates remain visible and do not overlap",
+    "passed": true
+  },
+  {
+    "case": "1440x1000 no horizontal overflow",
+    "passed": true
+  },
+  {
+    "case": "1024x768 native profile has loaded Noto Sans and header color",
+    "passed": true
+  },
+  {
+    "case": "1024x768 submitted precedes published once in the same box",
+    "passed": true
+  },
+  {
+    "case": "1024x768 dates remain visible and do not overlap",
+    "passed": true
+  },
+  {
+    "case": "1024x768 no horizontal overflow",
+    "passed": true
+  },
+  {
+    "case": "768x1024 native profile has loaded Noto Sans and header color",
+    "passed": true
+  },
+  {
+    "case": "768x1024 submitted precedes published once in the same box",
+    "passed": true
+  },
+  {
+    "case": "768x1024 dates remain visible and do not overlap",
+    "passed": true
+  },
+  {
+    "case": "768x1024 no horizontal overflow",
+    "passed": true
+  },
+  {
+    "case": "390x844 native profile has loaded Noto Sans and header color",
+    "passed": true
+  },
+  {
+    "case": "390x844 submitted precedes published once in the same box",
+    "passed": true
+  },
+  {
+    "case": "390x844 dates remain visible and do not overlap",
+    "passed": true
+  },
+  {
+    "case": "390x844 no horizontal overflow",
+    "passed": true
+  },
+  {
+    "case": "320x700 native profile has loaded Noto Sans and header color",
+    "passed": true
+  },
+  {
+    "case": "320x700 submitted precedes published once in the same box",
+    "passed": true
+  },
+  {
+    "case": "320x700 dates remain visible and do not overlap",
+    "passed": true
+  },
+  {
+    "case": "320x700 no horizontal overflow",
+    "passed": true
+  },
+  {
+    "case": "profile was not changed during visual tests",
+    "passed": true
+  },
+  {
+    "case": "synthetic workflow dates and status restored",
+    "passed": true
+  }
+]
