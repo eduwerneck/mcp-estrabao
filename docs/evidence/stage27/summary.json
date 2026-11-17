@@ -1,0 +1,76 @@
+{
+  "overall_passed": true,
+  "requested_fresh_cycle": true,
+  "base_commit": "112485b06768d79cdf5d71acd9155ecc66516bb9",
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.12.0.0",
+    "plugin_files": "0.12.0.0",
+    "engine": "0.20.0"
+  },
+  "suite_count": 9,
+  "browser_checks": 72,
+  "suites": [
+    {
+      "suite": "desk-panel.py",
+      "checks": 13,
+      "passed": true
+    },
+    {
+      "suite": "apa-mixed.py",
+      "checks": 5,
+      "passed": true
+    },
+    {
+      "suite": "footnote-panel.py",
+      "checks": 9,
+      "passed": true
+    },
+    {
+      "suite": "article-dates.py",
+      "checks": 10,
+      "passed": true
+    },
+    {
+      "suite": "credit-panel.py",
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "funding-panel.py",
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ethics-panel.py",
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ai-panel.py",
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "title-guidance.py",
+      "checks": 6,
+      "passed": true
+    }
+  ],
+  "workflow_state_preserved": true,
+  "fixture_mode": "synthetic_only",
+  "production_accessed": false,
+  "external_messages_sent": false,
+  "limitations": [
+    "default_theme_only",
+    "no_operational_production_homologation"
+  ],
+  "fresh_cycle_checks": 13,
+  "fresh_cycle_passed": true,
+  "original_workflow_records_preserved": true,
+  "execution_segments": [
+    "integrated.py --with-submission-cycle: 66 checks",
+    "title-guidance.py: 6 checks on unchanged product code"
+  ]
+}
