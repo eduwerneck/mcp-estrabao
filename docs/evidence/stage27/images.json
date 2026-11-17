@@ -1,0 +1,26 @@
+{
+  "estrabao-lab-15-web": {
+    "image_id": "sha256:04ac07ef381b85ad3539891bf5193540bbe0f8df5af9e97124754e8db2f4605d",
+    "repo_digests": [
+      "pkpofficial/ojs@sha256:87198f196f9f396ae0342a21dba6b9a9cf7afe35c58576758ee37998adf2c9e1"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  "estrabao-lab-15-db": {
+    "image_id": "sha256:c53db5be6a29e6f75003283db05221f12988f7bcbf1a09e347c866a898fbdfd5",
+    "repo_digests": [
+      "mariadb@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  },
+  "estrabao-lab-15-browser": {
+    "image_id": "sha256:71e28d6c7e9ffd45e2bfa0de74b21a04484a36d1231c04e99282d3b915906b8e",
+    "repo_digests": [
+      "selenium/standalone-chromium@sha256:b211549a4c35f11826bc1a7559b9f23ff055198517f8cb7d49ef74df01c5e38d"
+    ],
+    "architecture": "amd64",
+    "os": "linux"
+  }
+}

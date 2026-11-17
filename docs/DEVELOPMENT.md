@@ -148,3 +148,11 @@ em homologação e limpar caches de idioma. A declaração de IA fica no manuscr
 não há extração de Comentários ao Editor ou detector de uso real. Não cria gate
 de IA nem registra revisão concluída. Liberações de motor anterior exigem nova
 revisão. Confirmar merge da base ética antes de abrir esta etapa contra main.
+
+A Etapa 27 consolida o runner opcional em tests/lab/integrated.py. Antes de usar,
+ler HOMOLOGATION.md: ele exige o laboratório interno, mounts do checkout correto,
+versões instaladas coerentes e transporte de e-mail neutralizado. A modalidade
+--with-submission-cycle cria cinco novos rascunhos sintéticos e conclui um deles
+após revisão APA; não é um comando de implantação. O relatório e o manifesto
+registram exatamente o escopo validado. Não houve mudança de versão do produto
+nem aprovação da instalação real da revista.

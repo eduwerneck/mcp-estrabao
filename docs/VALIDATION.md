@@ -679,3 +679,30 @@ plugin 0.12.0.0. Base ética ainda não mergeada em main durante a preparação.
 
 Não detecta uso real de IA nem lê discussão privada. Sem dados reais, produção,
 VM Oracle, envio a autores ou publicação do ambiente. CI remoto não verificado.
+
+## Etapa 27 — homologação integrada
+
+Validação em 17/11/2026, base 112485b (merge do PR #27), motor 0.20.0 e
+plugin instalado/arquivos 0.12.0.0, OJS 3.3.0.20. Produto sem alteração funcional.
+
+- 922 testes sintéticos em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 85 arquivos PHP e compilação dos três novos scripts Python aprovados.
+- 72 verificações no OJS/Chromium local: nove suítes de painel/artigo (59) e ciclo
+  nativo novo (13). A execução principal teve 66 casos, com seis complementares
+  de títulos sobre o mesmo produto; o runner final inclui todos.
+- Seis saídas CLI e entradas 1.0/1.1/1.2 válidas nos schemas JSON.
+- Pré-checagem confirmou isolamento, mounts read-only do checkout, transporte
+  neutralizado web/CLI, versão instalada e armazenamento privado. Registro antigo
+  0.3.0.0 do laboratório foi alinhado com a ferramenta nativa, sem mudar produto.
+- Manifesto SHA-256 de 59 arquivos; capturas de bloqueio/liberação inspecionadas.
+- Registros preexistentes preservados; apenas novos rascunhos sintéticos recebem
+  revisão/conclusão/revogação no ciclo. Fixtures reversíveis restauradas.
+
+A resposta JSON nativa pode anunciar renderização do componente com status=true
+mesmo com erros; os testes conferem estado/date_submitted e feedback real ao autor.
+Não houve defeito funcional do produto identificado nesse ensaio. A chave nativa
+navigation.backTo sem tradução foi registrada como achado visual não bloqueante.
+
+Containers desligados ao final. Sem produção, VM Oracle, mensagens externas ou
+publicação do ambiente. Tema/infraestrutura reais e limites semânticos continuam
+pendentes conforme HOMOLOGATION.md. CI desta nova branch ainda não verificado.

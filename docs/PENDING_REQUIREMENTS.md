@@ -22,7 +22,7 @@
 | Relatórios | Persistência privada, retenção, identidade do operador, vínculo à revisão da submissão, auditoria de acesso e decisão humana. |
 | Rejeição preliminar | Política APA autorizada em 12/11/2026: incompatibilidade comprovada implica submissão não aceita; indeterminado exige revisão sem avanço automático (STAGE12.md). Adaptador opt-in do wizard implementado na Etapa 13, validado só com dublês. Etapa 14 acrescenta interface de gerente, liberação por versão e registro privado, validados com dublês. Etapa 15 exercitou o wizard em OJS 3.3.0.20 local real e corrigiu feedback/traduções. Homologação no tema/infraestrutura da revista, auditoria operacional, concorrência com uploads e outros canais permanecem pendentes; não ativar em produção. |
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
-| Homologação | Runtime compatível, extensões, banco, TLS e recursos do laboratório; não houve acesso à VM. |
+| Homologação | Etapa 27 aprova o conjunto no laboratório OJS 3.3.0.20/tema padrão, com versões instaladas alinhadas e ensaios integrados. Tema/configuração/infraestrutura reais, ARM64, TLS/proxy, operação e outros canais continuam pendentes; sem acesso à VM. |
 
 As regras da Etapa 2 verificam também marcadores e extensão dos resumos e
 quantidade de palavras-chave, conforme [STAGE2.md](STAGE2.md). As

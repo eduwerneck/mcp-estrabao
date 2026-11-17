@@ -1,0 +1,54 @@
+[
+  {
+    "case": "ABNT cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "ABNT POST cannot complete",
+    "passed": true
+  },
+  {
+    "case": "native UI shows ABNT correction without completing",
+    "passed": true
+  },
+  {
+    "case": "human APA review activates release",
+    "passed": true
+  },
+  {
+    "case": "reviewed current version completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "revoked release prevents completion",
+    "passed": true
+  },
+  {
+    "case": "release cannot bypass native CSRF",
+    "passed": true
+  },
+  {
+    "case": "replacement starts from active release",
+    "passed": true
+  },
+  {
+    "case": "new server file invalidates old release",
+    "passed": true
+  },
+  {
+    "case": "editor downloads current DOCX",
+    "passed": true
+  },
+  {
+    "case": "author cannot download via editorial route",
+    "passed": true
+  },
+  {
+    "case": "old release cannot complete changed version",
+    "passed": true
+  },
+  {
+    "case": "author cannot open editorial review",
+    "passed": true
+  }
+]

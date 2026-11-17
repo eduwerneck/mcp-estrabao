@@ -1,0 +1,18 @@
+[
+  {
+    "case": "translated internal ethics checklist",
+    "passed": true
+  },
+  {
+    "case": "missing markers are not proof of absence or exemption",
+    "passed": true
+  },
+  {
+    "case": "checklist stays outside author letter",
+    "passed": true
+  },
+  {
+    "case": "checklist does not change editorial state",
+    "passed": true
+  }
+]
