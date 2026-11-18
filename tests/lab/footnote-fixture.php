@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -53,6 +53,23 @@ if (in_array($mode, ['secondary-apud', 'secondary-missing', 'secondary-correct']
     }
     $sourceName = $mode === 'secondary-missing' ? 'Lima' : 'Souza';
     $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>' . $sourceName . ', A. (2020). Título sintético. Editora Exemplo.</w:t></w:r></w:p>';
+}
+if (in_array($mode, ['model-book', 'model-chapter', 'model-article', 'model-correct'], true)) {
+    $main = '';
+    foreach (['Introdução', 'Texto (Silva, 2020).', 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.'] as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    if ($mode === 'model-book') {
+        $pieces = [['Silva, A. (2020). ', false], ['Livro sintético', true], [' (', false], ['2nd ed.', true], ['). Editora Exemplo.', false]];
+    } elseif ($mode === 'model-article') {
+        $pieces = [['Silva, A. (2020). Artigo sintético. ', false], ['Revista Sintética', true], [', ', false], ['8', true], ['(2), 20–10.', false]];
+    } else {
+        $editors = $mode === 'model-chapter' ? 'B. Editor; C. Outro; D. Terceiro' : 'B. Editor, C. Outro, & D. Terceiro';
+        $pieces = [['Silva, A. (2020). Capítulo sintético. In ' . $editors . ' (Eds.), ', false], ['Livro sintético', true], [' (2nd ed., pp. 10–20). Editora Exemplo.', false]];
+    }
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p>';
+    foreach ($pieces as $piece) { $reference .= '<w:r>' . ($piece[1] ? '<w:rPr><w:i/></w:rPr>' : '') . '<w:t xml:space="preserve">' . htmlspecialchars($piece[0], ENT_XML1) . '</w:t></w:r>'; }
+    $reference .= '</w:p>';
 }
 $parts = [
     '[Content_Types].xml' => '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/footnotes.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml"/></Types>',

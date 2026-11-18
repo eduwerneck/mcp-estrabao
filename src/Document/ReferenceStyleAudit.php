@@ -66,14 +66,34 @@ final class ReferenceStyleAudit
                     self::check($checks, 'volume_italic', self::emphasis($paragraph, $fields['volume'], true), 'O volume fica em itálico; o número do fascículo não.');
                     self::check($checks, 'journal_page_prefix', !$fields['locator_prefix_present'], 'Em referência de artigo de periódico, a paginação não recebe prefixo p./pp.');
                     if ($fields['issue'] !== null) { self::check($checks, 'issue_plain', self::emphasis($paragraph, $fields['issue'], false), 'O fascículo entre parênteses não fica em itálico.'); }
+                    if ($fields['page_range_order'] !== null) { self::check($checks, 'article_page_range_order', $fields['page_range_order'], 'Conferir o intervalo de páginas do artigo: a página final não pode anteceder a inicial. Verificar as páginas na fonte.'); }
                     self::check($checks, 'article_locator', true, 'Volume e localização do artigo reconhecidos; não confirma os dados da publicação.');
                 } elseif ($fields !== null && $fields['type'] === 'chapter') {
                     $type = 'chapter';
                     self::check($checks, 'chapter_title_plain', self::emphasis($paragraph, $fields['title'], false), 'O título do capítulo não fica em itálico.');
                     self::check($checks, 'book_title_italic', self::emphasis($paragraph, $fields['source'], true), 'O título do livro que contém o capítulo fica em itálico.');
                     self::check($checks, 'chapter_publisher_plain', self::emphasis($paragraph, $fields['publisher'], false), 'O nome da editora do livro não fica em itálico.');
+                    self::check($checks, 'chapter_editors_plain', self::emphasis($paragraph, $fields['editors'], false), 'Os nomes dos editores do capítulo não ficam em itálico.');
+                    self::check($checks, 'chapter_editor_label_plain', self::emphasis($paragraph, $fields['editor_label'], false), 'O rótulo Ed./Eds. não fica em itálico.');
+                    self::check($checks, 'chapter_pages_plain', self::emphasis($paragraph, $fields['pages'], false), 'A indicação de páginas do capítulo não fica em itálico.');
+                    self::check($checks, 'chapter_editor_separators', $fields['editor_separators_valid'], 'Na editoria do capítulo em inglês, usar & entre dois nomes; para três ou mais, separar por vírgulas e usar vírgula seguida de & antes do último.');
+                    self::check($checks, 'chapter_page_range_order', $fields['page_range_order'], 'Conferir o intervalo de páginas do capítulo: a página final não pode anteceder a inicial.');
+                    if ($fields['edition'] !== null) {
+                        self::check($checks, 'chapter_edition_plain', self::emphasis($paragraph, $fields['edition'], false), 'A edição do livro que contém o capítulo não fica em itálico.');
+                        self::check($checks, 'edition_ordinal', $fields['edition_ordinal'], 'Conferir número e sufixo ordinal da edição no modelo em inglês: st, nd, rd ou th.');
+                    }
                     self::check($checks, 'chapter_editor_label', $fields['editor_label_valid'], 'Usar Ed. para um editor e Eds. para dois ou mais no modelo em inglês.');
                     self::check($checks, 'chapter_source', true, 'Editoria, título do livro, páginas e fonte reconhecidos; conferir a exatidão desses dados.');
+                } elseif ($fields !== null && $fields['type'] === 'standalone_edition_candidate') {
+                    $titleItalic = self::emphasis($paragraph, $fields['title'], true);
+                    $sourcePlain = self::emphasis($paragraph, $fields['source'], false);
+                    if ($titleItalic === true && $sourcePlain === true) {
+                        $type = 'standalone_edition_candidate';
+                        self::check($checks, 'standalone_title_italic', true, 'Título segue o padrão visual de obra autônoma; confirmar tipo e dados na fonte.');
+                        self::check($checks, 'standalone_source_plain', true, 'Fonte da obra autônoma sem itálico.');
+                        self::check($checks, 'standalone_edition_plain', self::emphasis($paragraph, $fields['edition'], false), 'A edição entre parênteses não fica em itálico; manter o título da obra em itálico.');
+                        self::check($checks, 'edition_ordinal', $fields['edition_ordinal'], 'Conferir número e sufixo ordinal da edição no modelo em inglês: st, nd, rd ou th.');
+                    } else { self::check($checks, 'work_type_and_italic', null, 'Confirmar o tipo bibliográfico e a edição antes de exigir itálico em campo específico.'); }
                 } elseif ($fields !== null && $fields['type'] === 'standalone_candidate') {
                     $titleItalic = self::emphasis($paragraph, $fields['title'], true);
                     $sourcePlain = self::emphasis($paragraph, $fields['source'], false);
@@ -218,19 +238,36 @@ final class ReferenceStyleAudit
     private static function fields(string $content, int $offset): ?array
     {
         $content = rtrim($content); if (substr($content, -1) === '.') { $content = substr($content, 0, -1); }
-        // Chapter with a single/two editor source. More complex editors/editions are left unresolved.
-        $editor = '(?:\p{Lu}\.\s*){1,4}' . ReferenceAnalysis::SURNAME;
-        if (preg_match('~^(.+)[.?!] In (' . $editor . '(?: & ' . $editor . ')?) \((Ed\.|Eds\.)\), ([^()]+) \(pp\. [0-9]+[-–][0-9]+\)\. ([^.]+)$~uD', $content, $m, PREG_OFFSET_CAPTURE)) {
-            return ['type' => 'chapter', 'title' => self::range($m[1], $offset), 'source' => self::range($m[4], $offset),
-                'publisher' => self::range($m[5], $offset), 'editor_label_valid' => (strpos($m[2][0], '&') !== false) === ($m[3][0] === 'Eds.')];
+        // Explicit chapter layout; editorial roles/type still require checking against the source.
+        $editor = ReferenceModels::editorPattern();
+        $editors = $editor . '(?:\s*(?:,\s*&|,|;|&|e|and|y)\s*' . $editor . '){0,19}';
+        if (preg_match_all('/[.?!] In /u', $content) === 1 && preg_match('~^(.+)[.?!] In (' . $editors . ') \((Ed\.|Eds\.)\), ([^()]+) \((?:([0-9]{1,9})(st|nd|rd|th) ed\., )?pp\. ([0-9]{1,9})[-–]([0-9]{1,9})\)\. ([^.]+)$~uD', $content, $m, PREG_OFFSET_CAPTURE)) {
+            $list = ReferenceModels::editors($m[2][0]);
+            if ($list !== null) {
+                $edition = isset($m[5]) && $m[5][1] >= 0 && $m[5][0] !== '';
+                return ['type'=>'chapter', 'title'=>self::range($m[1],$offset), 'source'=>self::range($m[4],$offset),
+                    'publisher'=>self::range($m[9],$offset), 'editors'=>self::range($m[2],$offset), 'editor_label'=>self::range($m[3],$offset),
+                    'editor_separators_valid'=>$list['separators_valid'], 'editor_label_valid'=>($list['count']===1)===($m[3][0]==='Ed.'),
+                    'pages'=>['start'=>$offset+$m[7][1]-4,'end'=>$offset+$m[8][1]+strlen($m[8][0])],
+                    'page_range_order'=>ReferenceModels::pageRange($m[7][0].'–'.$m[8][0]),
+                    'edition'=>$edition?['start'=>$offset+$m[5][1],'end'=>$offset+$m[6][1]+strlen($m[6][0])+4]:null,
+                    'edition_ordinal'=>$edition?ReferenceModels::ordinal($m[5][0],$m[6][0]):null];
+            }
+        }
+        // An edition statement yields a layout candidate, not proof that the source is a book.
+        if (strpos($content, ' In ') === false && preg_match('~^([^()]+) \(([0-9]{1,9})(st|nd|rd|th) ed\.\)\. ([^.():]+)$~uD',$content,$m,PREG_OFFSET_CAPTURE)) {
+            return ['type'=>'standalone_edition_candidate','title'=>self::range($m[1],$offset),'source'=>self::range($m[4],$offset),
+                'edition'=>['start'=>$offset+$m[2][1],'end'=>$offset+$m[3][1]+strlen($m[3][0])+4],
+                'edition_ordinal'=>ReferenceModels::ordinal($m[2][0],$m[3][0])];
         }
         $candidates = [];
         preg_match_all('/[.?!]\s+/u', $content, $separators, PREG_OFFSET_CAPTURE);
         foreach ($separators[0] as $separator) {
             $start = $separator[1] + strlen($separator[0]); $tail = substr($content, $start);
-            if (preg_match('/^([^,()]+),\s*([0-9]+)(?:\(([^()]+)\))?,\s*(?:(pp?\.)\s*)?(?:[0-9]+[-–][0-9]+|[0-9]+|[Ee][0-9]+|Article\s+[A-Za-z0-9]+)$/uD', $tail, $m, PREG_OFFSET_CAPTURE)) {
+            if (preg_match('/^([^,()]+),\s*([0-9]+)(?:\(([^()]+)\))?,\s*(?:(pp?\.)\s*)?([0-9]+[-–][0-9]+|[0-9]+|[Ee][0-9]+|Article\s+[A-Za-z0-9]+)$/uD', $tail, $m, PREG_OFFSET_CAPTURE)) {
                 $candidates[] = ['type' => 'journal_article', 'title' => ['start' => $offset, 'end' => $offset + $separator[1]],
                     'source' => self::range($m[1], $offset + $start), 'volume' => self::range($m[2], $offset + $start),
+                    'page_range_order'=>ReferenceModels::pageRange($m[5][0]),
                     'locator_prefix_present' => isset($m[4]) && $m[4][1] >= 0 && $m[4][0] !== '',
                     'issue' => isset($m[3]) && $m[3][1] >= 0 ? self::range($m[3], $offset + $start) : null];
             }

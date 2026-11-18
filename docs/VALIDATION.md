@@ -808,3 +808,24 @@ Evidências em evidence/stage32. Containers desligados ao final. Sem produção,
 VM Oracle, arquivos reais, envio externo ou deploy. Veto a apud fundamentado na
 instrução editorial explícita, sem alegar proibição universal da APA ou que a
 palavra sozinha caracterize ABNT. CI remoto desta branch ainda não verificado.
+
+## Etapa 33 — modelos de referências
+
+Validação em 18/11/2026, base ec726d6 (merge PR #33), motor 0.25.0 e plugin
+0.17.0.0. APA 10.0.0, formatos reconhecidos 5.0.0; matching/citações preservados.
+
+- 1140 testes sintéticos em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 93 arquivos PHP, compilação Python e schemas CLI aprovados.
+- 23 verificações OJS 3.3.0.20/Chromium local: três erros de modelos com bloqueio,
+  devolutiva, privacidade, POST e feedback; capítulo correto continua para revisão.
+- Testes cobrem um/dois/três e vinte editores, limite excedido, partículas,
+  tipografia por campo, ordinais, páginas, perfis parciais e tipos inconclusivos.
+- Bytes e estado originais restaurados; rede interna, mounts read-only, transporte
+  neutralizado e versão instalada alinhada confirmados. Capturas inspecionadas.
+
+O primeiro alinhamento de versão encontrou MariaDB ainda iniciando; foi repetido
+com sucesso antes do runner final. Nenhum dado ou operação externa foi utilizado.
+
+Evidências em evidence/stage33. Containers desligados ao final. Sem produção,
+VM Oracle, arquivos reais, mensagens externas ou deploy. Não certifica APA integral;
+limites em STAGE33.md e APA7.md. CI remoto da branch ainda não verificado.
