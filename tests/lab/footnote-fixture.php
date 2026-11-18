@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -27,10 +27,19 @@ if (in_array($mode, ['compound', 'abbreviated'], true)) {
     $authors = $mode === 'compound' ? 'van der Meer, A.; de Silva, B.' : 'García Márquez, A., … de Silva, B.';
     $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>' . htmlspecialchars($authors, ENT_XML1) . ' (2020). Título sintético. Editora Exemplo.</w:t></w:r></w:p>';
 }
+$main = '<w:p><w:r><w:t>Texto de laboratório.</w:t></w:r>' . $refs . '</w:p>';
+if (in_array($mode, ['citation-many', 'citation-period'], true)) {
+    $citation = $mode === 'citation-many' ? 'Texto (Silva, Souza, & Lima, 2020).' : 'Texto (Silva et al, 2020).';
+    $main = '';
+    foreach (['Introdução', $citation, 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.'] as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>Silva, A., Souza, B., &amp; Lima, C. (2020). Título sintético. Editora Exemplo.</w:t></w:r></w:p>';
+}
 $parts = [
     '[Content_Types].xml' => '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/footnotes.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml"/></Types>',
     '_rels/.rels' => '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="main" Type="' . $rel . 'officeDocument" Target="word/document.xml"/></Relationships>',
-    'word/document.xml' => '<w:document xmlns:w="' . $w . '"><w:body><w:p><w:r><w:t>Texto de laboratório.</w:t></w:r>' . $refs . '</w:p>' . $reference . '</w:body></w:document>',
+    'word/document.xml' => '<w:document xmlns:w="' . $w . '"><w:body>' . $main . $reference . '</w:body></w:document>',
     'word/_rels/document.xml.rels' => '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="fn" Type="' . $rel . 'footnotes" Target="footnotes.xml"/></Relationships>',
     'word/footnotes.xml' => '<w:footnotes xmlns:w="' . $w . '">' . $notes . '</w:footnotes>',
 ];

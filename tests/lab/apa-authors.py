@@ -1,11 +1,11 @@
-"""Isolated synthetic OJS checks for compound authors and shortened lists. Restores fixture bytes."""
+"""Isolated synthetic OJS checks for author lists or citation forms (--citations). Restores fixture bytes."""
 import json,os,subprocess,sys
 from pathlib import Path
 for key in ['DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH']:
  os.environ.pop(key,None)
 os.environ['DOCKER_HOST']='unix:///var/run/docker.sock'
 HERE=Path(__file__).resolve().parent
-ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-29'))
+ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
 ROOT.mkdir(parents=True,exist_ok=True);ROOT.chmod(0o700)
 (ROOT/'summary.json').write_text(json.dumps({'overall_passed':False,'status':'running'}))
 def command(args,**kw):return subprocess.check_output(args,**kw)
@@ -45,7 +45,8 @@ statefile=json.loads(command(['docker','exec','estrabao-lab-15-web','cat','/tmp/
 id=statefile['submissions']['abnt']['id'];before=state();original_hash=command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/footnote-fixture.php','hash']);b=Browser();a=Browser()
 try:
  b.login('admin');a.login('author')
- for mode,expected in [('compound','sem ponto e vírgula'),('abbreviated','19 primeiros autores, reticências e o último, sem &')]:
+ plan=[('citation-many','primeiro sobrenome seguido de et al.'),('citation-period','et al. com ponto após al')]if '--citations'in sys.argv else [('compound','sem ponto e vírgula'),('abbreviated','19 primeiros autores, reticências e o último, sem &')]
+ for mode,expected in plan:
   fixture(mode)
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
   check(mode+' incompatible reference cannot be released','A submissão não foi aceita'in b.text()and b.js('return !document.querySelector("button[value=approve]")'))
@@ -55,7 +56,7 @@ try:
    time.sleep(.1)
   body=b.js('return document.querySelector("#estrabaoDeskBody").value')
   check(mode+' desk draft has specific correction',expected in body)
-  check(mode+' draft keeps private bibliography out',all(s not in body for s in ['van der Meer','García Márquez','de Silva','Título sintético']))
+  check(mode+' draft keeps private bibliography out',all(s not in body for s in ['van der Meer','García Márquez','de Silva','Silva','Souza','Lima','Título sintético']))
   check(mode+' does not label entire bibliography ABNT','padrões ABNT reconhecidos'not in body)
   b.js('document.querySelector("#estrabaoDeskDraftTitle").scrollIntoView()')
   import base64
@@ -76,7 +77,7 @@ try:
    if a.js('return Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).some(x=>x.textContent.trim()==="OK")'):break
    time.sleep(.1)
   a.js('Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).find(x=>x.textContent.trim()==="OK").click()')
-  author_expected='ponto e vírgula'if mode=='compound'else '19 primeiros'
+  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.'}[mode]
   for _ in range(40):
    if author_expected in a.text():break
    time.sleep(.1)
@@ -88,4 +89,4 @@ finally:
 check('original workflow state restored',before==state())
 check('original manuscript bytes restored',original_hash==command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/footnote-fixture.php','hash']))
 (ROOT/'results.json').write_text(json.dumps(results,indent=2))
-(ROOT/'summary.json').write_text(json.dumps({'overall_passed':True,'checks':len(results),'engine':'0.21.0','plugin':'0.13.0.0','production_accessed':False,'fixture_restored':True},indent=2))
+(ROOT/'summary.json').write_text(json.dumps({'overall_passed':True,'checks':len(results),'engine':preflight['runtime']['engine'],'plugin':preflight['runtime']['installed_plugin'],'production_accessed':False,'fixture_restored':True},indent=2))

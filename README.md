@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 29 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 30 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). O conjunto foi
 validado no laboratório OJS isolado; o tema e a infraestrutura reais da revista
 ainda não foram homologados. Não há certificação completa de APA ou servidor MCP.
@@ -70,6 +70,9 @@ Arquivos/versão reais e infraestrutura permanecem fora da homologação local.
 A [Etapa 29](docs/STAGE29.md) amplia APA 7 para autoria composta e listas
 abreviadas, com bloqueio e correção na entrada. O [mapa APA 7](docs/APA7.md)
 registra cobertura e prioridades restantes.
+
+A [Etapa 30](docs/STAGE30.md) confere citações com três ou mais autores e o
+ponto de et al., preservando casos de desambiguação para conferência editorial.
 
 ## Componentes
 

@@ -1,0 +1,19 @@
+{
+  "base": "33171d1",
+  "engine": "0.22.0",
+  "plugin": "0.14.0.0",
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1023,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1023,
+      "failures": 0
+    }
+  },
+  "php_lint_files": 88,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "full_apa_validation": false
+}

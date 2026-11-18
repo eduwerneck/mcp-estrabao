@@ -55,13 +55,13 @@ final class References implements Rule
         ];
         return [
             new CheckResult('references.apa7', $apa, $evidence, '/manuscript',
-                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '6.0.0'),
+                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '7.0.0'),
             new CheckResult('references.citation_matching', $matching, $evidence + ['matching_direction' => 'recognized_citations_to_references'], '/manuscript',
-                'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '3.0.0'),
+                'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '4.0.0'),
             new CheckResult('references.apa7.recognized_formats', $formats, $evidence, '/manuscript',
                 'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.', '3.0.0'),
             new CheckResult('references.apa7.citation_format', $citationStyle, $evidence, '/manuscript',
-                'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.'),
+                'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.', '2.0.0'),
         ];
     }
 }

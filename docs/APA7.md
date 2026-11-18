@@ -15,7 +15,7 @@ API, importações e outros caminhos não foram homologados.
 | --- | --- | --- |
 | ABNT e formatos mistos | Padrões compostos de autoria/data após fonte; cidade/editora, rótulos de periódico, DOI antigo e separadores reconhecidos | Padrões fora da gramática, tipos jurídicos e autoria institucional |
 | Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
-| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português | Instituições/siglas, nomes compostos no matching, três ou mais autores e exceções, citações secundárias, múltiplas obras e anos, desambiguação |
+| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação | Instituições/siglas, nomes compostos no matching, resolução do prefixo mínimo em exceções, citações secundárias, múltiplas obras e anos, desambiguação |
 | Referências por tipo | Campos e itálicos de subconjuntos reconhecidos de artigos e capítulos; candidatos de obras autônomas com revisão do tipo | Ampliar modelos de livros/edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
@@ -26,8 +26,9 @@ API, importações e outros caminhos não foram homologados.
 
 1. Autoria pessoal e listas abreviadas: entregue na Etapa 29, incluindo bloqueio
    e orientação ao autor no OJS local.
-2. Citações no texto: cobrir primeiro três ou mais autores/et al. e suas exceções,
-   instituições e citações secundárias, com testes de falsos positivos.
+2. Citações no texto: três ou mais autores/et al. e proteção da desambiguação
+   entregues na Etapa 30. Próximos: instituições e citações secundárias, com
+   testes de falsos positivos; prefixo mínimo da desambiguação segue humano.
 3. Modelos de referências por tipo e seus campos, sem adivinhar o tipo da obra.
 4. Correspondência e desambiguação ampliadas, ordem da lista e localizadores.
 5. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
