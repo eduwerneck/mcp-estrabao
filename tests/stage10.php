@@ -73,9 +73,9 @@ foreach ([
     'numbered reference' => '[1] ' . $single,
     'legacy initials' => 'Silva, Alberto. (2020). Livro. Editora.',
 ] as $name => $reference) {
-    test('referência não reconhecida impede falsa ausência ' . $name, function () use ($reference) {
+    test('referência não reconhecida impede falsa ausência ' . $name, function () use ($reference, $name) {
         $check = referenceChecks(referenceDocument(['Texto (Ausente, 2020).'], [$reference]))[1];
-        same('indeterminado', $check['status']); same(1, $check['evidence']['analysis']['unparsed_references']);
+        same('indeterminado', $check['status']); same($name === 'institutional author' ? 0 : 1, $check['evidence']['analysis']['unparsed_references']);
     });
 }
 foreach ([
@@ -166,9 +166,9 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.22.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.23.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
-            same($expected, $checks['references.citation_matching']['status']); same('4.0.0', $checks['references.citation_matching']['rule_version']);
+            same($expected, $checks['references.citation_matching']['status']); same('5.0.0', $checks['references.citation_matching']['rule_version']);
             same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);
             same(hash_file('sha256', $path), $checks['references.apa7']['evidence']['document_sha256']);
             same(false, strpos($out, 'Livro sintético') !== false); same(false, strpos($out, $path) !== false);

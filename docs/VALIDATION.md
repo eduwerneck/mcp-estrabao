@@ -771,3 +771,22 @@ O produto manteve a segmentação incompleta inconclusiva, como previsto.
 Containers desligados ao final. Sem produção, VM Oracle, arquivos reais,
 mensagens externas ou publicação do ambiente. Sem certificação completa APA 7;
 próximas lacunas em APA7.md. CI remoto desta branch ainda não verificado.
+
+## Etapa 31 — APA 7: instituições e siglas
+
+Validação em 18/11/2026, base 7f2ca90 (merge PR #31), motor 0.23.0 e
+plugin 0.15.0.0. APA 8.0.0, matching 5.0.0, formatos 4.0.0, citações 3.0.0.
+
+- 1055 testes sintéticos em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 90 arquivos PHP, compilação Python e schemas CLI aprovados.
+- 17 verificações no OJS 3.3.0.20/Chromium local: bloqueio institucional por
+  posição da data e DOI antigo, devolutiva/privacidade, POST e feedback ao autor;
+  sigla vinculada permanece sem conclusão automática e sem liberação salva.
+- Casos sintéticos protegem siglas compartilhadas, colisões com sobrenomes,
+  nomes contidos em outros, referências duplicadas e tamanhos não suportados.
+- Capturas de dois bloqueios inspecionadas. Bytes e estado originais restaurados,
+  rede interna, mounts read-only e transporte neutralizado confirmados.
+
+Evidências em evidence/stage31. Containers desligados ao final. Sem produção,
+VM Oracle, documentos reais, mensagens externas ou deploy. Limites em STAGE31.md
+e APA7.md; não certifica APA integral. CI remoto da nova branch não verificado.

@@ -16,6 +16,7 @@ final class ReferenceAnalysis
         'three_or_more_authors_require_et_al' => 'Para obra de três ou mais autores, usar o primeiro sobrenome seguido de et al. desde a primeira citação, salvo necessidade de desambiguação.',
         'et_al_period' => 'Escrever et al. com ponto após al.',
         'multi_author_disambiguation_review' => 'Conferir a necessidade de nomes adicionais para distinguir obras com o mesmo primeiro autor e ano.',
+        'institutional_alias_review' => 'Conferir a apresentação do nome completo e da sigla institucional na primeira citação; vínculo literal não confirma identidade nem introdução correta.',
         'citation_spacing' => 'Na parentética, inserir espaço após a vírgula; na narrativa, antes do parêntese do ano.',
         'personal_surname_full_uppercase' => 'Conferir capitalização do sobrenome; maiúsculas isoladas não provam ABNT.',
     ];
@@ -37,7 +38,7 @@ final class ReferenceAnalysis
         $entries = []; $referenceSamples = []; $unparsed = 0; $doi = ['url_candidates' => 0, 'legacy_candidates' => 0, 'not_detected' => 0];
         if (!$limit) {
             foreach ($referenceTexts as $index => $paragraph) {
-                $entry = self::parseEntry($paragraph['text']);
+                $entry = self::parseEntry($paragraph['text']) ?? InstitutionalAuthors::entry($paragraph['text']);
                 if ($entry === null) { $unparsed++; }
                 else { $entry['reference_index'] = $index; $entry['paragraph_index'] = $paragraph['index']; $entries[] = $entry; }
                 $url = preg_match('~https://doi\.org/10\.[0-9]{4,9}/\S+~iu', $paragraph['text']);
@@ -55,6 +56,8 @@ final class ReferenceAnalysis
                 }
             }
         }
+        $aliases = InstitutionalAuthors::aliases($bodyTexts, $entries);
+        $hasInstitutional = count(array_filter($entries, function ($entry) { return ($entry['kind'] ?? null) === 'institutional'; })) > 0;
         $citations = []; $unparsedGroups = 0; $numeric = 0;
         if (!$limit) {
             foreach ($bodyTexts as $paragraph) {
@@ -71,14 +74,14 @@ final class ReferenceAnalysis
                     if (preg_match('/^\s*([0-9]{4}[a-z]?)\s*$/iuD', $inside, $year)) {
                         $prefix = trim(substr($text, 0, $offset));
                         $prefix = preg_replace('/^(?:Segundo|Conforme|According to|Según)\s+/iu', '', $prefix);
-                        $author = self::citationAuthors($prefix);
+                        $author = InstitutionalAuthors::citation($prefix, $entries, $aliases) ?? self::citationAuthors($prefix);
                         if ($author !== null) { $parsed[] = $author + ['year' => strtolower($year[1]), 'placement' => 'narrative',
                             'spacing_ok' => $offset > 0 && preg_match('/\s$/u', substr($text, 0, $offset)) === 1]; }
                         else { $unparsedGroups++; }
                     } else {
                         foreach (explode(';', $inside) as $item) {
                             if (preg_match('/^\s*(.+?),\s*([0-9]{4}[a-z]?)(?:,\s*pp?\.\s*[0-9]+(?:[-–][0-9]+)?)?\s*$/iuD', $item, $match)) {
-                                $author = self::citationAuthors(trim($match[1]));
+                                $author = InstitutionalAuthors::citation(trim($match[1]), $entries, $aliases) ?? self::citationAuthors(trim($match[1]));
                                 if ($author !== null) { $parsed[] = $author + ['year' => strtolower($match[2]), 'placement' => 'parenthetical', 'spacing_ok' => preg_match('/,\S/u', $item) !== 1]; continue; }
                             }
                             $unparsedGroups++;
@@ -95,7 +98,8 @@ final class ReferenceAnalysis
         $styleCounts = ['conforme' => 0, 'não conforme' => 0, 'indeterminado' => 0]; $styleSamples = [];
         $samples = []; $matched = 0; $missing = 0; $ambiguous = 0; $used = [];
         foreach ($limit ? [] : $citations as $citation) {
-            $matches = []; $matchParagraphs = []; $weak = false;
+            // Unlinked institutional aliases cannot prove a reference absent, including in mixed lists.
+            $matches = []; $matchParagraphs = []; $weak = $hasInstitutional || !empty($citation['institutional_ambiguous']);
             foreach ($entries as $entry) {
                 if ($entry['year'] !== $citation['year']) { continue; }
                 if (self::sameName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
@@ -106,6 +110,7 @@ final class ReferenceAnalysis
             else { $state = 'unresolved'; $missing++; }
             $styleIssues = [];
             if (count($matches) === 1) {
+                if (!empty($citation['institutional_alias'])) { $styleIssues[] = 'institutional_alias_review'; }
                 if ($citation['placement'] === 'parenthetical' && $citation['form'] === 'two_authors' && $citation['conjunction'] !== '&') { $styleIssues[] = 'parenthetical_authors_require_ampersand'; }
                 if ($citation['placement'] === 'narrative' && $citation['form'] === 'two_authors' && $citation['conjunction'] === '&') { $styleIssues[] = 'narrative_authors_require_conjunction'; }
                 if (in_array($citation['form'], ['many_authors', 'expanded_et_al'], true)) {
@@ -119,10 +124,10 @@ final class ReferenceAnalysis
                 }
                 if (isset($citation['et_al_period']) && !$citation['et_al_period']) { $styleIssues[] = 'et_al_period'; }
                 if (!$citation['spacing_ok']) { $styleIssues[] = 'citation_spacing'; }
-                foreach ($citation['authors'] as $name) {
+                foreach ($citation['form'] === 'institutional' ? [] : $citation['authors'] as $name) {
                     if (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)) { $styleIssues[] = 'personal_surname_full_uppercase'; }
                 }
-                $definite = array_diff($styleIssues, ['personal_surname_full_uppercase', 'multi_author_disambiguation_review']);
+                $definite = array_diff($styleIssues, ['personal_surname_full_uppercase', 'multi_author_disambiguation_review', 'institutional_alias_review']);
                 $styleStatus = $definite ? 'não conforme' : ($styleIssues ? 'indeterminado' : 'conforme');
             } else { $styleStatus = 'indeterminado'; }
             $styleCounts[$styleStatus]++;
@@ -212,6 +217,10 @@ final class ReferenceAnalysis
 
     private static function matches(array $citation, array $entry): bool
     {
+        if (!empty($citation['institutional_ambiguous'])) { return false; }
+        if (($entry['kind'] ?? null) === 'institutional' || $citation['form'] === 'institutional') {
+            return ($entry['kind'] ?? null) === 'institutional' && $citation['form'] === 'institutional' && self::sameName($citation['authors'][0], $entry['authors'][0]);
+        }
         if ($citation['form'] === 'expanded_et_al') {
             if (count($entry['authors']) <= count($citation['authors'])) { return false; }
             foreach ($citation['authors'] as $index=>$name) { if (!self::sameName($name, $entry['authors'][$index])) { return false; } }

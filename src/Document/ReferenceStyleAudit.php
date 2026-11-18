@@ -181,7 +181,7 @@ final class ReferenceStyleAudit
         $surname = ApaPersonalAuthors::surnamePattern();
         $lead = preg_match('~^' . $surname . ',\s*(?:\p{Lu}\.\s*){1,4}~u', $text)
             || preg_match('~^' . $surname . ',\s*\p{Lu}[\p{L}\p{Pd}]{1,40}(?:\s+\p{L}[\p{L}\p{Pd}]{0,40}){0,5}\.\s+~u', $text);
-        if (!$lead) { return false; }
+        if (!$lead && !InstitutionalAuthors::abntLead($text)) { return false; }
         $base = trim(preg_split('~(?:Disponível em|Acesso em|Available at|Accessed):|\bDOI:\s*10\.|https?://~iu', $text, 2)[0]);
         if (!preg_match('/(?:,|\.)\s*[0-9]{4}[a-z]?\.?$/iuD', $base)) { return false; }
         $place = preg_match('/\.\s+\p{Lu}[\p{L}\s.\p{Pd}]{1,64}:\s*[^:;]{2,160},\s*[0-9]{4}[a-z]?\.?$/uD', $base);
