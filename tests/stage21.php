@@ -51,7 +51,7 @@ foreach([20=>true,21=>false]as$count=>$valid){
   same($valid?'conforme':'não conforme',auditCodes($a)['personal_author_list_length']);
  });
 }
-foreach(['World Health Organization.','de Silva, A.; Souza, B.','Silva, A., Jr.; Souza, B.','Silva, A., … Souza, B.','Silva, A.; Texto inesperado; Souza, B.']as$prefix){
+foreach(['World Health Organization.','Silva, A., Jr.; Souza, B.','Silva, A.; Texto inesperado; Souza, B.']as$prefix){
  test('autoria fora da gramática não é adivinhada '.md5($prefix),function()use($prefix){same(null,ApaPersonalAuthors::inspect($prefix));});
 }
 test('formato misto com DOI antigo gera correções fixas sem reproduzir referência',function(){

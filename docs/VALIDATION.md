@@ -725,3 +725,27 @@ Motor 0.20.0 e plugin instalado/arquivos 0.12.0.0 sem alteração.
 Containers desligados ao final. Sem produção, VM Oracle, mensagens externas ou
 publicação do ambiente. Arquivos/versão do tema real e infraestrutura não
 inspecionados. CI da nova branch ainda não verificado.
+
+## Etapa 29 — APA 7: autoria e entrada
+
+Validação em 18/11/2026 sobre 3c81b3a (merge PR #29), motor 0.21.0 e plugin
+0.13.0.0. Regra APA 6.0.0 e formatos reconhecidos 3.0.0 alinhados com adaptador
+e minuta; matching e contratos mantidos.
+
+- 986 testes sintéticos em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 87 arquivos PHP e compilação de apa-authors.py aprovados.
+- 14 verificações OJS 3.3.0.20/Chromium local, incluindo POST nativo e feedback
+  concreto na tela do autor, impossibilidade de liberação e minuta sem dados
+  bibliográficos. Capturas de dois casos de erro inspecionadas.
+- Datas/estado editorial e bytes originais restaurados; rede interna, mounts
+  read-only e e-mail neutralizado confirmados. Versão instalada do plugin
+  alinhada apenas no laboratório pelo utilitário nativo do OJS.
+- Saídas CLI de relatório e minuta validadas nos schemas correspondentes.
+
+A primeira tentativa PHP 8.1 usou a cópia antiga dos testes no container; após
+sincronizar os testes/CLI atuais, o conjunto final passou. O ensaio do autor
+usa notificações reais: status=true na resposta nativa não significa conclusão.
+
+Containers desligados ao final. Evidências sintéticas em evidence/stage29.
+Sem documentos reais, produção, VM Oracle, mensagens externas ou deploy.
+Limites e próxima ampliação em APA7.md. CI remoto desta branch não verificado.

@@ -1,0 +1,91 @@
+"""Isolated synthetic OJS checks for compound authors and shortened lists. Restores fixture bytes."""
+import json,os,subprocess,sys
+from pathlib import Path
+for key in ['DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH']:
+ os.environ.pop(key,None)
+os.environ['DOCKER_HOST']='unix:///var/run/docker.sock'
+HERE=Path(__file__).resolve().parent
+ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-29'))
+ROOT.mkdir(parents=True,exist_ok=True);ROOT.chmod(0o700)
+(ROOT/'summary.json').write_text(json.dumps({'overall_passed':False,'status':'running'}))
+def command(args,**kw):return subprocess.check_output(args,**kw)
+names=['estrabao-lab-15-web','estrabao-lab-15-db','estrabao-lab-15-browser']
+containers=json.loads(command(['docker','inspect',*names]))
+checks={}
+web=next(c for c in containers if c['Name']=='/estrabao-lab-15-web')
+for c in containers:
+ name=c['Name'].lstrip('/')
+ nets=list(c['NetworkSettings']['Networks'])
+ if not nets and c['HostConfig']['NetworkMode'] in ['container:'+web['Id'],'container:estrabao-lab-15-web']:
+  nets=list(web['NetworkSettings']['Networks'])
+ checks[name+'_running']=c['State']['Running']
+ checks[name+'_internal_network_only']=bool(nets) and all(json.loads(command(['docker','network','inspect',n]))[0]['Internal'] for n in nets)
+ checks[name+'_no_public_ports']=all(b.get('HostIp') in ['127.0.0.1','::1'] for bindings in (c['HostConfig'].get('PortBindings')or{}).values() for b in bindings or [])
+web=next(c for c in containers if c['Name']=='/estrabao-lab-15-web')
+checks['web_sendmail_override']= 'sendmail_path=/bin/true' in (web['Config'].get('Cmd')or[])
+checks['mounts_match_checkout']=all(any(m['Destination']==dest and Path(m['Source']).resolve()==(HERE.parents[1]/relative).resolve() for m in web['Mounts']) for dest,relative in [('/opt/estrabao/src','src'),('/var/www/html/plugins/generic/estrabao','plugins/generic/estrabao')])
+checks['readonly_engine_and_plugin']=all(any(m['Destination']==dest and not m['RW'] for m in web['Mounts']) for dest in ['/opt/estrabao/src','/var/www/html/plugins/generic/estrabao'])
+if not all(checks.values()):raise RuntimeError('Synthetic lab isolation preflight failed: '+str([k for k,v in checks.items()if not v]))
+command(['docker','cp',str(HERE/'preflight.php'),'estrabao-lab-15-web:/tmp/estrabao-preflight.php'])
+preflight=json.loads(command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/estrabao-preflight.php']))
+(ROOT/'preflight.json').write_text(json.dumps({'container_checks':checks,**preflight},indent=2))
+for name in ['footnote-fixture.php','article-date-fixture.php','state-query.php']:
+ command(['docker','cp',str(HERE/name),'estrabao-lab-15-web:/tmp/'+name])
+
+from browser import Browser
+import time
+results=[]
+def fixture(mode):command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/footnote-fixture.php',mode])
+def state():return command(['docker','exec','estrabao-lab-15-web','php','/tmp/state-query.php'])
+def check(name,ok):
+ print(('PASS 'if ok else 'FAIL ')+name,flush=True)
+ if not ok:raise AssertionError(name)
+ results.append({'case':name,'passed':bool(ok)})
+statefile=json.loads(command(['docker','exec','estrabao-lab-15-web','cat','/tmp/lab-state.json']))
+id=statefile['submissions']['abnt']['id'];before=state();original_hash=command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/footnote-fixture.php','hash']);b=Browser();a=Browser()
+try:
+ b.login('admin');a.login('author')
+ for mode,expected in [('compound','sem ponto e vírgula'),('abbreviated','19 primeiros autores, reticências e o último, sem &')]:
+  fixture(mode)
+  b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
+  check(mode+' incompatible reference cannot be released','A submissão não foi aceita'in b.text()and b.js('return !document.querySelector("button[value=approve]")'))
+  b.js('let s=document.querySelector("#estrabaoManuscriptType");s.value="article";s.form.requestSubmit();')
+  for _ in range(40):
+   if b.js('return !!document.querySelector("#estrabaoDeskBody")'):break
+   time.sleep(.1)
+  body=b.js('return document.querySelector("#estrabaoDeskBody").value')
+  check(mode+' desk draft has specific correction',expected in body)
+  check(mode+' draft keeps private bibliography out',all(s not in body for s in ['van der Meer','García Márquez','de Silva','Título sintético']))
+  check(mode+' does not label entire bibliography ABNT','padrões ABNT reconhecidos'not in body)
+  b.js('document.querySelector("#estrabaoDeskDraftTitle").scrollIntoView()')
+  import base64
+  (ROOT/(mode+'.png')).write_bytes(base64.b64decode(b.call('GET','/screenshot')))
+  a.get('http://127.0.0.1:18080/index.php/estrabao-lab/submission/wizard/4?submissionId='+str(id))
+  for _ in range(40):
+   if a.js('return !!document.querySelector("#submitStep4Form")'):break
+   time.sleep(.1)
+  response=a.call('POST','/execute/async',{'script':"let done=arguments[arguments.length-1];let f=document.querySelector('#submitStep4Form');fetch(f.action,{method:'POST',body:new URLSearchParams(new FormData(f))}).then(async r=>done(await r.text()));",'args':[]})
+  check(mode+' wizard rejects valid form and retains state',before==state()and 'submitStep4Form'in json.loads(response).get('content',''))
+  # Native validation reports errors through notifications rather than the response content.
+  a.get('http://127.0.0.1:18080/index.php/estrabao-lab/submission/wizard/4?submissionId='+str(id))
+  for _ in range(40):
+   if a.js('return !!document.querySelector("#submitStep4Form")'):break
+   time.sleep(.1)
+  a.js('document.querySelector("[name=submitFormButton]").click()')
+  for _ in range(40):
+   if a.js('return Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).some(x=>x.textContent.trim()==="OK")'):break
+   time.sleep(.1)
+  a.js('Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).find(x=>x.textContent.trim()==="OK").click()')
+  author_expected='ponto e vírgula'if mode=='compound'else '19 primeiros'
+  for _ in range(40):
+   if author_expected in a.text():break
+   time.sleep(.1)
+  check(mode+' author receives concrete correction',author_expected in a.text()and before==state())
+  (ROOT/(mode+'-author.png')).write_bytes(base64.b64decode(a.call('GET','/screenshot')))
+  fixture('restore')
+finally:
+ fixture('restore');b.call('DELETE','');a.call('DELETE','')
+check('original workflow state restored',before==state())
+check('original manuscript bytes restored',original_hash==command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/footnote-fixture.php','hash']))
+(ROOT/'results.json').write_text(json.dumps(results,indent=2))
+(ROOT/'summary.json').write_text(json.dumps({'overall_passed':True,'checks':len(results),'engine':'0.21.0','plugin':'0.13.0.0','production_accessed':False,'fixture_restored':True},indent=2))
