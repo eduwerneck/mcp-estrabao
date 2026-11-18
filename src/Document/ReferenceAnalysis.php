@@ -13,6 +13,9 @@ final class ReferenceAnalysis
     private const STYLE_GUIDANCE = [
         'parenthetical_authors_require_ampersand' => 'Usar & entre dois autores na citação parentética.',
         'narrative_authors_require_conjunction' => 'Na narrativa, usar conjunção textual entre os autores, não &.',
+        'three_or_more_authors_require_et_al' => 'Para obra de três ou mais autores, usar o primeiro sobrenome seguido de et al. desde a primeira citação, salvo necessidade de desambiguação.',
+        'et_al_period' => 'Escrever et al. com ponto após al.',
+        'multi_author_disambiguation_review' => 'Conferir a necessidade de nomes adicionais para distinguir obras com o mesmo primeiro autor e ano.',
         'citation_spacing' => 'Na parentética, inserir espaço após a vírgula; na narrativa, antes do parêntese do ano.',
         'personal_surname_full_uppercase' => 'Conferir capitalização do sobrenome; maiúsculas isoladas não provam ABNT.',
     ];
@@ -105,11 +108,21 @@ final class ReferenceAnalysis
             if (count($matches) === 1) {
                 if ($citation['placement'] === 'parenthetical' && $citation['form'] === 'two_authors' && $citation['conjunction'] !== '&') { $styleIssues[] = 'parenthetical_authors_require_ampersand'; }
                 if ($citation['placement'] === 'narrative' && $citation['form'] === 'two_authors' && $citation['conjunction'] === '&') { $styleIssues[] = 'narrative_authors_require_conjunction'; }
+                if (in_array($citation['form'], ['many_authors', 'expanded_et_al'], true)) {
+                    $cohort = 0;
+                    foreach ($entries as $candidate) {
+                        if ($candidate['year'] === $citation['year'] && self::sameName($candidate['authors'][0], $citation['authors'][0])) { $cohort++; }
+                    }
+                    // A missing/unparsed reference could require disambiguation; never guess the exception away.
+                    if ($boundaries && !$unparsed && $cohort === 1) { $styleIssues[] = 'three_or_more_authors_require_et_al'; }
+                    else { $styleIssues[] = 'multi_author_disambiguation_review'; }
+                }
+                if (isset($citation['et_al_period']) && !$citation['et_al_period']) { $styleIssues[] = 'et_al_period'; }
                 if (!$citation['spacing_ok']) { $styleIssues[] = 'citation_spacing'; }
                 foreach ($citation['authors'] as $name) {
                     if (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)) { $styleIssues[] = 'personal_surname_full_uppercase'; }
                 }
-                $definite = array_diff($styleIssues, ['personal_surname_full_uppercase']);
+                $definite = array_diff($styleIssues, ['personal_surname_full_uppercase', 'multi_author_disambiguation_review']);
                 $styleStatus = $definite ? 'não conforme' : ($styleIssues ? 'indeterminado' : 'conforme');
             } else { $styleStatus = 'indeterminado'; }
             $styleCounts[$styleStatus]++;
@@ -166,7 +179,24 @@ final class ReferenceAnalysis
     private static function citationAuthors(string $text): ?array
     {
         $name = self::SURNAME;
-        if (preg_match('~^(' . $name . ')\s+et\s+al\.$~iuD', $text, $match) && self::citationName($match[1])) { return ['authors' => [$match[1]], 'form' => 'et_al']; }
+        if (preg_match('~^(' . $name . ')\s+et\s+al(\.)?$~iuD', $text, $match) && self::citationName($match[1])) { return ['authors' => [$match[1]], 'form' => 'et_al', 'et_al_period' => !empty($match[2])]; }
+        // Multi-author forms remain bounded and use only the existing single-surname grammar.
+        if (strlen($text) <= 2048) {
+            $expanded = preg_match('~^((?:' . $name . ',\s*){1,18}' . $name . '),?\s+et\s+al(\.)?$~iuD', $text, $match);
+            if ($expanded) {
+                $authors = preg_split('/,\s*/u', $match[1]);
+                if (count(array_filter($authors, [self::class, 'citationName'])) === count($authors)) {
+                    return ['authors'=>$authors, 'form'=>'expanded_et_al', 'et_al_period'=>!empty($match[2])];
+                }
+            }
+            if (preg_match('~^((?:' . $name . ',\s*){1,18}' . $name . ')(?:,?\s+(&|e|and|y)\s+(' . $name . '))?$~iuD', $text, $match)) {
+                $authors = preg_split('/,\s*/u', $match[1]);
+                if (isset($match[3]) && $match[3] !== '') { $authors[] = $match[3]; }
+                if (count($authors) >= 3 && count(array_filter($authors, [self::class, 'citationName'])) === count($authors)) {
+                    return ['authors'=>$authors, 'form'=>'many_authors'];
+                }
+            }
+        }
         if (preg_match('~^(' . $name . ')\s+(&|e|and|y)\s+(' . $name . ')$~iuD', $text, $match) && self::citationName($match[1]) && self::citationName($match[3])) { return ['authors' => [$match[1], $match[3]], 'form' => 'two_authors', 'conjunction' => $match[2]]; }
         if (preg_match('~^(' . $name . ')$~uD', $text, $match) && self::citationName($match[1])) {
             if (preg_match('/^(?:Em|No|Na|Ano|Desde|Até|Dados|Figura|Tabela|Gráfico|Quadro)$/iuD', $match[1])) { return null; }
@@ -182,6 +212,11 @@ final class ReferenceAnalysis
 
     private static function matches(array $citation, array $entry): bool
     {
+        if ($citation['form'] === 'expanded_et_al') {
+            if (count($entry['authors']) <= count($citation['authors'])) { return false; }
+            foreach ($citation['authors'] as $index=>$name) { if (!self::sameName($name, $entry['authors'][$index])) { return false; } }
+            return true;
+        }
         if ($citation['form'] === 'et_al') { return count($entry['authors']) >= 3 && self::sameName($citation['authors'][0], $entry['authors'][0]); }
         if (count($citation['authors']) !== count($entry['authors'])) { return false; }
         foreach ($citation['authors'] as $index => $name) { if (!self::sameName($name, $entry['authors'][$index])) { return false; } }

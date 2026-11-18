@@ -749,3 +749,25 @@ usa notificações reais: status=true na resposta nativa não significa conclus�
 Containers desligados ao final. Evidências sintéticas em evidence/stage29.
 Sem documentos reais, produção, VM Oracle, mensagens externas ou deploy.
 Limites e próxima ampliação em APA7.md. CI remoto desta branch não verificado.
+
+## Etapa 30 — APA 7: citações de três ou mais autores
+
+Validação em 18/11/2026, base 33171d1 (merge PR #30), motor 0.22.0 e
+plugin 0.14.0.0. APA 7.0.0, matching 4.0.0, formato de citações 2.0.0.
+
+- 1023 testes sintéticos em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 88 arquivos PHP e compilação de apa-authors.py aprovados.
+- 14 verificações no OJS 3.3.0.20/Chromium local: painel sem liberação, minuta,
+  privacidade, POST, feedback específico ao autor e restauração de bytes/estado.
+- Testes protegem coortes com mesmo primeiro autor/ano, referências não
+  reconhecidas, nomes divergentes, sufixos, localizadores e tamanho de entrada.
+- Saídas CLI de relatório e minuta válidas nos schemas; diff sem erros.
+- Capturas sintéticas de dois bloqueios inspecionadas. Evidências em stage30.
+
+A primeira fixture de navegador tinha rótulos de seções diferentes dos
+documentados; foi corrigida para o conjunto editorial antes do ensaio final.
+O produto manteve a segmentação incompleta inconclusiva, como previsto.
+
+Containers desligados ao final. Sem produção, VM Oracle, arquivos reais,
+mensagens externas ou publicação do ambiente. Sem certificação completa APA 7;
+próximas lacunas em APA7.md. CI remoto desta branch ainda não verificado.

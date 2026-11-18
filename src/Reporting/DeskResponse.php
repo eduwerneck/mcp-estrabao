@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'6.0.0', 'references.citation_matching'=>'3.0.0',
-        'references.apa7.recognized_formats'=>'3.0.0', 'references.apa7.citation_format'=>'1.0.0',
+        'references.apa7'=>'7.0.0', 'references.citation_matching'=>'4.0.0',
+        'references.apa7.recognized_formats'=>'3.0.0', 'references.apa7.citation_format'=>'2.0.0',
     ];
 
     public static function generate(array $report): array
@@ -220,6 +220,8 @@ final class DeskResponse
                 if(($entry['status']??null)===CheckResult::FAIL && isset($messages[$code])){$actions[]=$messages[$code];}
             }}
             $citationMessages=[
+                'three_or_more_authors_require_et_al'=>'usar o primeiro sobrenome seguido de et al. nas citações de obras de três ou mais autores, salvo desambiguação',
+                'et_al_period'=>'escrever et al. com ponto após al',
                 'parenthetical_authors_require_ampersand'=>'usar & entre dois autores na citação parentética',
                 'narrative_authors_require_conjunction'=>'usar conjunção textual entre autores na narrativa, em lugar de &',
                 'citation_spacing'=>'ajustar espaços após a vírgula e antes do parêntese do ano',
