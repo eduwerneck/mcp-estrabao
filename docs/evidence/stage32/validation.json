@@ -1,0 +1,20 @@
+{
+  "base": "dfd4e9d",
+  "engine": "0.24.0",
+  "plugin": "0.16.0.0",
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1087,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1087,
+      "failures": 0
+    }
+  },
+  "php_lint_files": 91,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "full_apa_validation": false,
+  "apud_policy": "estrabao-no-apud-2026-11-18"
+}

@@ -10,7 +10,7 @@ msgid "plugins.generic.estrabao.description"
 msgstr "Revisión APA con bloqueo experimental de la confirmación, habilitado por separado en pruebas."
 
 msgid "plugins.generic.estrabao.apaNotAccepted"
-msgstr "No se aceptó el envío: se identificaron incompatibilidades con APA 7. No se aceptan referencias en ABNT. Corrija el manuscrito antes de intentarlo de nuevo."
+msgstr "No se aceptó el envío: se identificaron incompatibilidades con APA 7 o con las directrices editoriales de citas. No se aceptan referencias en ABNT. Corrija el manuscrito antes de intentarlo de nuevo."
 
 msgid "plugins.generic.estrabao.apaReviewRequired"
 msgstr "No se pudo completar el envío: el cumplimiento de APA 7 requiere revisión editorial. Esto no significa que se haya identificado ABNT. Contacte con el equipo editorial."

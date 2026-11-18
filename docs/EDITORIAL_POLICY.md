@@ -149,3 +149,16 @@ finalidade e nível de interação se aplicam quando houve uso. Não estabelece 
 fixo. A adequação e a veracidade continuam humanas. É confirmação nesta conversa,
 sem afirmar publicação de alteração nas diretrizes públicas. Implementação e
 limites em STAGE26.md.
+
+## Citações secundárias — decisão de 18/11/2026
+
+O responsável determinou que a Estrabão não aceite **apud** em citações secundárias.
+Orientar o autor a usar **como citado em**, identificando a fonte efetivamente
+consultada. A obra original não consultada não deve ser exigida automaticamente
+na lista. O sistema não presume quais obras foram efetivamente lidas.
+
+É uma regra editorial explícita, não prova de ABNT pela palavra isolada nem
+alegação de proibição universal da expressão na APA. A Etapa 32 bloqueia o uso
+na gramática de citações secundárias reconhecida, sem opção de liberação enquanto
+a infração persistir. Menções explicativas fora dessa gramática não são infração;
+formas não analisáveis permanecem para conferência editorial, sem avanço automático.

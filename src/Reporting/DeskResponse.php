@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'8.0.0', 'references.citation_matching'=>'5.0.0',
-        'references.apa7.recognized_formats'=>'4.0.0', 'references.apa7.citation_format'=>'3.0.0',
+        'references.apa7'=>'9.0.0', 'references.citation_matching'=>'6.0.0',
+        'references.apa7.recognized_formats'=>'4.0.0', 'references.apa7.citation_format'=>'4.0.0',
     ];
 
     public static function generate(array $report): array
@@ -220,6 +220,7 @@ final class DeskResponse
                 if(($entry['status']??null)===CheckResult::FAIL && isset($messages[$code])){$actions[]=$messages[$code];}
             }}
             $citationMessages=[
+                'secondary_apud_not_allowed'=>'não utilizar apud, conforme a diretriz editorial da Estrabão; usar como citado em e indicar a fonte efetivamente consultada',
                 'three_or_more_authors_require_et_al'=>'usar o primeiro sobrenome seguido de et al. nas citações de obras de três ou mais autores, salvo desambiguação',
                 'et_al_period'=>'escrever et al. com ponto após al',
                 'parenthetical_authors_require_ampersand'=>'usar & entre dois autores na citação parentética',
@@ -233,8 +234,8 @@ final class DeskResponse
             if(($e['style_audit']['alphabetical_order_status']??null)===CheckResult::FAIL){$actions[]='reordenar as referências alfabeticamente';}
             if(($e['analysis']['closed_subset']??false) && ($e['analysis']['unresolved_citations']??0)>0){$actions[]='conferir as chaves autor–ano das citações não ligadas a referências';}
             $actions=array_values(array_unique($actions));
-            return self::item('Referências e citações','Citações e referências devem seguir APA 7.',
-                'Foram identificadas incompatibilidades comprovadas de formato ou correspondência entre citações e referências.',
+            return self::item('Referências e citações','Citações e referências devem seguir APA 7 e as diretrizes editoriais da Estrabão.',
+                'Foram identificadas incompatibilidades comprovadas de formato, correspondência ou diretriz editorial de citações.',
                 $actions ? 'Correções identificadas: '.implode('; ',$actions).'.' : 'Adequar os itens não conformes à APA 7 e conferir a correspondência autor–ano.');
         }
         return null;

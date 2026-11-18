@@ -1,11 +1,11 @@
-"""Isolated synthetic OJS checks for author lists or citation forms (--citations or --institutions). Restores fixture bytes."""
+"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions or --secondary). Restores fixture bytes."""
 import json,os,subprocess,sys
 from pathlib import Path
 for key in ['DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH']:
  os.environ.pop(key,None)
 os.environ['DOCKER_HOST']='unix:///var/run/docker.sock'
 HERE=Path(__file__).resolve().parent
-ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
+ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
 ROOT.mkdir(parents=True,exist_ok=True);ROOT.chmod(0o700)
 (ROOT/'summary.json').write_text(json.dumps({'overall_passed':False,'status':'running'}))
 def command(args,**kw):return subprocess.check_output(args,**kw)
@@ -28,6 +28,7 @@ checks['readonly_engine_and_plugin']=all(any(m['Destination']==dest and not m['R
 if not all(checks.values()):raise RuntimeError('Synthetic lab isolation preflight failed: '+str([k for k,v in checks.items()if not v]))
 command(['docker','cp',str(HERE/'preflight.php'),'estrabao-lab-15-web:/tmp/estrabao-preflight.php'])
 preflight=json.loads(command(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/estrabao-preflight.php']))
+if '--secondary'in sys.argv:command(['docker','exec','estrabao-lab-15-web','sh','-c','find cache -maxdepth 1 -type f -name "fc-locale*" -delete'])
 (ROOT/'preflight.json').write_text(json.dumps({'container_checks':checks,**preflight},indent=2))
 for name in ['footnote-fixture.php','article-date-fixture.php','state-query.php']:
  command(['docker','cp',str(HERE/name),'estrabao-lab-15-web:/tmp/'+name])
@@ -47,6 +48,7 @@ try:
  b.login('admin');a.login('author')
  plan=[('citation-many','primeiro sobrenome seguido de et al.'),('citation-period','et al. com ponto após al')]if '--citations'in sys.argv else [('compound','sem ponto e vírgula'),('abbreviated','19 primeiros autores, reticências e o último, sem &')]
  if '--institutions'in sys.argv:plan=[('institution-abnt','posicionar a data após a autoria'),('institution-doi','https://doi.org/')]
+ if '--secondary'in sys.argv:plan=[('secondary-apud','não utilizar apud'),('secondary-missing','conferir as chaves autor–ano')]
  for mode,expected in plan:
   fixture(mode)
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
@@ -78,24 +80,24 @@ try:
    if a.js('return Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).some(x=>x.textContent.trim()==="OK")'):break
    time.sleep(.1)
   a.js('Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).find(x=>x.textContent.trim()==="OK").click()')
-  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/'}[mode]
+  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada' }[mode]
   for _ in range(40):
    if author_expected in a.text():break
    time.sleep(.1)
   check(mode+' author receives concrete correction',author_expected in a.text()and before==state())
   (ROOT/(mode+'-author.png')).write_bytes(base64.b64decode(a.call('GET','/screenshot')))
   fixture('restore')
- if '--institutions'in sys.argv:
-  fixture('institution-alias')
+ if '--institutions'in sys.argv or '--secondary'in sys.argv:
+  fixture('secondary-correct'if '--secondary'in sys.argv else 'institution-alias')
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
-  check('literal institution and declared alias remain reviewable',b.js('return !!document.querySelector("button[value=approve]")'))
-  check('institutional matching does not activate editorial release','Há liberação editorial válida'not in b.text())
+  check('recognized citations remain reviewable',b.js('return !!document.querySelector("button[value=approve]")'))
+  check('recognized matching does not activate editorial release','Há liberação editorial válida'not in b.text())
   a.get('http://127.0.0.1:18080/index.php/estrabao-lab/submission/wizard/4?submissionId='+str(id))
   for _ in range(40):
    if a.js('return !!document.querySelector("#submitStep4Form")'):break
    time.sleep(.1)
   response=a.call('POST','/execute/async',{'script':"let done=arguments[arguments.length-1];let f=document.querySelector('#submitStep4Form');fetch(f.action,{method:'POST',body:new URLSearchParams(new FormData(f))}).then(async r=>done(await r.text()));",'args':[]})
-  check('declared alias cannot complete without human review',before==state()and 'submitStep4Form'in json.loads(response).get('content',''))
+  check('recognized citation cannot complete without human review',before==state()and 'submitStep4Form'in json.loads(response).get('content',''))
 finally:
  fixture('restore');b.call('DELETE','');a.call('DELETE','')
 check('original workflow state restored',before==state())

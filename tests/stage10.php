@@ -80,7 +80,6 @@ foreach ([
 }
 foreach ([
     'personal communication' => 'Texto (Silva, comunicação pessoal, 2020).',
-    'secondary citation' => 'Texto (Silva, 2019, como citado em Souza, 2020).',
     'multiple years' => 'Texto (Silva, 2020, 2021).',
     'undated citation' => 'Texto (Silva, n.d.).',
     'institutional citation' => 'Texto (World Health Organization, 2020).',
@@ -166,9 +165,9 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.23.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.24.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
-            same($expected, $checks['references.citation_matching']['status']); same('5.0.0', $checks['references.citation_matching']['rule_version']);
+            same($expected, $checks['references.citation_matching']['status']); same('6.0.0', $checks['references.citation_matching']['rule_version']);
             same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);
             same(hash_file('sha256', $path), $checks['references.apa7']['evidence']['document_sha256']);
             same(false, strpos($out, 'Livro sintético') !== false); same(false, strpos($out, $path) !== false);
