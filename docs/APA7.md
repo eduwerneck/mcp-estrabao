@@ -17,7 +17,7 @@ API, importações e outros caminhos não foram homologados.
 | --- | --- | --- |
 | ABNT e formatos mistos | Padrões compostos de autoria/data após fonte; cidade/editora, rótulos de periódico, DOI antigo e separadores reconhecidos | Padrões fora da gramática e tipos jurídicos; Etapa 31 acrescenta ABNT institucional no subconjunto |
 | Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
-| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud por decisão editorial | Outras instituições/siglas e sua primeira apresentação, nomes compostos no matching, resolução do prefixo mínimo em exceções, outras formas secundárias, múltiplas obras e anos, desambiguação |
+| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais e preserva formas parciais para revisão | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, múltiplas obras e anos, desambiguação |
 | Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais | Ampliar outras edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
@@ -36,7 +36,9 @@ API, importações e outros caminhos não foram homologados.
 3. Modelos por tipo: Etapa 33 amplia artigos, obras autônomas com edição e
    capítulos com editoria/edição/páginas. Seguem outros tipos, traduções e campos
    não cobertos, sem adivinhar o tipo da obra.
-4. Correspondência e desambiguação ampliadas, ordem da lista e localizadores.
+4. Etapa 34 amplia a correspondência para sobrenomes compostos literais, com
+   proteção das formas parciais e limites de vocabulário. Seguem outras
+   desambiguações, múltiplas obras/anos, ordem da lista e localizadores.
 5. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de

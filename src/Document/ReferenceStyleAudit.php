@@ -154,7 +154,7 @@ final class ReferenceStyleAudit
             }
             $outline = $paragraph['outline'] ?? ['known' => false, 'level' => null];
             $bold = $paragraph['format']['bold'] ?? null;
-            $lead = preg_match('/^' . ReferenceAnalysis::SURNAME . ',\s*\p{L}/u', $text) && preg_match('/(?:' . ReferenceAnalysis::YEAR_SIGNAL . ')/iu', $text);
+            $lead = preg_match('/^' . ApaPersonalAuthors::surnamePattern() . ',\s*\p{L}/u', $text) && preg_match('/(?:' . ReferenceAnalysis::YEAR_SIGNAL . ')/iu', $text);
             if (!$lead && (!$outline['known'] || $outline['level'] < 9 || $bold !== false)) { $active = false; $uncertain = true; continue; }
             $result['paragraphs'][] = $paragraph;
             if (count($result['paragraphs']) > ReferenceAnalysis::MAX_ENTRIES) { $result['limit'] = true; $result['paragraphs'] = []; return $result; }
