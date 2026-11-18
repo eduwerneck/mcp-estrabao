@@ -790,3 +790,21 @@ plugin 0.15.0.0. APA 8.0.0, matching 5.0.0, formatos 4.0.0, citações 3.0.0.
 Evidências em evidence/stage31. Containers desligados ao final. Sem produção,
 VM Oracle, documentos reais, mensagens externas ou deploy. Limites em STAGE31.md
 e APA7.md; não certifica APA integral. CI remoto da nova branch não verificado.
+
+## Etapa 32 — citações secundárias e veto a apud
+
+Validação em 18/11/2026, base dfd4e9d (merge PR #32), motor 0.24.0, plugin
+0.16.0.0. APA 9.0.0, matching 6.0.0, formato de citações 4.0.0.
+
+- 1087 testes sintéticos em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 91 arquivos PHP, compilação Python e schemas CLI aprovados.
+- 17 verificações OJS 3.3.0.20/Chromium: apud bloqueado mesmo com fonte presente,
+  fonte consultada ausente, minuta, privacidade, POST e feedback específico.
+- Caso como citado em sem obra original na lista permanece revisável, sem
+  conclusão automática; estado e bytes originais restaurados.
+- Capturas de dois bloqueios inspecionadas; traduções atualizadas nos três idiomas.
+
+Evidências em evidence/stage32. Containers desligados ao final. Sem produção,
+VM Oracle, arquivos reais, envio externo ou deploy. Veto a apud fundamentado na
+instrução editorial explícita, sem alegar proibição universal da APA ou que a
+palavra sozinha caracterize ABNT. CI remoto desta branch ainda não verificado.

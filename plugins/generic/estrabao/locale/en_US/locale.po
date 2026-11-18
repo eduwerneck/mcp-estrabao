@@ -10,7 +10,7 @@ msgid "plugins.generic.estrabao.description"
 msgstr "APA screening with an experimental confirmation gate, separately enabled in staging."
 
 msgid "plugins.generic.estrabao.apaNotAccepted"
-msgstr "The submission was not accepted: incompatibilities with APA 7 were found. ABNT references are not accepted. Correct the manuscript before trying again."
+msgstr "The submission was not accepted: incompatibilities with APA 7 or the journal’s citation guidelines were found. ABNT references are not accepted. Correct the manuscript before trying again."
 
 msgid "plugins.generic.estrabao.apaReviewRequired"
 msgstr "The submission could not be completed: APA 7 compliance requires editorial review. This does not mean that ABNT was detected. Contact the editorial team."

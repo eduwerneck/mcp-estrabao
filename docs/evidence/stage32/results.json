@@ -1,0 +1,70 @@
+[
+  {
+    "case": "secondary-apud incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "secondary-apud desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "secondary-apud draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "secondary-apud does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "secondary-apud wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "secondary-apud author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "secondary-missing incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "secondary-missing desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "secondary-missing draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "secondary-missing does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "secondary-missing wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "secondary-missing author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "recognized citations remain reviewable",
+    "passed": true
+  },
+  {
+    "case": "recognized matching does not activate editorial release",
+    "passed": true
+  },
+  {
+    "case": "recognized citation cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

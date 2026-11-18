@@ -20,7 +20,8 @@ final class References implements Rule
             'source_available' => $styleSource['available'] ?? false, 'source_profile' => $profile, 'main_body_available' => $source['available'] ?? false,
             'full_document_text_available' => $this->document['available'] ?? false, 'footnote_content_analyzed' => false, 'language' => $this->language,
             'scope' => 'apa7_structural_and_declared_format_checks', 'style_profile' => 'apa7_reference_patterns_v4', 'full_apa_validation' => false,
-            'external_lookup_performed' => false];
+            'external_lookup_performed' => false, 'secondary_matching_direction' => 'consulted_source_only',
+            'secondary_citation_policy' => ['version'=>'estrabao-no-apud-2026-11-18','apud_allowed'=>false,'source'=>'explicit_editorial_instruction']];
         $matching = CheckResult::UNKNOWN; $formats = CheckResult::UNKNOWN; $citationStyle = CheckResult::UNKNOWN;
         if ($source['available'] ?? false) {
             if ($this->language === 'pt') {
@@ -42,26 +43,30 @@ final class References implements Rule
         foreach (['recognized_reference_formats' => $formats, 'citation_format' => $citationStyle, 'citation_matching' => $matching] as $name => $status) {
             if ($status === CheckResult::FAIL) { $components[] = $name; }
         }
+        $editorialApud = false;
+        foreach ($evidence['analysis']['citation_style_samples'] ?? [] as $sample) {
+            if (in_array('secondary_apud_not_allowed', $sample['issues'], true) && $citationStyle === CheckResult::FAIL) { $editorialApud = true; }
+        }
         $evidence['known_incompatibility_components'] = $components;
         $apa = $components ? CheckResult::FAIL : CheckResult::UNKNOWN;
         $evidence['admission_policy'] = [
             'policy_version' => 'apa-required-2026-11-12',
             'decision' => $apa === CheckResult::FAIL ? 'not_accepted' : 'manual_review_required',
             'automatic_progression_allowed' => false,
-            'reason' => $apa === CheckResult::FAIL ? 'proven_apa_incompatibility' : 'apa_compliance_not_established',
+            'reason' => $apa === CheckResult::FAIL ? ($editorialApud ? 'proven_editorial_citation_incompatibility' : 'proven_apa_incompatibility') : 'apa_compliance_not_established',
             'blocking_components' => $components,
             'ojs_enforcement_implemented' => false,
             'editorial_state_changed' => false,
         ];
         return [
             new CheckResult('references.apa7', $apa, $evidence, '/manuscript',
-                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '8.0.0'),
+                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7 ou com as diretrizes editoriais de citações, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '9.0.0'),
             new CheckResult('references.citation_matching', $matching, $evidence + ['matching_direction' => 'recognized_citations_to_references'], '/manuscript',
-                'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '5.0.0'),
+                'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '6.0.0'),
             new CheckResult('references.apa7.recognized_formats', $formats, $evidence, '/manuscript',
                 'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.', '4.0.0'),
             new CheckResult('references.apa7.citation_format', $citationStyle, $evidence, '/manuscript',
-                'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.', '3.0.0'),
+                'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.', '4.0.0'),
         ];
     }
 }
