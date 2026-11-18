@@ -10,8 +10,9 @@ $s = json_decode(file_get_contents('/tmp/lab-state.json'), true)['submissions'][
 $f = Services::get('submissionFile')->get($s['submission_file_id']);
 $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
+if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -22,6 +23,10 @@ for ($i = 1; $i <= $count; $i++) {
 }
 if ($mode === 'endnotes') { $refs .= '<w:r><w:endnoteReference w:id="7"/></w:r>'; }
 $reference = $mode === 'mixed' ? '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>Silva, A.; Souza, B. (2020). Estudo da paisagem. Revista Sintética, v. 8, n. 2, p. 10–20. DOI: 10.1234/synthetic</w:t></w:r></w:p>' : '';
+if (in_array($mode, ['compound', 'abbreviated'], true)) {
+    $authors = $mode === 'compound' ? 'van der Meer, A.; de Silva, B.' : 'García Márquez, A., … de Silva, B.';
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>' . htmlspecialchars($authors, ENT_XML1) . ' (2020). Título sintético. Editora Exemplo.</w:t></w:r></w:p>';
+}
 $parts = [
     '[Content_Types].xml' => '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/footnotes.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml"/></Types>',
     '_rels/.rels' => '<Relationships xmlns="http://schemas.openxmlformats.org/package/2006/relationships"><Relationship Id="main" Type="' . $rel . 'officeDocument" Target="word/document.xml"/></Relationships>',

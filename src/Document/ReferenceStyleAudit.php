@@ -31,9 +31,15 @@ final class ReferenceStyleAudit
                 if ($head['kind'] === 'personal') {
                     $authorList = $head['author_list'] ?? null;
                     if ($authorList !== null) {
-                        self::check($checks, 'personal_author_separators', $authorList['separators_valid'], 'Na lista de autores pessoais da referência, separar nomes por vírgulas e usar vírgula seguida de & antes do último; não usar ponto e vírgula ou conjunção narrativa.');
-                        self::check($checks, 'personal_author_list_length', $authorList['unabridged_list_length_valid'], 'Listar todos os autores até 20; com 21 ou mais, apresentar os 19 primeiros, reticências e o último, sem &. Confirmar autoria na fonte.');
-                        $mixedEntry = !$authorList['separators_valid'];
+                        if ($authorList['abbreviated']) {
+                            self::check($checks, 'personal_author_abbreviation_structure', $authorList['abbreviation_structure_valid'], 'Em lista abreviada, apresentar os 19 primeiros autores, reticências e o último, sem &.');
+                            self::check($checks, 'personal_author_total_unverified', null, 'Conferir na fonte se há 21 ou mais autores e se os nomes apresentados correspondem aos 19 primeiros e ao último.');
+                            $mixedEntry = !$authorList['abbreviation_structure_valid'];
+                        } else {
+                            self::check($checks, 'personal_author_separators', $authorList['separators_valid'], 'Na lista de autores pessoais da referência, separar nomes por vírgulas e usar vírgula seguida de & antes do último; não usar ponto e vírgula ou conjunção narrativa.');
+                            self::check($checks, 'personal_author_list_length', $authorList['unabridged_list_length_valid'], 'Listar todos os autores até 20; com 21 ou mais, apresentar os 19 primeiros, reticências e o último, sem &. Confirmar autoria na fonte.');
+                            $mixedEntry = !$authorList['separators_valid'];
+                        }
                     }
                     $uppercase = false;
                     foreach ($head['authors'] as $name) { $uppercase = $uppercase || (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)); }
@@ -172,7 +178,7 @@ final class ReferenceStyleAudit
     private static function abntLike(string $text): bool
     {
         if (preg_match('/\b(?:Lei|Decreto|Constituição|Resolução|Acórdão|Portaria|Código)\b/iu', substr($text, 0, 256))) { return false; }
-        $surname = ReferenceAnalysis::SURNAME;
+        $surname = ApaPersonalAuthors::surnamePattern();
         $lead = preg_match('~^' . $surname . ',\s*(?:\p{Lu}\.\s*){1,4}~u', $text)
             || preg_match('~^' . $surname . ',\s*\p{Lu}[\p{L}\p{Pd}]{1,40}(?:\s+\p{L}[\p{L}\p{Pd}]{0,40}){0,5}\.\s+~u', $text);
         if (!$lead) { return false; }
