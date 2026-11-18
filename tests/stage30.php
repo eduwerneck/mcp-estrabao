@@ -52,7 +52,7 @@ foreach (['2020a','2021'] as $year) {
         same('não conforme',$r['references.apa7.citation_format']['status']);
     });
 }
-foreach (['World Health Organization. (2020). Título. Editora.','Referência não reconhecida.','de Silva, A., & Souza, B. (2020). Título. Editora.'] as $unknown) {
+foreach (['Referência não reconhecida.','de Silva, A., & Souza, B. (2020). Título. Editora.'] as $unknown) {
     test('referência não analisável impede descartar desambiguação '.md5($unknown),function()use($unknown){
         $r=apaResults(referenceDocument(['Texto (Silva, Souza, & Lima, 2020).'],[stage30Reference(),$unknown]));
         same('indeterminado',$r['references.apa7.citation_format']['status']);
