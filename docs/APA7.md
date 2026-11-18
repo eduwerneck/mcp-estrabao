@@ -18,7 +18,7 @@ API, importações e outros caminhos não foram homologados.
 | ABNT e formatos mistos | Padrões compostos de autoria/data após fonte; cidade/editora, rótulos de periódico, DOI antigo e separadores reconhecidos | Padrões fora da gramática e tipos jurídicos; Etapa 31 acrescenta ABNT institucional no subconjunto |
 | Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
 | Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud por decisão editorial | Outras instituições/siglas e sua primeira apresentação, nomes compostos no matching, resolução do prefixo mínimo em exceções, outras formas secundárias, múltiplas obras e anos, desambiguação |
-| Referências por tipo | Campos e itálicos de subconjuntos reconhecidos de artigos e capítulos; candidatos de obras autônomas com revisão do tipo | Ampliar modelos de livros/edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
+| Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais | Ampliar outras edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
 | Citações diretas | Alguns localizadores reconhecidos lexicalmente | Conferência de transcrição, localizador, extensão, bloco versus aspas e fontes sem paginação |
@@ -33,7 +33,9 @@ API, importações e outros caminhos não foram homologados.
    ambiguidades para revisão. Etapa 32 acrescenta citações secundárias com correspondência da fonte consultada
    e veto editorial a apud. Primeira apresentação de siglas, outras formas
    secundárias e prefixo mínimo da desambiguação seguem humanos.
-3. Modelos de referências por tipo e seus campos, sem adivinhar o tipo da obra.
+3. Modelos por tipo: Etapa 33 amplia artigos, obras autônomas com edição e
+   capítulos com editoria/edição/páginas. Seguem outros tipos, traduções e campos
+   não cobertos, sem adivinhar o tipo da obra.
 4. Correspondência e desambiguação ampliadas, ordem da lista e localizadores.
 5. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
 

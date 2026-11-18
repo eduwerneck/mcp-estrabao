@@ -1,11 +1,11 @@
-"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions or --secondary). Restores fixture bytes."""
+"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions, --secondary or --models). Restores fixture bytes."""
 import json,os,subprocess,sys
 from pathlib import Path
 for key in ['DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH']:
  os.environ.pop(key,None)
 os.environ['DOCKER_HOST']='unix:///var/run/docker.sock'
 HERE=Path(__file__).resolve().parent
-ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
+ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-33'if '--models'in sys.argv else '/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
 ROOT.mkdir(parents=True,exist_ok=True);ROOT.chmod(0o700)
 (ROOT/'summary.json').write_text(json.dumps({'overall_passed':False,'status':'running'}))
 def command(args,**kw):return subprocess.check_output(args,**kw)
@@ -49,6 +49,7 @@ try:
  plan=[('citation-many','primeiro sobrenome seguido de et al.'),('citation-period','et al. com ponto após al')]if '--citations'in sys.argv else [('compound','sem ponto e vírgula'),('abbreviated','19 primeiros autores, reticências e o último, sem &')]
  if '--institutions'in sys.argv:plan=[('institution-abnt','posicionar a data após a autoria'),('institution-doi','https://doi.org/')]
  if '--secondary'in sys.argv:plan=[('secondary-apud','não utilizar apud'),('secondary-missing','conferir as chaves autor–ano')]
+ if '--models'in sys.argv:plan=[('model-book','retirar o itálico da edição'),('model-chapter','separadores dos editores'),('model-article','página final não pode anteceder')]
  for mode,expected in plan:
   fixture(mode)
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
@@ -59,7 +60,7 @@ try:
    time.sleep(.1)
   body=b.js('return document.querySelector("#estrabaoDeskBody").value')
   check(mode+' desk draft has specific correction',expected in body)
-  check(mode+' draft keeps private bibliography out',all(s not in body for s in ['van der Meer','García Márquez','de Silva','Silva','Souza','Lima','Título sintético','Instituto de Estudos Sintéticos','10.1234/synthetic']))
+  check(mode+' draft keeps private bibliography out',all(s not in body for s in ['van der Meer','García Márquez','de Silva','Silva','Souza','Lima','Título sintético','Instituto de Estudos Sintéticos','10.1234/synthetic','Livro sintético','Capítulo sintético','Revista Sintética','B. Editor']))
   check(mode+' does not label entire bibliography ABNT',('padrões ABNT reconhecidos'in body)==(mode=='institution-abnt'))
   b.js('document.querySelector("#estrabaoDeskDraftTitle").scrollIntoView()')
   import base64
@@ -80,15 +81,15 @@ try:
    if a.js('return Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).some(x=>x.textContent.trim()==="OK")'):break
    time.sleep(.1)
   a.js('Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).find(x=>x.textContent.trim()==="OK").click()')
-  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada' }[mode]
+  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada','model-book':'edição entre parênteses não fica em itálico','model-chapter':'Na editoria do capítulo','model-article':'página final não pode anteceder' }[mode]
   for _ in range(40):
    if author_expected in a.text():break
    time.sleep(.1)
   check(mode+' author receives concrete correction',author_expected in a.text()and before==state())
   (ROOT/(mode+'-author.png')).write_bytes(base64.b64decode(a.call('GET','/screenshot')))
   fixture('restore')
- if '--institutions'in sys.argv or '--secondary'in sys.argv:
-  fixture('secondary-correct'if '--secondary'in sys.argv else 'institution-alias')
+ if '--institutions'in sys.argv or '--secondary'in sys.argv or '--models'in sys.argv:
+  fixture('model-correct'if '--models'in sys.argv else 'secondary-correct'if '--secondary'in sys.argv else 'institution-alias')
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
   check('recognized citations remain reviewable',b.js('return !!document.querySelector("button[value=approve]")'))
   check('recognized matching does not activate editorial release','Há liberação editorial válida'not in b.text())

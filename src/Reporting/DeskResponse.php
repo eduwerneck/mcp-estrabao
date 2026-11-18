@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'9.0.0', 'references.citation_matching'=>'6.0.0',
-        'references.apa7.recognized_formats'=>'4.0.0', 'references.apa7.citation_format'=>'4.0.0',
+        'references.apa7'=>'10.0.0', 'references.citation_matching'=>'6.0.0',
+        'references.apa7.recognized_formats'=>'5.0.0', 'references.apa7.citation_format'=>'4.0.0',
     ];
 
     public static function generate(array $report): array
@@ -208,6 +208,15 @@ final class DeskResponse
                 'personal_author_list_length'=>'listar todos os autores até 20; com 21 ou mais, apresentar os 19 primeiros, reticências e o último, sem &',
                 'journal_legacy_labels'=>'substituir rótulos v., n. e p./pp. pelo formato APA 7 de volume(número), páginas ou identificador',
                 'journal_page_prefix'=>'retirar p./pp. da paginação da referência de artigo de periódico',
+                'article_page_range_order'=>'conferir o intervalo de páginas do artigo, cuja página final não pode anteceder a inicial',
+                'chapter_page_range_order'=>'conferir o intervalo de páginas do capítulo, cuja página final não pode anteceder a inicial',
+                'chapter_editors_plain'=>'retirar o itálico dos nomes dos editores do capítulo',
+                'chapter_editor_label_plain'=>'retirar o itálico do rótulo Ed./Eds.',
+                'chapter_pages_plain'=>'retirar o itálico da indicação de páginas do capítulo',
+                'chapter_editor_separators'=>'ajustar os separadores dos editores do capítulo: & entre dois nomes e vírgulas com , & antes do último para três ou mais',
+                'chapter_edition_plain'=>'retirar o itálico da edição do livro que contém o capítulo',
+                'standalone_edition_plain'=>'retirar o itálico da edição entre parênteses da obra autônoma',
+                'edition_ordinal'=>'conferir número e sufixo ordinal da edição no modelo em inglês',
                 'chapter_title_plain'=>'retirar o itálico do título do capítulo',
                 'book_title_italic'=>'aplicar itálico ao título do livro que contém o capítulo',
                 'chapter_publisher_plain'=>'retirar o itálico do nome da editora',
