@@ -1,9 +1,45 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 37](STAGE37.md) altera o motor para 0.29.0 e o plugin
-para 0.21.0.0. Essa versão passou em 1289 testes por PHP e 32 verificações
-direcionadas no OJS local. A execução integrada de 72 casos abaixo pertence
-à base anterior; não foi repetida integralmente para a Etapa 37.
+Resultado atual em 19/11/2026: **regressão aprovada no laboratório**, base
+ad82d23 (merge PR #38). A [Etapa 38](STAGE38.md) preserva motor 0.29.0 e plugin
+0.21.0.0 e reúne 18 suítes reversíveis com um ciclo de rascunhos novos.
+
+| Camada atual | Resultado |
+| --- | --- |
+| PHP 8.4.27 e 8.1.27 | 1289 testes por versão, zero falhas |
+| Estático e contratos | Lint de 97 arquivos PHP, Python e dois schemas CLI aprovados |
+| Nove suítes anteriores | 59 verificações de navegador |
+| Nove modalidades APA | 207 verificações de navegador |
+| Ciclo novo, com correção combinada | 21 verificações de navegador |
+| Total de navegador | **287 verificações aprovadas** |
+| Produto/contratos | 61 arquivos idênticos à base; versões preservadas |
+
+[Resumo atual](evidence/stage38/summary.json),
+[pré-checagem](evidence/stage38/preflight.json),
+[manifesto](evidence/stage38/release-source-manifest.json) e
+[ciclo de correção](evidence/stage38/submission-cycle-results.json).
+As evidências por suíte estão no mesmo diretório.
+
+A versão corrigida combina anos/sufixos, et al. e marcador sem data. As cinco
+citações ligam às referências; a submissão só conclui após revisão humana
+expressa. SHA-256 preservado após revisão/conclusão. Revogação, CSRF, mudança
+de arquivo, download protegido e bloqueio ABNT também foram exercitados.
+
+O ensaio de troca de versão usa API local/DAO, não o upload pela interface.
+Narrativas embutidas após outras frases no parágrafo podem ficar indeterminadas;
+a combinação aprovada usa parágrafos separados. Esse limite continua aberto.
+Registros originais de submissão preservados; novas submissões/revisões ficam
+na base sintética. Estado de referência restaurado e credenciais não versionadas.
+
+Rede interna, sem portas públicas, fontes read-only e e-mail neutralizado.
+Containers desligados ao fim. Sem produção, VM Oracle, documentos reais,
+mensagens externas, publicação do ambiente ou deploy. O resultado não homologa
+a infraestrutura real nem certifica APA integral; a matriz APA7.md permanece aberta.
+
+## Histórico da homologação anterior
+
+Os resultados abaixo pertencem à Etapa 27/28 e são mantidos para rastreabilidade;
+a versão atual e sua contagem estão acima.
 
 Resultado em 17/11/2026: **aprovado no escopo do laboratório**, sobre o código
 112485b (merge do PR #27). Motor 0.20.0, plugin instalado/arquivos 0.12.0.0 e OJS
@@ -25,7 +61,7 @@ versão confirmada da revista. [Escopo e evidências](STAGE28.md).
 Os números abaixo pertencem à execução da Etapa 27 e não foram reexecutados
 no complemento; os 59 hashes do produto foram reconferidos.
 
-## Resultado consolidado
+## Resultado histórico da Etapa 27
 
 | Camada | Resultado observado |
 | --- | --- |
@@ -44,7 +80,7 @@ O resumo registra execução principal de 66 casos e complemento de seis casos d
 títulos, sobre o mesmo código de produto sem alterações. O runner final inclui
 ambos: nove suítes reversíveis/de leitura (59 casos) e ciclo novo (13).
 
-## Matriz de integração
+## Matriz histórica da Etapa 27
 
 | Ensaio | Casos | Evidência |
 | --- | ---: | --- |

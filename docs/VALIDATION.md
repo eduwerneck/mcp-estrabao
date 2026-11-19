@@ -909,3 +909,28 @@ Evidências em evidence/stage37. Containers desligados ao final. Sem produção,
 VM Oracle, documentos reais, envio externo ou deploy. Não houve nova consulta
 normativa externa. Limites em STAGE37.md e matriz de pendências em APA7.md.
 CI remoto da nova branch ainda não verificado.
+
+
+## Etapa 38 — regressão integrada da versão atual
+
+Em 19/11/2026, sobre ad82d23 (merge PR #38), motor 0.29.0 e plugin 0.21.0.0
+preservados. Manifesto de 61 arquivos de produto/contratos idênticos à base.
+1289 testes por PHP 8.4.27 e 8.1.27, zero falhas; lint de 97 arquivos PHP,
+compilação Python, schemas CLI e diff aprovados.
+
+287 verificações OJS 3.3.0.20/Chromium: 59 das nove suítes anteriores, 207 das
+nove modalidades APA e 21 do ciclo com rascunhos novos. A correção substitui o
+arquivo ABNT por nova versão combinando anos/sufixos, et al. e data especial;
+cinco citações ligadas, revisão humana obrigatória e conclusão preservando bytes.
+Revogação, CSRF, troca de arquivo e acesso/download também aprovados.
+
+Narrativa posterior a outras frases no mesmo parágrafo permanece indeterminada;
+o teste combinado reconhecido usa parágrafos separados. Não se ampliou a gramática.
+Troca por API local/DAO não homologa upload nativo nem concorrência. Registros
+originais de submissão preservados; apontador do seed restaurado e credencial
+copiada removida. Novos rascunhos/revisões existem só no laboratório.
+
+Evidências em evidence/stage38. Capturas sintéticas inspecionadas. Rede interna,
+e-mail neutralizado e mounts read-only. Containers desligados. Sem produção,
+VM Oracle, arquivos reais, envio externo ou deploy. Sem nova consulta normativa;
+limites em STAGE38.md e APA7.md. CI remoto da branch ainda não verificado.
