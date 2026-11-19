@@ -847,3 +847,22 @@ plugin 0.18.0.0. APA 11.0.0, matching 7.0.0, formatos 6.0.0, citações 5.0.0.
 Evidências em evidence/stage34. Containers desligados ao final. Sem produção,
 VM Oracle, documentos reais, envio externo ou deploy. Identidade, outros formatos
 e limites restantes em STAGE34.md e APA7.md. CI remoto da branch não verificado.
+
+## Etapa 35 — anos, sufixos e múltiplas obras
+
+Validação em 18/11/2026, base 8e3b021 (merge PR #35), motor 0.27.0 e
+plugin 0.19.0.0. APA 12.0.0, matching 8.0.0, citações 6.0.0; formatos preservados.
+
+- 1220 testes em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 95 arquivos PHP, compilação Python e schemas CLI aprovados.
+- 38 verificações OJS 3.3.0.20/Chromium: quatro cenários de bloqueio com orientação específica,
+  minuta privada, POST, e quatro casos de revisão sem conclusão automática.
+- DOCX confirma expansão dos anos; casos de iniciais diferentes, sintaxe incerta,
+  prosa, limites de 20/21 anos e 2048 citações, amostra tardia e fonte ausente.
+- Capturas inspecionadas. Estado e bytes originais restaurados; rede interna,
+  mounts read-only, transporte neutralizado e versão instalada confirmados.
+
+Evidências em evidence/stage35. Containers desligados ao final. Sem produção,
+VM Oracle, documentos reais, mensagens externas ou deploy. Não atribui letras,
+identidades ou obra consultada automaticamente. Limites em STAGE35.md e APA7.md.
+CI remoto da nova branch ainda não verificado.

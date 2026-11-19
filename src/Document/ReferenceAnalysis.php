@@ -19,9 +19,17 @@ final class ReferenceAnalysis
         'institutional_alias_review' => 'Conferir a apresentação do nome completo e da sigla institucional na primeira citação; vínculo literal não confirma identidade nem introdução correta.',
         'secondary_source_review' => 'Conferir a fonte efetivamente consultada na citação secundária; não exigir a obra original não consultada na lista nem presumir o histórico de leitura.',
         'secondary_apud_not_allowed' => 'A Estrabão não aceita apud em citações secundárias. Usar como citado em e identificar a fonte efetivamente consultada.',
+        'citation_year_suffix_mismatch' => 'Conferir o ano e seu sufixo na citação e na referência correspondente à obra efetivamente consultada.',
+        'citation_year_list_order' => 'Apresentar em ordem cronológica os anos reunidos sob a mesma autoria na citação; conferir a autoria se os nomes representam pessoas diferentes.',
+        'citation_group_alphabetical_order' => 'Apresentar em ordem alfabética de autoria as obras de autores distintos reunidas na citação parentética.',
+        'citation_year_list_duplicates_review' => 'Conferir anos repetidos na mesma citação e eventuais localizadores; não remover obras automaticamente.',
+        'citation_year_list_authorship_review' => 'Conferir se os anos agrupados pertencem à mesma autoria; sobrenomes iguais com iniciais diferentes não comprovam a mesma pessoa.',
+        'citation_group_order_review' => 'Conferir a organização da citação múltipla; autorias ambíguas, secundárias, instituições, acentos e empates exigem revisão.',
+        'author_year_disambiguation_review' => 'Conferir a identificação da autoria, ano, sufixos e possíveis duplicatas; não atribuir letras ou identidades automaticamente.',
         'citation_spacing' => 'Na parentética, inserir espaço após a vírgula; na narrativa, antes do parêntese do ano.',
         'personal_surname_full_uppercase' => 'Conferir capitalização do sobrenome; maiúsculas isoladas não provam ABNT.',
     ];
+    private const REVIEW_ISSUES = ['personal_surname_full_uppercase','multi_author_disambiguation_review','institutional_alias_review','secondary_source_review','citation_year_list_duplicates_review','citation_year_list_authorship_review','citation_group_order_review','author_year_disambiguation_review'];
     const SURNAME = '\p{L}[\p{L}\p{Pd}\x{2019}\x{0027}]{0,63}';
     const YEAR_SIGNAL = '[0-9]{4}[a-z]?|n\.\s*d\.|s\.\s*d\.|in press|no prelo';
 
@@ -73,33 +81,51 @@ final class ReferenceAnalysis
                     $inside = $group[1][0]; $offset = $group[0][1];
                     if (!preg_match('/(?:' . self::YEAR_SIGNAL . ')/iu', $inside)) { continue; }
                     if (strlen($inside) > 2048) { $unparsedGroups++; continue; }
-                    $parsed = [];
-                    if (preg_match('/^\s*([0-9]{4}[a-z]?)\s*$/iuD', $inside, $year)) {
+                    $parsed = []; $beforeUnparsed = $unparsedGroups;
+                    $balanced = substr_count($text, '(') === substr_count($text, ')') && !preg_match('/\([^)]*\(/u', $text);
+                    if (preg_match('/^\s*([0-9]{4}[a-z]?(?:,\s*[0-9]{4}[a-z]?){0,19})\s*$/iuD', $inside, $year)) {
                         $prefix = trim(substr($text, 0, $offset));
                         $prefix = preg_replace('/^(?:Segundo|Conforme|According to|Según)\s+/iu', '', $prefix);
-                        $secondary = self::secondaryCitation($prefix . ', ' . $year[1], '', $entries, $aliases, $personalPattern);
+                        $yearList = self::yearList($year[1]);
+                        $secondary = count($yearList) === 1 ? self::secondaryCitation($prefix . ', ' . $year[1], '', $entries, $aliases, $personalPattern) : null;
                         if ($secondary !== null) {
                             $secondary['placement'] = 'narrative';
                             $secondary['spacing_ok'] = $secondary['spacing_ok'] && $offset > 0 && preg_match('/\s$/u', substr($text, 0, $offset)) === 1;
                             $parsed[] = $secondary;
                         } else {
                             $author = InstitutionalAuthors::citation($prefix, $entries, $aliases) ?? self::citationAuthors($prefix, $personalPattern);
-                            if ($author !== null) { $parsed[] = $author + ['year' => strtolower($year[1]), 'placement' => 'narrative',
-                                'spacing_ok' => $offset > 0 && preg_match('/\s$/u', substr($text, 0, $offset)) === 1]; }
+                            if (count($yearList)>1 && $author!==null) {
+                                $candidate=false;foreach ($entries as $entry) { if (self::matches($author,$entry)) { $candidate=true;break; } }
+                                if (!$candidate) { $author=null; }
+                            }
+                            if ($author !== null) {
+                                foreach ($yearList as $value) { $parsed[] = $author + ['year'=>$value,'placement'=>'narrative','item_index'=>0,'multiple_years'=>count($yearList)>1,
+                                    'spacing_ok'=>$offset>0 && preg_match('/\s$/u',substr($text,0,$offset))===1 && preg_match('/,\S/u',$inside)!==1]; }
+                            }
                             else { $unparsedGroups++; }
                         }
                     } else {
-                        foreach (explode(';', $inside) as $item) {
+                        foreach (explode(';', $inside) as $itemIndex => $item) {
+                            if (preg_match('/^\s*(.+?),\s*([0-9]{4}[a-z]?(?:,\s*[0-9]{4}[a-z]?){1,19})\s*$/iuD',$item,$years)) {
+                                $author=InstitutionalAuthors::citation(trim($years[1]),$entries,$aliases) ?? self::citationAuthors(trim($years[1]),$personalPattern);
+                                if ($author!==null) {
+                                    foreach (self::yearList($years[2]) as $value) { $parsed[]=$author+['year'=>$value,'placement'=>'parenthetical','item_index'=>$itemIndex,'multiple_years'=>true,'spacing_ok'=>preg_match('/,\S/u',$item)!==1]; }
+                                    continue;
+                                }
+                            }
                             $secondary = self::secondaryCitation($item, substr($text, 0, $offset), $entries, $aliases, $personalPattern);
-                            if ($secondary !== null) { $parsed[] = $secondary; continue; }
+                            if ($secondary !== null) { $parsed[] = $secondary + ['item_index'=>$itemIndex]; continue; }
                             if (preg_match('/^\s*(.+?),\s*([0-9]{4}[a-z]?)(?:,\s*pp?\.\s*[0-9]+(?:[-–][0-9]+)?)?\s*$/iuD', $item, $match)) {
                                 $author = InstitutionalAuthors::citation(trim($match[1]), $entries, $aliases) ?? self::citationAuthors(trim($match[1]), $personalPattern);
-                                if ($author !== null) { $parsed[] = $author + ['year' => strtolower($match[2]), 'placement' => 'parenthetical', 'spacing_ok' => preg_match('/,\S/u', $item) !== 1]; continue; }
+                                if ($author !== null) { $parsed[] = $author + ['year' => strtolower($match[2]), 'placement' => 'parenthetical', 'item_index'=>$itemIndex, 'spacing_ok' => preg_match('/,\S/u', $item) !== 1]; continue; }
                             }
                             $unparsedGroups++;
                         }
                     }
-                    foreach ($parsed as $citation) {
+                    $groupIssues = self::groupIssues($parsed,$entries,$boundaries && !$unparsed && $balanced && $beforeUnparsed === $unparsedGroups);
+                    foreach ($parsed as $parsedIndex => $citation) {
+                        $citation['group_issues']=$groupIssues[$parsedIndex]??[];
+                        $citation['syntax_complete']=$balanced;
                         $citation['paragraph_index'] = $paragraph['index']; $citation['byte_offset'] = $offset;
                         $citations[] = $citation;
                         if (count($citations) > self::MAX_CITATIONS) { $limit = true; $reasons[] = 'inspection_limit'; break 3; }
@@ -113,14 +139,18 @@ final class ReferenceAnalysis
             // Unlinked institutional aliases cannot prove a reference absent, including in mixed lists.
             $matches = []; $matchParagraphs = []; $weak = $hasInstitutional || !empty($citation['institutional_ambiguous']);
             foreach ($entries as $entry) {
+                if (substr($entry['year'],0,4) === substr($citation['year'],0,4) && self::weakName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
                 if ($entry['year'] !== $citation['year']) { continue; }
-                if (self::weakName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
                 if (self::matches($citation, $entry)) { $matches[] = $entry['reference_index']; $matchParagraphs[] = $entry['paragraph_index']; }
             }
+            $suffixIssue=self::suffixIssue($citation,$entries,$boundaries && !$unparsed);
+            if ($suffixIssue!==null) { $weak=true; }
             if (count($matches) === 1) { $state = 'matched'; $matched++; $used[$matches[0]] = true; }
             elseif (count($matches) > 1 || $weak) { $state = 'ambiguous'; $ambiguous++; }
             else { $state = 'unresolved'; $missing++; }
-            $styleIssues = ($citation['secondary_marker'] ?? null) === 'apud' ? ['secondary_apud_not_allowed'] : [];
+            $styleIssues = $citation['group_issues'] ?? [];
+            if (($citation['secondary_marker'] ?? null) === 'apud') { $styleIssues[]='secondary_apud_not_allowed'; }
+            if ($suffixIssue!==null) { $styleIssues[]=$suffixIssue; }
             if (count($matches) === 1) {
                 if (!empty($citation['secondary'])) { $styleIssues[] = 'secondary_source_review'; }
                 if (!empty($citation['institutional_alias'])) { $styleIssues[] = 'institutional_alias_review'; }
@@ -140,17 +170,17 @@ final class ReferenceAnalysis
                 foreach ($citation['form'] === 'institutional' ? [] : $citation['authors'] as $name) {
                     if (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)) { $styleIssues[] = 'personal_surname_full_uppercase'; }
                 }
-                $definite = array_diff($styleIssues, ['personal_surname_full_uppercase', 'multi_author_disambiguation_review', 'institutional_alias_review', 'secondary_source_review']);
-                $styleStatus = $definite ? 'não conforme' : ($styleIssues ? 'indeterminado' : 'conforme');
-            } else { $styleStatus = in_array('secondary_apud_not_allowed', $styleIssues, true) ? 'não conforme' : 'indeterminado'; }
+            }
+            $definite=array_diff($styleIssues,self::REVIEW_ISSUES);
+            $styleStatus=$definite?'não conforme':($styleIssues || count($matches)!==1?'indeterminado':'conforme');
             $styleCounts[$styleStatus]++;
             $styleSample = ['paragraph_index' => $citation['paragraph_index'], 'byte_offset' => $citation['byte_offset'],
                 'status' => $styleStatus, 'issues' => array_values(array_unique($styleIssues)),
                 'guidance' => array_map(function ($code) { return self::STYLE_GUIDANCE[$code]; }, array_values(array_unique($styleIssues)))];
             if (count($styleSamples) < 32) { $styleSamples[] = $styleSample; }
-            elseif ($styleStatus !== 'conforme') { foreach ($styleSamples as $i => $old) { if ($old['status'] === 'conforme') { $styleSamples[$i] = $styleSample; break; } } }
+            elseif ($styleStatus !== 'conforme') { foreach ($styleSamples as $i => $old) { if ($old['status'] === 'conforme' || ($styleStatus === 'não conforme' && $old['status'] === 'indeterminado')) { $styleSamples[$i] = $styleSample; break; } } }
             $sample = ['paragraph_index' => $citation['paragraph_index'], 'byte_offset' => $citation['byte_offset'],
-                'form' => $citation['form'], 'state' => $state, 'secondary' => !empty($citation['secondary']), 'secondary_marker' => $citation['secondary_marker'] ?? null,
+                'form' => $citation['form'], 'state' => $state, 'secondary' => !empty($citation['secondary']), 'secondary_marker' => $citation['secondary_marker'] ?? null, 'multiple_years'=>!empty($citation['multiple_years']),
                 'guidance' => $state === 'matched' ? 'Chave ligada a uma referência reconhecida; conferir a exatidão dos dados da obra.'
                     : ($state === 'ambiguous' ? 'Conferir autores, ano, sufixo e possíveis obras com a mesma chave.' : 'Conferir autoria, ano e sufixo, e se a obra citada consta da lista nos formatos reconhecidos.'), 'reference_indices' => array_slice($matches, 0, 8), 'reference_paragraph_indices' => array_slice($matchParagraphs, 0, 8),
                 'reference_matches_omitted' => max(0, count($matches) - 8)];
@@ -192,6 +222,69 @@ final class ReferenceAnalysis
         return ['authors' => array_column($names[1], 0), 'year' => strtolower($date[1][0]), 'author_ranges' => $ranges,
             'author_key' => $prefix, 'content' => $rest,
             'content_start' => $date[0][1] + strlen($date[0][0])];
+    }
+
+    private static function yearList(string $text): array
+    {
+        return array_map(function ($value) { return strtolower(trim($value)); },explode(',',$text));
+    }
+
+    /** Compare declared keys only; never select a work or identify a person. */
+    private static function suffixIssue(array $citation,array $entries,bool $complete): ?string
+    {
+        if (!$complete || empty($citation['syntax_complete']) || !empty($citation['institutional_ambiguous'])) { return null; }
+        $cohort=[];$exact=0;
+        foreach ($entries as $entry) {
+            if (substr($entry['year'],0,4)!==substr($citation['year'],0,4) || !self::matches($citation,$entry)) { continue; }
+            $cohort[]=$entry;if ($entry['year']===$citation['year']) { $exact++; }
+        }
+        if (!$cohort) { return null; }
+        $key=$cohort[0]['author_key']??null;
+        foreach ($cohort as $entry) {
+            if ($key===null || !isset($entry['author_key']) || !self::sameName($key,$entry['author_key'])) { return 'author_year_disambiguation_review'; }
+        }
+        if (!$exact) { return 'citation_year_suffix_mismatch'; }
+        if ($exact>1) { return 'author_year_disambiguation_review'; }
+        return null;
+    }
+
+    /** Ordering is checked only for complete groups with unique, personal reference links. */
+    private static function groupIssues(array $citations,array $entries,bool $complete): array
+    {
+        if (count($citations)<2) { return []; }
+        $issues=array_fill(0,count($citations),[]);$linked=[];
+        if (!$complete) { return array_fill(0,count($citations),['citation_group_order_review']); }
+        foreach ($citations as $i=>$citation) {
+            if (!empty($citation['secondary']) || $citation['form']==='institutional') { return array_fill(0,count($citations),['citation_group_order_review']); }
+            $matches=[];
+            foreach ($entries as $entry) { if ($entry['year']===$citation['year'] && self::matches($citation,$entry)) { $matches[]=$entry; } }
+            if (count($matches)!==1 || !isset($matches[0]['author_key'])) { return array_fill(0,count($citations),['citation_group_order_review']); }
+            $linked[$i]=$matches[0];
+        }
+        $items=[];
+        foreach ($citations as $i=>$citation) { $items[$citation['item_index']??0][]=$i; }
+        foreach ($items as $indices) {
+            if (count($indices)<2) { continue; }
+            $years=[];$same=true;$key=$linked[$indices[0]]['author_key'];
+            foreach ($indices as $i) { $years[]=$citations[$i]['year'];$same=$same && self::sameName($key,$linked[$i]['author_key']); }
+            $code=null;
+            if (!$same) { $code='citation_year_list_authorship_review'; }
+            elseif (count(array_unique($years))!==count($years)) { $code='citation_year_list_duplicates_review'; }
+            else { $ordered=$years;sort($ordered,SORT_STRING);if ($ordered!==$years) { $code='citation_year_list_order'; } }
+            if ($code!==null) { foreach ($indices as $i) { $issues[$i][]=$code; } }
+        }
+        if (count($items)>1) {
+            $keys=[];$safe=true;
+            foreach ($items as $indices) {
+                $first=$linked[$indices[0]]['authors'][0];
+                if (!preg_match('/^[A-Za-z]+$/D',$first)) { $safe=false;break; }
+                $keys[]=strtolower($first);
+            }
+            if (!$safe || count(array_unique($keys))!==count($keys)) { $code='citation_group_order_review'; }
+            else { $ordered=$keys;sort($ordered,SORT_STRING);$code=$ordered!==$keys?'citation_group_alphabetical_order':null; }
+            if ($code!==null) { foreach ($issues as &$values) { $values[]=$code; } unset($values); }
+        }
+        return $issues;
     }
 
     private static function secondaryCitation(string $text, string $prefix, array $entries, array $aliases, ?string $personalPattern): ?array
@@ -294,6 +387,7 @@ final class ReferenceAnalysis
 
     private static function sameName(string $left, string $right): bool
     {
+        if ($left === $right) { return true; }
         $left=preg_replace('/\s+/u',' ',trim($left));$right=preg_replace('/\s+/u',' ',trim($right));
         return preg_match('/^' . preg_quote($left, '/') . '$/iuD', $right) === 1;
     }

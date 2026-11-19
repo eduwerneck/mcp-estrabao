@@ -79,7 +79,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '11.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '12.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {
@@ -89,7 +89,7 @@ class EstrabaoAdmissionBridge
                 foreach ($result['evidence']['analysis']['citation_style_samples'] ?? [] as $sample) {
                     if (($sample['status'] ?? null) !== 'não conforme') { continue; }
                     foreach ($sample['issues'] ?? [] as $index => $code) {
-                        if (in_array($code, ['parenthetical_authors_require_ampersand', 'narrative_authors_require_conjunction', 'three_or_more_authors_require_et_al', 'et_al_period', 'citation_spacing', 'secondary_apud_not_allowed'], true)
+                        if (in_array($code, ['parenthetical_authors_require_ampersand', 'narrative_authors_require_conjunction', 'three_or_more_authors_require_et_al', 'et_al_period', 'citation_spacing', 'secondary_apud_not_allowed', 'citation_year_suffix_mismatch', 'citation_year_list_order', 'citation_group_alphabetical_order'], true)
                             && isset($sample['guidance'][$index]) && is_string($sample['guidance'][$index])) { $corrections[] = $sample['guidance'][$index]; }
                     }
                 }
