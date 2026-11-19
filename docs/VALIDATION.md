@@ -866,3 +866,23 @@ Evidências em evidence/stage35. Containers desligados ao final. Sem produção,
 VM Oracle, documentos reais, mensagens externas ou deploy. Não atribui letras,
 identidades ou obra consultada automaticamente. Limites em STAGE35.md e APA7.md.
 CI remoto da nova branch ainda não verificado.
+
+## Etapa 36 — desambiguação de et al.
+
+Validação em 18/11/2026, base 5989c05 (merge PR #36), motor 0.28.0, plugin
+0.20.0.0. APA 13.0.0, matching 9.0.0, citações 7.0.0; formatos preservados.
+
+- 1249 testes em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 96 arquivos PHP, compilação Python e schemas CLI aprovados.
+- 32 verificações OJS 3.3.0.20/Chromium: três bloqueios com orientação específica,
+  minuta privada/POST, e quatro casos revisáveis sem conclusão automática.
+- Prefixo suficiente e lista integral necessária confirmados; iniciais diferentes,
+  listas indistinguíveis, contexto secundário/notas e limite de candidatos revisados.
+- DOCX confirma o vínculo e a forma suficiente. Capturas sintéticas inspecionadas;
+  estado e bytes originais restaurados, sem liberação salva no navegador.
+- Rede interna, mounts read-only, e-mail neutralizado e versão instalada confirmados.
+
+Evidências em evidence/stage36. Containers desligados ao final. Sem produção,
+VM Oracle, arquivos reais, envio externo ou deploy. Consulta APA Style bloqueada
+pelo proxy (403), sem conteúdo consultado. Limites em STAGE36.md e APA7.md.
+CI remoto da nova branch ainda não verificado.

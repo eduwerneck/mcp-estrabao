@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'12.0.0', 'references.citation_matching'=>'8.0.0',
-        'references.apa7.recognized_formats'=>'6.0.0', 'references.apa7.citation_format'=>'6.0.0',
+        'references.apa7'=>'13.0.0', 'references.citation_matching'=>'9.0.0',
+        'references.apa7.recognized_formats'=>'6.0.0', 'references.apa7.citation_format'=>'7.0.0',
     ];
 
     public static function generate(array $report): array
@@ -229,6 +229,8 @@ final class DeskResponse
                 if(($entry['status']??null)===CheckResult::FAIL && isset($messages[$code])){$actions[]=$messages[$code];}
             }}
             $citationMessages=[
+                'et_al_disambiguation_required'=>'desambiguar a citação abreviada com os nomes necessários e conferir a autoria da obra consultada',
+                'et_al_minimum_omission'=>'usar et al. apenas para substituir pelo menos dois autores; apresentar os nomes necessários conforme a fonte consultada',
                 'citation_year_suffix_mismatch'=>'alinhar o ano e seu sufixo entre a citação e a referência da obra efetivamente consultada',
                 'citation_year_list_order'=>'ordenar cronologicamente os anos reunidos sob a mesma autoria na citação',
                 'citation_group_alphabetical_order'=>'ordenar alfabeticamente as obras de autores distintos na citação parentética',

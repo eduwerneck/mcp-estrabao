@@ -1,11 +1,11 @@
-"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions, --secondary, --models, --matching or --years). Restores fixture bytes."""
+"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions, --secondary, --models, --matching, --years or --etal). Restores fixture bytes."""
 import json,os,subprocess,sys
 from pathlib import Path
 for key in ['DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH']:
  os.environ.pop(key,None)
 os.environ['DOCKER_HOST']='unix:///var/run/docker.sock'
 HERE=Path(__file__).resolve().parent
-ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-35'if '--years'in sys.argv else '/workspace/scratch/estrabao-lab-34'if '--matching'in sys.argv else '/workspace/scratch/estrabao-lab-33'if '--models'in sys.argv else '/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
+ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-36'if '--etal'in sys.argv else '/workspace/scratch/estrabao-lab-35'if '--years'in sys.argv else '/workspace/scratch/estrabao-lab-34'if '--matching'in sys.argv else '/workspace/scratch/estrabao-lab-33'if '--models'in sys.argv else '/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
 ROOT.mkdir(parents=True,exist_ok=True);ROOT.chmod(0o700)
 (ROOT/'summary.json').write_text(json.dumps({'overall_passed':False,'status':'running'}))
 def command(args,**kw):return subprocess.check_output(args,**kw)
@@ -52,6 +52,7 @@ try:
  if '--models'in sys.argv:plan=[('model-book','retirar o itálico da edição'),('model-chapter','separadores dos editores'),('model-article','página final não pode anteceder')]
  if '--matching'in sys.argv:plan=[('matching-compound-style','usar & entre dois autores'),('matching-compound-missing','conferir as chaves autor–ano')]
  if '--years'in sys.argv:plan=[('year-suffix','alinhar o ano e seu sufixo'),('year-suffix-late','alinhar o ano e seu sufixo'),('year-order','ordenar cronologicamente'),('work-order','ordenar alfabeticamente as obras')]
+ if '--etal'in sys.argv:plan=[('etal-collision','desambiguar a citação abreviada'),('etal-prefix-collision','desambiguar a citação abreviada'),('etal-single-rest','pelo menos dois autores')]
  for mode,expected in plan:
   fixture(mode)
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
@@ -83,15 +84,15 @@ try:
    if a.js('return Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).some(x=>x.textContent.trim()==="OK")'):break
    time.sleep(.1)
   a.js('Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).find(x=>x.textContent.trim()==="OK").click()')
-  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada','model-book':'edição entre parênteses não fica em itálico','model-chapter':'Na editoria do capítulo','model-article':'página final não pode anteceder','matching-compound-style':'Usar & entre dois autores','matching-compound-missing':'sem referência correspondente','year-suffix':'Conferir o ano e seu sufixo','year-suffix-late':'Conferir o ano e seu sufixo','year-order':'ordem cronológica','work-order':'ordem alfabética de autoria' }[mode]
+  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada','model-book':'edição entre parênteses não fica em itálico','model-chapter':'Na editoria do capítulo','model-article':'página final não pode anteceder','matching-compound-style':'Usar & entre dois autores','matching-compound-missing':'sem referência correspondente','year-suffix':'Conferir o ano e seu sufixo','year-suffix-late':'Conferir o ano e seu sufixo','year-order':'ordem cronológica','work-order':'ordem alfabética de autoria','etal-collision':'A forma abreviada coincide','etal-prefix-collision':'A forma abreviada coincide','etal-single-rest':'pelo menos dois autores' }[mode]
   for _ in range(40):
    if author_expected in a.text():break
    time.sleep(.1)
   check(mode+' author receives concrete correction',author_expected in a.text()and before==state())
   (ROOT/(mode+'-author.png')).write_bytes(base64.b64decode(a.call('GET','/screenshot')))
   fixture('restore')
- if '--institutions'in sys.argv or '--secondary'in sys.argv or '--models'in sys.argv or '--matching'in sys.argv or '--years'in sys.argv:
-  positive_modes=['year-correct','year-authorship','year-suffix-ambiguous','year-partial-suffix']if '--years'in sys.argv else ['matching-compound-correct','matching-compound-partial']if '--matching'in sys.argv else ['model-correct'if '--models'in sys.argv else 'secondary-correct'if '--secondary'in sys.argv else 'institution-alias']
+ if '--institutions'in sys.argv or '--secondary'in sys.argv or '--models'in sys.argv or '--matching'in sys.argv or '--years'in sys.argv or '--etal'in sys.argv:
+  positive_modes=['etal-expanded-correct','etal-full-correct','etal-initials-review','etal-duplicate-review']if '--etal'in sys.argv else ['year-correct','year-authorship','year-suffix-ambiguous','year-partial-suffix']if '--years'in sys.argv else ['matching-compound-correct','matching-compound-partial']if '--matching'in sys.argv else ['model-correct'if '--models'in sys.argv else 'secondary-correct'if '--secondary'in sys.argv else 'institution-alias']
   for positive_mode in positive_modes:
    fixture(positive_mode)
    b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))

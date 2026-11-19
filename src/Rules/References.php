@@ -26,7 +26,7 @@ final class References implements Rule
         if ($source['available'] ?? false) {
             if ($this->language === 'pt') {
                 try {
-                    $analysis = ReferenceAnalysis::analyze($source); $evidence['analysis'] = $analysis;
+                    $analysis = ReferenceAnalysis::analyze($source, $profile === 'full_main_text' && (!isset($this->document['footnotes']) || (($this->document['footnotes']['coverage_complete'] ?? false) && ($this->document['footnotes']['note_count'] ?? null) === 0))); $evidence['analysis'] = $analysis;
                     if ($analysis['closed_subset'] && $analysis['recognized_citations'] > 0) { $matching = $analysis['unresolved_citations'] > 0 ? CheckResult::FAIL : CheckResult::PASS; }
                     if ($analysis['segmentation_complete'] && !$analysis['inspection_limit_reached']) {
                         if ($analysis['citation_style_counts'][CheckResult::FAIL]) { $citationStyle = CheckResult::FAIL; }
@@ -60,13 +60,13 @@ final class References implements Rule
         ];
         return [
             new CheckResult('references.apa7', $apa, $evidence, '/manuscript',
-                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7 ou com as diretrizes editoriais de citações, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '12.0.0'),
+                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7 ou com as diretrizes editoriais de citações, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '13.0.0'),
             new CheckResult('references.citation_matching', $matching, $evidence + ['matching_direction' => 'recognized_citations_to_references'], '/manuscript',
-                'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '8.0.0'),
+                'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '9.0.0'),
             new CheckResult('references.apa7.recognized_formats', $formats, $evidence, '/manuscript',
                 'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.', '6.0.0'),
             new CheckResult('references.apa7.citation_format', $citationStyle, $evidence, '/manuscript',
-                'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.', '6.0.0'),
+                'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.', '7.0.0'),
         ];
     }
 }
