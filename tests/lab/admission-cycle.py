@@ -45,6 +45,18 @@ try:
   time.sleep(.1)
  check('native UI shows ABNT correction without completing', 'Referências em ABNT não são aceitas'in a.text() and db()[i]['submission_progress']==4)
  a.screenshot('current-author-abnt-feedback')
+ # Replace the blocked draft with a real new server file, then require fresh human review.
+ subprocess.run(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/replace.php','--correct-abnt'],check=True,stdout=subprocess.DEVNULL)
+ def inspect_corrected():return json.loads(subprocess.check_output(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/replace.php','--inspect-corrected']))
+ corrected=inspect_corrected();analysis=corrected['analysis']
+ check('correction uses a new server file',int(corrected['file_id'])!=int(state['submissions']['abnt']['file_id']))
+ check('combined years et al and undated keys are all linked',corrected['available'] and analysis['parsed_references']==6 and analysis['recognized_citations']==5 and analysis['matched_citations']==5 and analysis['unparsed_citation_groups']==0 and analysis['citation_style_counts']['não conforme']==0)
+ view('abnt');check('corrected combined APA manuscript becomes reviewable',b.js('return !!document.querySelector("button[value=approve]")'))
+ check('correction does not create an automatic release','Há liberação editorial válida'not in b.text())
+ finish(i);check('corrected draft still requires human review',db()[i]['submission_progress']==4 and db()[i]['date_submitted'] is None)
+ view('abnt');action('approve');check('new analysis can receive explicit human release','Há liberação editorial válida'in b.text());b.screenshot('corrected-combined-apa-review')
+ finish(i);check('corrected reviewed manuscript completes wizard',db()[i]['submission_progress']==0 and db()[i]['date_submitted'] is not None)
+ check('review and completion preserve corrected manuscript bytes',inspect_corrected()['sha256']==corrected['sha256'])
  i=view('review');action('approve');check('human APA review activates release','Há liberação editorial válida'in b.text());b.screenshot('current-editorial-release')
  finish(i);check('reviewed current version completes native wizard',db()[i]['submission_progress']==0 and db()[i]['date_submitted'] is not None)
  i=view('revoke');action('approve');action('revoke');finish(i);check('revoked release prevents completion',db()[i]['submission_progress']==4)

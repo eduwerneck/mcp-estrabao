@@ -1,0 +1,28 @@
+{
+  "base": "ad82d236ac7cfa0c57355d656c64e4ed2410f7ab",
+  "engine": "0.29.0",
+  "plugin": "0.21.0.0",
+  "product_files_unchanged": 61,
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1289,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1289,
+      "failures": 0
+    }
+  },
+  "php_lint_files": 97,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "browser_checks": 287,
+  "reversible_suite_checks": 266,
+  "fresh_cycle_checks": 21,
+  "full_apa_validation": false,
+  "runner_sha256": {
+    "tests/lab/integrated.py": "fcf0700de895cfc82b6f0a825d6017dea215af8ed3d3bca11a3b636fcf17cedf",
+    "tests/lab/admission-cycle.py": "b5a66f2634fb57f21536d259c7d4c72bdfc9943d19c03fd7bffe13328f8abc94",
+    "tests/lab/replace.php": "f0ad581e3b573b3dadf3c879c9a560b13de0cf8b7af68c62cb1ae6111d0162f7"
+  }
+}

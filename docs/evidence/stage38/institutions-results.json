@@ -1,0 +1,70 @@
+[
+  {
+    "case": "institution-abnt incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "institution-abnt desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "institution-abnt draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "institution-abnt does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "institution-abnt wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "institution-abnt author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "institution-doi incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "institution-doi desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "institution-doi draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "institution-doi does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "institution-doi wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "institution-doi author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "institution-alias remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "institution-alias has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "institution-alias cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

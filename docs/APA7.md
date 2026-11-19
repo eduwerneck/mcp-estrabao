@@ -47,7 +47,10 @@ API, importações e outros caminhos não foram homologados.
 5. Etapa 37 liga marcadores sem data/no prelo e preserva sufixos informados.
    Datas divergentes, grupos mistos e estado de publicação ficam para revisão;
    não converte idioma nem escolhe o ano da obra.
-6. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
+6. Etapa 38 repete o fluxo autor–correção–nova análise–revisão na cópia isolada
+   do OJS, combinando anos/sufixos, et al. e datas especiais no mesmo documento.
+7. Ampliar tipos bibliográficos, começando por teses/dissertações e relatórios;
+   depois páginas, dados/software e traduções, com casos incertos para revisão.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
 incerteza e preservação do manuscrito. Alterar a versão do motor invalida as
@@ -71,10 +74,11 @@ e fidelidade à fonte permanecem para conferência humana.
 ## Pendências para encerrar a frente
 
 A Etapa 37 fecha a ligação dos marcadores especiais neste subconjunto, não toda
-APA 7. Antes de encerrar o ciclo operacional, consolidar a regressão integrada
+APA 7. A Etapa 38 consolida a regressão integrada
 na versão atual: erro → correção → nova análise → revisão humana, com bloqueio
-por falha comprovada e invalidação da liberação anterior. Os 32 ensaios desta
-etapa são direcionados e não substituem a suíte integrada de homologação.
+por falha comprovada e invalidação da liberação anterior. Os 32 ensaios
+direcionados da Etapa 37 foram incorporados à regressão ampliada; resultado e
+limites em HOMOLOGATION.md.
 
 A matriz acima continua aberta para outros tipos bibliográficos (teses,
 relatórios, páginas, dados/software e traduções), ordenação da lista com empates,

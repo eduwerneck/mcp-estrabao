@@ -1,6 +1,6 @@
 """Sequential integration runner for the existing internal synthetic lab only.
 Does not provision, install or upgrade. Default suites are read-only/reversible.
---with-submission-cycle creates fresh synthetic drafts and records APA review/
+--with-apa-regression adds the targeted APA suites; --with-submission-cycle creates fresh synthetic drafts and records APA review/
 completion only in the internal lab; no external publication or messages.
 """
 import json,os,subprocess,sys
@@ -45,22 +45,26 @@ plan=[('desk-panel.py','ESTRABAO_DESK_EVIDENCE_DIR'),('apa-mixed.py','ESTRABAO_A
  ('credit-panel.py','ESTRABAO_CREDIT_EVIDENCE_DIR'),('funding-panel.py','ESTRABAO_FUNDING_EVIDENCE_DIR'),
  ('ethics-panel.py','ESTRABAO_ETHICS_EVIDENCE_DIR'),('ai-panel.py','ESTRABAO_AI_EVIDENCE_DIR'),
  ('title-guidance.py','ESTRABAO_TITLE_EVIDENCE_DIR')]
-for script,var in plan:
- directory=ROOT/Path(script).stem;directory.mkdir(exist_ok=True)
+if '--with-apa-regression' in sys.argv:
+ for label,args in [('authors',[]),('citations',['--citations']),('institutions',['--institutions']),('secondary',['--secondary']),('models',['--models']),('matching',['--matching']),('years',['--years']),('etal',['--etal']),('dates',['--dates'])]:
+  plan.append(('apa-authors.py','ESTRABAO_APA_AUTHORS_EVIDENCE_DIR',label,args))
+for suite in plan:
+ script,var=suite[:2];label=suite[2] if len(suite)>2 else Path(script).stem;args=suite[3] if len(suite)>3 else []
+ directory=ROOT/label;directory.mkdir(exist_ok=True)
  env=os.environ.copy();env[var]=str(directory);env['PYTHONPATH']=str(HERE)
  with (directory/'run.log').open('w')as log:
-  process=subprocess.run([sys.executable,str(HERE/script)],env=env,stdout=log,stderr=subprocess.STDOUT)
+  process=subprocess.run([sys.executable,str(HERE/script),*args],env=env,stdout=log,stderr=subprocess.STDOUT)
  if process.returncode:raise RuntimeError('Suite failed: '+script+'; inspect its private run.log')
  data=json.loads((directory/'results.json').read_text())
  if not data or not all(r['passed']for r in data):raise RuntimeError('Missing or failed results: '+script)
- suites.append({'suite':script,'checks':len(data),'passed':True})
- print('PASS '+script+' ('+str(len(data))+')',flush=True)
+ suites.append({'suite':script,'arguments':args,'checks':len(data),'passed':True})
+ print('PASS '+label+' ('+str(len(data))+')',flush=True)
 if before!=state():raise RuntimeError('Workflow records changed across integration suites')
 summary={'overall_passed':'--with-submission-cycle' not in sys.argv,'requested_fresh_cycle':'--with-submission-cycle' in sys.argv,
  'base_commit':command(['git','rev-parse','HEAD'],cwd=HERE).decode().strip(),
  'runtime':preflight['runtime'],'suite_count':len(suites),'browser_checks':sum(s['checks']for s in suites),
  'suites':suites,'workflow_state_preserved':True,'fixture_mode':'synthetic_only',
- 'production_accessed':False,'external_messages_sent':False,
+ 'production_accessed':False,'external_messages_sent':False,'apa_regression_requested':'--with-apa-regression' in sys.argv,
  'limitations':['default_theme_only','no_fresh_wizard_completion_in_this_runner','no_operational_production_homologation']}
 (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
 print('PASS integration total '+str(summary['browser_checks']),flush=True)

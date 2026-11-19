@@ -1,0 +1,130 @@
+[
+  {
+    "case": "etal-collision incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "etal-collision desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "etal-collision draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "etal-collision does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "etal-collision wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "etal-collision author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "etal-prefix-collision incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "etal-prefix-collision desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "etal-prefix-collision draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "etal-prefix-collision does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "etal-prefix-collision wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "etal-prefix-collision author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "etal-single-rest incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "etal-single-rest desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "etal-single-rest draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "etal-single-rest does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "etal-single-rest wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "etal-single-rest author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "etal-expanded-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "etal-expanded-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "etal-expanded-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "etal-full-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "etal-full-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "etal-full-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "etal-initials-review remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "etal-initials-review has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "etal-initials-review cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "etal-duplicate-review remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "etal-duplicate-review has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "etal-duplicate-review cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]
