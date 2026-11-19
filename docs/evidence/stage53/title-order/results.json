@@ -1,0 +1,202 @@
+[
+  {
+    "case": "titleorder-inverse incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "titleorder-inverse desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-inverse draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "titleorder-inverse does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "titleorder-inverse wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "titleorder-inverse author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-suffix incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "titleorder-suffix desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-suffix draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "titleorder-suffix does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "titleorder-suffix wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "titleorder-suffix author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-missing incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "titleorder-missing desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-missing draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "titleorder-missing does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "titleorder-missing wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "titleorder-missing author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate-letter incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate-letter desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate-letter draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate-letter does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate-letter wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate-letter author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-gap incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "titleorder-gap desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-gap draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "titleorder-gap does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "titleorder-gap wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "titleorder-gap author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "titleorder-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "titleorder-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "titleorder-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "titleorder-article remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "titleorder-article has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "titleorder-article cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "titleorder-duplicate cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "titleorder-accent remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "titleorder-accent has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "titleorder-accent cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "titleorder-partial remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "titleorder-partial has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "titleorder-partial cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "titleorder-original remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "titleorder-original has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "titleorder-original cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]
