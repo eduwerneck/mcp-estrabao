@@ -59,7 +59,13 @@ final class ReferenceStyleAudit
                     $mixedEntry = true;
                     self::check($checks, 'journal_legacy_labels', false, 'Na referência de periódico APA 7, remover os rótulos v., n. e p./pp.; apresentar volume(número), páginas ou identificador, com a formatação correspondente.');
                 }
-                if ($fields !== null && $fields['type'] === 'journal_article') {
+                if ($fields !== null && in_array($fields['type'],['repository_thesis_declared','unpublished_thesis_declared','numbered_report_declared'],true)) {
+                    $type=$fields['type'];
+                    self::check($checks,'declared_work_title_italic',self::emphasis($paragraph,$fields['title'],true),'No modelo declarado de tese, dissertação ou relatório, o título da obra fica em itálico.');
+                    self::check($checks,'declared_work_description_plain',self::emphasis($paragraph,$fields['description'],false),'A descrição entre colchetes da tese/dissertação ou o número entre parênteses do relatório não fica em itálico.');
+                    self::check($checks,'declared_work_source_plain',self::emphasis($paragraph,$fields['source'],false),'No modelo declarado de tese, dissertação ou relatório, a instituição, repositório ou editora após o título não fica em itálico.');
+                    self::check($checks,'declared_work_source_review',null,'Confirmar na fonte o tipo de trabalho, grau, instituição, situação de publicação e repositório/editora; descrição reconhecida não confirma esses dados nem exige número em todo relatório.');
+                } elseif ($fields !== null && $fields['type'] === 'journal_article') {
                     $type = 'journal_article';
                     self::check($checks, 'article_title_plain', self::emphasis($paragraph, $fields['title'], false), 'No artigo de periódico, o título do artigo não fica em itálico.');
                     self::check($checks, 'journal_italic', self::emphasis($paragraph, $fields['source'], true), 'O nome do periódico fica em itálico.');
@@ -238,6 +244,10 @@ final class ReferenceStyleAudit
     private static function fields(string $content, int $offset): ?array
     {
         $content = rtrim($content); if (substr($content, -1) === '.') { $content = substr($content, 0, -1); }
+        $longWork=ReferenceLongWorks::fields($content,$offset);
+        if ($longWork!==null) { return $longWork; }
+        // A partly recognized descriptor must not fall through as a book or journal.
+        if (preg_match('/\[(?:[^\]]*(?:dissertation|thesis|Tese|Dissertação))|\((?:Report No\.|Relatório n[º°.])/iu',$content)) { return null; }
         // Explicit chapter layout; editorial roles/type still require checking against the source.
         $editor = ReferenceModels::editorPattern();
         $editors = $editor . '(?:\s*(?:,\s*&|,|;|&|e|and|y)\s*' . $editor . '){0,19}';

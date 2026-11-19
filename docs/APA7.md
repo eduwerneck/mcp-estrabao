@@ -19,7 +19,7 @@ API, importações e outros caminhos não foram homologados.
 | Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
 | Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais; Etapa 35 confere anos/sufixos e ordem; Etapa 36 confere et al. colidente, quantidade omitida e suficiência dos nomes no contexto seguro | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, agrupamentos fora da cobertura, atribuição das letras por título e outras desambiguações |
 | Datas especiais | Etapa 37 liga n.d./s.d. e in press/no prelo, incluindo sufixos explícitos de obras sem data; mantém divergências e o estado real da publicação para revisão | Confirmar ausência de data/aceite na fonte, uniformização editorial do idioma, datas completas por tipo, datas originais/republicações e ordenação desses estados |
-| Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais | Ampliar outras edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
+| Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais; Etapa 39 confere título, descrição e fonte em modelos declarados de tese/dissertação e relatório numerado | Ampliar outras edições/traduções, descrições/graus e fontes de trabalhos acadêmicos fora da gramática, relatórios sem número/tipos especiais, páginas e dados/software |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
 | Citações diretas | Alguns localizadores reconhecidos lexicalmente | Conferência de transcrição, localizador, extensão, bloco versus aspas e fontes sem paginação |
@@ -49,8 +49,11 @@ API, importações e outros caminhos não foram homologados.
    não converte idioma nem escolhe o ano da obra.
 6. Etapa 38 repete o fluxo autor–correção–nova análise–revisão na cópia isolada
    do OJS, combinando anos/sufixos, et al. e datas especiais no mesmo documento.
-7. Ampliar tipos bibliográficos, começando por teses/dissertações e relatórios;
-   depois páginas, dados/software e traduções, com casos incertos para revisão.
+7. Etapa 39 acrescenta modelos declarados de teses/dissertações em repositório
+   e não publicadas e relatórios numerados. Conferência de título/descrição/fonte
+   não confirma grau, instituição, publicação ou existência do número informado.
+8. Seguem páginas, dados/software e traduções e variantes não cobertas dos tipos
+   já ampliados, com casos incertos para revisão.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
 incerteza e preservação do manuscrito. Alterar a versão do motor invalida as
@@ -80,8 +83,8 @@ por falha comprovada e invalidação da liberação anterior. Os 32 ensaios
 direcionados da Etapa 37 foram incorporados à regressão ampliada; resultado e
 limites em HOMOLOGATION.md.
 
-A matriz acima continua aberta para outros tipos bibliográficos (teses,
-relatórios, páginas, dados/software e traduções), ordenação da lista com empates,
+A matriz acima continua aberta para variantes de teses/relatórios e outros tipos
+bibliográficos (páginas, dados/software e traduções), ordenação da lista com empates,
 diacríticos/partículas, apresentação inicial de siglas, prefixos mínimos especiais,
 citações diretas/localizadores e datas completas/originais. Conferência do teor,
 da autoria, da fonte consultada e da existência dos dados permanece humana.
