@@ -1,0 +1,24 @@
+'use strict';
+const assert = require('node:assert/strict');
+const {inspect} = require('../../plugins/generic/estrabao/reference-guidance.js');
+let count = 0;
+function test(name, callback) { callback(); console.log('PASS ' + name); count++; }
+const a = 'Silva, A. (2020). Obra sintética. Editora Exemplo.';
+const b = 'Souza, B. (2021). Outra obra. Editora Exemplo.';
+test('duas referências concatenadas recebem aviso', () => assert.equal(inspect(a + ' ' + b).state, 'warning'));
+test('referências com Enter não recebem aviso de concatenação', () => assert.equal(inspect(a + '\n' + b).state, 'no_signal'));
+test('linha vazia extra não é exigida nem reprovada', () => assert.equal(inspect(a + '\n\n' + b).state, 'no_signal'));
+test('CRLF e CR são inspecionados sem reescrever entrada', () => { for (const sep of ['\r\n', '\r']) assert.equal(inspect(a + sep + b).state, 'no_signal'); });
+test('quebra visual de referência longa não é novo item', () => assert.equal(inspect(a + ' Texto comprido.'.repeat(60)).state, 'no_signal'));
+test('duas autorias da mesma obra não contam como duas referências', () => assert.equal(inspect('Silva, A., & Souza, B. (2020). Obra. Editora.' ).state, 'no_signal'));
+test('três autores da mesma obra não causam aviso', () => assert.equal(inspect('Silva, A., Souza, B., & Lima, C. (2020). Obra. Editora.').state, 'no_signal'));
+test('instituições reconhecidas permitem aviso de colagem', () => assert.equal(inspect('Instituto de Estudos Sintéticos. (2020). Obra. Editora. ' + b).state, 'warning'));
+test('nomes compostos e datas sem ano no subconjunto', () => assert.equal(inspect('da Silva, A. (s.d.). Obra. Editora. García Márquez, B. (2021). Obra. Editora.').state, 'warning'));
+test('continuação com URL em linha própria exige conferência', () => assert.equal(inspect(a + '\nhttps://synthetic.invalid/item').state, 'review'));
+test('padrão não reconhecido não vira confirmação', () => assert.equal(inspect('SILVA, João. Livro. Editora, 2020.').state, 'review'));
+test('vazio não cria requisito de preenchimento', () => assert.equal(inspect('  \n\t').state, 'empty'));
+test('HTML e separador Unicode não equivalem a Enter no OJS', () => { for (const value of ['<p>' + a + '</p>', a + '\u2029' + b]) assert.equal(inspect(value).state, 'review'); });
+test('limites retornam conferência sem truncar em conformidade', () => { for (const value of ['a'.repeat(131073), a + 'a'.repeat(8193), (a + '\n').repeat(1025)]) assert.equal(inspect(value).state, 'review'); });
+test('aviso não contém bibliografia nem envia dados', () => { const result = inspect(a + ' ' + b); assert.deepEqual(result.lines, [1]); assert.ok(!JSON.stringify(result).includes('Silva')); });
+test('resultado nunca certifica conformidade ou correspondência Crossref', () => assert.equal(inspect(a).state, 'no_signal'));
+console.log(count + ' testes JavaScript, 0 falhas');

@@ -224,3 +224,12 @@ msgstr "La lectura no permite establecer la declaración. Revise el manuscrito, 
 
 msgid "plugins.generic.estrabao.aiReviewInstructions"
 msgstr "Los autores deben declarar uso o no uso de IA en el manuscrito. Si hubo uso, revise herramienta, finalidad y nivel de interacción; solo se permite apoyo técnico para revisión lingüística, traducción, formato y figuras ilustrativas. Si se declaró no uso, no exija detalles de herramientas. No se exige duplicación en Comentarios al Editor. Esta ficha no detecta uso real, no registra aprobación y no se copia en la carta."
+
+msgid "plugins.generic.estrabao.referenceHelp"
+msgstr "Introduzca cada referencia completa en una línea, usando Enter entre referencias. El ajuste automático en pantalla no separa entradas; no use Enter dentro de una misma referencia. No se requieren líneas en blanco adicionales."
+
+msgid "plugins.generic.estrabao.referenceJoinedWarning"
+msgstr "Hay indicios de más de una referencia en la misma línea. Compruebe el texto y use Enter entre referencias completas. El aviso no confirma la identidad de las obras ni su identificación por Crossref."
+
+msgid "plugins.generic.estrabao.referenceSeparationReview"
+msgstr "La comprobación automática no confirmó los límites de estas referencias. Compruebe la separación manualmente."

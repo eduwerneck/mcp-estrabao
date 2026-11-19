@@ -1,10 +1,10 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 42](STAGE42.md) altera motor/plugin para 0.33.0/0.25.0.0,
-com 1435 testes por PHP e 47 verificações direcionadas no OJS local. A suíte
-integrada de 287 casos abaixo pertence à base anterior e não foi repetida
-integralmente nesta ampliação. O runner inclui a modalidades --longworks/--web/--digital/--revisions
-para futuras regressões integradas.
+Atualização: a [Etapa 43](STAGE43.md) preserva o motor 0.33.0 e atualiza o
+plugin para 0.26.0.0, com orientação no campo Referências. Passaram 1438 testes
+por PHP, 16 testes JavaScript e 19 verificações direcionadas no OJS local.
+A suíte integrada de 287 casos abaixo pertence à base anterior e não foi
+repetida integralmente. O runner inclui a nova suíte reference-guidance.py.
 
 Resultado atual em 19/11/2026: **regressão aprovada no laboratório**, base
 ad82d23 (merge PR #38). A [Etapa 38](STAGE38.md) preserva motor 0.29.0 e plugin

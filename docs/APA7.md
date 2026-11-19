@@ -62,7 +62,10 @@ API, importações e outros caminhos não foram homologados.
 10. Etapa 42 acrescenta metadados de tradução, publicação original e proteção
     de datas relacionadas. Não presume livro pela presença de tradutor, nem
     escolhe a edição; a citação com barra continua para revisão.
-11. Seguem variantes fora da cobertura, ordenação ampliada e citações diretas,
+11. Etapa 43 acrescenta orientação editorial no metadado Referências do OJS:
+    uma referência completa por Enter, com aviso de possível concatenação.
+    Esse aviso não valida APA nem garante identificação/registro Crossref.
+12. Seguem variantes fora da cobertura, ordenação ampliada e citações diretas,
     com identidade, edição e fonte efetivamente consultada para revisão humana.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
