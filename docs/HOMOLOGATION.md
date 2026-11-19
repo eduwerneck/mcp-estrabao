@@ -1,9 +1,9 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 44](STAGE44.md) altera motor/plugin para 0.34.0/0.27.0.0.
-Passaram 1473 testes por PHP, 16 testes JavaScript e 50 verificações direcionadas
+Atualização: a [Etapa 45](STAGE45.md) altera motor/plugin para 0.35.0/0.28.0.0.
+Passaram 1506 testes por PHP, 16 testes JavaScript e 55 verificações direcionadas
 no OJS local. A suíte integrada de 287 casos abaixo pertence à base anterior e
-não foi repetida integralmente. O runner inclui a modalidade --ordering.
+não foi repetida integralmente. O runner inclui a modalidade --quotes.
 
 Resultado atual em 19/11/2026: **regressão aprovada no laboratório**, base
 ad82d23 (merge PR #38). A [Etapa 38](STAGE38.md) preserva motor 0.29.0 e plugin

@@ -233,3 +233,6 @@ msgstr "Há indícios de mais de uma referência na mesma linha. Confira o conte
 
 msgid "plugins.generic.estrabao.referenceSeparationReview"
 msgstr "A verificação automática não confirmou os limites destas referências. Confira a separação manualmente."
+
+msgid "plugins.generic.estrabao.directQuoteReviewTitle"
+msgstr "Conferência de citações diretas"

@@ -79,7 +79,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '19.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '20.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {
@@ -89,7 +89,7 @@ class EstrabaoAdmissionBridge
                 foreach ($result['evidence']['analysis']['citation_style_samples'] ?? [] as $sample) {
                     if (($sample['status'] ?? null) !== 'não conforme') { continue; }
                     foreach ($sample['issues'] ?? [] as $index => $code) {
-                        if (in_array($code, ['parenthetical_authors_require_ampersand', 'narrative_authors_require_conjunction', 'three_or_more_authors_require_et_al', 'et_al_period', 'citation_spacing', 'secondary_apud_not_allowed', 'citation_year_suffix_mismatch', 'citation_year_list_order', 'citation_group_alphabetical_order', 'et_al_disambiguation_required', 'et_al_minimum_omission'], true)
+                        if (in_array($code, ['citation_page_range_order','citation_page_marker','parenthetical_authors_require_ampersand', 'narrative_authors_require_conjunction', 'three_or_more_authors_require_et_al', 'et_al_period', 'citation_spacing', 'secondary_apud_not_allowed', 'citation_year_suffix_mismatch', 'citation_year_list_order', 'citation_group_alphabetical_order', 'et_al_disambiguation_required', 'et_al_minimum_omission'], true)
                             && isset($sample['guidance'][$index]) && is_string($sample['guidance'][$index])) { $corrections[] = $sample['guidance'][$index]; }
                     }
                 }
@@ -103,7 +103,7 @@ class EstrabaoAdmissionBridge
                 if (($matching['closed_subset'] ?? false) && ($matching['unresolved_citations'] ?? 0) > 0) {
                     $corrections[] = 'Conferir autoria, ano e sufixo das citações sem referência correspondente. Em citações secundárias, conferir a fonte efetivamente consultada.';
                 }
-                $response = ['decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
+                $response = ['direct_quote_review'=>$matching['direct_quote_review']??[], 'decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
                     'fingerprint' => hash('sha256', json_encode($binding)),
                     'binding' => $binding, 'reviewable' => $reviewable];
                 if ($includeDocument) { $response['document'] = $document; }
