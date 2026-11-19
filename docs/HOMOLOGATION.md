@@ -1,9 +1,9 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 49](STAGE49.md) altera motor/plugin para 0.38.0/0.31.0.0.
-Passaram 1607 testes por PHP, 16 testes JavaScript e 50 verificações direcionadas
-no OJS local. A regressão integrada de 695 verificações abaixo pertence à base
-anterior e não foi repetida integralmente. Runner opcional inclui --title-order.
+Atualização: a [Etapa 50](STAGE50.md) altera motor/plugin para 0.39.0/0.32.0.0.
+Passaram 1639 testes por PHP, 16 testes JavaScript e 100 verificações no OJS local
+(50 direcionadas e 50 de regressão de títulos/sufixos). As 695 verificações da
+base integrada abaixo não foram repetidas integralmente. Runner inclui --initial-articles.
 
 Resultado em 19/11/2026: **regressão aprovada no laboratório**, base 9e16c78
 (merge PR #48). A [Etapa 48](STAGE48.md) preserva motor 0.37.0 e plugin 0.30.0.0.

@@ -9,7 +9,7 @@ final class ReferenceTitleOrder
     public static function analyze(array $keys): array
     {
         $r=['title_order_status'=>CheckResult::UNKNOWN,'year_suffix_order_status'=>CheckResult::UNKNOWN,
-            'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_cohorts_checked'=>0,'title_pairs_checked'=>0];
+            'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_article_strategy'=>'literal_and_single_initial_article_consensus','title_article_pairs_checked'=>0,'title_cohorts_checked'=>0,'title_pairs_checked'=>0];
         $groups=[];$blocked=[];$ambiguous=[];
         foreach($keys as $k){
             if(!empty($k['original_year_review'])){$ambiguous[$k['signature']]=true;}
@@ -19,21 +19,24 @@ final class ReferenceTitleOrder
         $title=CheckResult::PASS;$suffix=CheckResult::PASS;$uncertain=false;
         foreach($groups as $group){
             $n=count($group);if($n<2){continue;}
-            $valid=$n<=26 && empty($ambiguous[$group[0]['signature']]) && empty($blocked[$group[0]['signature']][substr($group[0]['year'],0,4)]);$titles=[];$ranks=array_fill(0,$n,0);
+            $valid=$n<=26 && empty($ambiguous[$group[0]['signature']]) && empty($blocked[$group[0]['signature']][substr($group[0]['year'],0,4)]);$titles=[];$articlePairs=0;$ranks=array_fill(0,$n,0);
             foreach($group as $k){
                 $t=$k['order_title']??null;
                 if(empty($k['title_year_eligible']) || !is_string($t) || strlen($t)>512
-                    || !preg_match('/^\p{L}+(?: \p{L}+)*$/uD',$t)
-                    || preg_match('/^(?:a|an|the|o|os|as|um|uma|uns|umas|el|la|los|las|un|una|unos|unas)(?: |$)/iuD',$t)){$valid=false;}
-                $titles[]=$t;
+                    || !preg_match('/^\p{L}+(?: \p{L}+)*$/uD',$t)){$valid=false;}
+                $variants=is_string($t)?self::variants($t):null;
+                if($variants===null){$valid=false;}
+                $titles[]=$variants;
             }
             if(!$valid){$uncertain=true;continue;}
             for($i=0;$i<$n;$i++){for($j=$i+1;$j<$n;$j++){
-                $cmp=self::compare($titles[$i],$titles[$j]);
+                $cmp=self::consensus($titles[$i],$titles[$j]);
                 if($cmp===null || $cmp===0){$valid=false;break 2;}
+                if(count($titles[$i])>1 || count($titles[$j])>1){$articlePairs++;}
                 if($cmp>0){$ranks[$i]++;}else{$ranks[$j]++;}
             }}
             if(!$valid){$uncertain=true;continue;}
+            $r['title_article_pairs_checked']+=$articlePairs;
             $r['title_cohorts_checked']++;$r['title_pairs_checked']+=intdiv($n*($n-1),2);
             for($i=0;$i<$n;$i++){
                 if($i>0 && $ranks[$i-1]>$ranks[$i]){
@@ -49,6 +52,29 @@ final class ReferenceTitleOrder
         $r['title_order_status']=$title===CheckResult::FAIL?$title:($uncertain || !$r['title_cohorts_checked']?CheckResult::UNKNOWN:CheckResult::PASS);
         $r['year_suffix_order_status']=$suffix===CheckResult::FAIL?$suffix:($uncertain || !$r['title_cohorts_checked']?CheckResult::UNKNOWN:CheckResult::PASS);
         return $r;
+    }
+
+    /** Literal and article-free alternatives are internal only, never replacements for the title. */
+    private static function variants(string $title): ?array
+    {
+        $articles='a|an|the|o|os|as|um|uma|uns|umas|el|la|los|las|un|una|unos|unas';
+        if(!preg_match('/^(?:'.$articles.')(?: |$)/iuD',$title)){return [$title];}
+        $rest=preg_replace('/^(?:'.$articles.') /iu','',$title,1,$removed);
+        if(!$removed || preg_match('/^(?:'.$articles.')(?: |$)/iuD',$rest)){return null;}
+        return [$title,$rest];
+    }
+
+    private static function consensus(array $left,array $right): ?int
+    {
+        $sign=null;
+        foreach($left as $a){foreach($right as $b){
+            $cmp=self::compare($a,$b);
+            if($cmp===null || $cmp===0){return null;}
+            $current=$cmp<0?-1:1;
+            if($sign!==null && $sign!==$current){return null;}
+            $sign=$current;
+        }}
+        return $sign;
     }
 
     private static function compare(string $left,string $right): ?int
