@@ -194,7 +194,7 @@ test('ordem alfabética não é ignorada quando há sobrenomes ASCII distintos',
 test('colação acentuada e autores iguais não recebem ordenação adivinhada', function () use ($book) {
     $doc = italicDocument([str_replace('Silva', 'Sá', $book), $book], [['Estudo da paisagem'], ['Estudo da paisagem']]);
     same('indeterminado', apaAudit($doc)['alphabetical_order_status']);
-    same('indeterminado', apaAudit(italicDocument([$book, str_replace('2020', '2021', $book)], [['Estudo da paisagem'], ['Estudo da paisagem']]))['alphabetical_order_status']);
+    same('conforme', apaAudit(italicDocument([$book, str_replace('2020', '2021', $book)], [['Estudo da paisagem'], ['Estudo da paisagem']]))['chronological_order_status']);
 });
 test('título bibliográfico em caixa alta integral recebe diagnóstico sem reescrita', function () use ($book) {
     $ref = str_replace('Estudo da paisagem', 'ESTUDO DA PAISAGEM', $book);
@@ -311,8 +311,8 @@ test('CLI distingue incompatibilidade detectada de certificação APA completa',
     withDocx($parts, function ($path) {
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
         same(0, $code); same('', $err); $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-        same('0.33.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
-        same('18.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
+        same('0.34.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
+        same('19.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
         same(false, $checks['references.apa7']['evidence']['full_apa_validation']); same(false, strpos($out, 'São Paulo') !== false);
     });
 });

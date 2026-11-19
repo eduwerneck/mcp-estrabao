@@ -79,7 +79,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '18.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '19.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {
@@ -92,6 +92,12 @@ class EstrabaoAdmissionBridge
                         if (in_array($code, ['parenthetical_authors_require_ampersand', 'narrative_authors_require_conjunction', 'three_or_more_authors_require_et_al', 'et_al_period', 'citation_spacing', 'secondary_apud_not_allowed', 'citation_year_suffix_mismatch', 'citation_year_list_order', 'citation_group_alphabetical_order', 'et_al_disambiguation_required', 'et_al_minimum_omission'], true)
                             && isset($sample['guidance'][$index]) && is_string($sample['guidance'][$index])) { $corrections[] = $sample['guidance'][$index]; }
                     }
+                }
+                if (($result['evidence']['style_audit']['alphabetical_order_status']??null)==='não conforme') {
+                    $corrections[]='Conferir a ordem alfabética das referências pela autoria declarada, preservando nomes e partículas.';
+                }
+                if (($result['evidence']['style_audit']['chronological_order_status']??null)==='não conforme') {
+                    $corrections[]='Nas obras com a mesma autoria declarada, apresentar os anos anteriores antes dos posteriores; conferir autoria e edição antes de corrigir.';
                 }
                 $matching = $result['evidence']['analysis'] ?? [];
                 if (($matching['closed_subset'] ?? false) && ($matching['unresolved_citations'] ?? 0) > 0) {

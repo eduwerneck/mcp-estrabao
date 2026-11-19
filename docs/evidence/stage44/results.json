@@ -1,0 +1,202 @@
+[
+  {
+    "case": "reforder-chronological incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "reforder-chronological desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-chronological draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "reforder-chronological does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "reforder-chronological wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "reforder-chronological author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-coauthors incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "reforder-coauthors desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-coauthors draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "reforder-coauthors does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "reforder-coauthors wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "reforder-coauthors author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-accent incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "reforder-accent desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-accent draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "reforder-accent does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "reforder-accent wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "reforder-accent author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-particle incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "reforder-particle desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-particle draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "reforder-particle does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "reforder-particle wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "reforder-particle author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-shared-accent incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "reforder-shared-accent desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-shared-accent draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "reforder-shared-accent does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "reforder-shared-accent wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "reforder-shared-accent author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "reforder-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "reforder-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "reforder-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "reforder-initials remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "reforder-initials has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "reforder-initials cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "reforder-tie remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "reforder-tie has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "reforder-tie cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "reforder-diacritic remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "reforder-diacritic has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "reforder-diacritic cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "reforder-original remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "reforder-original has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "reforder-original cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "reforder-special remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "reforder-special has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "reforder-special cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

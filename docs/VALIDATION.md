@@ -1036,3 +1036,24 @@ mounts read-only e versão instalada conferidos. Containers desligados. Sem
 produção, VM Oracle, arquivos reais, mensagens ou deploy. Tokenizer nativo
 lido; nenhum depósito ou correspondência Crossref foi testado/certificado.
 Limites em STAGE43.md; regressão integrada não repetida, CI remoto ainda não verificado.
+
+
+## Etapa 44 — ordenação bibliográfica em subconjuntos seguros
+
+Em 19/11/2026, sobre b289698 (merge PR #44), motor 0.34.0, plugin 0.27.0.0,
+APA 19.0.0 e formatos 12.0.0. Matching/citações e contratos preservados.
+1473 testes por PHP 8.4.27 e 8.1.27, zero falhas; 16 testes JavaScript;
+lint de 109 arquivos PHP, Python, dois schemas CLI e diff aprovados.
+
+50 verificações OJS 3.3.0.20/Chromium: inversões de cronologia em autoria simples/
+coautoria e alfabéticas em prefixos com acentos/partículas bloquearam com mensagem
+específica, minuta e POST nativo. Seis casos adequados/inconclusivos permaneceram
+revisáveis sem avanço automático. Empates, variantes de autoria, colação incerta,
+datas originais/especiais e grafias potencialmente parciais não recebem ordem
+adivinhada. Datas completas preservam comparação alfabética anterior.
+
+Isolamento, e-mail neutralizado, mounts read-only e versão instalada conferidos;
+bytes/estado sintéticos restaurados. Capturas vistas em evidence/stage44.
+Containers desligados. Sem produção, VM Oracle, arquivos reais, mensagens ou
+deploy. Limites em STAGE44.md/APA7.md; não houve nova consulta normativa externa.
+Regressão integrada anterior não repetida; CI remoto da branch ainda não verificado.
