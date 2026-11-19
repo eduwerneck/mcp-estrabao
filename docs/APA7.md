@@ -21,7 +21,7 @@ API, importações e outros caminhos não foram homologados.
 | Datas especiais | Etapa 37 liga n.d./s.d. e in press/no prelo, incluindo sufixos explícitos de obras sem data; mantém divergências e o estado real da publicação para revisão | Confirmar ausência de data/aceite na fonte, uniformização editorial do idioma, datas completas por tipo, datas originais/republicações e ordenação desses estados |
 | Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais; Etapa 39 confere título, descrição e fonte em modelos declarados de tese/dissertação e relatório numerado | Ampliar outras edições/traduções, descrições/graus e fontes de trabalhos acadêmicos fora da gramática, relatórios sem número/tipos especiais, páginas e dados/software |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
-| DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
+| DOI e URL | Formato de DOI informado; ausência de DOI não reprova; Etapa 40 confere estrutura de URL HTTP e calendários reconhecidos, sem acessar links | Correspondência com fonte/metadados, disponibilidade do destino, tipo de obra e necessidade real de data de consulta |
 | Citações diretas | Alguns localizadores reconhecidos lexicalmente | Conferência de transcrição, localizador, extensão, bloco versus aspas e fontes sem paginação |
 | Documento e extração | DOCX seguro e perfis parciais explicitados | Casos fora da extração, apresentação renderizada; PDF e .doc não têm triagem automática |
 
@@ -52,8 +52,11 @@ API, importações e outros caminhos não foram homologados.
 7. Etapa 39 acrescenta modelos declarados de teses/dissertações em repositório
    e não publicadas e relatórios numerados. Conferência de título/descrição/fonte
    não confirma grau, instituição, publicação ou existência do número informado.
-8. Seguem páginas, dados/software e traduções e variantes não cobertas dos tipos
-   já ampliados, com casos incertos para revisão.
+8. Etapa 40 acrescenta calendários e sintaxe de URL HTTP, reconhece datas de
+   consulta informadas e mantém identificação de página/site para revisão, sem
+   impor data completa, nome do site ou data de consulta a todos os casos.
+9. Seguem dados/software, traduções e variantes de páginas/tipos não cobertas,
+   com casos incertos para revisão.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
 incerteza e preservação do manuscrito. Alterar a versão do motor invalida as

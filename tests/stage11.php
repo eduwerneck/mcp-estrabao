@@ -129,7 +129,7 @@ test('editora singular e plural em capítulo seguem editoria reconhecida', funct
 test('layout de página com data completa é reconhecido sem validar existência da página', function () {
     $ref = 'Silva, A. (2020, May 2). Estudo da paisagem. Portal Sintético. https://invalid.example/teste';
     $audit = apaAudit(italicDocument([$ref], [['Estudo da paisagem']]));
-    same('conforme', $audit['recognized_formats_status']); same('webpage_layout_candidate', $audit['samples'][0]['type']);
+    same('indeterminado', $audit['recognized_formats_status']); same('webpage_layout_candidate', $audit['samples'][0]['type']);
 });
 foreach (['n.d.', 's.d.', 'in press', 'no prelo'] as $date) {
     test('data especial não vira ABNT automaticamente ' . $date, function () use ($book, $date) {
@@ -311,8 +311,8 @@ test('CLI distingue incompatibilidade detectada de certificação APA completa',
     withDocx($parts, function ($path) {
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
         same(0, $code); same('', $err); $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-        same('0.30.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
-        same('15.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
+        same('0.31.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
+        same('16.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
         same(false, $checks['references.apa7']['evidence']['full_apa_validation']); same(false, strpos($out, 'São Paulo') !== false);
     });
 });
@@ -321,7 +321,7 @@ test('mês desconhecido ou dia inválido não recebe aprovação de formato de d
         $ref = 'Silva, A. (' . $date . '). Estudo da paisagem. Portal Sintético. https://invalid.example/teste';
         $audit = apaAudit(italicDocument([$ref], [['Estudo da paisagem']]));
         same('indeterminado', auditCodes($audit)['date_token_format']);
-        same('indeterminado', $audit['recognized_formats_status']);
+        same($date==='2020, February 30'?'não conforme':'indeterminado', $audit['recognized_formats_status']);
     }
 });
 test('cabeçalho Bibliografia permite detectar a divergência sem aceitar título editorial novo', function () {

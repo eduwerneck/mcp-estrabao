@@ -1,0 +1,22 @@
+{
+  "base": "e91e0c2",
+  "depends_on": "feat/etapa-39-apa-teses-relatorios",
+  "main_at_start": "aec02aa",
+  "engine": "0.31.0",
+  "plugin": "0.23.0.0",
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1361,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1361,
+      "failures": 0
+    }
+  },
+  "php_lint_files": 101,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "browser_checks": 38,
+  "full_apa_validation": false
+}

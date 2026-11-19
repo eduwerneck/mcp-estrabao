@@ -54,7 +54,15 @@ final class ReferenceStyleAudit
                     self::check($checks, 'doi_url_format', false, 'O DOI informado deve ser apresentado como https://doi.org/...; substituir o prefixo antigo sem alterar o identificador.');
                 } elseif ($link['modern_doi']) { self::check($checks, 'doi_url_format', true, 'DOI apresentado como URL doi.org; existência e metadados não foram consultados.'); }
                 // Missing DOI never fails: the journal recommends DOI when available.
-                $base = $link['base']; $fields = self::fields($base, $offset);
+                $base = $link['base'];
+                if ($link['web_url']) {
+                    $web=WebReference::inspect($base,$head['date_token']??'',$link['url']);$base=$web['base'];
+                    self::check($checks,'web_url_syntax',$web['url_syntax'],'Conferir a estrutura da URL HTTP informada: incluir o host e conferir a porta; não foi testado o acesso ao destino.');
+                    if ($web['publication_calendar']!==null) { self::check($checks,'web_publication_calendar',$web['publication_calendar'],'Conferir a data informada na referência com URL: o dia, mês e ano devem formar uma data possível. Não foi confirmada a data real de publicação.'); }
+                    if ($web['retrieval_seen']) { self::check($checks,'web_retrieval_calendar',$web['retrieval_calendar'],'Conferir a data de consulta informada: o dia, mês e ano devem formar uma data possível; não inserir uma data inventada.'); }
+                    self::check($checks,'web_source_review',null,'Confirmar se a obra é página, artigo ou outro tipo, o nome do site quando aplicável, a data disponível e a necessidade de data de consulta; URL não comprova tipo nem existência da fonte.');
+                }
+                $fields = self::fields($base, $offset);
                 if ($head['kind'] === 'personal' && self::legacyJournal($base)) {
                     $mixedEntry = true;
                     self::check($checks, 'journal_legacy_labels', false, 'Na referência de periódico APA 7, remover os rótulos v., n. e p./pp.; apresentar volume(número), páginas ou identificador, com a formatação correspondente.');
@@ -173,8 +181,8 @@ final class ReferenceStyleAudit
     {
         if (strlen($text) > 8192) { return null; }
         $head = ReferenceAnalysis::parseEntry($text);
-        if ($head !== null) { $head['kind'] = 'personal'; $head['date_format_resolved'] = preg_match('/^[0-9]{4}[a-z]?$/D',$head['year'])===1; $head['author_list'] = ApaPersonalAuthors::inspect($head['author_key']); return $head; }
-        if (strlen($text) > 8192 || !preg_match('/\((n\.d\.|s\.d\.|in press|no prelo|[0-9]{4}, [\p{L}]+(?: [0-9]{1,2})?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) {
+        if ($head !== null) { $head['date_token']=$head['year']; $head['kind'] = 'personal'; $head['date_format_resolved'] = preg_match('/^[0-9]{4}[a-z]?$/D',$head['year'])===1; $head['author_list'] = ApaPersonalAuthors::inspect($head['author_key']); return $head; }
+        if (strlen($text) > 8192 || !preg_match('/\((n\.d\.|s\.d\.|in press|no prelo|[0-9]{4}, (?:[\p{L}]+(?: [0-9]{1,2})?|[0-9]{1,2} de [\p{L}]+))\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) {
             // Institutional author with an ordinary year.
             if (!preg_match('/\(([0-9]{4}[a-z]?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) { return null; }
         }
@@ -182,12 +190,12 @@ final class ReferenceStyleAudit
         $prefix = trim(substr($text, 0, $date[0][1])); $contentStart = $date[0][1] + strlen($date[0][0]);
         $content = trim(substr($text, $contentStart)); if ($content === '' || strlen($prefix) > 2048) { return null; }
         $authorList = ApaPersonalAuthors::inspect($prefix);
-        if ($authorList !== null) { return ['kind'=>'personal', 'date_format_resolved'=>$dateResolved,
+        if ($authorList !== null) { return ['kind'=>'personal', 'date_token'=>$date[1][0], 'date_format_resolved'=>$dateResolved,
             'authors'=>$authorList['authors'], 'author_list'=>$authorList, 'content'=>$content, 'content_start'=>$contentStart]; }
         $synthetic = ReferenceAnalysis::parseEntry($prefix . ' (2020). Placeholder. Publisher.');
-        if ($synthetic !== null) { return ['kind' => 'personal', 'date_format_resolved' => $dateResolved, 'authors' => $synthetic['authors'], 'content' => $content, 'content_start' => $contentStart]; }
+        if ($synthetic !== null) { return ['kind' => 'personal', 'date_token'=>$date[1][0], 'date_format_resolved' => $dateResolved, 'authors' => $synthetic['authors'], 'content' => $content, 'content_start' => $contentStart]; }
         if (preg_match('/^[\p{L}\p{N}\s&\p{Pd}\x{2019}\x{0027}]{2,256}\.$/uD', $prefix)) {
-            return ['kind' => 'group_candidate', 'date_format_resolved' => $dateResolved, 'authors' => [], 'content' => $content, 'content_start' => $contentStart];
+            return ['kind' => 'group_candidate', 'date_token'=>$date[1][0], 'date_format_resolved' => $dateResolved, 'authors' => [], 'content' => $content, 'content_start' => $contentStart];
         }
         return null;
     }
@@ -195,10 +203,7 @@ final class ReferenceStyleAudit
     private static function dateFormat(string $date): bool
     {
         if (preg_match('/^(?:[0-9]{4}[a-z]?|n\.d\.|s\.d\.|in press|no prelo)$/iuD', $date)) { return true; }
-        if (!preg_match('/^([0-9]{4}), ([A-Za-z]+)(?: ([0-9]{1,2}))?$/D', $date, $m)) { return false; }
-        $months = ['january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
-        $index = array_search(strtolower($m[2]), $months, true);
-        return $index !== false && checkdate($index + 1, isset($m[3]) ? (int) $m[3] : 1, (int) $m[1]);
+        return WebReference::publicationDate($date)===true;
     }
 
     private static function abntLike(string $text): bool
@@ -230,9 +235,9 @@ final class ReferenceStyleAudit
 
     private static function stripLink(string $content): array
     {
-        $result = ['base' => rtrim($content), 'modern_doi' => false, 'legacy_doi' => false, 'web_url' => false, 'punctuation_review' => false];
-        if (preg_match('~\s+((?:doi:\s*10\.[0-9]{4,9}/|https?://)[^\s<>]+)\s*$~iuD', $content, $match, PREG_OFFSET_CAPTURE)) {
-            $url = $match[1][0]; $result['base'] = rtrim(substr($content, 0, $match[0][1]));
+        $result = ['base' => rtrim($content), 'modern_doi' => false, 'legacy_doi' => false, 'web_url' => false, 'punctuation_review' => false, 'url'=>''];
+        if (preg_match('~\s+((?:doi:\s*10\.[0-9]{4,9}/|https?://)[^\s<>]*)\s*$~iuD', $content, $match, PREG_OFFSET_CAPTURE)) {
+            $url = $match[1][0]; $result['url']=$url; $result['base'] = rtrim(substr($content, 0, $match[0][1]));
             $result['modern_doi'] = preg_match('~^https://doi\.org/10\.[0-9]{4,9}/~i', $url) === 1;
             $result['legacy_doi'] = preg_match('~^(?:doi:\s*10\.|http://(?:dx\.)?doi\.org/10\.|https://dx\.doi\.org/10\.)~i', $url) === 1;
             $result['web_url'] = !$result['modern_doi'] && !$result['legacy_doi'];

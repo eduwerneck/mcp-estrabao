@@ -1,9 +1,9 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 39](STAGE39.md) altera motor/plugin para 0.30.0/0.22.0.0,
-com 1323 testes por PHP e 38 verificações direcionadas no OJS local. A suíte
+Atualização: a [Etapa 40](STAGE40.md) altera motor/plugin para 0.31.0/0.23.0.0,
+com 1361 testes por PHP e 38 verificações direcionadas no OJS local. A suíte
 integrada de 287 casos abaixo pertence à base anterior e não foi repetida
-integralmente nesta ampliação. O runner inclui a nova modalidade --longworks
+integralmente nesta ampliação. O runner inclui a modalidades --longworks/--web
 para futuras regressões integradas.
 
 Resultado atual em 19/11/2026: **regressão aprovada no laboratório**, base
