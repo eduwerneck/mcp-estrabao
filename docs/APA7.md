@@ -23,7 +23,7 @@ API, importações e outros caminhos não foram homologados.
 | Traduções e republicações | Etapa 42 confere nomes/função de tradução sem itálico, edição inglesa reconhecida, separadores no modelo Trans., indicação original sem itálico e cronologia declarada; protege anos originais na correspondência | Identificar obra/edição real, outros papéis/idiomas, modelos por tipo e correspondência completa de citações com dois anos; barra permanece indeterminada |
 | Ordem e títulos | Etapa 44 confere cronologia de listas pessoais declaradas idênticas com anos numéricos e compara prefixos literais decisivos, inclusive nomes com partículas/acentos; título integralmente em caixa alta no subconjunto anterior | Empates/sufixos, listas/autorias distintas, colação ambígua, datas especiais/originais, comparações não adjacentes e sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova; Etapa 40 confere estrutura de URL HTTP e calendários reconhecidos, sem acessar links | Correspondência com fonte/metadados, disponibilidade do destino, tipo de obra e necessidade real de data de consulta |
-| Citações diretas | Alguns localizadores reconhecidos lexicalmente | Conferência de transcrição, localizador, extensão, bloco versus aspas e fontes sem paginação |
+| Citações diretas | Etapa 45: p./pp. e intervalo de páginas no vínculo único completo; candidatos de parágrafo entre aspas e orientação privada | Fidelidade/localização real, layout, narrativas, blocos sem aspas e fontes sem paginação exigem conferência; citações internas não geram correção automática |
 | Documento e extração | DOCX seguro e perfis parciais explicitados | Casos fora da extração, apresentação renderizada; PDF e .doc não têm triagem automática |
 
 ## Ordem de continuidade
@@ -68,8 +68,10 @@ API, importações e outros caminhos não foram homologados.
 12. Etapa 44 acrescenta cronologia adjacente da mesma autoria declarada e
     prefixos alfabéticos seguros. Empates/variantes de autoria, anos especiais ou
     originais e colação incerta continuam humanos; não reorganiza o arquivo.
-13. Seguem citações diretas e variantes fora da cobertura, com identidade, edição
-    e fonte efetivamente consultada para revisão humana.
+13. Etapa 45 confere p./pp. e intervalos inequívocos e sinaliza candidatos a
+    citações diretas para revisão privada, protegendo citações internas.
+14. Seguem variantes fora da cobertura, layout e fidelidade das transcrições,
+    identidade, edição e fonte efetivamente consultada para revisão humana.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
 incerteza e preservação do manuscrito. Alterar a versão do motor invalida as
@@ -102,6 +104,6 @@ limites em HOMOLOGATION.md.
 A matriz acima continua aberta para variantes de teses/relatórios e outros tipos
 bibliográficos (páginas, dados/software e traduções), ordenação da lista com empates,
 diacríticos/partículas, apresentação inicial de siglas, prefixos mínimos especiais,
-citações diretas/localizadores e datas completas/originais. Conferência do teor,
+variantes de citações diretas/localizadores fora da Etapa 45 e datas completas/originais. Conferência do teor,
 da autoria, da fonte consultada e da existência dos dados permanece humana.
 Não tratar esses itens como concluídos por ausência de falha automática.

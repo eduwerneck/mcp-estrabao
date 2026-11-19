@@ -29,10 +29,17 @@ final class ReferenceAnalysis
         'citation_group_order_review' => 'Conferir a organização da citação múltipla; autorias ambíguas, secundárias, instituições, acentos e empates exigem revisão.',
         'author_year_disambiguation_review' => 'Conferir a identificação da autoria, ano, sufixos e possíveis duplicatas; não atribuir letras ou identidades automaticamente.',
         'special_date_review' => 'Conferir na fonte a ausência de data ou a situação no prelo e manter a identificação coerente entre citação e referência; o marcador reconhecido não confirma o estado de publicação.',
+        'citation_page_range_order' => 'Conferir o intervalo de páginas informado: a página final não pode anteceder a inicial; verificar a localização na fonte.',
+        'citation_page_marker' => 'Usar p. para uma página e pp. para um intervalo de páginas no localizador reconhecido.',
+        'citation_locator_review' => 'Conferir o localizador informado e a localização do trecho na fonte; parágrafo ou marca temporal reconhecidos não confirmam o tipo de obra nem a fidelidade.',
+        'quoted_citation_review' => 'Conferir a citação reproduzida dentro das aspas; não presumir consulta à obra interna nem corrigir automaticamente o conteúdo transcrito.',
+        'direct_quote_source_review' => 'Confirmar se o trecho entre aspas é citação direta e conferir fidelidade, fonte e localizador apropriado; ausência de p. não comprova ausência de localização.',
+        'direct_quote_block_review' => 'Conferir o candidato a citação longa: verificar o limite de 40 palavras, bloco e aspas externas; apresentação visual e fidelidade exigem revisão.',
+        'direct_quote_boundary_review' => 'Conferir a contagem no limite de 40 palavras para decidir entre aspas e bloco; a tokenização disponível não resolve essa fronteira.',
         'citation_spacing' => 'Na parentética, inserir espaço após a vírgula; na narrativa, antes do parêntese do ano.',
         'personal_surname_full_uppercase' => 'Conferir capitalização do sobrenome; maiúsculas isoladas não provam ABNT.',
     ];
-    private const REVIEW_ISSUES = ['personal_surname_full_uppercase','multi_author_disambiguation_review','institutional_alias_review','secondary_source_review','citation_year_list_duplicates_review','citation_year_list_authorship_review','citation_group_order_review','author_year_disambiguation_review','special_date_review'];
+    private const REVIEW_ISSUES = ['personal_surname_full_uppercase','multi_author_disambiguation_review','institutional_alias_review','secondary_source_review','citation_year_list_duplicates_review','citation_year_list_authorship_review','citation_group_order_review','author_year_disambiguation_review','special_date_review','citation_locator_review','direct_quote_source_review','direct_quote_block_review','direct_quote_boundary_review','quoted_citation_review'];
     const SURNAME = '\p{L}[\p{L}\p{Pd}\x{2019}\x{0027}]{0,63}';
     const DATE_TOKEN = '(?:[0-9]{4}[a-z]?|[ns]\\.\\s*d\\.(?:-[a-z])?|in press|no prelo)';
     const YEAR_SIGNAL = '[0-9]{4}[a-z]?|n\.\s*d\.|s\.\s*d\.|in press|no prelo';
@@ -119,9 +126,9 @@ final class ReferenceAnalysis
                             }
                             $secondary = self::secondaryCitation($item, substr($text, 0, $offset), $entries, $aliases, $personalPattern);
                             if ($secondary !== null) { $parsed[] = $secondary + ['item_index'=>$itemIndex]; continue; }
-                            if (preg_match('/^\s*(.+?),\s*(' . self::DATE_TOKEN . ')(?:,\s*pp?\.\s*[0-9]+(?:[-–][0-9]+)?)?\s*$/iuD', $item, $match)) {
+                            if (preg_match('/^\s*(.+?),\s*(' . self::DATE_TOKEN . ')(?:,\s*(' . CitationLocator::PATTERN . '))?\s*$/iuD', $item, $match)) {
                                 $author = InstitutionalAuthors::citation(trim($match[1]), $entries, $aliases) ?? self::citationAuthors(trim($match[1]), $personalPattern);
-                                if ($author !== null) { $parsed[] = $author + ['year' => self::dateKey($match[2]), 'placement' => 'parenthetical', 'item_index'=>$itemIndex, 'spacing_ok' => preg_match('/,\S/u', $item) !== 1]; continue; }
+                                if ($author !== null) { $parsed[] = $author + ['locator'=>(isset($match[3]) && $match[3]!==''?$match[3]:null), 'year' => self::dateKey($match[2]), 'placement' => 'parenthetical', 'item_index'=>$itemIndex, 'spacing_ok' => preg_match('/,\S/u', $item) !== 1]; continue; }
                             }
                             $unparsedGroups++;
                         }
@@ -130,6 +137,9 @@ final class ReferenceAnalysis
                     foreach ($parsed as $parsedIndex => $citation) {
                         $citation['group_issues']=$groupIssues[$parsedIndex]??[];
                         $citation['syntax_complete']=$balanced;
+                        $citation['group_complete']=$beforeUnparsed===$unparsedGroups;
+                        $citation['inside_quotes']=CitationLocator::withinQuotes($text,$offset);
+                        $citation['group_item_count']=count($parsed);$citation['group_length']=strlen($group[0][0]);
                         $citation['paragraph_index'] = $paragraph['index']; $citation['byte_offset'] = $offset;
                         $citations[] = $citation;
                         if (count($citations) > self::MAX_CITATIONS) { $limit = true; $reasons[] = 'inspection_limit'; break 3; }
@@ -138,12 +148,14 @@ final class ReferenceAnalysis
             }
         }
         $styleCounts = ['conforme' => 0, 'não conforme' => 0, 'indeterminado' => 0]; $styleSamples = [];
-        $etAlComplete=$etAlContextComplete && $boundaries && !$unparsed && !$unparsedGroups && !$limit && $personalPattern!==null && !count(array_filter($citations,function ($c) { return !empty($c['secondary']); }));
+        $etAlComplete=$etAlContextComplete && $boundaries && !$unparsed && !$unparsedGroups && !$limit && $personalPattern!==null && !count(array_filter($citations,function ($c) { return !empty($c['secondary']) || !empty($c['inside_quotes']); }));
         $etAlCache=[];
+        $quoteCounts=['quoted_citation_candidates'=>0,'candidate_count'=>0,'long_candidates'=>0,'boundary_candidates'=>0,'missing_locator_candidates'=>0];
+        $bodyByIndex=[];foreach($bodyTexts as $p){$bodyByIndex[$p['index']]=$p['text'];}
         $samples = []; $matched = 0; $missing = 0; $ambiguous = 0; $used = [];
         foreach ($limit ? [] : $citations as $citation) {
             // Unlinked institutional aliases cannot prove a reference absent, including in mixed lists.
-            $matches = []; $matchParagraphs = []; $weak = $hasInstitutional || !empty($citation['institutional_ambiguous']);
+            $matches = []; $matchParagraphs = []; $weak = $hasInstitutional || !empty($citation['institutional_ambiguous']) || !empty($citation['inside_quotes']);
             foreach ($entries as $entry) {
                 if (substr($entry['year'],0,4) === substr($citation['year'],0,4) && self::weakName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
                 if (self::originalCandidate($citation,$entry)) { $weak=true; }
@@ -158,6 +170,9 @@ final class ReferenceAnalysis
             elseif (count($matches) > 1 || $weak) { $state = 'ambiguous'; $ambiguous++; }
             else { $state = 'unresolved'; $missing++; }
             $styleIssues = $citation['group_issues'] ?? [];
+            $direct=CitationLocator::inspect($bodyByIndex[$citation['paragraph_index']],$citation,count($matches));
+            $styleIssues=array_merge($styleIssues,$direct['issues']);
+            if($direct['quote_candidate']){$quoteCounts['candidate_count']++;if($direct['long']){$quoteCounts['long_candidates']++;}if($direct['boundary']){$quoteCounts['boundary_candidates']++;}if($direct['missing_locator']){$quoteCounts['missing_locator_candidates']++;}}
             if (self::specialDate($citation['year'])) { $styleIssues[]='special_date_review'; }
             if (($citation['secondary_marker'] ?? null) === 'apud') { $styleIssues[]='secondary_apud_not_allowed'; }
             if ($suffixIssue!==null) { $styleIssues[]=$suffixIssue; }
@@ -180,11 +195,12 @@ final class ReferenceAnalysis
                     if (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)) { $styleIssues[] = 'personal_surname_full_uppercase'; }
                 }
             }
+            if (!empty($citation['inside_quotes'])) { $styleIssues=['quoted_citation_review'];$quoteCounts['quoted_citation_candidates']++; }
             $definite=array_diff($styleIssues,self::REVIEW_ISSUES);
             $styleStatus=$definite?'não conforme':($styleIssues || count($matches)!==1?'indeterminado':'conforme');
             $styleCounts[$styleStatus]++;
             $styleSample = ['paragraph_index' => $citation['paragraph_index'], 'byte_offset' => $citation['byte_offset'],
-                'status' => $styleStatus, 'issues' => array_values(array_unique($styleIssues)),
+                'status' => $styleStatus, 'locator_kind'=>$direct['kind'], 'quote_candidate'=>$direct['quote_candidate'], 'word_interval'=>$direct['word_interval'], 'issues' => array_values(array_unique($styleIssues)),
                 'guidance' => array_map(function ($code) { return self::STYLE_GUIDANCE[$code]; }, array_values(array_unique($styleIssues)))];
             if (count($styleSamples) < 32) { $styleSamples[] = $styleSample; }
             elseif ($styleStatus !== 'conforme') { foreach ($styleSamples as $i => $old) { if ($old['status'] === 'conforme' || ($styleStatus === 'não conforme' && $old['status'] === 'indeterminado')) { $styleSamples[$i] = $styleSample; break; } } }
@@ -203,7 +219,7 @@ final class ReferenceAnalysis
         if ($unparsedGroups) { $reasons[] = 'unparsed_citation_groups'; }
         if ($numeric) { $reasons[] = 'numeric_citation_candidates'; }
         if ($ambiguous) { $reasons[] = 'ambiguous_author_date_match'; }
-        return ['citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
+        return ['direct_quote_counts'=>$quoteCounts,'direct_quote_review'=>CitationLocator::reviewGuidance($quoteCounts), 'citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
             'citation_style_samples_omitted' => max(0, array_sum($styleCounts) - count($styleSamples)), 'segmentation_complete' => $boundaries, 'closed_subset' => $closed, 'inspection_limit_reached' => $limit,
             'et_al_context_complete'=>$etAlComplete,'et_al_cohort_limit'=>32,'compound_name_lookup_complete' => $personalPattern !== null, 'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
             'recognized_citations' => count($citations), 'unparsed_citation_groups' => $unparsedGroups,

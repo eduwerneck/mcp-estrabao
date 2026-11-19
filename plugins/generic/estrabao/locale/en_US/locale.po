@@ -233,3 +233,6 @@ msgstr "There are signs of more than one reference on the same line. Check the t
 
 msgid "plugins.generic.estrabao.referenceSeparationReview"
 msgstr "The automatic check could not establish the reference boundaries. Check the separation manually."
+
+msgid "plugins.generic.estrabao.directQuoteReviewTitle"
+msgstr "Direct quotation review"

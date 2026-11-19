@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'19.0.0', 'references.citation_matching'=>'11.0.0',
-        'references.apa7.recognized_formats'=>'12.0.0', 'references.apa7.citation_format'=>'9.0.0',
+        'references.apa7'=>'20.0.0', 'references.citation_matching'=>'12.0.0',
+        'references.apa7.recognized_formats'=>'12.0.0', 'references.apa7.citation_format'=>'10.0.0',
     ];
 
     public static function generate(array $report): array
@@ -244,6 +244,8 @@ final class DeskResponse
                 if(($entry['status']??null)===CheckResult::FAIL && isset($messages[$code])){$actions[]=$messages[$code];}
             }}
             $citationMessages=[
+                'citation_page_range_order'=>'conferir o intervalo de páginas da citação: a final não pode anteceder a inicial',
+                'citation_page_marker'=>'usar p. para uma página e pp. para um intervalo no localizador reconhecido',
                 'et_al_disambiguation_required'=>'desambiguar a citação abreviada com os nomes necessários e conferir a autoria da obra consultada',
                 'et_al_minimum_omission'=>'usar et al. apenas para substituir pelo menos dois autores; apresentar os nomes necessários conforme a fonte consultada',
                 'citation_year_suffix_mismatch'=>'alinhar o ano e seu sufixo entre a citação e a referência da obra efetivamente consultada',
