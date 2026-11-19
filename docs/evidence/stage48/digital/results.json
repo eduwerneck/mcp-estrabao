@@ -1,0 +1,154 @@
+[
+  {
+    "case": "digital-title incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "digital-title desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "digital-title draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "digital-title does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "digital-title wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "digital-title author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "digital-version incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "digital-version desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "digital-version draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "digital-version does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "digital-version wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "digital-version author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "digital-description incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "digital-description desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "digital-description draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "digital-description does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "digital-description wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "digital-description author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "digital-source incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "digital-source desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "digital-source draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "digital-source does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "digital-source wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "digital-source author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "digital-dataset remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "digital-dataset has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "digital-dataset cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "digital-optional remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "digital-optional has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "digital-optional cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "digital-case remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "digital-case has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "digital-case cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "digital-partial remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "digital-partial has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "digital-partial cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

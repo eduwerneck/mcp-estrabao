@@ -1,0 +1,24 @@
+{
+  "base": "9e16c78",
+  "engine": "0.37.0",
+  "plugin": "0.30.0.0",
+  "product_files_identical_to_base": 68,
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1577,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1577,
+      "failures": 0
+    }
+  },
+  "javascript_tests": 16,
+  "php_lint_files": 113,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "browser_checks": 695,
+  "reversible_suites": 27,
+  "fresh_cycle_checks": 24,
+  "full_apa_validation": false
+}

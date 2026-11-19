@@ -1,0 +1,154 @@
+[
+  {
+    "case": "longwork-title incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "longwork-title desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-title draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "longwork-title does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "longwork-title wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "longwork-title author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-description incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "longwork-description desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-description draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "longwork-description does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "longwork-description wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "longwork-description author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-report incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "longwork-report desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-report draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "longwork-report does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "longwork-report wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "longwork-report author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-source incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "longwork-source desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-source draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "longwork-source does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "longwork-source wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "longwork-source author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "longwork-repository remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "longwork-repository has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "longwork-repository cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "longwork-unpublished remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "longwork-unpublished has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "longwork-unpublished cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "longwork-correct-report remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "longwork-correct-report has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "longwork-correct-report cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "longwork-partial remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "longwork-partial has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "longwork-partial cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]
