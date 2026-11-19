@@ -934,3 +934,22 @@ Evidências em evidence/stage38. Capturas sintéticas inspecionadas. Rede intern
 e-mail neutralizado e mounts read-only. Containers desligados. Sem produção,
 VM Oracle, arquivos reais, envio externo ou deploy. Sem nova consulta normativa;
 limites em STAGE38.md e APA7.md. CI remoto da branch ainda não verificado.
+
+
+## Etapa 39 — modelos declarados de trabalhos acadêmicos e relatórios
+
+Em 19/11/2026, sobre aec02aa (merge PR #39), motor 0.30.0, plugin 0.22.0.0,
+APA 15.0.0 e formatos 8.0.0; matching/citações e contratos preservados.
+1323 testes por PHP 8.4.27 e 8.1.27, zero falhas. Lint de 99 arquivos PHP,
+compilação Python, dois schemas CLI e diff aprovados.
+
+38 verificações OJS 3.3.0.20/Chromium: quatro falhas de itálico bloqueiam com
+orientação/minuta específica; quatro modelos adequados/incompletos permanecem
+para revisão humana, sem conclusão automática. Dados da fonte e grau/estado
+de publicação não são confirmados. Ausência de número não reprova relatório.
+
+Isolamento, mounts read-only, versão instalada e e-mail neutralizado confirmados;
+bytes e estado restaurados. Capturas sintéticas inspecionadas em evidence/stage39.
+Containers desligados ao final. Sem produção, VM Oracle, documentos reais, envio
+externo ou deploy. Limites em STAGE39.md e APA7.md; sem nova consulta normativa.
+Suíte integrada anterior não repetida; CI remoto da nova branch não verificado.
