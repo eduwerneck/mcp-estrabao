@@ -1,0 +1,254 @@
+{
+  "overall_passed": true,
+  "requested_fresh_cycle": true,
+  "base_commit": "aa855f80d9a804e92b830d3338f0ec28632d84c0",
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.34.0.0",
+    "plugin_files": "0.34.0.0",
+    "engine": "0.41.0"
+  },
+  "suite_count": 31,
+  "browser_checks": 910,
+  "suites": [
+    {
+      "suite": "desk-panel.py",
+      "arguments": [],
+      "checks": 13,
+      "passed": true
+    },
+    {
+      "suite": "apa-mixed.py",
+      "arguments": [],
+      "checks": 5,
+      "passed": true
+    },
+    {
+      "suite": "footnote-panel.py",
+      "arguments": [],
+      "checks": 9,
+      "passed": true
+    },
+    {
+      "suite": "article-dates.py",
+      "arguments": [],
+      "checks": 10,
+      "passed": true
+    },
+    {
+      "suite": "credit-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "funding-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ethics-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ai-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "title-guidance.py",
+      "arguments": [],
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "suite": "reference-guidance.py",
+      "arguments": [],
+      "checks": 19,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [],
+      "checks": 14,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--citations"
+      ],
+      "checks": 14,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--institutions"
+      ],
+      "checks": 17,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--secondary"
+      ],
+      "checks": 17,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--models"
+      ],
+      "checks": 23,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--matching"
+      ],
+      "checks": 20,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--years"
+      ],
+      "checks": 38,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--etal"
+      ],
+      "checks": 32,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--dates"
+      ],
+      "checks": 32,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--longworks"
+      ],
+      "checks": 38,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--web"
+      ],
+      "checks": 38,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--digital"
+      ],
+      "checks": 38,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--revisions"
+      ],
+      "checks": 47,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--ordering"
+      ],
+      "checks": 50,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--quotes"
+      ],
+      "checks": 55,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--narratives"
+      ],
+      "checks": 70,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--author-order"
+      ],
+      "checks": 50,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--title-order"
+      ],
+      "checks": 50,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--initial-articles"
+      ],
+      "checks": 50,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--punctuation"
+      ],
+      "checks": 50,
+      "passed": true
+    },
+    {
+      "suite": "apa-authors.py",
+      "arguments": [
+        "--full-dates"
+      ],
+      "checks": 62,
+      "passed": true
+    }
+  ],
+  "workflow_state_preserved": true,
+  "fixture_mode": "synthetic_only",
+  "production_accessed": false,
+  "external_messages_sent": false,
+  "apa_regression_requested": true,
+  "limitations": [
+    "default_theme_only",
+    "no_operational_production_homologation"
+  ],
+  "fresh_cycle_checks": 27,
+  "fresh_cycle_passed": true,
+  "original_workflow_records_preserved": true
+}

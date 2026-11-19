@@ -1,0 +1,24 @@
+{
+  "base": "aa855f8",
+  "engine": "0.41.0",
+  "plugin": "0.34.0.0",
+  "product_files_identical_to_base": 70,
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1716,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1716,
+      "failures": 0
+    }
+  },
+  "javascript_tests": 16,
+  "php_lint_files": 119,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "browser_checks": 910,
+  "reversible_suites": 31,
+  "fresh_cycle_checks": 27,
+  "full_apa_validation": false
+}

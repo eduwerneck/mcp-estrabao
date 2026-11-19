@@ -16,7 +16,9 @@ if($correct){
  'Costa, B. (2018). Obra sintética individual. Editora Exemplo.',
  'Costa, B., Alves, C., Rocha, D., Nunes, E., & Paiva, F. (2021). Obra sintética. Editora Exemplo.',
  'Costa, B., Lima, C., Ramos, D., Vieira, E., & Reis, F. (2021). Outra obra sintética. Editora Exemplo.',
- 'Silva, A. (2019). Obra sintética. Editora Exemplo.','Silva, A. (2020a). Obra sintética. Editora Exemplo.','Silva, A. (2020b). Outra obra sintética. Editora Exemplo.','Souza, B. (n.d.). Obra sintética. Editora Exemplo.'];
+ 'Silva, A. (2019). Obra sintética. Editora Exemplo.','Silva, A. (2020a). The Alfa: estudo. Editora Exemplo.','Silva, A. (2020b). Zebra: estudo. Editora Exemplo.','Souza, B. (n.d.). Obra sintética. Editora Exemplo.',
+ 'Teixeira, C. (2022, May 2). Página temporal. Portal Sintético. https://portal.synthetic.invalid/primeira',
+ 'Teixeira, C. (2022, May 10). Outra página temporal. Portal Sintético. https://portal.synthetic.invalid/segunda'];
  $xml='<w:document xmlns:w="'.$w.'"><w:body>';foreach($texts as$text){$xml.='<w:p><w:r><w:t>'.htmlspecialchars($text,ENT_XML1,'UTF-8').'</w:t></w:r></w:p>';}$xml.='</w:body></w:document>';
  $z=new ZipArchive();if($z->open($temp)!==true){exit(1);}$z->addFromString('word/document.xml',$xml);$z->close();
 }

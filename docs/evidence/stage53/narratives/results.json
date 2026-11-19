@@ -1,0 +1,282 @@
+[
+  {
+    "case": "narrative-range incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "narrative-range desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-range draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "narrative-range does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "narrative-range wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "narrative-range author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline-range incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline-range desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline-range draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline-range does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline-range wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline-range author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-marker incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "narrative-marker desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-marker draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "narrative-marker does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "narrative-marker wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "narrative-marker author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-single incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "narrative-single desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-single draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "narrative-single does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "narrative-single wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "narrative-single author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "narrative-short remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-short has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-short has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-short private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-short cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-long remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-long has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-long has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-long private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-long cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-inline cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-boundary remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-boundary has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-boundary has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-boundary private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-boundary cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-missing remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-missing has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-missing has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-missing private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-missing cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-paragraph remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-paragraph has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-paragraph has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-paragraph private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-paragraph cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-time remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-time has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-time has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-time private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-time cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-nested remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-nested has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-nested has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "narrative-nested private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "narrative-nested cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "narrative-unrelated remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "narrative-unrelated has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "narrative-unrelated locator not associated with unrelated prose",
+    "passed": true
+  },
+  {
+    "case": "narrative-unrelated cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

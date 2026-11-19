@@ -84,7 +84,9 @@ API, importações e outros caminhos não foram homologados.
     decisiva é entre letras; sinais divergentes continuam para revisão.
 20. Etapa 52 confere calendário de pares adjacentes com dia/mês/ano explícitos
     e mesma autoria declarada; tipo, edição e sufixos permanecem para revisão.
-21. Seguem variantes fora da cobertura, layout e fidelidade das transcrições,
+21. Etapa 53 reúne a regressão integrada atual e o ciclo com títulos/pontuação
+    e datas completas, preservando revisão humana e limites do matcher.
+22. Seguem variantes fora da cobertura, layout e fidelidade das transcrições,
     identidade, edição e fonte efetivamente consultada para revisão humana.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
@@ -114,7 +116,9 @@ na base histórica: erro → correção → nova análise → revisão humana, c
 por falha comprovada e invalidação da liberação anterior. Os 32 ensaios
 direcionados da Etapa 37 foram incorporados à regressão ampliada; resultado e
 limites em HOMOLOGATION.md. A Etapa 48 repete e amplia a regressão integrada
-na base atual, incluindo narrativas/localizadores e ordenação entre coautorias.
+na base então atual, incluindo narrativas/localizadores e ordenação entre coautorias.
+A Etapa 53 consolida a regressão da base atual com títulos, pontuação e datas
+completas; isso não amplia a cobertura normativa.
 
 A matriz acima continua aberta para variantes de teses/relatórios e outros tipos
 bibliográficos (páginas, dados/software e traduções), ordenação da lista com empates,

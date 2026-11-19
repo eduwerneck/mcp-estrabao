@@ -1,0 +1,190 @@
+[
+  {
+    "case": "revision-translator incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "revision-translator desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "revision-translator draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "revision-translator does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "revision-translator wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "revision-translator author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "revision-edition incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "revision-edition desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "revision-edition draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "revision-edition does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "revision-edition wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "revision-edition author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "revision-original incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "revision-original desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "revision-original draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "revision-original does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "revision-original wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "revision-original author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "revision-years incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "revision-years desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "revision-years draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "revision-years does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "revision-years wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "revision-years author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "revision-separators incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "revision-separators desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "revision-separators draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "revision-separators does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "revision-separators wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "revision-separators author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "revision-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "revision-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "revision-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "revision-republished remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "revision-republished has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "revision-republished cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "revision-original-citation remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "revision-original-citation has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "revision-original-citation cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "revision-slash remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "revision-slash has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "revision-slash cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "revision-partial remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "revision-partial has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "revision-partial cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]
