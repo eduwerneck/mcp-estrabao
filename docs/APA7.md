@@ -74,7 +74,9 @@ API, importações e outros caminhos não foram homologados.
     em transcrições delimitadas, sem inferir fonte por proximidade.
 15. Etapa 47 amplia ordenação adjacente entre autor único e coautorias e entre
     coautores seguintes após prefixos pessoais declarados idênticos.
-16. Seguem variantes fora da cobertura, layout e fidelidade das transcrições,
+16. Etapa 48 reúne a regressão integrada atual, com correção combinada e revisão
+    humana antes de concluir a submissão no laboratório local.
+17. Seguem variantes fora da cobertura, layout e fidelidade das transcrições,
     identidade, edição e fonte efetivamente consultada para revisão humana.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
@@ -100,10 +102,11 @@ e fidelidade à fonte permanecem para conferência humana.
 
 A Etapa 37 fecha a ligação dos marcadores especiais neste subconjunto, não toda
 APA 7. A Etapa 38 consolida a regressão integrada
-na versão atual: erro → correção → nova análise → revisão humana, com bloqueio
+na base histórica: erro → correção → nova análise → revisão humana, com bloqueio
 por falha comprovada e invalidação da liberação anterior. Os 32 ensaios
 direcionados da Etapa 37 foram incorporados à regressão ampliada; resultado e
-limites em HOMOLOGATION.md.
+limites em HOMOLOGATION.md. A Etapa 48 repete e amplia a regressão integrada
+na base atual, incluindo narrativas/localizadores e ordenação entre coautorias.
 
 A matriz acima continua aberta para variantes de teses/relatórios e outros tipos
 bibliográficos (páginas, dados/software e traduções), ordenação da lista com empates,

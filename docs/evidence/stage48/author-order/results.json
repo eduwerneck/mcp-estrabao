@@ -1,0 +1,202 @@
+[
+  {
+    "case": "listorder-single incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "listorder-single desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-single draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "listorder-single does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "listorder-single wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "listorder-single author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-second incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "listorder-second desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-second draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "listorder-second does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "listorder-second wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "listorder-second author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-third incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "listorder-third desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-third draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "listorder-third does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "listorder-third wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "listorder-third author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-particle incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "listorder-particle desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-particle draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "listorder-particle does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "listorder-particle wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "listorder-particle author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-accent incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "listorder-accent desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-accent draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "listorder-accent does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "listorder-accent wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "listorder-accent author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "listorder-correct-single remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "listorder-correct-single has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "listorder-correct-single cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "listorder-correct-second remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "listorder-correct-second has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "listorder-correct-second cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "listorder-initials remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "listorder-initials has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "listorder-initials cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "listorder-diacritic remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "listorder-diacritic has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "listorder-diacritic cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "listorder-partial remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "listorder-partial has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "listorder-partial cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "listorder-prefix remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "listorder-prefix has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "listorder-prefix cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

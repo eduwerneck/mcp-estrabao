@@ -1,0 +1,15 @@
+{
+  "overall_passed": true,
+  "checks": 19,
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.30.0.0",
+    "plugin_files": "0.30.0.0",
+    "engine": "0.37.0"
+  },
+  "fixture_restored": true,
+  "production_accessed": false,
+  "metadata_autosaved": false,
+  "advisory_only": true
+}

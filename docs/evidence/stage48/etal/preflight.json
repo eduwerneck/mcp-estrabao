@@ -1,0 +1,33 @@
+{
+  "container_checks": {
+    "estrabao-lab-15-web_running": true,
+    "estrabao-lab-15-web_internal_network_only": true,
+    "estrabao-lab-15-web_no_public_ports": true,
+    "estrabao-lab-15-db_running": true,
+    "estrabao-lab-15-db_internal_network_only": true,
+    "estrabao-lab-15-db_no_public_ports": true,
+    "estrabao-lab-15-browser_running": true,
+    "estrabao-lab-15-browser_internal_network_only": true,
+    "estrabao-lab-15-browser_no_public_ports": true,
+    "web_sendmail_override": true,
+    "mounts_match_checkout": true,
+    "readonly_engine_and_plugin": true
+  },
+  "checks": {
+    "ojs_3_3_0_20": true,
+    "plugin_installed_matches_files": true,
+    "smtp_disabled": true,
+    "sendmail_neutralized": true,
+    "admission_gate_enabled": true,
+    "engine_bootstrap_matches_private_mount": true,
+    "private_files_outside_webroot": true,
+    "private_review_directory": true
+  },
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.30.0.0",
+    "plugin_files": "0.30.0.0",
+    "engine": "0.37.0"
+  }
+}

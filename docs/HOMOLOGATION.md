@@ -1,45 +1,38 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 47](STAGE47.md) altera motor/plugin para 0.37.0/0.30.0.0.
-Passaram 1577 testes por PHP, 16 testes JavaScript e 82 verificações no OJS local
-(50 direcionadas e 32 de regressão et al.). A suíte integrada de 287 casos abaixo pertence à base anterior e
-não foi repetida integralmente. O runner inclui a modalidade --author-order.
-
-Resultado atual em 19/11/2026: **regressão aprovada no laboratório**, base
-ad82d23 (merge PR #38). A [Etapa 38](STAGE38.md) preserva motor 0.29.0 e plugin
-0.21.0.0 e reúne 18 suítes reversíveis com um ciclo de rascunhos novos.
+Resultado em 19/11/2026: **regressão aprovada no laboratório**, base 9e16c78
+(merge PR #48). A [Etapa 48](STAGE48.md) preserva motor 0.37.0 e plugin 0.30.0.0.
 
 | Camada atual | Resultado |
 | --- | --- |
-| PHP 8.4.27 e 8.1.27 | 1289 testes por versão, zero falhas |
-| Estático e contratos | Lint de 97 arquivos PHP, Python e dois schemas CLI aprovados |
-| Nove suítes anteriores | 59 verificações de navegador |
-| Nove modalidades APA | 207 verificações de navegador |
-| Ciclo novo, com correção combinada | 21 verificações de navegador |
-| Total de navegador | **287 verificações aprovadas** |
-| Produto/contratos | 61 arquivos idênticos à base; versões preservadas |
+| PHP 8.4.27 e 8.1.27 | 1577 testes por versão, zero falhas |
+| Estático e contratos | Lint de 113 arquivos PHP, Python e dois schemas CLI aprovados |
+| Dez suítes de painel/artigo/metadados | 78 verificações aprovadas |
+| Dezessete modalidades APA | 593 verificações aprovadas |
+| Total das 27 suítes reversíveis | 671 verificações aprovadas |
+| Ciclo novo com correção combinada | 24 verificações aprovadas |
+| Total de navegador | **695 verificações aprovadas** |
+| Produto/contratos | 68 arquivos idênticos à base; versões preservadas |
 
-[Resumo atual](evidence/stage38/summary.json),
-[pré-checagem](evidence/stage38/preflight.json),
-[manifesto](evidence/stage38/release-source-manifest.json) e
-[ciclo de correção](evidence/stage38/submission-cycle-results.json).
-As evidências por suíte estão no mesmo diretório.
+[Resumo atual](evidence/stage48/summary.json),
+[pré-checagem](evidence/stage48/preflight.json),
+[manifesto](evidence/stage48/release-source-manifest.json) e
+[ciclo de correção](evidence/stage48/submission-cycle-results.json).
+Resultados por suíte estão no mesmo diretório.
 
-A versão corrigida combina anos/sufixos, et al. e marcador sem data. As cinco
-citações ligam às referências; a submissão só conclui após revisão humana
-expressa. SHA-256 preservado após revisão/conclusão. Revogação, CSRF, mudança
-de arquivo, download protegido e bloqueio ABNT também foram exercitados.
+A correção sintética combina anos/sufixos, et al., data ausente, narrativa com
+página e ordenação entre autor único/coautorias. Sete citações ligam a entradas da lista de sete
+referências; a conclusão exige revisão humana expressa. Bytes preservados após
+revisão/conclusão. Revogação, CSRF, troca de arquivo e acesso protegido verificados.
+Registros antigos preservados; novos registros existem somente na base sintética.
 
-O ensaio de troca de versão usa API local/DAO, não o upload pela interface.
-Narrativas embutidas após outras frases no parágrafo podem ficar indeterminadas;
-a combinação aprovada usa parágrafos separados. Esse limite continua aberto.
-Registros originais de submissão preservados; novas submissões/revisões ficam
-na base sintética. Estado de referência restaurado e credenciais não versionadas.
+O ensaio usa API local/DAO para trocar o arquivo, sem homologar upload pela
+interface ou concorrência. Resultado limitado ao OJS 3.3.0.20/Tema Padrão local.
+Rede interna, fontes read-only, e-mail neutralizado e containers desligados ao
+fim. Sem produção, VM Oracle, documentos reais, mensagens externas ou deploy.
+Não certifica infraestrutura real nem APA integral; matriz APA7.md permanece aberta.
 
-Rede interna, sem portas públicas, fontes read-only e e-mail neutralizado.
-Containers desligados ao fim. Sem produção, VM Oracle, documentos reais,
-mensagens externas, publicação do ambiente ou deploy. O resultado não homologa
-a infraestrutura real nem certifica APA integral; a matriz APA7.md permanece aberta.
+A regressão anterior de 287 verificações está registrada em [STAGE38.md](STAGE38.md).
 
 ## Histórico da homologação anterior
 

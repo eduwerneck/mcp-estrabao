@@ -1,0 +1,78 @@
+[
+  {
+    "case": "author sees translated one-reference-per-Enter guidance",
+    "passed": true
+  },
+  {
+    "case": "references guidance is linked accessibly",
+    "passed": true
+  },
+  {
+    "case": "author gets advisory for concatenated references",
+    "passed": true
+  },
+  {
+    "case": "advisory does not rewrite or split author text",
+    "passed": true
+  },
+  {
+    "case": "warning does not echo bibliography",
+    "passed": true
+  },
+  {
+    "case": "one Enter does not trigger concatenation warning",
+    "passed": true
+  },
+  {
+    "case": "blank line does not trigger concatenation warning",
+    "passed": true
+  },
+  {
+    "case": "wrapped long reference does not trigger concatenation warning",
+    "passed": true
+  },
+  {
+    "case": "unknown continuation requests human review",
+    "passed": true
+  },
+  {
+    "case": "DOM updates do not duplicate help",
+    "passed": true
+  },
+  {
+    "case": "client edits do not autosave metadata or citations",
+    "passed": true
+  },
+  {
+    "case": "reload discards client edit",
+    "passed": true
+  },
+  {
+    "case": "publication metadata form shows reference guidance",
+    "passed": true
+  },
+  {
+    "case": "editor receives concatenation advisory",
+    "passed": true
+  },
+  {
+    "case": "editor text is preserved",
+    "passed": true
+  },
+  {
+    "case": "editor changes are not automatically persisted",
+    "passed": true
+  },
+  {
+    "case": "advisory keeps submission workflow state",
+    "passed": true
+  },
+  {
+    "case": "original citation settings metadata and parsed citations restored",
+    "passed": true
+  },
+  {
+    "case": "original workflow state preserved",
+    "passed": true
+  }
+]
