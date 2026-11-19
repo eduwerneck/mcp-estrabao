@@ -2,7 +2,7 @@
 declare(strict_types=1);
 namespace Estrabao\Document;
 
-/** Bounded personal-name grammar for format diagnostics, never identity or citation matching. */
+/** Bounded name grammar; citation matching adds literal-name and ambiguity guards. Never identity verification. */
 final class ApaPersonalAuthors
 {
     const MAX_AUTHORS = 64;

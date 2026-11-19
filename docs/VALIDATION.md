@@ -829,3 +829,21 @@ com sucesso antes do runner final. Nenhum dado ou operação externa foi utiliza
 Evidências em evidence/stage33. Containers desligados ao final. Sem produção,
 VM Oracle, arquivos reais, mensagens externas ou deploy. Não certifica APA integral;
 limites em STAGE33.md e APA7.md. CI remoto da branch ainda não verificado.
+
+## Etapa 34 — sobrenomes compostos na correspondência
+
+Validação em 18/11/2026, base 9333e6e (merge PR #34), motor 0.26.0 e
+plugin 0.18.0.0. APA 11.0.0, matching 7.0.0, formatos 6.0.0, citações 5.0.0.
+
+- 1179 testes em PHP 8.4.27 e 8.1.27, zero falhas.
+- Lint de 94 arquivos PHP, compilação Python e schemas CLI aprovados.
+- 20 verificações OJS 3.3.0.20/Chromium: dois bloqueios com correção específica,
+  minuta/privacidade/POST, e duas formas que exigem revisão sem conclusão automática.
+- Testes de prosa, formas parciais significativas, colisões, espaços, Unicode,
+  sufixos de ano, fontes secundárias, vocabulário excedido e corpo ausente.
+- Capturas sintéticas inspecionadas. Bytes e estado originais restaurados; rede
+  interna, mounts read-only, transporte neutralizado e versão instalada confirmados.
+
+Evidências em evidence/stage34. Containers desligados ao final. Sem produção,
+VM Oracle, documentos reais, envio externo ou deploy. Identidade, outros formatos
+e limites restantes em STAGE34.md e APA7.md. CI remoto da branch não verificado.

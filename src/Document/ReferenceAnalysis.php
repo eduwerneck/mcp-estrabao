@@ -59,6 +59,7 @@ final class ReferenceAnalysis
             }
         }
         $aliases = InstitutionalAuthors::aliases($bodyTexts, $entries);
+        $personalPattern = self::citationPattern($entries);
         $hasInstitutional = count(array_filter($entries, function ($entry) { return ($entry['kind'] ?? null) === 'institutional'; })) > 0;
         $citations = []; $unparsedGroups = 0; $numeric = 0;
         if (!$limit) {
@@ -76,23 +77,23 @@ final class ReferenceAnalysis
                     if (preg_match('/^\s*([0-9]{4}[a-z]?)\s*$/iuD', $inside, $year)) {
                         $prefix = trim(substr($text, 0, $offset));
                         $prefix = preg_replace('/^(?:Segundo|Conforme|According to|Según)\s+/iu', '', $prefix);
-                        $secondary = self::secondaryCitation($prefix . ', ' . $year[1], '', $entries, $aliases);
+                        $secondary = self::secondaryCitation($prefix . ', ' . $year[1], '', $entries, $aliases, $personalPattern);
                         if ($secondary !== null) {
                             $secondary['placement'] = 'narrative';
                             $secondary['spacing_ok'] = $secondary['spacing_ok'] && $offset > 0 && preg_match('/\s$/u', substr($text, 0, $offset)) === 1;
                             $parsed[] = $secondary;
                         } else {
-                            $author = InstitutionalAuthors::citation($prefix, $entries, $aliases) ?? self::citationAuthors($prefix);
+                            $author = InstitutionalAuthors::citation($prefix, $entries, $aliases) ?? self::citationAuthors($prefix, $personalPattern);
                             if ($author !== null) { $parsed[] = $author + ['year' => strtolower($year[1]), 'placement' => 'narrative',
                                 'spacing_ok' => $offset > 0 && preg_match('/\s$/u', substr($text, 0, $offset)) === 1]; }
                             else { $unparsedGroups++; }
                         }
                     } else {
                         foreach (explode(';', $inside) as $item) {
-                            $secondary = self::secondaryCitation($item, substr($text, 0, $offset), $entries, $aliases);
+                            $secondary = self::secondaryCitation($item, substr($text, 0, $offset), $entries, $aliases, $personalPattern);
                             if ($secondary !== null) { $parsed[] = $secondary; continue; }
                             if (preg_match('/^\s*(.+?),\s*([0-9]{4}[a-z]?)(?:,\s*pp?\.\s*[0-9]+(?:[-–][0-9]+)?)?\s*$/iuD', $item, $match)) {
-                                $author = InstitutionalAuthors::citation(trim($match[1]), $entries, $aliases) ?? self::citationAuthors(trim($match[1]));
+                                $author = InstitutionalAuthors::citation(trim($match[1]), $entries, $aliases) ?? self::citationAuthors(trim($match[1]), $personalPattern);
                                 if ($author !== null) { $parsed[] = $author + ['year' => strtolower($match[2]), 'placement' => 'parenthetical', 'spacing_ok' => preg_match('/,\S/u', $item) !== 1]; continue; }
                             }
                             $unparsedGroups++;
@@ -113,7 +114,7 @@ final class ReferenceAnalysis
             $matches = []; $matchParagraphs = []; $weak = $hasInstitutional || !empty($citation['institutional_ambiguous']);
             foreach ($entries as $entry) {
                 if ($entry['year'] !== $citation['year']) { continue; }
-                if (self::sameName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
+                if (self::weakName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
                 if (self::matches($citation, $entry)) { $matches[] = $entry['reference_index']; $matchParagraphs[] = $entry['paragraph_index']; }
             }
             if (count($matches) === 1) { $state = 'matched'; $matched++; $used[$matches[0]] = true; }
@@ -165,7 +166,7 @@ final class ReferenceAnalysis
         if ($ambiguous) { $reasons[] = 'ambiguous_author_date_match'; }
         return ['citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
             'citation_style_samples_omitted' => max(0, array_sum($styleCounts) - count($styleSamples)), 'segmentation_complete' => $boundaries, 'closed_subset' => $closed, 'inspection_limit_reached' => $limit,
-            'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
+            'compound_name_lookup_complete' => $personalPattern !== null, 'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
             'recognized_citations' => count($citations), 'unparsed_citation_groups' => $unparsedGroups,
             'numeric_citation_candidates' => $numeric, 'matched_citations' => $matched, 'unresolved_citations' => $missing,
             'ambiguous_matches' => $ambiguous, 'references_not_observed_in_supported_citations' => count($entries) - count($used),
@@ -180,7 +181,7 @@ final class ReferenceAnalysis
         $prefix = trim(substr($text, 0, $date[0][1]));
         $rest = trim(substr($text, $date[0][1] + strlen($date[0][0])));
         if ($rest === '' || strlen($prefix) > 2048) { return null; }
-        $person = '(' . self::SURNAME . '),\s*(?:\p{Lu}\.\s*){1,4}';
+        $person = '(' . ApaPersonalAuthors::surnamePattern() . '),\s*(?:\p{Lu}\.\s*){1,4}';
         preg_match_all('~' . $person . '~u', $prefix, $names, PREG_OFFSET_CAPTURE);
         if (!array_column($names[1], 0) || count(array_column($names[1], 0)) > 20) { return null; }
         $shape = preg_replace('~' . $person . '~u', '@', $prefix);
@@ -193,7 +194,7 @@ final class ReferenceAnalysis
             'content_start' => $date[0][1] + strlen($date[0][0])];
     }
 
-    private static function secondaryCitation(string $text, string $prefix, array $entries, array $aliases): ?array
+    private static function secondaryCitation(string $text, string $prefix, array $entries, array $aliases, ?string $personalPattern): ?array
     {
         if (strlen($text)>2048 || preg_match_all('/\b(?:como citado em|as cited in|apud)\b/iu',$text)!==1
             || !preg_match('/^\s*(.*?)\s*\b(como citado em|as cited in|apud)\b\s+(.+?)\s*$/iuD',$text,$m)) { return null; }
@@ -201,19 +202,48 @@ final class ReferenceAnalysis
         if ($original==='' || preg_match('/^[0-9]{4}[a-z]?$/iuD',$original)) {
             $original=trim(preg_replace('/^(?:Segundo|Conforme|According to|Según)\s+/iu','',trim($prefix)));
         } else { $original=trim(preg_replace('/,\s*[0-9]{4}[a-z]?$/iu','',$original)); }
-        if (self::citationAuthors($original)===null && !InstitutionalAuthors::name($original)) { return null; }
+        if (self::citationAuthors($original, ApaPersonalAuthors::surnamePattern())===null && !InstitutionalAuthors::name($original)) { return null; }
         if (!preg_match('/^(.+?),\s*([0-9]{4}[a-z]?)(?:,\s*pp?\.\s*[0-9]+(?:[-–][0-9]+)?)?$/iuD',$m[3],$source)) { return null; }
         $name=trim($source[1]);
-        $author=InstitutionalAuthors::citation($name,$entries,$aliases) ?? self::citationAuthors($name);
+        $author=InstitutionalAuthors::citation($name,$entries,$aliases) ?? self::citationAuthors($name, $personalPattern);
         if ($author===null && InstitutionalAuthors::name($name)) { $author=['authors'=>[$name],'form'=>'institutional','institutional_alias'=>false]; }
         if ($author===null) { return null; }
         return $author+['year'=>strtolower($source[2]),'placement'=>'parenthetical','spacing_ok'=>preg_match('/,\S/u',$text)!==1,
             'secondary'=>true,'secondary_marker'=>preg_match('/^apud$/iuD',$m[2])?'apud':'as_cited_in'];
     }
 
-    private static function citationAuthors(string $text): ?array
+    /** Only compound names literally present in parsed personal references; no prose-name inference. */
+    private static function citationPattern(array $entries): ?string
     {
-        $name = self::SURNAME;
+        $names=[];$bytes=0;
+        foreach ($entries as $entry) {
+            if (($entry['kind']??null)==='institutional') { continue; }
+            foreach ($entry['authors'] as $name) {
+                if (!preg_match('/\s/u',$name) || isset($names[$name])) { continue; }
+                $quoted=implode('\\s+',array_map(function ($part) { return preg_quote($part,'~'); },preg_split('/\s+/u',$name)));$bytes+=strlen($quoted)+1;
+                if (count($names)>=64 || $bytes>4096) { return null; }
+                $names[$name]=$quoted;
+            }
+        }
+        return $names?'(?:'.implode('|',array_values($names)).'|'.self::SURNAME.')':self::SURNAME;
+    }
+
+    /** A shortened compound name is ambiguous, never silently an alias or proof of absence. */
+    private static function weakName(string $left,string $right): bool
+    {
+        if (self::sameName($left,$right)) { return true; }
+        if (!preg_match('/\s/u',$left.$right)) { return false; }
+        $particles=['da','das','de','del','della','di','do','dos','du','la','le','van','von','der','den','ten','ter','e'];
+        $parts=[];
+        foreach (preg_split('/\s+/u',$left) as $part) {
+            if (!in_array(strtolower($part),$particles,true) && preg_match_all('/\p{L}/u',$part)>=2) { $parts[]=preg_quote($part,'~'); }
+        }
+        return $parts && preg_match('~(?:^|\s)(?:'.implode('|',$parts).')(?=\s|$)~iu',$right)===1;
+    }
+
+    private static function citationAuthors(string $text, ?string $personalPattern = null): ?array
+    {
+        $name = $personalPattern ?? self::SURNAME;
         if (preg_match('~^(' . $name . ')\s+et\s+al(\.)?$~iuD', $text, $match) && self::citationName($match[1])) { return ['authors' => [$match[1]], 'form' => 'et_al', 'et_al_period' => !empty($match[2])]; }
         // Multi-author forms remain bounded and use only the existing single-surname grammar.
         if (strlen($text) <= 2048) {
@@ -264,6 +294,7 @@ final class ReferenceAnalysis
 
     private static function sameName(string $left, string $right): bool
     {
+        $left=preg_replace('/\s+/u',' ',trim($left));$right=preg_replace('/\s+/u',' ',trim($right));
         return preg_match('/^' . preg_quote($left, '/') . '$/iuD', $right) === 1;
     }
 

@@ -25,7 +25,7 @@ final class ReferenceSections
             if (in_array($zone, ['prefix', 'abstract', 'other'], true)) { continue; }
             $outline = $paragraph['outline'] ?? ['known' => false, 'level' => null];
             $bold = $paragraph['format']['bold'] ?? null;
-            $entryLead = $zone === 'references' && preg_match('/^' . ReferenceAnalysis::SURNAME . ',\s*\p{L}/u', $text)
+            $entryLead = $zone === 'references' && preg_match('/^' . ApaPersonalAuthors::surnamePattern() . ',\s*\p{L}/u', $text)
                 && preg_match('/(?:' . ReferenceAnalysis::YEAR_SIGNAL . ')/iu', $text);
             if (!$outline['known'] || $outline['level'] < 9 || ($bold !== false && !($bold === true && $entryLead))) {
                 $boundaries = false; $zone = 'other'; continue;

@@ -1,11 +1,11 @@
-"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions, --secondary or --models). Restores fixture bytes."""
+"""Isolated synthetic OJS checks for author lists or citation forms (--citations, --institutions, --secondary, --models or --matching). Restores fixture bytes."""
 import json,os,subprocess,sys
 from pathlib import Path
 for key in ['DOCKER_CONTEXT','DOCKER_TLS','DOCKER_TLS_VERIFY','DOCKER_CERT_PATH']:
  os.environ.pop(key,None)
 os.environ['DOCKER_HOST']='unix:///var/run/docker.sock'
 HERE=Path(__file__).resolve().parent
-ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-33'if '--models'in sys.argv else '/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
+ROOT=Path(os.environ.get('ESTRABAO_APA_AUTHORS_EVIDENCE_DIR','/workspace/scratch/estrabao-lab-34'if '--matching'in sys.argv else '/workspace/scratch/estrabao-lab-33'if '--models'in sys.argv else '/workspace/scratch/estrabao-lab-32'if '--secondary'in sys.argv else '/workspace/scratch/estrabao-lab-31'if '--institutions'in sys.argv else '/workspace/scratch/estrabao-lab-30'if '--citations'in sys.argv else '/workspace/scratch/estrabao-lab-29'))
 ROOT.mkdir(parents=True,exist_ok=True);ROOT.chmod(0o700)
 (ROOT/'summary.json').write_text(json.dumps({'overall_passed':False,'status':'running'}))
 def command(args,**kw):return subprocess.check_output(args,**kw)
@@ -50,6 +50,7 @@ try:
  if '--institutions'in sys.argv:plan=[('institution-abnt','posicionar a data após a autoria'),('institution-doi','https://doi.org/')]
  if '--secondary'in sys.argv:plan=[('secondary-apud','não utilizar apud'),('secondary-missing','conferir as chaves autor–ano')]
  if '--models'in sys.argv:plan=[('model-book','retirar o itálico da edição'),('model-chapter','separadores dos editores'),('model-article','página final não pode anteceder')]
+ if '--matching'in sys.argv:plan=[('matching-compound-style','usar & entre dois autores'),('matching-compound-missing','conferir as chaves autor–ano')]
  for mode,expected in plan:
   fixture(mode)
   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
@@ -81,24 +82,26 @@ try:
    if a.js('return Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).some(x=>x.textContent.trim()==="OK")'):break
    time.sleep(.1)
   a.js('Array.from(document.querySelectorAll("button.pkpModalConfirmButton")).find(x=>x.textContent.trim()==="OK").click()')
-  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada','model-book':'edição entre parênteses não fica em itálico','model-chapter':'Na editoria do capítulo','model-article':'página final não pode anteceder' }[mode]
+  author_expected={'compound':'ponto e vírgula','abbreviated':'19 primeiros','citation-many':'primeiro sobrenome seguido de et al.','citation-period':'et al. com ponto após al.','institution-abnt':'a data está após a fonte','institution-doi':'https://doi.org/','secondary-apud':'A Estrabão não aceita apud','secondary-missing':'fonte efetivamente consultada','model-book':'edição entre parênteses não fica em itálico','model-chapter':'Na editoria do capítulo','model-article':'página final não pode anteceder','matching-compound-style':'Usar & entre dois autores','matching-compound-missing':'sem referência correspondente' }[mode]
   for _ in range(40):
    if author_expected in a.text():break
    time.sleep(.1)
   check(mode+' author receives concrete correction',author_expected in a.text()and before==state())
   (ROOT/(mode+'-author.png')).write_bytes(base64.b64decode(a.call('GET','/screenshot')))
   fixture('restore')
- if '--institutions'in sys.argv or '--secondary'in sys.argv or '--models'in sys.argv:
-  fixture('model-correct'if '--models'in sys.argv else 'secondary-correct'if '--secondary'in sys.argv else 'institution-alias')
-  b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
-  check('recognized citations remain reviewable',b.js('return !!document.querySelector("button[value=approve]")'))
-  check('recognized matching does not activate editorial release','Há liberação editorial válida'not in b.text())
-  a.get('http://127.0.0.1:18080/index.php/estrabao-lab/submission/wizard/4?submissionId='+str(id))
-  for _ in range(40):
-   if a.js('return !!document.querySelector("#submitStep4Form")'):break
-   time.sleep(.1)
-  response=a.call('POST','/execute/async',{'script':"let done=arguments[arguments.length-1];let f=document.querySelector('#submitStep4Form');fetch(f.action,{method:'POST',body:new URLSearchParams(new FormData(f))}).then(async r=>done(await r.text()));",'args':[]})
-  check('recognized citation cannot complete without human review',before==state()and 'submitStep4Form'in json.loads(response).get('content',''))
+ if '--institutions'in sys.argv or '--secondary'in sys.argv or '--models'in sys.argv or '--matching'in sys.argv:
+  positive_modes=['matching-compound-correct','matching-compound-partial']if '--matching'in sys.argv else ['model-correct'if '--models'in sys.argv else 'secondary-correct'if '--secondary'in sys.argv else 'institution-alias']
+  for positive_mode in positive_modes:
+   fixture(positive_mode)
+   b.get('http://127.0.0.1:18080/index.php/estrabao-lab/estrabaoAdmission/review?submissionId='+str(id))
+   check(positive_mode+' remains reviewable',b.js('return !!document.querySelector("button[value=approve]")'))
+   check(positive_mode+' has no editorial release','Há liberação editorial válida'not in b.text())
+   a.get('http://127.0.0.1:18080/index.php/estrabao-lab/submission/wizard/4?submissionId='+str(id))
+   for _ in range(40):
+    if a.js('return !!document.querySelector("#submitStep4Form")'):break
+    time.sleep(.1)
+   response=a.call('POST','/execute/async',{'script':"let done=arguments[arguments.length-1];let f=document.querySelector('#submitStep4Form');fetch(f.action,{method:'POST',body:new URLSearchParams(new FormData(f))}).then(async r=>done(await r.text()));",'args':[]})
+   check(positive_mode+' cannot complete without human review',before==state()and 'submitStep4Form'in json.loads(response).get('content',''))
 finally:
  fixture('restore');b.call('DELETE','');a.call('DELETE','')
 check('original workflow state restored',before==state())
