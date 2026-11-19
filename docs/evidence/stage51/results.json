@@ -1,0 +1,202 @@
+[
+  {
+    "case": "punctorder-colon incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "punctorder-colon desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-colon draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "punctorder-colon does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "punctorder-colon wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "punctorder-colon author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-suffix incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "punctorder-suffix desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-suffix draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "punctorder-suffix does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "punctorder-suffix wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "punctorder-suffix author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-dash incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "punctorder-dash desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-dash draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "punctorder-dash does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "punctorder-dash wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "punctorder-dash author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-apostrophe incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "punctorder-apostrophe desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-apostrophe draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "punctorder-apostrophe does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "punctorder-apostrophe wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "punctorder-apostrophe author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-article incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "punctorder-article desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-article draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "punctorder-article does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "punctorder-article wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "punctorder-article author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "punctorder-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "punctorder-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "punctorder-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "punctorder-different remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "punctorder-different has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "punctorder-different cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "punctorder-duplicate remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "punctorder-duplicate has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "punctorder-duplicate cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "punctorder-digits remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "punctorder-digits has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "punctorder-digits cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "punctorder-prefix remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "punctorder-prefix has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "punctorder-prefix cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "punctorder-accent remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "punctorder-accent has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "punctorder-accent cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]
