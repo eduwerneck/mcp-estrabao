@@ -11,7 +11,7 @@ foreach ([['2019','2020','2021'],['0001','0010','2020']] as $years) {
 foreach ([['2020','2020'],['2020b','2020a'],['2020','s.d.'],['no prelo','2019']] as $years) {
  test('empates sufixos e datas especiais não são ordenados automaticamente '.md5(json_encode($years)),function()use($years){$a=stage44Audit(array_map(function($y){return stage44Ref('Silva, A.',$y);},$years));same('indeterminado',$a['chronological_order_status']);same('indeterminado',$a['recognized_formats_status']);});
 }
-foreach ([['Silva, A.','Silva, B.'],['Silva, A., & Souza, B.','Silva, A., & Costa, B.'],['Silva, A.','Silva, A., & Souza, B.'],['Silva, A., & de Souza, B.','Silva, A., & deSouza, B.']] as $authors) {
+foreach ([['Silva, A.','Silva, B.'],['Silva, A., & Souza, B.','Silva, A., & Souza, C.'],['Silva, A.','Silva, A., & Souza, B.'],['Silva, A., & de Souza, B.','Silva, A., & deSouza, B.']] as $authors) {
  test('iniciais e listas distintas não são a mesma autoria '.md5(json_encode($authors)),function()use($authors){$a=stage44Audit([stage44Ref($authors[0],'2021'),stage44Ref($authors[1],'2019')]);same('indeterminado',$a['chronological_order_status']);same('indeterminado',$a['recognized_formats_status']);});
 }
 foreach ([['Silva, A.','García, B.'],['da Silva, A.','da Costa, B.'],['Ávila, A.','Álvares, B.'],["D’Ávila, A.","D’Álvares, B."],['Souza, A.','García Márquez, B.']] as $authors) {

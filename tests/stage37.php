@@ -67,5 +67,5 @@ test('referência sem data protege contra imposição de sufixo numérico',funct
  $r=apaResults(referenceDocument(['Texto (Silva, 2020).'],['Silva, A. (2020a). Obra sintética. Editora.','Silva, A. (s.d.). Outra obra sintética. Editora.']));same('indeterminado',$r['references.apa7.citation_format']['status']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
 });
 test('obra sem data não fortalece prova de desambiguação em ano numérico',function(){
- $r=apaResults(referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref(['Silva','Souza','Lima']),stage36Ref(['Silva','Costa','Ramos']),stage36Ref(['Silva','Souza','Ramos'],'s.d.')]));same('indeterminado',$r['references.apa7.citation_format']['status']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
+ $r=apaResults(referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref(['Silva','Costa','Ramos']),stage36Ref(['Silva','Souza','Lima']),stage36Ref(['Silva','Souza','Ramos'],'s.d.')]));same('indeterminado',$r['references.apa7.citation_format']['status']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
 });

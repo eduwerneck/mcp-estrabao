@@ -61,5 +61,5 @@ test('conjunção reproduzida dentro da transcrição permanece para revisão',f
 });
 
 test('obra interna da transcrição impede prova de contexto et al completo',function(){
- $refs=[stage36Ref(['Silva','Souza','Lima','Ramos']),stage36Ref(['Silva','Costa','Alves','Paiva'])];$r=apaResults(referenceDocument(['Texto (Silva et al., 2020).','“um trecho com (Original, 1900) reproduzido” (Silva et al., 2020, p. 10).'],$refs));same(false,$r['references.apa7']['evidence']['analysis']['et_al_context_complete']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
+ $refs=[stage36Ref(['Silva','Costa','Alves','Paiva']),stage36Ref(['Silva','Souza','Lima','Ramos'])];$r=apaResults(referenceDocument(['Texto (Silva et al., 2020).','“um trecho com (Original, 1900) reproduzido” (Silva et al., 2020, p. 10).'],$refs));same(false,$r['references.apa7']['evidence']['analysis']['et_al_context_complete']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
 });

@@ -40,7 +40,7 @@ foreach (['Texto (Silva et al, 2020).','Silva et al (2020).','Texto (Silva, Souz
 }
 foreach (['Texto (Silva, Souza, & Lima, 2020).','Silva, Souza e Lima (2020).','Texto (Silva, Souza, et al., 2020).','Texto (Silva et al., 2020).'] as $text) {
     test('coorte ambígua confere adequação dos nomes adicionais '.md5($text),function()use($text){
-        $r=apaResults(referenceDocument([$text],[stage30Reference(),stage30Reference('Costa')]));
+        $r=apaResults(referenceDocument([$text],[stage30Reference('Costa'),stage30Reference()]));
         same(strpos($text,'et al.')!==false?'não conforme':'conforme',$r['references.apa7.citation_format']['status']);
         same(strpos($text,'et al.')!==false?'not_accepted':'manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
         same(false,in_array('three_or_more_authors_require_et_al',array_merge(...array_column($r['references.apa7']['evidence']['analysis']['citation_style_samples'],'issues')),true));

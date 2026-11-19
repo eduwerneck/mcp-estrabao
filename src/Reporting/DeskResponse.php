@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'21.0.0', 'references.citation_matching'=>'13.0.0',
-        'references.apa7.recognized_formats'=>'12.0.0', 'references.apa7.citation_format'=>'11.0.0',
+        'references.apa7'=>'22.0.0', 'references.citation_matching'=>'13.0.0',
+        'references.apa7.recognized_formats'=>'13.0.0', 'references.apa7.citation_format'=>'11.0.0',
     ];
 
     public static function generate(array $report): array
@@ -263,6 +263,7 @@ final class DeskResponse
                 foreach($sample['issues']??[]as$code){if(isset($citationMessages[$code])){$actions[]=$citationMessages[$code];}}
             }
             if(($e['style_audit']['alphabetical_order_status']??null)===CheckResult::FAIL){$actions[]='reordenar as referências alfabeticamente';}
+            if(($e['style_audit']['author_list_order_status']??null)===CheckResult::FAIL){$actions[]='apresentar autor único antes de coautoria e, com o mesmo primeiro autor declarado, ordenar pelos sobrenomes dos coautores seguintes; conferir as iniciais sem alterar a ordem dos autores de cada obra';}
             if(($e['style_audit']['chronological_order_status']??null)===CheckResult::FAIL){$actions[]='ordenar cronologicamente as obras com a mesma autoria declarada, conferindo a edição consultada';}
             if(($e['analysis']['closed_subset']??false) && ($e['analysis']['unresolved_citations']??0)>0){$actions[]='conferir as chaves autor–ano das citações não ligadas a referências';}
             $actions=array_values(array_unique($actions));
