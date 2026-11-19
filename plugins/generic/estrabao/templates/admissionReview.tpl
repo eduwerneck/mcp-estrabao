@@ -20,6 +20,12 @@
         {else}
             <p>{translate key="plugins.generic.estrabao.apaReviewRequired"}</p>
         {/if}
+        {if isset($reviewModel.analysis.full_date_review) && $reviewModel.analysis.full_date_review}
+            <section id="estrabaoFullDateReview" aria-labelledby="estrabaoFullDateTitle">
+                <h3 id="estrabaoFullDateTitle">{translate key="plugins.generic.estrabao.fullDateReviewTitle"}</h3>
+                <ul>{foreach from=$reviewModel.analysis.full_date_review item=guidance}<li>{$guidance|escape}</li>{/foreach}</ul>
+            </section>
+        {/if}
         {if isset($reviewModel.analysis.direct_quote_review) && $reviewModel.analysis.direct_quote_review}
         <section id="estrabaoDirectQuoteReview" aria-labelledby="estrabaoDirectQuoteTitle">
             <h3 id="estrabaoDirectQuoteTitle">{translate key="plugins.generic.estrabao.directQuoteReviewTitle"}</h3>

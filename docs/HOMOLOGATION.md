@@ -1,9 +1,9 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 51](STAGE51.md) altera motor/plugin para 0.40.0/0.33.0.0.
-Passaram 1679 testes por PHP, 16 testes JavaScript e 100 verificações no OJS local
-(50 direcionadas e 50 de regressão de títulos/sufixos). As 695 verificações da
-base integrada abaixo não foram repetidas integralmente. Runner inclui --punctuation.
+Atualização: a [Etapa 52](STAGE52.md) altera motor/plugin para 0.41.0/0.34.0.0.
+Passaram 1716 testes por PHP, 16 testes JavaScript e 100 verificações no OJS local
+(62 direcionadas e 38 de regressão web). As 695 verificações da base integrada
+abaixo não foram repetidas integralmente. Runner inclui --full-dates.
 
 Resultado em 19/11/2026: **regressão aprovada no laboratório**, base 9e16c78
 (merge PR #48). A [Etapa 48](STAGE48.md) preserva motor 0.37.0 e plugin 0.30.0.0.

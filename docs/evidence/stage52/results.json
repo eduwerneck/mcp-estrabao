@@ -1,0 +1,250 @@
+[
+  {
+    "case": "fulldate-day incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "fulldate-day desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-day draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "fulldate-day does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "fulldate-day wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "fulldate-day author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-month incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "fulldate-month desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-month draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "fulldate-month does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "fulldate-month wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "fulldate-month author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-year incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "fulldate-year desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-year draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "fulldate-year does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "fulldate-year wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "fulldate-year author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-pt incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "fulldate-pt desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-pt draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "fulldate-pt does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "fulldate-pt wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "fulldate-pt author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-leap incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "fulldate-leap desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-leap draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "fulldate-leap does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "fulldate-leap wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "fulldate-leap author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "fulldate-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "fulldate-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "fulldate-correct has private date and suffix guidance",
+    "passed": true
+  },
+  {
+    "case": "fulldate-correct date guidance keeps source values private",
+    "passed": true
+  },
+  {
+    "case": "fulldate-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "fulldate-mixed remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "fulldate-mixed has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "fulldate-mixed has private date and suffix guidance",
+    "passed": true
+  },
+  {
+    "case": "fulldate-mixed date guidance keeps source values private",
+    "passed": true
+  },
+  {
+    "case": "fulldate-mixed cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "fulldate-monthonly remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "fulldate-monthonly has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "fulldate-monthonly has private date and suffix guidance",
+    "passed": true
+  },
+  {
+    "case": "fulldate-monthonly date guidance keeps source values private",
+    "passed": true
+  },
+  {
+    "case": "fulldate-monthonly cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "fulldate-equal remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "fulldate-equal has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "fulldate-equal has private date and suffix guidance",
+    "passed": true
+  },
+  {
+    "case": "fulldate-equal date guidance keeps source values private",
+    "passed": true
+  },
+  {
+    "case": "fulldate-equal cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "fulldate-original remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "fulldate-original has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "fulldate-original has private date and suffix guidance",
+    "passed": true
+  },
+  {
+    "case": "fulldate-original date guidance keeps source values private",
+    "passed": true
+  },
+  {
+    "case": "fulldate-original cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "fulldate-unknown remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "fulldate-unknown has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "fulldate-unknown has private date and suffix guidance",
+    "passed": true
+  },
+  {
+    "case": "fulldate-unknown date guidance keeps source values private",
+    "passed": true
+  },
+  {
+    "case": "fulldate-unknown cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

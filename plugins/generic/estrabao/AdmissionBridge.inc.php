@@ -79,7 +79,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '25.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '26.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {
@@ -101,6 +101,7 @@ class EstrabaoAdmissionBridge
                 }
                 if (($result['evidence']['style_audit']['title_order_status']??null)==='não conforme') { $corrections[]='Ordenar pelo título as obras da mesma autoria e ano no conjunto reconhecido.'; }
                 if (($result['evidence']['style_audit']['year_suffix_order_status']??null)==='não conforme') { $corrections[]='Conferir a sequência dos sufixos a, b e seguintes pela ordem dos títulos da mesma autoria e ano e alinhar as citações, sem atribuir letras por aproximação.'; }
+                if (($result['evidence']['style_audit']['full_date_order_status']??null)==='não conforme') { $corrections[]='Conferir a ordem das datas completas declaradas: apresentar as anteriores antes das posteriores, confirmando tipo de obra e edição sem completar informações ausentes.'; }
                 if (($result['evidence']['style_audit']['chronological_order_status']??null)==='não conforme') {
                     $corrections[]='Nas obras com a mesma autoria declarada, apresentar os anos anteriores antes dos posteriores; conferir autoria e edição antes de corrigir.';
                 }
@@ -108,7 +109,7 @@ class EstrabaoAdmissionBridge
                 if (($matching['closed_subset'] ?? false) && ($matching['unresolved_citations'] ?? 0) > 0) {
                     $corrections[] = 'Conferir autoria, ano e sufixo das citações sem referência correspondente. Em citações secundárias, conferir a fonte efetivamente consultada.';
                 }
-                $response = ['direct_quote_review'=>$matching['direct_quote_review']??[], 'decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
+                $response = ['full_date_review'=>$result['evidence']['style_audit']['full_date_review']??[], 'direct_quote_review'=>$matching['direct_quote_review']??[], 'decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
                     'fingerprint' => hash('sha256', json_encode($binding)),
                     'binding' => $binding, 'reviewable' => $reviewable];
                 if ($includeDocument) { $response['document'] = $document; }
