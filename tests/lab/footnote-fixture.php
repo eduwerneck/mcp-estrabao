@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review', 'special-style', 'special-missing', 'special-apud', 'special-undated', 'special-press', 'special-divergent', 'special-suffix', 'longwork-title', 'longwork-description', 'longwork-report', 'longwork-source', 'longwork-repository', 'longwork-unpublished', 'longwork-correct-report', 'longwork-partial', 'web-publication', 'web-retrieval', 'web-url', 'web-empty-host', 'web-correct', 'web-year', 'web-nosite', 'web-unknownmonth', 'digital-title', 'digital-version', 'digital-description', 'digital-source', 'digital-dataset', 'digital-optional', 'digital-case', 'digital-partial'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review', 'special-style', 'special-missing', 'special-apud', 'special-undated', 'special-press', 'special-divergent', 'special-suffix', 'longwork-title', 'longwork-description', 'longwork-report', 'longwork-source', 'longwork-repository', 'longwork-unpublished', 'longwork-correct-report', 'longwork-partial', 'web-publication', 'web-retrieval', 'web-url', 'web-empty-host', 'web-correct', 'web-year', 'web-nosite', 'web-unknownmonth', 'digital-title', 'digital-version', 'digital-description', 'digital-source', 'digital-dataset', 'digital-optional', 'digital-case', 'digital-partial', 'revision-translator', 'revision-edition', 'revision-original', 'revision-years', 'revision-separators', 'revision-correct', 'revision-republished', 'revision-original-citation', 'revision-slash', 'revision-partial'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -162,7 +162,26 @@ if (strpos($mode, 'digital-') === 0) {
     $digitalLabel = in_array($mode, ['digital-title','digital-description','digital-dataset'], true) ? 'Data set' : 'Computer software';
     $digitalVersion = $mode === 'digital-optional' ? '' : ($mode === 'digital-partial' ? ' (Version 1.2 stable)' : ' (Version 1.2)');
     $digitalSource = $mode === 'digital-optional' ? '' : '. Repositório Sintético';
-    $pieces = [['Silva, A. (2020). ', false], [$digitalTitle, !in_array($mode, ['digital-title','digital-partial'], true)], [$digitalVersion, $mode === 'digital-version'], [' ', false], ['[' . $digitalLabel . ']', $mode === 'digital-description'], [$digitalSource, $mode === 'digital-source'], ['.', false]];
+    $pieces = [['Silva, A. (2020). ', false], [$digitalTitle, !in_array($mode, ['digital-title','digital-partial', 'revision-translator', 'revision-edition', 'revision-original', 'revision-years', 'revision-separators', 'revision-correct', 'revision-republished', 'revision-original-citation', 'revision-slash', 'revision-partial'], true)], [$digitalVersion, $mode === 'digital-version'], [' ', false], ['[' . $digitalLabel . ']', $mode === 'digital-description'], [$digitalSource, $mode === 'digital-source'], ['.', false]];
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p>';
+    foreach ($pieces as $piece) { $reference .= '<w:r>' . ($piece[1] ? '<w:rPr><w:i/></w:rPr>' : '') . '<w:t xml:space="preserve">' . htmlspecialchars($piece[0], ENT_XML1) . '</w:t></w:r>'; }
+    $reference .= '</w:p>';
+}
+if (strpos($mode, 'revision-') === 0) {
+    $citation = $mode === 'revision-original-citation' || $mode === 'revision-partial' ? 'Texto (Silva, 1900).' : ($mode === 'revision-slash' ? 'Texto (Silva, 1900/2020).' : 'Texto (Silva, 2020).');
+    $main = '';
+    foreach (['Introdução', $citation, 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.'] as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    $revisionNames = $mode === 'revision-separators' ? 'A. Tradutor; B. Outro' : 'A. Tradutor';
+    $revisionYear = $mode === 'revision-years' ? '2030' : ($mode === 'revision-partial' ? 'desconhecido' : '1900');
+    $pieces = [['Silva, A. (2020). ', false], ['Obra traduzida', true]];
+    if ($mode === 'revision-republished') { $pieces[] = [' (2nd ed.). Editora Exemplo. ', false]; }
+    else {
+        $pieces[] = [' (', false]; $pieces[] = [$revisionNames . ', Trans.', $mode === 'revision-translator'];
+        $pieces[] = ['; ', false]; $pieces[] = ['2nd ed.', $mode === 'revision-edition']; $pieces[] = ['). Editora Exemplo. ', false];
+    }
+    $pieces[] = ['(Original work published ' . $revisionYear . ')', $mode === 'revision-original'];
     $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p>';
     foreach ($pieces as $piece) { $reference .= '<w:r>' . ($piece[1] ? '<w:rPr><w:i/></w:rPr>' : '') . '<w:t xml:space="preserve">' . htmlspecialchars($piece[0], ENT_XML1) . '</w:t></w:r>'; }
     $reference .= '</w:p>';

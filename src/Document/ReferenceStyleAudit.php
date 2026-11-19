@@ -49,6 +49,17 @@ final class ReferenceStyleAudit
                     else { $orderUnknown = true; }
                 } else { $orderUnknown = true; }
                 $content = $head['content']; $offset = $head['content_start'];
+                $original=ReferenceRevisions::original($content,$offset);$content=$original['base'];
+                if ($original['has_marker']) {
+                    self::check($checks,'original_publication_review',null,'Conferir na fonte a obra original e a edição efetivamente consultada; a declaração de ano original não identifica a obra nem completa a citação automaticamente.');
+                    if ($original['statement']!==null) {
+                        self::check($checks,'original_publication_plain',self::emphasis($paragraph,$original['statement'],false),'A indicação de publicação original entre parênteses não fica em itálico.');
+                        if (preg_match('/^([0-9]{4})(?:[a-z]?|, .*)$/uD',$head['date_token']??'',$publication)) {
+                            $valid=(int)$original['year']>0 && (int)$publication[1]>0 && (int)$original['year']<=(int)$publication[1];
+                            self::check($checks,'original_publication_year_order',$valid,'Conferir os anos declarados: o ano original deve ser válido e não posterior ao da edição consultada; verificar os dados na fonte.');
+                        }
+                    }
+                }
                 $link = self::stripLink($content);
                 if ($link['legacy_doi'] && strpos($link['base'], '. ') !== false) {
                     self::check($checks, 'doi_url_format', false, 'O DOI informado deve ser apresentado como https://doi.org/...; substituir o prefixo antigo sem alterar o identificador.');
@@ -67,7 +78,16 @@ final class ReferenceStyleAudit
                     $mixedEntry = true;
                     self::check($checks, 'journal_legacy_labels', false, 'Na referência de periódico APA 7, remover os rótulos v., n. e p./pp.; apresentar volume(número), páginas ou identificador, com a formatação correspondente.');
                 }
-                if ($fields!==null && in_array($fields['type'],['dataset_declared','software_declared'],true)) {
+                if ($fields!==null && $fields['type']==='translated_work_layout_candidate') {
+                    $type=$fields['type'];
+                    self::check($checks,'translated_work_translator_plain',self::emphasis($paragraph,$fields['translator'],false),'Os nomes e a função de tradução informados entre parênteses não ficam em itálico.');
+                    if ($fields['english_separators']!==null) { self::check($checks,'translated_work_translator_separators',$fields['english_separators'],'No modelo em inglês com Trans., usar & entre dois tradutores e vírgulas com , & antes do último para três ou mais.'); }
+                    if ($fields['edition']!==null) {
+                        self::check($checks,'translated_work_edition_plain',self::emphasis($paragraph,$fields['edition'],false),'A edição informada junto da tradução não fica em itálico.');
+                        self::check($checks,'edition_ordinal',$fields['edition_ordinal'],'Conferir número e sufixo ordinal da edição no modelo em inglês: st, nd, rd ou th.');
+                    }
+                    self::check($checks,'translated_work_type_review',null,'Confirmar tradutor, edição consultada e tipo da obra antes de exigir itálico no título ou na fonte; tradução não comprova que a obra é um livro.');
+                } elseif ($fields!==null && in_array($fields['type'],['dataset_declared','software_declared'],true)) {
                     $type=$fields['type'];
                     self::check($checks,'digital_work_title_italic',self::emphasis($paragraph,$fields['title'],true),'No modelo declarado de conjunto de dados ou software, o título da obra fica em itálico.');
                     self::check($checks,'digital_work_description_plain',self::emphasis($paragraph,$fields['description'],false),'A descrição entre colchetes do conjunto de dados ou software não fica em itálico.');
@@ -127,7 +147,7 @@ final class ReferenceStyleAudit
                 } else { self::check($checks, 'work_type_unresolved', null, 'Tipo ou campos da obra não reconhecidos; revisar com o modelo APA 7 adequado.'); }
                 if (in_array($type,['dataset_declared','software_declared'],true)) {
                     self::check($checks,'digital_work_title_case_review',null,'Conferir a grafia oficial do título de dados ou software, preservando nomes próprios, siglas e capitalização do produto; não converter automaticamente.');
-                } elseif ($fields !== null && $type !== 'unresolved') {
+                } elseif ($fields !== null && $type !== 'unresolved' && $type!=='translated_work_layout_candidate') {
                     $title = substr($text, $fields['title']['start'], $fields['title']['end'] - $fields['title']['start']);
                     $case = \Estrabao\Text\TitleCase::inspect($title, $language);
                     self::check($checks, 'work_title_full_uppercase', $case['status'] === CheckResult::UNKNOWN ? null : $case['status'] === CheckResult::PASS, 'Evitar caixa alta integral no título; sentence case, nomes próprios e siglas exigem conferência.');
@@ -258,6 +278,9 @@ final class ReferenceStyleAudit
     private static function fields(string $content, int $offset): ?array
     {
         $content = rtrim($content); if (substr($content, -1) === '.') { $content = substr($content, 0, -1); }
+        $translated=ReferenceRevisions::translated($content,$offset);
+        if ($translated!==null) { return $translated; }
+        if (preg_match('/\([^)]*,\s*(?:Trans\.|Trad\.|Trads\.)/u',$content)) { return null; }
         $digital=ReferenceDigitalWorks::fields($content,$offset);
         if ($digital!==null) { return $digital; }
         if (preg_match('/\[(?:Data set|Conjunto de dados|Computer software|Software)\b/iu',$content)) { return null; }

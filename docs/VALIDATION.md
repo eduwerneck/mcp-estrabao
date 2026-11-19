@@ -995,3 +995,24 @@ bytes/estado restaurados. Capturas vistas em evidence/stage41. Containers
 desligados ao fim. Sem produção, VM Oracle, arquivos reais, mensagens ou deploy.
 Limites em STAGE41.md/APA7.md; sem nova consulta normativa. Regressão integrada
 anterior não repetida e CI remoto da nova branch ainda não verificado.
+
+
+## Etapa 42 — metadados de tradução e publicação original
+
+Em 19/11/2026, sobre 02f0844 (merge PR #42), motor 0.33.0, plugin 0.25.0.0,
+APA 18.0.0, formatos/matching 11.0.0 e citações 9.0.0; contratos preservados.
+1435 testes por PHP 8.4.27 e 8.1.27, zero falhas; lint de 105 arquivos PHP,
+Python, dois schemas CLI e diff aprovados.
+
+47 verificações OJS 3.3.0.20/Chromium: cinco falhas em metadados, separadores ou
+cronologia bloquearam com orientação específica, minuta privada e POST nativo.
+Cinco cenários reconhecidos/inconclusivos permaneceram revisáveis sem conclusão
+automática. Ano original protege ausência/sufixo/et al./grupo quando há possível
+relação, sem identificar obra/edição; a barra entre anos permanece indeterminada.
+Tipos de título/fonte não são presumidos pela presença de tradutor ou ano original.
+
+Isolamento, e-mail neutralizado, versão instalada e mounts read-only conferidos;
+bytes/estado sintéticos restaurados. Capturas vistas em evidence/stage42.
+Containers desligados ao fim. Sem produção, VM Oracle, arquivos reais, mensagens
+ou deploy. Limites em STAGE42.md/APA7.md; sem nova consulta normativa externa.
+Suíte integrada anterior não repetida e CI remoto da branch ainda não verificado.
