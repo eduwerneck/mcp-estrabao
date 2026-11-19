@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -78,6 +78,24 @@ if (in_array($mode, ['matching-compound-style', 'matching-compound-missing', 'ma
         $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
     }
     $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>da Silva, A., &amp; García Márquez, B. (2020). Título sintético. Editora Exemplo.</w:t></w:r></w:p>';
+}
+if (in_array($mode, ['year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix'], true)) {
+    $citation = ['year-suffix'=>'Texto (Silva, 2020).', 'year-suffix-late'=>'Texto (Silva, 2020c).', 'year-order'=>'Texto (Silva, 2020, 2019).', 'work-order'=>'Texto (Souza, 2019; Silva, 2020).', 'year-correct'=>'Silva (2019, 2020a, 2020b).', 'year-authorship'=>'Texto (Silva, 2020, 2019).', 'year-suffix-ambiguous'=>'Texto (Silva, 2020).', 'year-partial-suffix'=>'Texto (Silva, 2020).'][$mode];
+    $main = '';
+    $texts = ['Introdução'];
+    if ($mode === 'year-suffix-late') { $texts = array_merge($texts, array_fill(0, 40, 'Texto (Silva, 2020a, 2020a).')); }
+    $texts = array_merge($texts, [$citation, 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.']);
+    foreach ($texts as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    $entries = [['Silva', 'A', '2020a'], ['Silva', 'A', '2020b']];
+    if ($mode === 'year-order' || $mode === 'year-authorship') { $entries = [['Silva', $mode === 'year-authorship' ? 'B' : 'A', '2019'], ['Silva', 'A', '2020']]; }
+    if ($mode === 'work-order') { $entries = [['Silva', 'A', '2020'], ['Souza', 'B', '2019']]; }
+    if ($mode === 'year-correct') { array_unshift($entries, ['Silva', 'A', '2019']); }
+    if ($mode === 'year-suffix-ambiguous') { $entries[1][1] = 'B'; }
+    if ($mode === 'year-partial-suffix') { $entries[0][0] = 'da Silva'; $entries[1][0] = 'da Silva'; }
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p>';
+    foreach ($entries as $e) { $reference .= '<w:p><w:r><w:t>' . $e[0] . ', ' . $e[1] . '. (' . $e[2] . '). Título ' . $e[2] . '. Editora Exemplo.</w:t></w:r></w:p>'; }
 }
 $parts = [
     '[Content_Types].xml' => '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/footnotes.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml"/></Types>',

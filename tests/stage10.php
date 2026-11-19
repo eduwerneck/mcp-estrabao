@@ -42,7 +42,6 @@ foreach ([
 foreach ([
     'missing author' => [['Texto (Souza, 2020).'], [$single]],
     'wrong year' => [['Texto (Silva, 2021).'], [$single]],
-    'wrong suffix' => [['Texto (Silva, 2020a).'], [str_replace('2020', '2020b', $single)]],
 ] as $name => $case) {
     test('chave literal sem referência no subconjunto fechado ' . $name, function () use ($case) {
         $check = referenceChecks(referenceDocument($case[0], $case[1]))[1];
@@ -79,7 +78,7 @@ foreach ([
 }
 foreach ([
     'personal communication' => 'Texto (Silva, comunicação pessoal, 2020).',
-    'multiple years' => 'Texto (Silva, 2020, 2021).',
+    'year range' => 'Texto (Silva, 2020–2021).',
     'undated citation' => 'Texto (Silva, n.d.).',
     'institutional citation' => 'Texto (World Health Organization, 2020).',
     'embedded narrative' => 'O estudo apresentado por Silva (2020) foi relevante.',
@@ -164,9 +163,9 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.26.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.27.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
-            same($expected, $checks['references.citation_matching']['status']); same('7.0.0', $checks['references.citation_matching']['rule_version']);
+            same($expected, $checks['references.citation_matching']['status']); same('8.0.0', $checks['references.citation_matching']['rule_version']);
             same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);
             same(hash_file('sha256', $path), $checks['references.apa7']['evidence']['document_sha256']);
             same(false, strpos($out, 'Livro sintético') !== false); same(false, strpos($out, $path) !== false);
