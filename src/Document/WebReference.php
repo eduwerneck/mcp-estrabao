@@ -31,6 +31,18 @@ final class WebReference
         return null;
     }
 
+    /** Valid explicit day, month and year; month-only dates never acquire an invented day. */
+    public static function publicationParts(string $date): ?array
+    {
+        if(strlen($date)>128){return null;}
+        if(preg_match('/^([0-9]{4}), ([\\p{L}]+) ([0-9]{1,2})$/iuD',$date,$m)){$year=$m[1];$month=$m[2];$day=$m[3];}
+        elseif(preg_match('/^([0-9]{4}), ([0-9]{1,2}) de ([\\p{L}]+)$/iuD',$date,$m)){$year=$m[1];$month=$m[3];$day=$m[2];}
+        else{return null;}
+        if(self::calendar($month,$day,$year)!==true){return null;}
+        $key=strtr(strtolower($month),['Ç'=>'ç']);
+        return [(int)$year,self::MONTHS[$key],(int)$day];
+    }
+
     private static function calendar(string $month,string $day,string $year): ?bool
     {
         $key=strtr(strtolower($month),['Ç'=>'ç']);

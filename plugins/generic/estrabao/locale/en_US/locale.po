@@ -236,3 +236,6 @@ msgstr "The automatic check could not establish the reference boundaries. Check 
 
 msgid "plugins.generic.estrabao.directQuoteReviewTitle"
 msgstr "Direct quotation review"
+
+msgid "plugins.generic.estrabao.fullDateReviewTitle"
+msgstr "Bibliographic date review"

@@ -1,0 +1,24 @@
+{
+  "checked_on": "2026-11-19",
+  "official_pages": [
+    {
+      "url": "https://apastyle.apa.org/style-grammar-guidelines/references/arranging",
+      "read": false,
+      "result": "proxy_tunnel_403"
+    },
+    {
+      "url": "https://apastyle.apa.org/style-grammar-guidelines/citations/basic-principles/same-year-author",
+      "read": false,
+      "result": "proxy_tunnel_403"
+    }
+  ],
+  "technical_source": {
+    "url": "https://raw.githubusercontent.com/citation-style-language/styles/af0aea3fffd44fe798cce9285598d0d5cf62ef23/apa.csl",
+    "read": true,
+    "revision": "af0aea3fffd44fe798cce9285598d0d5cf62ef23",
+    "sha256": "3917def5fc951b104d64216c3373096042368b9704ba269ca83c14ebaba889fc",
+    "scope": "date-sort macro and bibliography sort; previously documented technical source",
+    "official_normative_authority": false,
+    "source_code_incorporated": false
+  }
+}

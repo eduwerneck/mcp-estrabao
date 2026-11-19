@@ -12,15 +12,20 @@ final class ReferenceOrder
             'combined_order_status'=>CheckResult::UNKNOWN,'order_scope'=>'declared_personal_keys_safe_prefix_author_lists_numeric_years_and_safe_title_cohorts',
             'author_list_order_status'=>CheckResult::UNKNOWN,'author_list_order_samples'=>[],'author_list_pairs_checked'=>0,
             'title_punctuation_strategy'=>'literal_common_punctuation_and_letter_decision','title_punctuation_pairs_checked'=>0,'title_article_strategy'=>'literal_and_single_initial_article_consensus','title_article_pairs_checked'=>0,'title_order_status'=>CheckResult::UNKNOWN,'year_suffix_order_status'=>CheckResult::UNKNOWN,'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_cohorts_checked'=>0,'title_pairs_checked'=>0,
+            'full_date_order_status'=>CheckResult::UNKNOWN,'full_date_order_samples'=>[],'full_date_pairs_checked'=>0,'full_date_suffix_review_required'=>false,'full_date_suffix_policy'=>'manual_review_for_precise_dates','full_date_review'=>[],
             'order_samples'=>[],'chronological_order_samples'=>[],'chronological_pairs_checked'=>0];
         if (!$complete || !$paragraphs || count($paragraphs)>ReferenceAnalysis::MAX_ENTRIES) { return $result; }
         $keys=[];$safe=[];
         foreach ($paragraphs as $position=>$p) {
             $e=ReferenceAnalysis::parseEntry($p['text']);
             if ($e===null && ($heads[$position]['kind']??null)==='personal' && isset($heads[$position]['author_key'])) {
-                // Reuse a verified author prefix only. Full dates remain ineligible for chronology.
+                // Reuse the verified author prefix, preserving the actual date and original-publication marker.
                 $e=ReferenceAnalysis::parseEntry($heads[$position]['author_key'].' (2020). Placeholder.');
-                if ($e!==null) { $e['year']=$heads[$position]['date_token']; }
+                if ($e!==null) {
+                    $e['year']=$heads[$position]['date_token'];
+                    $original=ReferenceRevisions::original($heads[$position]['content']??'',0);
+                    $e['original_year']=$original['year'];$e['original_year_review']=$original['has_marker'] && $original['year']===null;
+                }
             }
             if ($e===null) { return $result; }
             $list=ApaPersonalAuthors::inspect($e['author_key']);
@@ -34,7 +39,7 @@ final class ReferenceOrder
             $numeric=preg_match('/^[0-9]{4}$/D',$e['year'])===1 && (int)$e['year']>0
                 && !isset($e['original_year']) && empty($e['original_year_review']);
             $safe[$signature]=($safe[$signature]??true)&&$numeric;
-            $keys[]=['surname'=>self::fold($e['authors'][0]),'signature'=>$signature,'people'=>$parts,'year'=>$e['year'],'order_title'=>$heads[$position]['order_title']??null,'original_year'=>$e['original_year']??null,'original_year_review'=>$e['original_year_review']??false,'title_year_eligible'=>preg_match('/^[0-9]{4}[a-z]?$/D',$e['year'])===1 && (int)substr($e['year'],0,4)>0 && !isset($e['original_year']) && empty($e['original_year_review']),'index'=>$p['index']];
+            $keys[]=['surname'=>self::fold($e['authors'][0]),'signature'=>$signature,'people'=>$parts,'year'=>$e['year'],'publication_parts'=>WebReference::publicationParts($e['year']),'order_title'=>$heads[$position]['order_title']??null,'original_year'=>$e['original_year']??null,'original_year_review'=>$e['original_year_review']??false,'title_year_eligible'=>preg_match('/^[0-9]{4}[a-z]?$/D',$e['year'])===1 && (int)substr($e['year'],0,4)>0 && !isset($e['original_year']) && empty($e['original_year_review']),'index'=>$p['index']];
         }
         $alpha=CheckResult::PASS;$chrono=CheckResult::PASS;$lists=CheckResult::PASS;
         for ($i=1;$i<count($keys);$i++) {
@@ -70,10 +75,10 @@ final class ReferenceOrder
                 }
             }
         }
-        $result=array_replace($result,ReferenceTitleOrder::analyze($keys));
+        $result=array_replace($result,ReferenceTitleOrder::analyze($keys),ReferenceDateOrder::analyze($keys));
         $result['author_list_order_status']=($result['author_list_pairs_checked'] || $lists===CheckResult::FAIL)?$lists:CheckResult::UNKNOWN;
         $result['alphabetical_order_status']=$alpha;$result['chronological_order_status']=$chrono;
-        $result['combined_order_status']=in_array(CheckResult::FAIL,[$alpha,$chrono,$result['title_order_status'],$result['year_suffix_order_status']],true)?CheckResult::FAIL
+        $result['combined_order_status']=in_array(CheckResult::FAIL,[$alpha,$chrono,$result['title_order_status'],$result['year_suffix_order_status'],$result['full_date_order_status']],true)?CheckResult::FAIL
             :(in_array(CheckResult::UNKNOWN,[$alpha,$chrono],true)?CheckResult::UNKNOWN:CheckResult::PASS);
         return $result;
     }

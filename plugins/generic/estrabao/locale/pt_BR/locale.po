@@ -236,3 +236,6 @@ msgstr "A verificação automática não confirmou os limites destas referência
 
 msgid "plugins.generic.estrabao.directQuoteReviewTitle"
 msgstr "Conferência de citações diretas"
+
+msgid "plugins.generic.estrabao.fullDateReviewTitle"
+msgstr "Conferência de datas bibliográficas"

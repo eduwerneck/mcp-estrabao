@@ -236,3 +236,6 @@ msgstr "La comprobación automática no confirmó los límites de estas referenc
 
 msgid "plugins.generic.estrabao.directQuoteReviewTitle"
 msgstr "Revisión de citas directas"
+
+msgid "plugins.generic.estrabao.fullDateReviewTitle"
+msgstr "Revisión de fechas bibliográficas"
