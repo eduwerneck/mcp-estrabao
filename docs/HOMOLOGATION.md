@@ -1,9 +1,9 @@
 # Homologação integrada — laboratório local
 
-Atualização: a [Etapa 36](STAGE36.md) altera o motor para 0.28.0 e o plugin
-para 0.20.0.0. Essa versão passou em 1249 testes por PHP e 32 verificações
+Atualização: a [Etapa 37](STAGE37.md) altera o motor para 0.29.0 e o plugin
+para 0.21.0.0. Essa versão passou em 1289 testes por PHP e 32 verificações
 direcionadas no OJS local. A execução integrada de 72 casos abaixo pertence
-à base anterior; não foi repetida integralmente para a Etapa 36.
+à base anterior; não foi repetida integralmente para a Etapa 37.
 
 Resultado em 17/11/2026: **aprovado no escopo do laboratório**, sobre o código
 112485b (merge do PR #27). Motor 0.20.0, plugin instalado/arquivos 0.12.0.0 e OJS

@@ -18,6 +18,7 @@ API, importações e outros caminhos não foram homologados.
 | ABNT e formatos mistos | Padrões compostos de autoria/data após fonte; cidade/editora, rótulos de periódico, DOI antigo e separadores reconhecidos | Padrões fora da gramática e tipos jurídicos; Etapa 31 acrescenta ABNT institucional no subconjunto |
 | Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
 | Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais; Etapa 35 confere anos/sufixos e ordem; Etapa 36 confere et al. colidente, quantidade omitida e suficiência dos nomes no contexto seguro | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, agrupamentos fora da cobertura, atribuição das letras por título e outras desambiguações |
+| Datas especiais | Etapa 37 liga n.d./s.d. e in press/no prelo, incluindo sufixos explícitos de obras sem data; mantém divergências e o estado real da publicação para revisão | Confirmar ausência de data/aceite na fonte, uniformização editorial do idioma, datas completas por tipo, datas originais/republicações e ordenação desses estados |
 | Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais | Ampliar outras edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
@@ -43,7 +44,10 @@ API, importações e outros caminhos não foram homologados.
    das letras, outras formas de agrupamento e ordenação bibliográfica ampliada.
    Etapa 36 acrescenta desambiguação de et al. e pelo menos dois nomes omitidos,
    preservando iniciais, duplicatas e contextos incompletos para revisão.
-5. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
+5. Etapa 37 liga marcadores sem data/no prelo e preserva sufixos informados.
+   Datas divergentes, grupos mistos e estado de publicação ficam para revisão;
+   não converte idioma nem escolhe o ano da obra.
+6. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
 incerteza e preservação do manuscrito. Alterar a versão do motor invalida as
@@ -63,3 +67,18 @@ A revista mantém suas diretrizes próprias de apresentação; não se impõe um
 regra genérica de APA que contradiga o espaçamento editorial documentado.
 Identidade de autores, existência/correção bibliográfica, sentido das citações
 e fidelidade à fonte permanecem para conferência humana.
+
+## Pendências para encerrar a frente
+
+A Etapa 37 fecha a ligação dos marcadores especiais neste subconjunto, não toda
+APA 7. Antes de encerrar o ciclo operacional, consolidar a regressão integrada
+na versão atual: erro → correção → nova análise → revisão humana, com bloqueio
+por falha comprovada e invalidação da liberação anterior. Os 32 ensaios desta
+etapa são direcionados e não substituem a suíte integrada de homologação.
+
+A matriz acima continua aberta para outros tipos bibliográficos (teses,
+relatórios, páginas, dados/software e traduções), ordenação da lista com empates,
+diacríticos/partículas, apresentação inicial de siglas, prefixos mínimos especiais,
+citações diretas/localizadores e datas completas/originais. Conferência do teor,
+da autoria, da fonte consultada e da existência dos dados permanece humana.
+Não tratar esses itens como concluídos por ausência de falha automática.

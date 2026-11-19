@@ -886,3 +886,26 @@ Evidências em evidence/stage36. Containers desligados ao final. Sem produção,
 VM Oracle, arquivos reais, envio externo ou deploy. Consulta APA Style bloqueada
 pelo proxy (403), sem conteúdo consultado. Limites em STAGE36.md e APA7.md.
 CI remoto da nova branch ainda não verificado.
+
+
+## Etapa 37 — datas especiais
+
+Validação em 19/11/2026, base 7eb1e2c (merge PR #37), motor 0.29.0 e plugin
+0.21.0.0. Regras APA 14.0.0, correspondência 10.0.0, citações 8.0.0 e formatos
+7.0.0. Contratos JSON preservados.
+
+- 1289 testes em PHP 8.4.27 e PHP 8.1.27, zero falhas.
+- Lint de 97 arquivos PHP, compilação Python, schemas CLI e diff aprovados.
+- 32 verificações no OJS 3.3.0.20/Chromium local: conjunção incorreta, referência
+  ausente em contexto fechado e apud bloqueiam, com devolutiva específica.
+- Marcadores equivalentes, no prelo, divergência e sufixo sem data permanecem
+  revisáveis, sem liberação salva e sem conclusão automática.
+- Testes do motor incluem narrativa, parentética, fonte secundária, duplicatas,
+  contexto incompleto, grupos mistos, et al. e DOCX sem mudança de bytes.
+- Isolamento/rede interna, mounts read-only, e-mail neutralizado e versão
+  instalada conferidos. Estado e arquivo sintéticos restaurados; capturas vistas.
+
+Evidências em evidence/stage37. Containers desligados ao final. Sem produção,
+VM Oracle, documentos reais, envio externo ou deploy. Não houve nova consulta
+normativa externa. Limites em STAGE37.md e matriz de pendências em APA7.md.
+CI remoto da nova branch ainda não verificado.

@@ -14,8 +14,8 @@ final class InstitutionalAuthors
 
     public static function entry(string $text): ?array
     {
-        if (strlen($text)>8192 || preg_match_all('/\([0-9]{4}[a-z]?\)\.\s+/u',$text)!==1 || !preg_match('/^(.{2,512}?)\.\s+\(([0-9]{4}[a-z]?)\)\.\s+(\S.*)$/uD',$text,$m) || !self::name($m[1])) { return null; }
-        return ['authors'=>[$m[1]],'year'=>strtolower($m[2]),'kind'=>'institutional'];
+        if (strlen($text)>8192 || preg_match_all('/\(' . ReferenceAnalysis::DATE_TOKEN . '\)\.\s+/iu',$text)!==1 || !preg_match('/^(.{2,512}?)\.\s+\((' . ReferenceAnalysis::DATE_TOKEN . ')\)\.\s+(\S.*)$/iuD',$text,$m) || !self::name($m[1])) { return null; }
+        return ['authors'=>[$m[1]],'year'=>ReferenceAnalysis::dateKey($m[2]),'kind'=>'institutional'];
     }
 
     public static function aliases(array $paragraphs, array $entries): array
