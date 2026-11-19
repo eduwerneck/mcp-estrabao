@@ -15,7 +15,7 @@ foreach ([['Alfa estudo','2020b','Beta estudo','2020a'],['Alfa estudo','2020','B
 test('sequência completa de três títulos e letras',function(){
  $a=stage49Audit([stage49Ref('Alfa estudo'),stage49Ref('Beta estudo','2020b'),stage49Ref('Gama estudo','2020c')]);same('conforme',$a['title_order_status']);same('conforme',$a['year_suffix_order_status']);same(3,$a['title_pairs_checked']);
 });
-foreach ([['A pesquisa','Beta estudo'],['O Alfa','Beta estudo'],['Alfa: estudo','Beta estudo'],['Alfa 2','Beta estudo'],['Estudo igual','Estudo igual'],['García estudo','Garcia estudo'],['Alves estudo','Ávila estudo']] as $titles) {
+foreach ([['A pesquisa','Beta estudo'],['O Alfa','Beta estudo'],['Estudo: Alfa','Estudo Alfa'],['Alfa 2','Beta estudo'],['Estudo igual','Estudo igual'],['García estudo','Garcia estudo'],['Alves estudo','Ávila estudo']] as $titles) {
  test('títulos incertos ou duplicados não recebem letras '.md5(json_encode($titles)),function()use($titles){$a=stage49Audit([stage49Ref($titles[0],'2020b'),stage49Ref($titles[1],'2020a')]);same('indeterminado',$a['title_order_status']);same('indeterminado',$a['year_suffix_order_status']);same(0,$a['title_cohorts_checked']);});
 }
 foreach (['2020, May 2','s.d.','no prelo'] as $year) {

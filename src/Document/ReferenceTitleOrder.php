@@ -6,10 +6,12 @@ use Estrabao\Contracts\CheckResult;
 /** Complete same-author/year cohorts only; technical title keys never leave this class. */
 final class ReferenceTitleOrder
 {
+    private const WORD="\\p{L}+(?:['’]\\p{L}+)*";
+
     public static function analyze(array $keys): array
     {
         $r=['title_order_status'=>CheckResult::UNKNOWN,'year_suffix_order_status'=>CheckResult::UNKNOWN,
-            'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_article_strategy'=>'literal_and_single_initial_article_consensus','title_article_pairs_checked'=>0,'title_cohorts_checked'=>0,'title_pairs_checked'=>0];
+            'title_punctuation_strategy'=>'literal_common_punctuation_and_letter_decision','title_punctuation_pairs_checked'=>0,'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_article_strategy'=>'literal_and_single_initial_article_consensus','title_article_pairs_checked'=>0,'title_cohorts_checked'=>0,'title_pairs_checked'=>0];
         $groups=[];$blocked=[];$ambiguous=[];
         foreach($keys as $k){
             if(!empty($k['original_year_review'])){$ambiguous[$k['signature']]=true;}
@@ -19,11 +21,11 @@ final class ReferenceTitleOrder
         $title=CheckResult::PASS;$suffix=CheckResult::PASS;$uncertain=false;
         foreach($groups as $group){
             $n=count($group);if($n<2){continue;}
-            $valid=$n<=26 && empty($ambiguous[$group[0]['signature']]) && empty($blocked[$group[0]['signature']][substr($group[0]['year'],0,4)]);$titles=[];$articlePairs=0;$ranks=array_fill(0,$n,0);
+            $valid=$n<=26 && empty($ambiguous[$group[0]['signature']]) && empty($blocked[$group[0]['signature']][substr($group[0]['year'],0,4)]);$titles=[];$articlePairs=0;$punctuationPairs=0;$ranks=array_fill(0,$n,0);
             foreach($group as $k){
                 $t=$k['order_title']??null;
                 if(empty($k['title_year_eligible']) || !is_string($t) || strlen($t)>512
-                    || !preg_match('/^\p{L}+(?: \p{L}+)*$/uD',$t)){$valid=false;}
+                    || !preg_match('/^'.self::WORD.'(?:(?: |: |; |, | [-–—] | & |[-–—])'.self::WORD.')*[!?]?$/uD',$t)){$valid=false;}
                 $variants=is_string($t)?self::variants($t):null;
                 if($variants===null){$valid=false;}
                 $titles[]=$variants;
@@ -32,11 +34,13 @@ final class ReferenceTitleOrder
             for($i=0;$i<$n;$i++){for($j=$i+1;$j<$n;$j++){
                 $cmp=self::consensus($titles[$i],$titles[$j]);
                 if($cmp===null || $cmp===0){$valid=false;break 2;}
+                if(preg_match('/[^\p{L} ]/u',$titles[$i][0].$titles[$j][0])){$punctuationPairs++;}
                 if(count($titles[$i])>1 || count($titles[$j])>1){$articlePairs++;}
                 if($cmp>0){$ranks[$i]++;}else{$ranks[$j]++;}
             }}
             if(!$valid){$uncertain=true;continue;}
             $r['title_article_pairs_checked']+=$articlePairs;
+            $r['title_punctuation_pairs_checked']+=$punctuationPairs;
             $r['title_cohorts_checked']++;$r['title_pairs_checked']+=intdiv($n*($n-1),2);
             for($i=0;$i<$n;$i++){
                 if($i>0 && $ranks[$i-1]>$ranks[$i]){
@@ -58,6 +62,7 @@ final class ReferenceTitleOrder
     private static function variants(string $title): ?array
     {
         $articles='a|an|the|o|os|as|um|uma|uns|umas|el|la|los|las|un|una|unos|unas';
+        if(preg_match('/^(?:'.$articles.')(?=[^\p{L} ])/iu',$title)){return null;}
         if(!preg_match('/^(?:'.$articles.')(?: |$)/iuD',$title)){return [$title];}
         $rest=preg_replace('/^(?:'.$articles.') /iu','',$title,1,$removed);
         if(!$removed || preg_match('/^(?:'.$articles.')(?: |$)/iuD',$rest)){return null;}
@@ -86,6 +91,9 @@ final class ReferenceTitleOrder
             if(preg_match('/^[a-z]$/D',$a[$i]) && preg_match('/^[a-z]$/D',$b[$i])){return strcmp($a[$i],$b[$i]);}
             return null;
         }
+        if(count($a)===count($b)){return 0;}
+        $tail=count($a)<count($b)?array_slice($b,count($a)):array_slice($a,count($b));
+        if(!preg_match('/\p{L}/u',implode('',$tail))){return null;}
         return count($a)<=>count($b);
     }
 }

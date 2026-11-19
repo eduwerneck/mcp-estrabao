@@ -11,7 +11,7 @@ final class ReferenceOrder
         $result=['alphabetical_order_status'=>CheckResult::UNKNOWN,'chronological_order_status'=>CheckResult::UNKNOWN,
             'combined_order_status'=>CheckResult::UNKNOWN,'order_scope'=>'declared_personal_keys_safe_prefix_author_lists_numeric_years_and_safe_title_cohorts',
             'author_list_order_status'=>CheckResult::UNKNOWN,'author_list_order_samples'=>[],'author_list_pairs_checked'=>0,
-            'title_article_strategy'=>'literal_and_single_initial_article_consensus','title_article_pairs_checked'=>0,'title_order_status'=>CheckResult::UNKNOWN,'year_suffix_order_status'=>CheckResult::UNKNOWN,'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_cohorts_checked'=>0,'title_pairs_checked'=>0,
+            'title_punctuation_strategy'=>'literal_common_punctuation_and_letter_decision','title_punctuation_pairs_checked'=>0,'title_article_strategy'=>'literal_and_single_initial_article_consensus','title_article_pairs_checked'=>0,'title_order_status'=>CheckResult::UNKNOWN,'year_suffix_order_status'=>CheckResult::UNKNOWN,'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_cohorts_checked'=>0,'title_pairs_checked'=>0,
             'order_samples'=>[],'chronological_order_samples'=>[],'chronological_pairs_checked'=>0];
         if (!$complete || !$paragraphs || count($paragraphs)>ReferenceAnalysis::MAX_ENTRIES) { return $result; }
         $keys=[];$safe=[];
