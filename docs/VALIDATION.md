@@ -953,3 +953,24 @@ bytes e estado restaurados. Capturas sintéticas inspecionadas em evidence/stage
 Containers desligados ao final. Sem produção, VM Oracle, documentos reais, envio
 externo ou deploy. Limites em STAGE39.md e APA7.md; sem nova consulta normativa.
 Suíte integrada anterior não repetida; CI remoto da nova branch não verificado.
+
+
+## Etapa 40 — calendários e URLs informadas nas referências
+
+Em 19/11/2026, sobre e91e0c2 (Etapa 39/PR #40; main ainda aec02aa durante a
+preparação). Motor 0.31.0, plugin 0.23.0.0, APA 16.0.0 e formatos 9.0.0;
+matching/citações e contratos preservados. 1361 testes por PHP 8.4.27 e 8.1.27,
+zero falhas; lint de 101 arquivos PHP, Python, schemas CLI e diff aprovados.
+
+38 verificações OJS 3.3.0.20/Chromium: quatro erros de calendário/URL bloquearam
+com orientação específica, minuta privada, POST nativo e feedback ao autor.
+Quatro casos adequados/inconclusivos permaneceram revisáveis sem avanço
+automático. Datas completas, consulta e nome de site não são impostos a todos.
+Tipo de obra/site, dados reais e necessidade de consulta exigem revisão humana.
+
+Somente parse_url e calendário local; nenhum link/destino dos testes é acessado.
+Isolamento, e-mail neutralizado, versão instalada e mounts read-only conferidos;
+bytes/estado restaurados. Capturas inspecionadas em evidence/stage40. Containers
+desligados. Sem produção, VM Oracle, arquivos reais, mensagens ou deploy.
+Limites em STAGE40.md/APA7.md; sem nova consulta normativa. Regressão integrada
+anterior não repetida e CI remoto da branch ainda não verificado.

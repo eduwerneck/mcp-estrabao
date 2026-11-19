@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review', 'special-style', 'special-missing', 'special-apud', 'special-undated', 'special-press', 'special-divergent', 'special-suffix', 'longwork-title', 'longwork-description', 'longwork-report', 'longwork-source', 'longwork-repository', 'longwork-unpublished', 'longwork-correct-report', 'longwork-partial'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review', 'special-style', 'special-missing', 'special-apud', 'special-undated', 'special-press', 'special-divergent', 'special-suffix', 'longwork-title', 'longwork-description', 'longwork-report', 'longwork-source', 'longwork-repository', 'longwork-unpublished', 'longwork-correct-report', 'longwork-partial', 'web-publication', 'web-retrieval', 'web-url', 'web-empty-host', 'web-correct', 'web-year', 'web-nosite', 'web-unknownmonth'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -135,6 +135,20 @@ if (strpos($mode, 'longwork-') === 0) {
     if ($mode === 'longwork-unpublished') { $description = '[Dissertação de mestrado não publicada]'; $longWorkSource = 'Universidade Exemplo'; }
     if ($mode === 'longwork-partial') { $description = '[Tese de doutorado]'; $longWorkSource = 'Universidade Exemplo'; }
     $pieces = [['Silva, A. (2020). ', false], ['Obra sintética', $mode !== 'longwork-title' && $mode !== 'longwork-partial'], [' ', false], [$description, $mode === 'longwork-description' || $mode === 'longwork-report'], ['. ', false], [$longWorkSource, $mode === 'longwork-source'], ['.', false]];
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p>';
+    foreach ($pieces as $piece) { $reference .= '<w:r>' . ($piece[1] ? '<w:rPr><w:i/></w:rPr>' : '') . '<w:t xml:space="preserve">' . htmlspecialchars($piece[0], ENT_XML1) . '</w:t></w:r>'; }
+    $reference .= '</w:p>';
+}
+if (strpos($mode, 'web-') === 0) {
+    $main = '';
+    foreach (['Introdução', 'Texto (Silva, 2020).', 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.'] as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    $webDate = $mode === 'web-publication' ? '2020, February 30' : ($mode === 'web-unknownmonth' ? '2020, Foo 2' : (in_array($mode, ['web-year','web-nosite'], true) ? '2020' : '2020, February 29'));
+    $webURL = $mode === 'web-url' ? 'https://:80/item' : ($mode === 'web-empty-host' ? 'https://' : 'https://portal.synthetic.invalid/item');
+    $webSite = $mode === 'web-nosite' ? '' : ' Portal Sintético.';
+    $retrieval = $mode === 'web-retrieval' ? ' Recuperado em 31 de abril de 2020, de' : ($mode === 'web-correct' ? ' Recuperado em 29 de fevereiro de 2020, de' : '');
+    $pieces = [['Silva, A. (' . $webDate . '). ', false], ['Página sintética', true], ['.' . $webSite . $retrieval . ' ' . $webURL, false]];
     $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p>';
     foreach ($pieces as $piece) { $reference .= '<w:r>' . ($piece[1] ? '<w:rPr><w:i/></w:rPr>' : '') . '<w:t xml:space="preserve">' . htmlspecialchars($piece[0], ENT_XML1) . '</w:t></w:r>'; }
     $reference .= '</w:p>';

@@ -19,7 +19,7 @@ final class References implements Rule
             'document_sha256' => $this->document['sha256'] ?? null,
             'source_available' => $styleSource['available'] ?? false, 'source_profile' => $profile, 'main_body_available' => $source['available'] ?? false,
             'full_document_text_available' => $this->document['available'] ?? false, 'footnote_content_analyzed' => false, 'language' => $this->language,
-            'scope' => 'apa7_structural_and_declared_format_checks', 'style_profile' => 'apa7_reference_patterns_v8', 'full_apa_validation' => false,
+            'scope' => 'apa7_structural_and_declared_format_checks', 'style_profile' => 'apa7_reference_patterns_v9', 'full_apa_validation' => false,
             'external_lookup_performed' => false, 'secondary_matching_direction' => 'consulted_source_only',
             'secondary_citation_policy' => ['version'=>'estrabao-no-apud-2026-11-18','apud_allowed'=>false,'source'=>'explicit_editorial_instruction']];
         $matching = CheckResult::UNKNOWN; $formats = CheckResult::UNKNOWN; $citationStyle = CheckResult::UNKNOWN;
@@ -60,11 +60,11 @@ final class References implements Rule
         ];
         return [
             new CheckResult('references.apa7', $apa, $evidence, '/manuscript',
-                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7 ou com as diretrizes editoriais de citações, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '15.0.0'),
+                'Submissão não aceita enquanto houver incompatibilidade comprovada com APA 7 ou com as diretrizes editoriais de citações, incluindo padrões ABNT reconhecidos. Sem incompatibilidade comprovada, exigir revisão; não liberar automaticamente.', '16.0.0'),
             new CheckResult('references.citation_matching', $matching, $evidence + ['matching_direction' => 'recognized_citations_to_references'], '/manuscript',
                 'Conferir chaves autor–ano reconhecidas; ambiguidade não comprova referência ausente.', '10.0.0'),
             new CheckResult('references.apa7.recognized_formats', $formats, $evidence, '/manuscript',
-                'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.', '8.0.0'),
+                'Conferir os formatos e campos reconhecidos. Tipo bibliográfico incerto, semântica e dados da obra ainda exigem revisão.', '9.0.0'),
             new CheckResult('references.apa7.citation_format', $citationStyle, $evidence, '/manuscript',
                 'Conferir pontuação e conjunções das citações ligadas a referências reconhecidas; maiúsculas isoladas não provam ABNT.', '8.0.0'),
         ];
