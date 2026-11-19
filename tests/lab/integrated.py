@@ -44,7 +44,7 @@ plan=[('desk-panel.py','ESTRABAO_DESK_EVIDENCE_DIR'),('apa-mixed.py','ESTRABAO_A
  ('footnote-panel.py','ESTRABAO_FOOTNOTE_EVIDENCE_DIR'),('article-dates.py','ESTRABAO_DATE_EVIDENCE_DIR'),
  ('credit-panel.py','ESTRABAO_CREDIT_EVIDENCE_DIR'),('funding-panel.py','ESTRABAO_FUNDING_EVIDENCE_DIR'),
  ('ethics-panel.py','ESTRABAO_ETHICS_EVIDENCE_DIR'),('ai-panel.py','ESTRABAO_AI_EVIDENCE_DIR'),
- ('title-guidance.py','ESTRABAO_TITLE_EVIDENCE_DIR')]
+ ('title-guidance.py','ESTRABAO_TITLE_EVIDENCE_DIR'),('reference-guidance.py','ESTRABAO_REFERENCE_EVIDENCE_DIR')]
 if '--with-apa-regression' in sys.argv:
  for label,args in [('authors',[]),('citations',['--citations']),('institutions',['--institutions']),('secondary',['--secondary']),('models',['--models']),('matching',['--matching']),('years',['--years']),('etal',['--etal']),('dates',['--dates']),('longworks',['--longworks']),('web',['--web']),('digital',['--digital']),('revisions',['--revisions'])]:
   plan.append(('apa-authors.py','ESTRABAO_APA_AUTHORS_EVIDENCE_DIR',label,args))

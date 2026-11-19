@@ -224,3 +224,12 @@ msgstr "The reading does not establish the declaration. Review the manuscript, i
 
 msgid "plugins.generic.estrabao.aiReviewInstructions"
 msgstr "Authors must declare AI use or non-use in the manuscript. For declared use, review the tool, purpose and interaction level; only technical support for language revision, translation, formatting and illustrative figures is permitted. For declared non-use, do not require tool details. Duplication in Comments for the Editor is not required. This checklist does not detect actual use, record approval or enter the author letter."
+
+msgid "plugins.generic.estrabao.referenceHelp"
+msgstr "Enter each complete reference on its own line, using Enter between references. Automatic wrapping on screen does not separate entries; do not use Enter inside one reference. Extra blank lines are not required."
+
+msgid "plugins.generic.estrabao.referenceJoinedWarning"
+msgstr "There are signs of more than one reference on the same line. Check the text and use Enter between complete references. This notice does not confirm work identity or Crossref matching."
+
+msgid "plugins.generic.estrabao.referenceSeparationReview"
+msgstr "The automatic check could not establish the reference boundaries. Check the separation manually."

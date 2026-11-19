@@ -1,0 +1,23 @@
+{
+  "base": "30a670d",
+  "engine": "0.33.0",
+  "plugin": "0.26.0.0",
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1438,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1438,
+      "failures": 0
+    }
+  },
+  "javascript_tests": 16,
+  "javascript_runtime": "24.22.1",
+  "php_lint_files": 107,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "browser_checks": 19,
+  "advisory_only": true,
+  "full_apa_validation": false
+}

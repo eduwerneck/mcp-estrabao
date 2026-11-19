@@ -69,6 +69,13 @@ class EstrabaoPlugin extends GenericPlugin
             ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
         $manager->addJavaScript('estrabao-title-guidance', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/title-guidance.js',
             ['contexts'=>['backend'], 'priority'=>20]);
+        $manager->addJavaScript('estrabao-reference-guidance-config', 'window.estrabaoReferenceGuidance=' .
+            json_encode(['help'=>__('plugins.generic.estrabao.referenceHelp'),
+                'warning'=>__('plugins.generic.estrabao.referenceJoinedWarning'),
+                'review'=>__('plugins.generic.estrabao.referenceSeparationReview')], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';',
+            ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
+        $manager->addJavaScript('estrabao-reference-guidance', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/reference-guidance.js',
+            ['contexts'=>['backend'], 'priority'=>20]);
         return false;
     }
 

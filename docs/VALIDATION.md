@@ -1016,3 +1016,23 @@ bytes/estado sintéticos restaurados. Capturas vistas em evidence/stage42.
 Containers desligados ao fim. Sem produção, VM Oracle, arquivos reais, mensagens
 ou deploy. Limites em STAGE42.md/APA7.md; sem nova consulta normativa externa.
 Suíte integrada anterior não repetida e CI remoto da branch ainda não verificado.
+
+
+## Etapa 43 — aviso de separação no metadado Referências
+
+Em 19/11/2026, sobre 30a670d (merge PR #43), motor 0.33.0 preservado e plugin
+0.26.0.0. Regras/contratos/CLI/minuta/admissão preservados; orientação local.
+1438 testes por PHP 8.4.27 e 8.1.27, zero falhas; 16 testes JavaScript em Node
+24.22.1; lint de 107 arquivos PHP, JS, Python, dois schemas CLI e diff aprovados.
+
+19 verificações OJS 3.3.0.20/Chromium: autor/editor veem aviso de concatenação,
+Enter e linha vazia não o provocam, quebra visual não é novo item, padrões
+incertos pedem conferência. Ajuda acessível, sem duplicação, texto preservado,
+recarga sem persistência e metadados/citações individualizadas inalterados.
+Configuração temporária de exposição do campo ao autor restaurada em finally.
+
+Evidências em evidence/stage43; capturas vistas. Isolamento, e-mail neutralizado,
+mounts read-only e versão instalada conferidos. Containers desligados. Sem
+produção, VM Oracle, arquivos reais, mensagens ou deploy. Tokenizer nativo
+lido; nenhum depósito ou correspondência Crossref foi testado/certificado.
+Limites em STAGE43.md; regressão integrada não repetida, CI remoto ainda não verificado.

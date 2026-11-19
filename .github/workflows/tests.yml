@@ -20,3 +20,7 @@ jobs:
       - run: php tests/run.php
       - run: php bin/triage.php tests/fixtures/complete.json > /tmp/estrabao-report.json
       - run: php bin/desk.php tests/fixtures/complete.json > /tmp/estrabao-desk-response.json
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node tests/js/reference-guidance.test.js
