@@ -14,8 +14,10 @@ final class ReferenceAnalysis
         'parenthetical_authors_require_ampersand' => 'Usar & entre dois autores na citação parentética.',
         'narrative_authors_require_conjunction' => 'Na narrativa, usar conjunção textual entre os autores, não &.',
         'three_or_more_authors_require_et_al' => 'Para obra de três ou mais autores, usar o primeiro sobrenome seguido de et al. desde a primeira citação, salvo necessidade de desambiguação.',
+        'et_al_disambiguation_required' => 'A forma abreviada coincide com mais de uma referência. Incluir os nomes necessários para distinguir as obras e conferir a autoria da fonte consultada.',
+        'et_al_minimum_omission' => 'Usar et al. apenas quando a expressão substituir pelo menos dois autores; apresentar os nomes necessários conforme a fonte consultada.',
         'et_al_period' => 'Escrever et al. com ponto após al.',
-        'multi_author_disambiguation_review' => 'Conferir a necessidade de nomes adicionais para distinguir obras com o mesmo primeiro autor e ano.',
+        'multi_author_disambiguation_review' => 'Conferir a necessidade e a extensão dos nomes adicionais para distinguir obras com o mesmo primeiro autor e ano.',
         'institutional_alias_review' => 'Conferir a apresentação do nome completo e da sigla institucional na primeira citação; vínculo literal não confirma identidade nem introdução correta.',
         'secondary_source_review' => 'Conferir a fonte efetivamente consultada na citação secundária; não exigir a obra original não consultada na lista nem presumir o histórico de leitura.',
         'secondary_apud_not_allowed' => 'A Estrabão não aceita apud em citações secundárias. Usar como citado em e identificar a fonte efetivamente consultada.',
@@ -33,7 +35,7 @@ final class ReferenceAnalysis
     const SURNAME = '\p{L}[\p{L}\p{Pd}\x{2019}\x{0027}]{0,63}';
     const YEAR_SIGNAL = '[0-9]{4}[a-z]?|n\.\s*d\.|s\.\s*d\.|in press|no prelo';
 
-    public static function analyze(array $document): array
+    public static function analyze(array $document, bool $etAlContextComplete = true): array
     {
         $sections = ReferenceSections::extract($document);
         $referenceTexts = $sections['references']; $bodyTexts = $sections['body']; $boundaries = $sections['complete'];
@@ -134,6 +136,8 @@ final class ReferenceAnalysis
             }
         }
         $styleCounts = ['conforme' => 0, 'não conforme' => 0, 'indeterminado' => 0]; $styleSamples = [];
+        $etAlComplete=$etAlContextComplete && $boundaries && !$unparsed && !$unparsedGroups && !$limit && $personalPattern!==null && !count(array_filter($citations,function ($c) { return !empty($c['secondary']); }));
+        $etAlCache=[];
         $samples = []; $matched = 0; $missing = 0; $ambiguous = 0; $used = [];
         foreach ($limit ? [] : $citations as $citation) {
             // Unlinked institutional aliases cannot prove a reference absent, including in mixed lists.
@@ -151,20 +155,19 @@ final class ReferenceAnalysis
             $styleIssues = $citation['group_issues'] ?? [];
             if (($citation['secondary_marker'] ?? null) === 'apud') { $styleIssues[]='secondary_apud_not_allowed'; }
             if ($suffixIssue!==null) { $styleIssues[]=$suffixIssue; }
+            $etAlIssue=null;
+            if (in_array($citation['form'],['et_al','expanded_et_al','many_authors'],true)) {
+                $cacheKey=hash('sha256',json_encode([$citation['form'],$citation['authors'],$citation['year']]));
+                if (!array_key_exists($cacheKey,$etAlCache)) { $etAlCache[$cacheKey]=self::etAlIssue($citation,$entries,$aliases,$etAlComplete); }
+                $etAlIssue=$etAlCache[$cacheKey];
+                if ($etAlIssue!==null) { $styleIssues[]=$etAlIssue; }
+            }
+            if (count($matches)!==1 && isset($citation['et_al_period']) && !$citation['et_al_period'] && $etAlIssue!==null && !in_array($etAlIssue,self::REVIEW_ISSUES,true)) { $styleIssues[]='et_al_period'; }
             if (count($matches) === 1) {
                 if (!empty($citation['secondary'])) { $styleIssues[] = 'secondary_source_review'; }
                 if (!empty($citation['institutional_alias'])) { $styleIssues[] = 'institutional_alias_review'; }
                 if ($citation['placement'] === 'parenthetical' && $citation['form'] === 'two_authors' && $citation['conjunction'] !== '&') { $styleIssues[] = 'parenthetical_authors_require_ampersand'; }
                 if ($citation['placement'] === 'narrative' && $citation['form'] === 'two_authors' && $citation['conjunction'] === '&') { $styleIssues[] = 'narrative_authors_require_conjunction'; }
-                if (in_array($citation['form'], ['many_authors', 'expanded_et_al'], true)) {
-                    $cohort = 0;
-                    foreach ($entries as $candidate) {
-                        if ($candidate['year'] === $citation['year'] && self::sameName($candidate['authors'][0], $citation['authors'][0])) { $cohort++; }
-                    }
-                    // A missing/unparsed reference could require disambiguation; never guess the exception away.
-                    if ($boundaries && !$unparsed && $cohort === 1) { $styleIssues[] = 'three_or_more_authors_require_et_al'; }
-                    else { $styleIssues[] = 'multi_author_disambiguation_review'; }
-                }
                 if (isset($citation['et_al_period']) && !$citation['et_al_period']) { $styleIssues[] = 'et_al_period'; }
                 if (!$citation['spacing_ok']) { $styleIssues[] = 'citation_spacing'; }
                 foreach ($citation['form'] === 'institutional' ? [] : $citation['authors'] as $name) {
@@ -196,7 +199,7 @@ final class ReferenceAnalysis
         if ($ambiguous) { $reasons[] = 'ambiguous_author_date_match'; }
         return ['citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
             'citation_style_samples_omitted' => max(0, array_sum($styleCounts) - count($styleSamples)), 'segmentation_complete' => $boundaries, 'closed_subset' => $closed, 'inspection_limit_reached' => $limit,
-            'compound_name_lookup_complete' => $personalPattern !== null, 'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
+            'et_al_context_complete'=>$etAlComplete,'et_al_cohort_limit'=>32,'compound_name_lookup_complete' => $personalPattern !== null, 'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
             'recognized_citations' => count($citations), 'unparsed_citation_groups' => $unparsedGroups,
             'numeric_citation_candidates' => $numeric, 'matched_citations' => $matched, 'unresolved_citations' => $missing,
             'ambiguous_matches' => $ambiguous, 'references_not_observed_in_supported_citations' => count($entries) - count($used),
@@ -220,8 +223,73 @@ final class ReferenceAnalysis
         $ranges = [];
         foreach ($names[1] as $name) { $ranges[] = ['start' => $name[1], 'end' => $name[1] + strlen($name[0])]; }
         return ['authors' => array_column($names[1], 0), 'year' => strtolower($date[1][0]), 'author_ranges' => $ranges,
-            'author_key' => $prefix, 'content' => $rest,
+            'author_key' => $prefix, 'personal_keys'=>array_map('trim',array_column($names[0],0)), 'content' => $rest,
             'content_start' => $date[0][1] + strlen($date[0][0])];
+    }
+
+    /** Determine adequate literal representations, never infer which work was read. */
+    private static function etAlIssue(array $citation,array $entries,array $aliases,bool $complete): ?string
+    {
+        $review='multi_author_disambiguation_review';
+        if (!$complete) { return $review; }
+        foreach ($aliases as $alias=>$names) { if (self::sameName($alias,$citation['authors'][0])) { return $review; } }
+        $cohort=[];
+        foreach ($entries as $entry) {
+            if ($entry['year']!==$citation['year'] || !self::weakName($entry['authors'][0],$citation['authors'][0])) { continue; }
+            if (($entry['kind']??null)==='institutional' || !self::sameName($entry['authors'][0],$citation['authors'][0]) || !isset($entry['personal_keys'][0])) { return $review; }
+            $cohort[]=$entry;if (count($cohort)>32) { return $review; }
+        }
+        if (!$cohort) { return $review; }
+        $first=$cohort[0]['personal_keys'][0];
+        foreach ($cohort as $entry) { if (!self::sameName($first,$entry['personal_keys'][0])) { return $review; } }
+        $prefix=$citation['authors'];$k=count($prefix);$base=[];$valid=[];$raw=[];
+        foreach ($cohort as $i=>$entry) {
+            if (count($entry['authors'])>=3) { $base[]=$i; }
+            if (self::namePrefix($prefix,$entry['authors'])) {
+                $raw[]=$i;
+                if (count($entry['authors'])-$k>=2) { $valid[]=$i; }
+            }
+        }
+        if ($citation['form']==='many_authors') {
+            $full=[];foreach ($cohort as $i=>$entry) { if (count($entry['authors'])===$k && self::namePrefix($prefix,$entry['authors'])) { $full[]=$i; } }
+            if (count($full)!==1) { return $review; }
+            if (count($base)<=1) { return 'three_or_more_authors_require_et_al'; }
+            return self::shorterEtAlWorks($cohort[$full[0]],$cohort,$k)?$review:null;
+        }
+        if (!$valid) {
+            if ($citation['form']==='expanded_et_al' && count($raw)===1 && count($base)===1 && $raw[0]===$base[0]) { return 'three_or_more_authors_require_et_al'; }
+            return $raw?'et_al_minimum_omission':$review;
+        }
+        if (count($valid)===1 && count($raw)>1) { return $review; }
+        if (count($valid)>1) {
+            // Identical surname lists need initials, year suffixes or duplicate review, not guessed coauthors.
+            foreach ($valid as $i) {
+                $same=0;
+                foreach ($cohort as $entry) { if (count($entry['authors'])===count($cohort[$i]['authors']) && self::namePrefix($cohort[$i]['authors'],$entry['authors'])) { $same++; } }
+                if ($same!==1) { return $review; }
+            }
+            return 'et_al_disambiguation_required';
+        }
+        if ($citation['form']==='et_al') { return null; }
+        if (count($base)<=1) { return 'three_or_more_authors_require_et_al'; }
+        return self::shorterEtAlWorks($cohort[$valid[0]],$cohort,$k)?$review:null;
+    }
+
+    private static function namePrefix(array $prefix,array $names): bool
+    {
+        if (count($prefix)>count($names)) { return false; }
+        foreach ($prefix as $i=>$name) { if (!self::sameName($name,$names[$i])) { return false; } }
+        return true;
+    }
+
+    private static function shorterEtAlWorks(array $target,array $cohort,int $length): bool
+    {
+        for ($k=2;$k<$length && $k<=count($target['authors'])-2;$k++) {
+            $prefix=array_slice($target['authors'],0,$k);$count=0;
+            foreach ($cohort as $entry) { if (count($entry['authors'])>$k && self::namePrefix($prefix,$entry['authors'])) { $count++; } }
+            if ($count===1) { return true; }
+        }
+        return false;
     }
 
     private static function yearList(string $text): array

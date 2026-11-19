@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -96,6 +96,23 @@ if (in_array($mode, ['year-suffix', 'year-suffix-late', 'year-order', 'work-orde
     if ($mode === 'year-partial-suffix') { $entries[0][0] = 'da Silva'; $entries[1][0] = 'da Silva'; }
     $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p>';
     foreach ($entries as $e) { $reference .= '<w:p><w:r><w:t>' . $e[0] . ', ' . $e[1] . '. (' . $e[2] . '). Título ' . $e[2] . '. Editora Exemplo.</w:t></w:r></w:p>'; }
+}
+if (strpos($mode, 'etal-') === 0) {
+    $citation = ['etal-collision'=>'Texto (Silva et al., 2020).', 'etal-prefix-collision'=>'Texto (Silva, Souza, et al., 2020).', 'etal-single-rest'=>'Texto (Silva, Souza, et al., 2020).', 'etal-expanded-correct'=>'Texto (Silva, Souza, et al., 2020).', 'etal-full-correct'=>'Texto (Silva, Souza, & Lima, 2020).', 'etal-initials-review'=>'Texto (Silva et al., 2020).', 'etal-duplicate-review'=>'Texto (Silva et al., 2020).'][$mode];
+    $main = '';
+    foreach (['Introdução', $citation, 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.'] as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    $lists = [['Silva','Souza','Lima','Ramos','Nunes'], ['Silva','Costa','Alves','Paiva','Rocha']];
+    if ($mode === 'etal-prefix-collision') { $lists[1] = ['Silva','Souza','Costa','Paiva','Rocha']; }
+    if ($mode === 'etal-single-rest' || $mode === 'etal-full-correct') { $lists = [['Silva','Souza','Lima'], ['Silva','Costa','Ramos']]; }
+    if ($mode === 'etal-duplicate-review') { $lists[1] = $lists[0]; }
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p>';
+    foreach ($lists as $row => $names) {
+        $authors = []; foreach ($names as $i => $name) { $authors[] = $name . ', ' . ($i === 0 && $row === 1 && $mode === 'etal-initials-review' ? 'B' : chr(65 + $i)) . '.'; }
+        $last = array_pop($authors); $text = implode(', ', $authors) . ', & ' . $last . ' (2020). Obra sintética. Editora Exemplo.';
+        $reference .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
 }
 $parts = [
     '[Content_Types].xml' => '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/footnotes.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml"/></Types>',

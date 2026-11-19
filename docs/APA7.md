@@ -17,7 +17,7 @@ API, importações e outros caminhos não foram homologados.
 | --- | --- | --- |
 | ABNT e formatos mistos | Padrões compostos de autoria/data após fonte; cidade/editora, rótulos de periódico, DOI antigo e separadores reconhecidos | Padrões fora da gramática e tipos jurídicos; Etapa 31 acrescenta ABNT institucional no subconjunto |
 | Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
-| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais; Etapa 35 confere anos explícitos, sufixos declarados e ordem de citações no subconjunto seguro | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, agrupamentos fora da cobertura, atribuição das letras por título e desambiguação |
+| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais; Etapa 35 confere anos/sufixos e ordem; Etapa 36 confere et al. colidente, quantidade omitida e suficiência dos nomes no contexto seguro | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, agrupamentos fora da cobertura, atribuição das letras por título e outras desambiguações |
 | Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais | Ampliar outras edições/traduções, relatórios, teses, páginas, dados/software e tipos especiais |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova | Correspondência com fonte e metadados, links reais, datas de acesso quando aplicáveis |
@@ -41,6 +41,8 @@ API, importações e outros caminhos não foram homologados.
    desambiguações e localizadores. Etapa 35 acrescenta múltiplos anos explícitos,
    divergências de sufixo e ordem de citações pessoais ASCII. Seguem atribuição
    das letras, outras formas de agrupamento e ordenação bibliográfica ampliada.
+   Etapa 36 acrescenta desambiguação de et al. e pelo menos dois nomes omitidos,
+   preservando iniciais, duplicatas e contextos incompletos para revisão.
 5. Repetir o fluxo completo autor–correção–revisão na cópia isolada do OJS.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
