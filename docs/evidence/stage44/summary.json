@@ -1,0 +1,8 @@
+{
+  "overall_passed": true,
+  "checks": 50,
+  "engine": "0.34.0",
+  "plugin": "0.27.0.0",
+  "production_accessed": false,
+  "fixture_restored": true
+}

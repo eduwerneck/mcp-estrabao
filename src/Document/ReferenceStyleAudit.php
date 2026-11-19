@@ -9,9 +9,9 @@ final class ReferenceStyleAudit
     public static function analyze(array $document, string $language): array
     {
         $list = self::referenceList($document, $language); $counts = [CheckResult::PASS => 0, CheckResult::FAIL => 0, CheckResult::UNKNOWN => 0];
-        $samples = []; $abnt = 0; $mixed = 0; $types = []; $orderKeys = []; $orderUnknown = false;
+        $samples = []; $abnt = 0; $mixed = 0; $types = []; $orderingHeads=[];
         foreach ($list['paragraphs'] as $index => $paragraph) {
-            $text = $paragraph['text']; $checks = []; $type = 'unresolved'; $head = self::head($text); $mixedEntry = false;
+            $text = $paragraph['text']; $checks = []; $type = 'unresolved'; $head = self::head($text); $orderingHeads[]=$head; $mixedEntry = false;
             if (strlen($text) > 8192) {
                 self::check($checks, 'reference_size', null, 'Entrada extensa demais para esta análise; revisar manualmente.');
             } elseif ($head === null && self::abntLike($text)) {
@@ -44,10 +44,7 @@ final class ReferenceStyleAudit
                     $uppercase = false;
                     foreach ($head['authors'] as $name) { $uppercase = $uppercase || (preg_match('/\p{Lu}/u', $name) && !preg_match('/[\p{Ll}\p{Lt}]/u', $name)); }
                     self::check($checks, 'personal_author_case', $uppercase ? null : true, 'Conferir capitalização dos nomes; sobrenome em maiúsculas sozinho não prova ABNT nem autoriza reescrita.');
-                    $first = $head['authors'][0];
-                    if (preg_match('/^[A-Za-z]+$/D', $first)) { $orderKeys[] = ['key' => strtolower($first), 'paragraph_index' => $paragraph['index']]; }
-                    else { $orderUnknown = true; }
-                } else { $orderUnknown = true; }
+                }
                 $content = $head['content']; $offset = $head['content_start'];
                 $original=ReferenceRevisions::original($content,$offset);$content=$original['base'];
                 if ($original['has_marker']) {
@@ -154,29 +151,21 @@ final class ReferenceStyleAudit
                 }
                 if ($link['punctuation_review']) { self::check($checks, 'identifier_punctuation', null, 'Conferir a pontuação final do identificador; o ponto pode pertencer ao próprio DOI/URL.'); }
             }
-            if ($head === null) { $orderUnknown = true; }
             if ($mixedEntry) { $mixed++; }
             $status = self::status($checks); $counts[$status]++; $types[$type] = ($types[$type] ?? 0) + 1;
             $sample = ['reference_index' => $index, 'paragraph_index' => $paragraph['index'], 'type' => $type, 'status' => $status, 'checks' => $checks];
             self::sample($samples, $sample);
         }
-        $order = CheckResult::UNKNOWN; $orderSamples = [];
-        if ($list['complete'] && $orderKeys && !$orderUnknown) {
-            $order = CheckResult::PASS;
-            for ($i = 1; $i < count($orderKeys); $i++) {
-                $comparison = strcmp($orderKeys[$i - 1]['key'], $orderKeys[$i]['key']);
-                if ($comparison > 0) { $order = CheckResult::FAIL; if (count($orderSamples) < 16) { $orderSamples[] = [$orderKeys[$i - 1]['paragraph_index'], $orderKeys[$i]['paragraph_index']]; } }
-                elseif ($comparison === 0 && $order !== CheckResult::FAIL) { $order = CheckResult::UNKNOWN; }
-            }
-        }
+        $ordering=ReferenceOrder::analyze($list['paragraphs'],$list['complete'],$orderingHeads);$order=$ordering['combined_order_status'];
         $status = !$list['complete'] || !$list['paragraphs'] ? CheckResult::UNKNOWN
             : ($counts[CheckResult::FAIL] || $order === CheckResult::FAIL ? CheckResult::FAIL
                 : (!$counts[CheckResult::UNKNOWN] && $order === CheckResult::PASS && !$list['heading_review_required'] ? CheckResult::PASS : CheckResult::UNKNOWN));
         return ['coverage_complete' => $list['complete'], 'heading_review_required' => $list['heading_review_required'], 'inspection_limit_reached' => $list['limit'],
             'reference_count' => count($list['paragraphs']), 'counts' => $counts, 'types' => $types,
             'abnt_like_entries' => $abnt, 'mixed_format_entries'=>$mixed, 'recognized_formats_status' => $status,
-            'alphabetical_order_status' => $order, 'order_scope' => 'distinct_ascii_first_personal_surnames',
-            'order_samples' => $orderSamples, 'samples' => $samples, 'samples_omitted' => max(0, count($list['paragraphs']) - count($samples))];
+            'alphabetical_order_status' => $ordering['alphabetical_order_status'], 'chronological_order_status'=>$ordering['chronological_order_status'],
+            'order_scope'=>$ordering['order_scope'], 'chronological_order_samples'=>$ordering['chronological_order_samples'], 'chronological_pairs_checked'=>$ordering['chronological_pairs_checked'],
+            'order_samples' => $ordering['order_samples'], 'samples' => $samples, 'samples_omitted' => max(0, count($list['paragraphs']) - count($samples))];
     }
 
     private static function referenceList(array $document, string $language): array
@@ -219,10 +208,10 @@ final class ReferenceStyleAudit
         $prefix = trim(substr($text, 0, $date[0][1])); $contentStart = $date[0][1] + strlen($date[0][0]);
         $content = trim(substr($text, $contentStart)); if ($content === '' || strlen($prefix) > 2048) { return null; }
         $authorList = ApaPersonalAuthors::inspect($prefix);
-        if ($authorList !== null) { return ['kind'=>'personal', 'date_token'=>$date[1][0], 'date_format_resolved'=>$dateResolved,
+        if ($authorList !== null) { return ['kind'=>'personal', 'author_key'=>$prefix, 'date_token'=>$date[1][0], 'date_format_resolved'=>$dateResolved,
             'authors'=>$authorList['authors'], 'author_list'=>$authorList, 'content'=>$content, 'content_start'=>$contentStart]; }
         $synthetic = ReferenceAnalysis::parseEntry($prefix . ' (2020). Placeholder. Publisher.');
-        if ($synthetic !== null) { return ['kind' => 'personal', 'date_token'=>$date[1][0], 'date_format_resolved' => $dateResolved, 'authors' => $synthetic['authors'], 'content' => $content, 'content_start' => $contentStart]; }
+        if ($synthetic !== null) { return ['kind' => 'personal', 'author_key'=>$prefix, 'date_token'=>$date[1][0], 'date_format_resolved' => $dateResolved, 'authors' => $synthetic['authors'], 'content' => $content, 'content_start' => $contentStart]; }
         if (preg_match('/^[\p{L}\p{N}\s&\p{Pd}\x{2019}\x{0027}]{2,256}\.$/uD', $prefix)) {
             return ['kind' => 'group_candidate', 'date_token'=>$date[1][0], 'date_format_resolved' => $dateResolved, 'authors' => [], 'content' => $content, 'content_start' => $contentStart];
         }
