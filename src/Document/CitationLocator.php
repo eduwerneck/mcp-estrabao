@@ -17,7 +17,8 @@ final class CitationLocator
     public static function inspect(string $text,array $citation,int $matches): array
     {
         $r=['issues'=>[],'kind'=>null,'quote_candidate'=>false,'word_interval'=>null,'long'=>false,'boundary'=>false,'missing_locator'=>false];
-        $locator=$citation['locator']??null;
+        $quote=self::quotedText($text,$citation);
+        $locator=$citation['locator']??($quote['locator']??null);
         if (is_string($locator)) {
             if (preg_match('/^(p|pp)\.\s*([0-9]{1,9})(?:[-–]([0-9]{1,9}))?$/iuD',$locator,$m)) {
                 $r['kind']='pages';$start=(int)$m[2];$end=isset($m[3])?(int)$m[3]:null;
@@ -31,14 +32,8 @@ final class CitationLocator
                 $r['issues'][]='citation_locator_review';
             }
         }
-        // Restrict attribution to one complete parenthetical immediately after one double-quoted paragraph.
-        if (($citation['placement']??null)!=='parenthetical' || ($citation['group_item_count']??0)!==1
-            || empty($citation['syntax_complete']) || empty($citation['group_complete']) || !empty($citation['secondary']) || strlen($text)>65536
-            || !preg_match('/^(["“])([^"“”]+)(["”])\s*(?=\()/u',$text,$m)) { return $r; }
-        if (!(($m[1]==='"'&&$m[3]==='"')||($m[1]==='“'&&$m[3]==='”'))
-            || strlen($m[0])!==$citation['byte_offset']
-            || !preg_match('/^[.!?]?$/uD',trim(substr($text,$citation['byte_offset']+$citation['group_length'])))) { return $r; }
-        $r['quote_candidate']=true;$r['word_interval']=WordInterval::counts($m[2]);
+        if ($quote===null) { return $r; }
+        $r['quote_candidate']=true;$r['word_interval']=WordInterval::counts($quote['text']);
         $r['long']=$r['word_interval'][0]>=40;
         $r['boundary']=$r['word_interval'][0]<40 && $r['word_interval'][1]>=40;
         $r['missing_locator']=$locator===null;
@@ -46,6 +41,28 @@ final class CitationLocator
         if ($r['long']) { $r['issues'][]='direct_quote_block_review'; }
         elseif ($r['boundary']) { $r['issues'][]='direct_quote_boundary_review'; }
         return $r;
+    }
+
+    /** Local quote association only; returned text is never included in report evidence. */
+    private static function quotedText(string $text,array $citation): ?array
+    {
+        if (($citation['group_item_count']??0)!==1 || empty($citation['syntax_complete'])
+            || empty($citation['group_complete']) || !empty($citation['secondary'])
+            || !empty($citation['inside_quotes']) || strlen($text)>65536) { return null; }
+        $after=substr($text,$citation['byte_offset']+$citation['group_length']);
+        if (($citation['placement']??null)==='parenthetical') {
+            if (!preg_match('/^(["“])([^"“”]+)(["”])\s*(?=\()/u',$text,$m)
+                || strlen($m[0])!==$citation['byte_offset'] || !preg_match('/^[.!?]?$/uD',trim($after))) { return null; }
+            $locator=$citation['locator']??null;
+        } elseif (($citation['placement']??null)==='narrative') {
+            // The existing parser requires the author prefix at paragraph start. Do not search arbitrary prose.
+            if (!preg_match('/^\s*(?:(?:afirma|declara|escreve|observa|states|writes)\s*)?:?\s*(["“])([^"“”]+)(["”])(?:\s*\(('.self::PATTERN.')\))?\s*[.!?]?$/iuD',$after,$m)) { return null; }
+            $tailLocator=isset($m[4]) && $m[4]!==''?$m[4]:null;
+            if (($citation['locator']??null)!==null && $tailLocator!==null) { return null; }
+            $locator=$citation['locator']??$tailLocator;
+        } else { return null; }
+        if (!(($m[1]==='"' && $m[3]==='"') || ($m[1]==='“' && $m[3]==='”'))) { return null; }
+        return ['text'=>$m[2],'locator'=>$locator];
     }
 
     public static function reviewGuidance(array $counts): array

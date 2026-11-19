@@ -25,7 +25,7 @@ test('ausência de p não comprova falta de localizador na fonte',function(){
 test('aspas ASCII reconhecidas sem copiar texto',function(){
  $r=stage45Results(stage45Quote(12,'p. 10','"','"'));same(1,$r['references.apa7']['evidence']['analysis']['direct_quote_counts']['candidate_count']);same(false,strpos(json_encode($r),'palavra palavra')!==false);
 });
-foreach (['Texto “um termo” indica conceito (Silva, 2020, p. 10).','Silva (2020) afirma “um trecho” (p. 10).','“um “termo” interno” (Silva, 2020, p. 10).','“um trecho" (Silva, 2020, p. 10).'] as $text) {
+foreach (['Texto “um termo” indica conceito (Silva, 2020, p. 10).','“um “termo” interno” (Silva, 2020, p. 10).','“um trecho" (Silva, 2020, p. 10).'] as $text) {
  test('modelo fora do escopo não é classificado como citação completa '.md5($text),function()use($text){$r=stage45Results($text);same(0,$r['references.apa7']['evidence']['analysis']['direct_quote_counts']['candidate_count']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);});
 }
 test('parágrafo longo sem aspas não é presumido bloco',function(){
