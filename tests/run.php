@@ -275,6 +275,7 @@ require __DIR__ . '/stage43.php';
 require __DIR__ . '/stage44.php';
 require __DIR__ . '/stage45.php';
 require __DIR__ . '/stage46.php';
+require __DIR__ . '/stage47.php';
 
 echo "$tests testes, $failed falhas\n";
 exit($failed ? 1 : 0);

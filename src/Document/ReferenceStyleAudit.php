@@ -164,6 +164,7 @@ final class ReferenceStyleAudit
             'reference_count' => count($list['paragraphs']), 'counts' => $counts, 'types' => $types,
             'abnt_like_entries' => $abnt, 'mixed_format_entries'=>$mixed, 'recognized_formats_status' => $status,
             'alphabetical_order_status' => $ordering['alphabetical_order_status'], 'chronological_order_status'=>$ordering['chronological_order_status'],
+            'author_list_order_status'=>$ordering['author_list_order_status'], 'author_list_order_samples'=>$ordering['author_list_order_samples'], 'author_list_pairs_checked'=>$ordering['author_list_pairs_checked'],
             'order_scope'=>$ordering['order_scope'], 'chronological_order_samples'=>$ordering['chronological_order_samples'], 'chronological_pairs_checked'=>$ordering['chronological_pairs_checked'],
             'order_samples' => $ordering['order_samples'], 'samples' => $samples, 'samples_omitted' => max(0, count($list['paragraphs']) - count($samples))];
     }

@@ -79,7 +79,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '21.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '22.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {
@@ -95,6 +95,9 @@ class EstrabaoAdmissionBridge
                 }
                 if (($result['evidence']['style_audit']['alphabetical_order_status']??null)==='não conforme') {
                     $corrections[]='Conferir a ordem alfabética das referências pela autoria declarada, preservando nomes e partículas.';
+                }
+                if (($result['evidence']['style_audit']['author_list_order_status']??null)==='não conforme') {
+                    $corrections[]='Apresentar autor único antes de coautoria e, com o mesmo primeiro autor declarado, ordenar pelos sobrenomes dos coautores seguintes; conferir as iniciais sem alterar a ordem dos autores de cada obra.';
                 }
                 if (($result['evidence']['style_audit']['chronological_order_status']??null)==='não conforme') {
                     $corrections[]='Nas obras com a mesma autoria declarada, apresentar os anos anteriores antes dos posteriores; conferir autoria e edição antes de corrigir.';

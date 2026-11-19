@@ -7,13 +7,13 @@ function stage36Ref(array $names,string $year='2020',string $first='A'):string {
 $stage36A=['Silva','Souza','Lima','Ramos','Nunes'];$stage36B=['Silva','Costa','Alves','Paiva','Rocha'];
 foreach (['Texto (Silva et al., 2020).','Silva et al. (2020).'] as $text) {
  test('et al colidente exige desambiguação '.md5($text),function()use($text,$stage36A,$stage36B){
-  $r=apaResults(referenceDocument([$text],[stage36Ref($stage36A),stage36Ref($stage36B)]));same('indeterminado',$r['references.citation_matching']['status']);same('não conforme',$r['references.apa7.citation_format']['status']);same('not_accepted',$r['references.apa7']['evidence']['admission_policy']['decision']);
+  $r=apaResults(referenceDocument([$text],[stage36Ref($stage36B),stage36Ref($stage36A)]));same('indeterminado',$r['references.citation_matching']['status']);same('não conforme',$r['references.apa7.citation_format']['status']);same('not_accepted',$r['references.apa7']['evidence']['admission_policy']['decision']);
   same(true,in_array('et_al_disambiguation_required',$r['references.apa7']['evidence']['analysis']['citation_style_samples'][0]['issues'],true));
  });
 }
 foreach (['Texto (Silva, Souza, et al., 2020).','Silva, Souza, et al. (2020).'] as $text) {
  test('prefixo suficiente com pelo menos dois omitidos '.md5($text),function()use($text,$stage36A,$stage36B){
-  $r=apaResults(referenceDocument([$text],[stage36Ref($stage36A),stage36Ref($stage36B)]));same('conforme',$r['references.citation_matching']['status']);same('conforme',$r['references.apa7.citation_format']['status']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
+  $r=apaResults(referenceDocument([$text],[stage36Ref($stage36B),stage36Ref($stage36A)]));same('conforme',$r['references.citation_matching']['status']);same('conforme',$r['references.apa7.citation_format']['status']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
  });
 }
 test('prefixo expandido ainda colidente é bloqueado',function(){
@@ -35,10 +35,10 @@ foreach (['Texto (Silva, Souza, & Lima, 2020).','Silva, Souza e Lima (2020).'] a
  });
 }
 test('nomes a mais permanecem para revisão da extensão',function()use($stage36A,$stage36B){
- $r=apaResults(referenceDocument(['Texto (Silva, Souza, Lima, et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]));same('conforme',$r['references.citation_matching']['status']);same('indeterminado',$r['references.apa7.citation_format']['status']);
+ $r=apaResults(referenceDocument(['Texto (Silva, Souza, Lima, et al., 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]));same('conforme',$r['references.citation_matching']['status']);same('indeterminado',$r['references.apa7.citation_format']['status']);
 });
 test('lista integral desnecessária em contexto de colisão permanece revisável',function()use($stage36A,$stage36B){
- $r=apaResults(referenceDocument(['Texto (Silva, Souza, Lima, Ramos, & Nunes, 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]));same('indeterminado',$r['references.apa7.citation_format']['status']);
+ $r=apaResults(referenceDocument(['Texto (Silva, Souza, Lima, Ramos, & Nunes, 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]));same('indeterminado',$r['references.apa7.citation_format']['status']);
 });
 test('iniciais distintas não são a mesma pessoa declarada',function()use($stage36A,$stage36B){
  $r=apaResults(referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B,'2020','B')]));same('indeterminado',$r['references.apa7.citation_format']['status']);same('manual_review_required',$r['references.apa7']['evidence']['admission_policy']['decision']);
@@ -56,7 +56,7 @@ test('fontes secundárias preservam revisão de contexto não bibliografado',fun
  $r=apaResults(referenceDocument(['Texto (Silva et al., 2020).','Texto (Silva, 2020, como citado em Souza, 2021).'],[stage36Ref($stage36A),stage36Ref($stage36B),'Souza, A. (2021). Obra. Editora.']));same(false,$r['references.apa7']['evidence']['analysis']['et_al_context_complete']);same('indeterminado',$r['references.apa7.citation_format']['status']);
 });
 test('corpo parcial com notas não permite afirmar desambiguação completa',function()use($stage36A,$stage36B){
- $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]);
+ $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]);
  $r=apaResults(['available'=>false,'sha256'=>str_repeat('a',64),'reference_body'=>$d]);same('indeterminado',$r['references.apa7.citation_format']['status']);
 });
 test('coorte maior que 32 fica para revisão',function(){
@@ -80,11 +80,11 @@ test('forma parcial não cria referência ausente nem força expansão',function
  $r=apaResults(referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref(['da Silva','Souza','Lima']),stage36Ref(['Silva','Costa','Ramos'])]));same('indeterminado',$r['references.apa7.citation_format']['status']);
 });
 test('minuta fornece correção sem copiar listas de autores',function()use($stage36A,$stage36B){
- $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]);
+ $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]);
  $report=\Estrabao\Reporting\Report::generate(new \Estrabao\Contracts\Submission(fixture()),\Estrabao\Rules\DefaultRules::all($d,'article','pt'));$draft=\Estrabao\Reporting\DeskResponse::generate($report);same(true,strpos($draft['body'],'desambiguar a citação abreviada')!==false);same(false,strpos(json_encode($draft),'Souza')!==false);
 });
 test('DOCX com abreviação ambígua bloqueia liberação',function()use($stage36A,$stage36B){
- $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]);
+ $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]);
  withFootnotePanel(docxParts(docxBody(array_column($d['paragraphs'],'text'))),function($r,$service,$request){same('not_accepted',$service->view($request,17)['analysis']['decision']);reviewPost($service,$request);reviewRejects(function()use($service,$request){$service->save($request,17);});});
 });
 test('coorte de 32 ainda diagnostica abreviação colidente',function(){
@@ -92,10 +92,10 @@ test('coorte de 32 ainda diagnostica abreviação colidente',function(){
  $r=apaResults(referenceDocument(['Texto (Silva et al., 2020).'],$refs));same('not_accepted',$r['references.apa7']['evidence']['admission_policy']['decision']);
 });
 test('inventário de notas não confirmado impede prova de contexto completo',function()use($stage36A,$stage36B){
- $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]);$d['footnotes']=['coverage_complete'=>false,'note_count'=>0];
+ $d=referenceDocument(['Texto (Silva et al., 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]);$d['footnotes']=['coverage_complete'=>false,'note_count'=>0];
  $r=apaResults($d);same(false,$r['references.apa7']['evidence']['analysis']['et_al_context_complete']);same('indeterminado',$r['references.apa7.citation_format']['status']);
 });
 test('DOCX confirma expansão suficiente sem copiar ou mudar autores',function()use($stage36A,$stage36B){
- $d=referenceDocument(['Texto (Silva, Souza, et al., 2020).'],[stage36Ref($stage36A),stage36Ref($stage36B)]);
+ $d=referenceDocument(['Texto (Silva, Souza, et al., 2020).'],[stage36Ref($stage36B),stage36Ref($stage36A)]);
  withDocx(docxParts(docxBody(array_column($d['paragraphs'],'text'))),function($path){$r=apaResults((new \Estrabao\Document\DocxReader())->read($path));same('conforme',$r['references.citation_matching']['status']);same('conforme',$r['references.apa7.citation_format']['status']);});
 });
