@@ -1,10 +1,15 @@
 # Requisitos a confirmar e próximos trabalhos
 
+O balanço atual está em [TRIAGE_COVERAGE.md](TRIAGE_COVERAGE.md) (Etapa 54).
+Ele separa diagnóstico e bloqueio, confirma o estado no código e propõe prioridades.
+A tabela abaixo preserva o histórico de requisitos; a ordem histórica de etapas
+não é uma autorização para ampliar automaticamente o bloqueio de admissão.
+
 | Área | Informação ou implementação pendente |
 | --- | --- |
 | Política editorial | Diretrizes recebidas e registradas em EDITORIAL_POLICY.md; marcadores e equivalentes aprovados; confirmar vigência, convenção editorial de contagem e Condições para submissão. |
 | Locales | Confirmar códigos configurados no OJS e mapeamento para pt_BR/en_US/es_ES, inclusive variantes regionais. |
-| Autoria | Extração completa e ordenada de autores da publicação corrente; política para ausência de autoria e múltiplas afiliações. |
+| Autoria | Snapshot lê a coleção de autores disponível na publicação corrente para conferir ORCID. Completude/ordem real, nomes, múltiplas afiliações e contribuição significativa continuam para conferência; não há limite numérico editorial de autores. |
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
 | Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); Etapa 18 acrescenta normalização de marcadores Word e perfil de texto parcial para imagens/tabelas simples. `.doc`, títulos equivalentes e conteúdos complexos continuam pendentes. |
 | Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; Etapa 18 amplia cobertura de texto Word com figuras/tabelas simples e registra exclusões, sem certificar leitura integral. Listas vinculadas e scripts complexos continuam pendentes. Página e tipografia declaradas implementadas no subconjunto de STAGE5.md; intervalo de extensão com exclusões em STAGE6.md, sem convenção editorial oficial de palavra. |
@@ -17,13 +22,13 @@
 | CRediT | Etapa 23 distingue seção vazia, presença de texto e revisão humana de taxonomia/atribuição/veracidade. Não certifica contribuições; ampliar cobertura de estruturas, idiomas e registro de conferência sem quebrar anonimização. |
 | Datas no HTML | Etapa 22 implementa Submetido em antes de Publicado no mesmo box, com data do fluxo OJS, validada no tema padrão do laboratório. Etapa 28 verifica o perfil informado (Tema Padrão, Noto Sans, #1E6292, sem CSS adicional) em cinco telas locais. Arquivos/versão reais, formato e dados históricos permanecem pendentes antes de implantar. |
 | APA 7 | Etapa 11 detecta incompatibilidades concretas, padrões semelhantes a ABNT, itálicos de formatos reconhecidos, DOI informado e formato de citações (STAGE11.md). Etapa 21 acrescenta separadores de autoria pessoal, limite de lista não abreviada e rótulos de periódico em formatos mistos. Etapa 29 amplia autoria composta, partículas, estrutura de listas abreviadas e os padrões ABNT com esses nomes, com orientação e bloqueio. Etapa 30 confere três ou mais autores e ponto de et al. em citações ligadas, preservando desambiguação. Etapa 31 acrescenta instituições por prefixos reconhecidos, siglas declaradas e ABNT institucional composta; primeira apresentação, identidade e ambiguidades seguem humanas. Etapa 33 amplia capítulos/editoria, edições explícitas e intervalos de páginas nos modelos reconhecidos. Etapa 34 amplia a correspondência literal de sobrenomes compostos, sem presumir identidade ou equivalência de formas parciais. Etapa 35 confere anos explícitos, sufixos declarados e ordem de citações no subconjunto seguro; atribuição de letras e ambiguidades continuam humanas. Etapa 36 amplia et al. colidente, omissão de pelo menos dois autores e nomes suficientes em contexto seguro; iniciais, duplicatas e contexto incompleto seguem humanos. Etapa 37 liga datas sem ano e no prelo e preserva sufixos declarados; divergências e estado real de publicação exigem revisão. Etapa 39 acrescenta modelos declarados de teses/dissertações e relatórios numerados, com itálico de título/descrição/fonte e dados semânticos para conferência. Etapa 40 confere calendários reconhecidos e sintaxe HTTP, sem acessar links ou impor campos a toda referência com URL. Tipo de página/site e necessidade de consulta seguem humanos. Etapa 41 acrescenta descrições explícitas de dados/software e itálico de título/versão/descrição/fonte, sem exigir campos indisponíveis; grafia oficial e dados reais ficam para revisão. Etapa 42 confere metadados de tradução/republicação e cronologia declarada e protege anos originais na correspondência; citações com barra, tipo e edição real continuam humanos. Etapa 44 amplia ordenação adjacente por prefixos seguros e anos numéricos da mesma autoria declarada, com empates e colação incerta para revisão. Etapa 45 confere p./pp. e intervalos inequívocos e sinaliza transcrições para revisão privada, sem presumir consulta às obras internas. Etapa 46 amplia narrativas com localizador junto ao ano ou após transcrição delimitada; variantes fora do modelo continuam humanas. Etapa 47 amplia ordenação entre autor único e coautorias e pelos coautores seguintes após prefixos pessoais idênticos, sem ordenar internamente autores de uma obra. Etapa 49 confere títulos/sufixos de conjuntos completos da mesma autoria/ano em subconjunto seguro; duplicatas, artigos iniciais e datas originais ficam protegidos. Etapa 50 amplia prefixos de artigos iniciais somente quando leituras alternativas concordam, sem presumir idioma da referência. Etapa 51 amplia subtítulos e pontuação delimitada por comparação literal segura, sem normalizar sinais, nomes ou siglas. Etapa 52 confere ordem de datas completas explícitas para a mesma autoria e orienta revisão privada de precisão, sufixos e edição, sem completar dados. Certificação completa, outras autorias institucionais, sufixos, formas secundárias fora da cobertura e confirmação bibliográfica e formatos fora do subconjunto continuam pendentes. Não consulta DOI nem reprova sua ausência. |
-| OJS | Adaptador de Publication/Submission/Author e keywords na versão exata; ponto de invocação, publicação corrente, permissões e isolamento por revista. |
-| Plugin | Validar instalação, ciclo de registro, locales, habilitação/desabilitação em OJS 3.3.0.20 real; implementar UI e apresentação escapada das evidências. |
-| Relatórios | Persistência privada, retenção, identidade do operador, vínculo à revisão da submissão, auditoria de acesso e decisão humana. |
+| OJS | Adaptador da publicação corrente e campos/keywords/ORCID opera no laboratório, com vínculo à revista/submissão e fonte conferida contra alterações. Configuração real dos campos/locales, completude dos dados e canais fora do wizard permanecem pendentes. |
+| Plugin | Registro/versões locais e UI privada de revisão/minuta existem em OJS 3.3.0.20. Empacotamento, instalação em cópia limpa e ciclo de habilitação/desabilitação/configuração operacional ainda precisam de homologação específica; isso não autoriza instalação em produção. |
+| Relatórios | Triagem/minuta locais e ledger privado de revisão APA por versão estão implementados no laboratório, com controles de acesso e sem envio automático. Registro de revisão de todos os itens não APA, retenção operacional e auditoria da instalação real permanecem pendentes. |
 | Separação das referências no OJS | Etapa 43 acrescenta orientação e aviso local no campo citationsRaw, no wizard e na publicação, sem edição/salvamento automático. Reconhece indícios no subconjunto autor–ano; padrões incertos exigem conferência. Uma referência por Enter; linha em branco extra não é exigida nem garante identificação Crossref. Não acrescenta bloqueio/relatório CLI. Etapa 44 confere ordenação no DOCX em subconjuntos seguros; ordenação do metadado não é adicionada a este aviso local. |
 | Rejeição preliminar | Política APA autorizada em 12/11/2026: incompatibilidade comprovada implica submissão não aceita; indeterminado exige revisão sem avanço automático (STAGE12.md). Adaptador opt-in do wizard implementado na Etapa 13, validado só com dublês. Etapa 14 acrescenta interface de gerente, liberação por versão e registro privado, validados com dublês. Etapa 15 exercitou o wizard em OJS 3.3.0.20 local real e corrigiu feedback/traduções. Homologação no tema/infraestrutura da revista, auditoria operacional, concorrência com uploads e outros canais permanecem pendentes; não ativar em produção. |
 | MCP opcional | Versão do protocolo, transporte, autenticação/autorização, ferramentas de consulta/relatório, escopos, limites e auditoria. Nenhum servidor nesta etapa. |
-| Homologação | Etapa 27 aprova o conjunto no laboratório OJS 3.3.0.20/tema padrão, com versões instaladas alinhadas e ensaios integrados. Etapa 28 reproduz o perfil de aparência informado, com 25 verificações. Arquivos/versão do tema, configuração de campos/infraestrutura reais, ARM64, TLS/proxy, operação e outros canais continuam pendentes; sem acesso à VM. |
+| Homologação | Etapa 53 reúne 910 verificações locais em 31 suítes e ciclo de correção; Etapa 28 reproduz o perfil informado do Tema Padrão. Isso não homologa a instalação da revista, pacote/ciclo operacional, campos/locales reais, ARM64, TLS/proxy, concorrência de uploads ou canais alternativos. Produção e VM Oracle fora do escopo. |
 
 As regras da Etapa 2 verificam também marcadores e extensão dos resumos e
 quantidade de palavras-chave, conforme [STAGE2.md](STAGE2.md). As
@@ -40,7 +45,7 @@ autorizada; validação local somente com registros sintéticos. Homologação n
 ambiente/tema da revista e um fluxo específico de envio revisado continuam pendentes. Aprovar modelo/gerar minuta
 não autoriza comunicação automática aos autores.
 
-## Ordem de retomada aprovada
+## Ordem de retomada aprovada — histórico
 
 1. Leitura DOCX: ampliação entregue na Etapa 18; limites restantes documentados.
 2. Títulos/subtítulos: orientação nos formulários e reconhecimento ampliado entregues na Etapa 19; limites documentados.
@@ -51,3 +56,21 @@ não autoriza comunicação automática aos autores.
 CRediT recebeu a primeira verificação de conteúdo na Etapa 23. A Etapa 24 acrescenta consistência de fomento Word/OJS. A Etapa 25 acrescenta conferência de ética sem inferir aplicabilidade. A Etapa 26 acrescenta declaração de IA; confirmado uso ou não uso no manuscrito, sem duplicação OJS
 ou ausência a partir de fonte incompleta. Um item/PR por vez; o histórico de
 devolutivas não foi priorizado sobre essas pendências.
+
+## Prioridades propostas após o balanço da Etapa 54
+
+1. Registrar a conferência editorial consolidada dos critérios fora de APA,
+   sem interpretar a liberação APA como aprovação de toda a triagem.
+2. Definir e implementar um encaminhamento verificável para .doc, aceito pela
+   política e ainda sem leitor/fluxo equivalente de liberação; não exigir conversão
+   por mudança silenciosa da política.
+3. Ampliar citações/correspondência EN/ES e datas completas no matcher, em
+   entregas separadas, mantendo ambiguidades para revisão.
+4. Preparar homologação operacional em cópia isolada representativa, sem produção
+   ou VM Oracle. A validação atual é do laboratório, não da instalação real.
+5. Priorizar outras exceções APA por impacto e exemplos sintéticos verificáveis.
+
+Escopo, fontes e critérios de conclusão em [TRIAGE_COVERAGE.md](TRIAGE_COVERAGE.md).
+Propostas documentais; nenhuma dessas mudanças foi implementada ou ativada pela
+Etapa 54. A política de novos impedimentos não APA precisa estar explícita antes
+de qualquer ampliação funcional do adaptador.

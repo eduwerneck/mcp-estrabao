@@ -26,6 +26,13 @@ API, importações e outros caminhos não foram homologados.
 | Citações diretas | Etapas 45–46: p./pp. e intervalo de páginas no vínculo único completo; candidatos entre aspas parentéticos e narrativos, localizador junto ao ano ou ao fim da transcrição delimitada, orientação privada | Fidelidade/localização real, layout, narrativas fora do modelo, blocos sem aspas e fontes sem paginação exigem conferência; citações internas não geram correção automática |
 | Documento e extração | DOCX seguro e perfis parciais explicitados | Casos fora da extração, apresentação renderizada; PDF e .doc não têm triagem automática |
 
+O [balanço geral da Etapa 54](TRIAGE_COVERAGE.md) registra uma distinção operacional:
+só o componente APA/diretrizes de citações alimenta o bloqueio adicional atual.
+A correspondência/formato de citações é executada em pt; formatos de referências
+são auditados em pt/en/es. Datas completas têm auditoria própria, mas essas entradas
+ainda não integram o matcher autor–ano. Isso permanece revisão, não conformidade
+presumida. As próximas prioridades não são apenas novas exceções de pontuação.
+
 ## Ordem de continuidade
 
 1. Autoria pessoal e listas abreviadas: entregue na Etapa 29, incluindo bloqueio

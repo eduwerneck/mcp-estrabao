@@ -1,0 +1,18 @@
+{
+  "base": "35f8732",
+  "engine": "0.41.0",
+  "plugin": "0.34.0.0",
+  "documentation_only": true,
+  "product_files_identical_to_base_and_stage53": 70,
+  "synthetic_cli_report_schema_valid": true,
+  "new_document_relative_links_checked": 25,
+  "new_document_tables_checked": 4,
+  "new_tests_added": false,
+  "test_suites_reexecuted": false,
+  "prior_stage53_php_tests_each": 1716,
+  "prior_stage53_javascript_tests": 16,
+  "prior_stage53_browser_checks": 910,
+  "full_apa_validation": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false
+}
