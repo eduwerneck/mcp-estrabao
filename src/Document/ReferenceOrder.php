@@ -9,8 +9,9 @@ final class ReferenceOrder
     public static function analyze(array $paragraphs,bool $complete,array $heads=[]): array
     {
         $result=['alphabetical_order_status'=>CheckResult::UNKNOWN,'chronological_order_status'=>CheckResult::UNKNOWN,
-            'combined_order_status'=>CheckResult::UNKNOWN,'order_scope'=>'adjacent_declared_personal_keys_safe_prefix_author_lists_and_numeric_years',
+            'combined_order_status'=>CheckResult::UNKNOWN,'order_scope'=>'declared_personal_keys_safe_prefix_author_lists_numeric_years_and_safe_title_cohorts',
             'author_list_order_status'=>CheckResult::UNKNOWN,'author_list_order_samples'=>[],'author_list_pairs_checked'=>0,
+            'title_order_status'=>CheckResult::UNKNOWN,'year_suffix_order_status'=>CheckResult::UNKNOWN,'title_order_samples'=>[],'year_suffix_order_samples'=>[],'title_cohorts_checked'=>0,'title_pairs_checked'=>0,
             'order_samples'=>[],'chronological_order_samples'=>[],'chronological_pairs_checked'=>0];
         if (!$complete || !$paragraphs || count($paragraphs)>ReferenceAnalysis::MAX_ENTRIES) { return $result; }
         $keys=[];$safe=[];
@@ -33,7 +34,7 @@ final class ReferenceOrder
             $numeric=preg_match('/^[0-9]{4}$/D',$e['year'])===1 && (int)$e['year']>0
                 && !isset($e['original_year']) && empty($e['original_year_review']);
             $safe[$signature]=($safe[$signature]??true)&&$numeric;
-            $keys[]=['surname'=>self::fold($e['authors'][0]),'signature'=>$signature,'people'=>$parts,'year'=>$e['year'],'index'=>$p['index']];
+            $keys[]=['surname'=>self::fold($e['authors'][0]),'signature'=>$signature,'people'=>$parts,'year'=>$e['year'],'order_title'=>$heads[$position]['order_title']??null,'original_year'=>$e['original_year']??null,'original_year_review'=>$e['original_year_review']??false,'title_year_eligible'=>preg_match('/^[0-9]{4}[a-z]?$/D',$e['year'])===1 && (int)substr($e['year'],0,4)>0 && !isset($e['original_year']) && empty($e['original_year_review']),'index'=>$p['index']];
         }
         $alpha=CheckResult::PASS;$chrono=CheckResult::PASS;$lists=CheckResult::PASS;
         for ($i=1;$i<count($keys);$i++) {
@@ -69,9 +70,10 @@ final class ReferenceOrder
                 }
             }
         }
+        $result=array_replace($result,ReferenceTitleOrder::analyze($keys));
         $result['author_list_order_status']=($result['author_list_pairs_checked'] || $lists===CheckResult::FAIL)?$lists:CheckResult::UNKNOWN;
         $result['alphabetical_order_status']=$alpha;$result['chronological_order_status']=$chrono;
-        $result['combined_order_status']=in_array(CheckResult::FAIL,[$alpha,$chrono],true)?CheckResult::FAIL
+        $result['combined_order_status']=in_array(CheckResult::FAIL,[$alpha,$chrono,$result['title_order_status'],$result['year_suffix_order_status']],true)?CheckResult::FAIL
             :(in_array(CheckResult::UNKNOWN,[$alpha,$chrono],true)?CheckResult::UNKNOWN:CheckResult::PASS);
         return $result;
     }

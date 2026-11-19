@@ -71,6 +71,7 @@ final class ReferenceStyleAudit
                     self::check($checks,'web_source_review',null,'Confirmar se a obra é página, artigo ou outro tipo, o nome do site quando aplicável, a data disponível e a necessidade de data de consulta; URL não comprova tipo nem existência da fonte.');
                 }
                 $fields = self::fields($base, $offset);
+                if ($fields!==null && in_array($fields['type'],['standalone_candidate','journal_article'],true)) { $orderingHeads[$index]['order_title']=substr($text,$fields['title']['start'],$fields['title']['end']-$fields['title']['start']); }
                 if ($head['kind'] === 'personal' && self::legacyJournal($base)) {
                     $mixedEntry = true;
                     self::check($checks, 'journal_legacy_labels', false, 'Na referência de periódico APA 7, remover os rótulos v., n. e p./pp.; apresentar volume(número), páginas ou identificador, com a formatação correspondente.');
@@ -166,6 +167,7 @@ final class ReferenceStyleAudit
             'alphabetical_order_status' => $ordering['alphabetical_order_status'], 'chronological_order_status'=>$ordering['chronological_order_status'],
             'author_list_order_status'=>$ordering['author_list_order_status'], 'author_list_order_samples'=>$ordering['author_list_order_samples'], 'author_list_pairs_checked'=>$ordering['author_list_pairs_checked'],
             'order_scope'=>$ordering['order_scope'], 'chronological_order_samples'=>$ordering['chronological_order_samples'], 'chronological_pairs_checked'=>$ordering['chronological_pairs_checked'],
+            'title_order_status'=>$ordering['title_order_status'], 'year_suffix_order_status'=>$ordering['year_suffix_order_status'], 'title_order_samples'=>$ordering['title_order_samples'], 'year_suffix_order_samples'=>$ordering['year_suffix_order_samples'], 'title_cohorts_checked'=>$ordering['title_cohorts_checked'], 'title_pairs_checked'=>$ordering['title_pairs_checked'],
             'order_samples' => $ordering['order_samples'], 'samples' => $samples, 'samples_omitted' => max(0, count($list['paragraphs']) - count($samples))];
     }
 
