@@ -12,7 +12,7 @@ $source = Config::getVar('files', 'files_dir') . '/' . $f->getData('path');
 $backup = '/tmp/estrabao-stage20-original.docx'; $mode = $argv[1] ?? '';
 if ($mode === 'hash') { echo hash_file('sha256', $source); exit; }
 if ($mode === 'restore') { if (is_file($backup)) { copy($backup, $source); unlink($backup); } exit; }
-if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review'], true)) { exit(1); }
+if (!in_array($mode, ['3', '4', '0', 'endnotes', 'mixed', 'compound', 'abbreviated', 'citation-many', 'citation-period', 'institution-abnt', 'institution-doi', 'institution-alias', 'secondary-apud', 'secondary-missing', 'secondary-correct', 'model-book', 'model-chapter', 'model-article', 'model-correct', 'matching-compound-style', 'matching-compound-missing', 'matching-compound-correct', 'matching-compound-partial', 'year-suffix', 'year-suffix-late', 'year-order', 'work-order', 'year-correct', 'year-authorship', 'year-suffix-ambiguous', 'year-partial-suffix', 'etal-collision', 'etal-prefix-collision', 'etal-single-rest', 'etal-expanded-correct', 'etal-full-correct', 'etal-initials-review', 'etal-duplicate-review', 'special-style', 'special-missing', 'special-apud', 'special-undated', 'special-press', 'special-divergent', 'special-suffix'], true)) { exit(1); }
 if (!is_file($backup) && !copy($source, $backup)) { exit(1); }
 $w = 'http://schemas.openxmlformats.org/wordprocessingml/2006/main';
 $rel = 'http://schemas.openxmlformats.org/officeDocument/2006/relationships/';
@@ -113,6 +113,17 @@ if (strpos($mode, 'etal-') === 0) {
         $last = array_pop($authors); $text = implode(', ', $authors) . ', & ' . $last . ' (2020). Obra sintética. Editora Exemplo.';
         $reference .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
     }
+}
+if (strpos($mode, 'special-') === 0) {
+    $citation = ['special-style'=>'Texto (Silva e Souza, s.d.).', 'special-missing'=>'Texto (Ausente, no prelo).', 'special-apud'=>'Texto (Original, 1990, apud Silva, no prelo).', 'special-undated'=>'Silva (s.d.).', 'special-press'=>'Texto (Silva, no prelo).', 'special-divergent'=>'Texto (Silva, s.d.).', 'special-suffix'=>'Texto (Silva, s.d.-b).'][$mode];
+    $main = '';
+    foreach (['Introdução', $citation, 'Metodologia', 'Texto sintético.', 'Resultados e Discussão', 'Texto sintético.', 'Considerações Finais', 'Texto sintético.'] as $text) {
+        $main .= '<w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
+    }
+    $authors = $mode === 'special-style' ? 'Silva, A., & Souza, B.' : 'Silva, A.';
+    $date = in_array($mode, ['special-missing','special-apud','special-press'], true) ? 'in press' : ($mode === 'special-divergent' ? '2020' : ($mode === 'special-suffix' ? 'n.d.-b' : 'n.d.'));
+    $text = $authors . ' (' . $date . '). Obra sintética. Editora Exemplo.';
+    $reference = '<w:p><w:r><w:t>Referências</w:t></w:r></w:p><w:p><w:r><w:t>' . htmlspecialchars($text, ENT_XML1) . '</w:t></w:r></w:p>';
 }
 $parts = [
     '[Content_Types].xml' => '<Types xmlns="http://schemas.openxmlformats.org/package/2006/content-types"><Default Extension="xml" ContentType="application/xml"/><Default Extension="rels" ContentType="application/vnd.openxmlformats-package.relationships+xml"/><Override PartName="/word/document.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.document.main+xml"/><Override PartName="/word/footnotes.xml" ContentType="application/vnd.openxmlformats-officedocument.wordprocessingml.footnotes+xml"/></Types>',

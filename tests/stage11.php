@@ -134,7 +134,7 @@ test('layout de página com data completa é reconhecido sem validar existência
 foreach (['n.d.', 's.d.', 'in press', 'no prelo'] as $date) {
     test('data especial não vira ABNT automaticamente ' . $date, function () use ($book, $date) {
         $ref = str_replace('2020', $date, $book); $audit = apaAudit(italicDocument([$ref], [['Estudo da paisagem']]));
-        same(0, $audit['abnt_like_entries']); same('conforme', $audit['recognized_formats_status']);
+        same(0, $audit['abnt_like_entries']); same('indeterminado', $audit['recognized_formats_status']);
     });
 }
 test('instituição em maiúsculas não é tratada como sobrenome pessoal ABNT', function () {
@@ -311,8 +311,8 @@ test('CLI distingue incompatibilidade detectada de certificação APA completa',
     withDocx($parts, function ($path) {
         list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
         same(0, $code); same('', $err); $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR);
-        same('0.28.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
-        same('13.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
+        same('0.29.0', $report['engine_version']); $checks = array_column($report['checks'], null, 'rule_id');
+        same('14.0.0', $checks['references.apa7']['rule_version']); same('não conforme', $checks['references.apa7']['status']);
         same(false, $checks['references.apa7']['evidence']['full_apa_validation']); same(false, strpos($out, 'São Paulo') !== false);
     });
 });

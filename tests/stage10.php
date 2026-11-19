@@ -63,7 +63,6 @@ foreach ([
 }
 foreach ([
     'institutional author' => 'Organização Mundial da Saúde. (2020). Relatório sintético.',
-    'no date' => 'Silva, A. (n.d.). Livro sintético.',
     'full publication date' => 'Silva, A. (2020, May 2). Notícia sintética.',
     'missing title' => 'Silva, A. (2020). ',
     'two entries in paragraph' => $single . ' Souza, B. (2021). Outro livro. Editora.',
@@ -79,7 +78,6 @@ foreach ([
 foreach ([
     'personal communication' => 'Texto (Silva, comunicação pessoal, 2020).',
     'year range' => 'Texto (Silva, 2020–2021).',
-    'undated citation' => 'Texto (Silva, n.d.).',
     'institutional citation' => 'Texto (World Health Organization, 2020).',
     'embedded narrative' => 'O estudo apresentado por Silva (2020) foi relevante.',
     'nested parentheses' => 'Texto (ver (Silva, 2020)).',
@@ -163,9 +161,9 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.28.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.29.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
-            same($expected, $checks['references.citation_matching']['status']); same('9.0.0', $checks['references.citation_matching']['rule_version']);
+            same($expected, $checks['references.citation_matching']['status']); same('10.0.0', $checks['references.citation_matching']['rule_version']);
             same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);
             same(hash_file('sha256', $path), $checks['references.apa7']['evidence']['document_sha256']);
             same(false, strpos($out, 'Livro sintético') !== false); same(false, strpos($out, $path) !== false);

@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 36 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 37 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). O conjunto foi
 validado no laboratório OJS isolado; o tema e a infraestrutura reais da revista
 ainda não foram homologados. Não há certificação completa de APA ou servidor MCP.
@@ -94,6 +94,10 @@ obras ou atribuir identidades/letras automaticamente.
 A [Etapa 36](docs/STAGE36.md) confere et al. ambíguo e a quantidade de autores
 omitidos, aceitando as expansões adequadas no subconjunto seguro e preservando
 identidade, duplicatas e contextos incompletos para revisão.
+
+A [Etapa 37](docs/STAGE37.md) liga datas sem ano e no prelo nas citações e
+referências reconhecidas, preservando sufixos e encaminhando estados divergentes
+para conferência, sem atribuir datas ou certificar o estado de publicação.
 
 ## Componentes
 

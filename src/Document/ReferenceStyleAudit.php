@@ -167,7 +167,7 @@ final class ReferenceStyleAudit
     {
         if (strlen($text) > 8192) { return null; }
         $head = ReferenceAnalysis::parseEntry($text);
-        if ($head !== null) { $head['kind'] = 'personal'; $head['date_format_resolved'] = true; $head['author_list'] = ApaPersonalAuthors::inspect($head['author_key']); return $head; }
+        if ($head !== null) { $head['kind'] = 'personal'; $head['date_format_resolved'] = preg_match('/^[0-9]{4}[a-z]?$/D',$head['year'])===1; $head['author_list'] = ApaPersonalAuthors::inspect($head['author_key']); return $head; }
         if (strlen($text) > 8192 || !preg_match('/\((n\.d\.|s\.d\.|in press|no prelo|[0-9]{4}, [\p{L}]+(?: [0-9]{1,2})?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) {
             // Institutional author with an ordinary year.
             if (!preg_match('/\(([0-9]{4}[a-z]?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) { return null; }
