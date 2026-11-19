@@ -20,6 +20,7 @@ API, importações e outros caminhos não foram homologados.
 | Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais; Etapa 35 confere anos/sufixos e ordem; Etapa 36 confere et al. colidente, quantidade omitida e suficiência dos nomes no contexto seguro | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, agrupamentos fora da cobertura, atribuição das letras por título e outras desambiguações |
 | Datas especiais | Etapa 37 liga n.d./s.d. e in press/no prelo, incluindo sufixos explícitos de obras sem data; mantém divergências e o estado real da publicação para revisão | Confirmar ausência de data/aceite na fonte, uniformização editorial do idioma, datas completas por tipo, datas originais/republicações e ordenação desses estados |
 | Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais; Etapa 39 confere título, descrição e fonte em modelos declarados de tese/dissertação e relatório numerado; Etapa 41 acrescenta modelos explícitos de dados/software e versão quando declarada | Ampliar outras edições/traduções, descrições/graus e fontes de trabalhos acadêmicos fora da gramática, relatórios sem número/tipos especiais, páginas e variantes de dados/software |
+| Traduções e republicações | Etapa 42 confere nomes/função de tradução sem itálico, edição inglesa reconhecida, separadores no modelo Trans., indicação original sem itálico e cronologia declarada; protege anos originais na correspondência | Identificar obra/edição real, outros papéis/idiomas, modelos por tipo e correspondência completa de citações com dois anos; barra permanece indeterminada |
 | Ordem e títulos | Ordem de primeiros sobrenomes ASCII distintos; título integralmente em caixa alta no subconjunto reconhecido | Empates, diacríticos, partículas, obras do mesmo autor, sentence case sem alterar nomes próprios/siglas |
 | DOI e URL | Formato de DOI informado; ausência de DOI não reprova; Etapa 40 confere estrutura de URL HTTP e calendários reconhecidos, sem acessar links | Correspondência com fonte/metadados, disponibilidade do destino, tipo de obra e necessidade real de data de consulta |
 | Citações diretas | Alguns localizadores reconhecidos lexicalmente | Conferência de transcrição, localizador, extensão, bloco versus aspas e fontes sem paginação |
@@ -58,8 +59,11 @@ API, importações e outros caminhos não foram homologados.
 9. Etapa 41 acrescenta modelos declarados de dados/software, com versão/fonte
    quando informadas; sem presumir tipo por URL, confirmar existência ou executar
    o programa. Grafia oficial e uso da versão permanecem para revisão humana.
-10. Seguem traduções e variantes de páginas, dados/software e outros tipos fora
-    da cobertura, com casos incertos para revisão.
+10. Etapa 42 acrescenta metadados de tradução, publicação original e proteção
+    de datas relacionadas. Não presume livro pela presença de tradutor, nem
+    escolhe a edição; a citação com barra continua para revisão.
+11. Seguem variantes fora da cobertura, ordenação ampliada e citações diretas,
+    com identidade, edição e fonte efetivamente consultada para revisão humana.
 
 Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
 incerteza e preservação do manuscrito. Alterar a versão do motor invalida as

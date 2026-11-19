@@ -19,8 +19,8 @@ final class DeskResponse
         'manuscript.body.font_size'=>'2.0.0', 'manuscript.body.line_spacing'=>'2.0.0',
         'manuscript.word_limit'=>'1.0.0', 'manuscript.visuals.count'=>'1.0.0', 'manuscript.headings.case'=>'3.0.0',
         'manuscript.ai.declaration'=>'1.0.0', 'manuscript.ai.verification'=>'1.0.0', 'manuscript.ethics.review'=>'1.0.0', 'manuscript.credit.content'=>'1.0.0', 'manuscript.credit.verification'=>'1.0.0', 'manuscript.footnotes.count'=>'1.0.0', 'manuscript.footnotes.lines'=>'2.0.0',
-        'references.apa7'=>'17.0.0', 'references.citation_matching'=>'10.0.0',
-        'references.apa7.recognized_formats'=>'10.0.0', 'references.apa7.citation_format'=>'8.0.0',
+        'references.apa7'=>'18.0.0', 'references.citation_matching'=>'11.0.0',
+        'references.apa7.recognized_formats'=>'11.0.0', 'references.apa7.citation_format'=>'9.0.0',
     ];
 
     public static function generate(array $report): array
@@ -215,6 +215,11 @@ final class DeskResponse
                 'chapter_pages_plain'=>'retirar o itálico da indicação de páginas do capítulo',
                 'chapter_editor_separators'=>'ajustar os separadores dos editores do capítulo: & entre dois nomes e vírgulas com , & antes do último para três ou mais',
                 'chapter_edition_plain'=>'retirar o itálico da edição do livro que contém o capítulo',
+                'translated_work_translator_plain'=>'retirar o itálico dos nomes e da função de tradução entre parênteses',
+                'translated_work_translator_separators'=>'ajustar os separadores dos tradutores no modelo em inglês com Trans.',
+                'translated_work_edition_plain'=>'retirar o itálico da edição informada junto da tradução',
+                'original_publication_plain'=>'retirar o itálico da indicação de publicação original entre parênteses',
+                'original_publication_year_order'=>'conferir os anos declarados: o original deve ser válido e não posterior ao da edição consultada',
                 'digital_work_title_italic'=>'aplicar itálico ao título no modelo declarado de dados ou software',
                 'digital_work_description_plain'=>'retirar o itálico da descrição entre colchetes de dados ou software',
                 'digital_work_version_plain'=>'retirar o itálico da versão entre parênteses de dados ou software',

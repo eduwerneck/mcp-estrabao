@@ -146,6 +146,7 @@ final class ReferenceAnalysis
             $matches = []; $matchParagraphs = []; $weak = $hasInstitutional || !empty($citation['institutional_ambiguous']);
             foreach ($entries as $entry) {
                 if (substr($entry['year'],0,4) === substr($citation['year'],0,4) && self::weakName($entry['authors'][0], $citation['authors'][0])) { $weak = true; }
+                if (self::originalCandidate($citation,$entry)) { $weak=true; }
                 // A different date state for a possibly related author is inconclusive, never a missing-work proof.
                 if ((self::specialDate($entry['year']) || self::specialDate($citation['year'])) && self::weakName($entry['authors'][0],$citation['authors'][0])) { $weak=true; }
                 if ($entry['year'] !== $citation['year']) { continue; }
@@ -227,7 +228,8 @@ final class ReferenceAnalysis
         if (preg_match_all('~' . $person . '\s+\(' . self::DATE_TOKEN . '\)\.~iu', $text) > 1) { return null; }
         $ranges = [];
         foreach ($names[1] as $name) { $ranges[] = ['start' => $name[1], 'end' => $name[1] + strlen($name[0])]; }
-        return ['authors' => array_column($names[1], 0), 'year' => self::dateKey($date[1][0]), 'author_ranges' => $ranges,
+        $original=ReferenceRevisions::original($rest,0);
+        return ['original_year'=>$original['year'],'original_year_review'=>$original['has_marker'] && $original['year']===null, 'authors' => array_column($names[1], 0), 'year' => self::dateKey($date[1][0]), 'author_ranges' => $ranges,
             'author_key' => $prefix, 'personal_keys'=>array_map('trim',array_column($names[0],0)), 'content' => $rest,
             'content_start' => $date[0][1] + strlen($date[0][0])];
     }
@@ -238,6 +240,7 @@ final class ReferenceAnalysis
         $review='multi_author_disambiguation_review';
         if (!$complete || self::specialDate($citation['year'])) { return $review; }
         foreach ($aliases as $alias=>$names) { if (self::sameName($alias,$citation['authors'][0])) { return $review; } }
+        foreach ($entries as $entry) { if (self::originalCandidate($citation,$entry) && $entry['year']!==$citation['year']) { return $review; } }
         // Newly recognized undated states must not strengthen a numeric-year disambiguation proof.
         foreach ($entries as $entry) { if (self::specialDate($entry['year']) && self::weakName($entry['authors'][0],$citation['authors'][0])) { return $review; } }
         $cohort=[];
@@ -318,11 +321,18 @@ final class ReferenceAnalysis
         return array_map(function ($value) { return self::dateKey($value); },explode(',',$text));
     }
 
+    private static function originalCandidate(array $citation,array $entry): bool
+    {
+        return self::weakName($entry['authors'][0],$citation['authors'][0])
+            && (!empty($entry['original_year_review']) || (isset($entry['original_year']) && $entry['original_year']===substr($citation['year'],0,4)));
+    }
+
     /** Compare declared keys only; never select a work or identify a person. */
     private static function suffixIssue(array $citation,array $entries,bool $complete): ?string
     {
         if (self::specialDate($citation['year'])) { return null; }
         if (!$complete || empty($citation['syntax_complete']) || !empty($citation['institutional_ambiguous'])) { return null; }
+        foreach ($entries as $entry) { if (self::originalCandidate($citation,$entry) && $entry['year']!==$citation['year']) { return 'author_year_disambiguation_review'; } }
         $cohort=[];$exact=0;
         foreach ($entries as $entry) {
             if (self::specialDate($entry['year']) && self::matches($citation,$entry)) { return 'author_year_disambiguation_review'; }
@@ -348,7 +358,10 @@ final class ReferenceAnalysis
         foreach ($citations as $i=>$citation) {
             if (self::specialDate($citation['year']) || !empty($citation['secondary']) || $citation['form']==='institutional') { return array_fill(0,count($citations),['citation_group_order_review']); }
             $matches=[];
-            foreach ($entries as $entry) { if ($entry['year']===$citation['year'] && self::matches($citation,$entry)) { $matches[]=$entry; } }
+            foreach ($entries as $entry) {
+                if (self::originalCandidate($citation,$entry) && $entry['year']!==$citation['year']) { return array_fill(0,count($citations),['citation_group_order_review']); }
+                if ($entry['year']===$citation['year'] && self::matches($citation,$entry)) { $matches[]=$entry; }
+            }
             if (count($matches)!==1 || !isset($matches[0]['author_key'])) { return array_fill(0,count($citations),['citation_group_order_review']); }
             $linked[$i]=$matches[0];
         }
