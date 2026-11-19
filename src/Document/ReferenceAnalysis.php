@@ -94,10 +94,12 @@ final class ReferenceAnalysis
                     if (strlen($inside) > 2048) { $unparsedGroups++; continue; }
                     $parsed = []; $beforeUnparsed = $unparsedGroups;
                     $balanced = substr_count($text, '(') === substr_count($text, ')') && !preg_match('/\([^)]*\(/u', $text);
-                    if (preg_match('/^\s*(' . self::DATE_TOKEN . '(?:,\s*' . self::DATE_TOKEN . '){0,19})\s*$/iuD', $inside, $year)) {
+                    if (preg_match('/^\s*(' . self::DATE_TOKEN . '(?:,\s*' . self::DATE_TOKEN . '){0,19})(?:,\s*(' . CitationLocator::PATTERN . '))?\s*$/iuD', $inside, $year)) {
                         $prefix = trim(substr($text, 0, $offset));
                         $prefix = preg_replace('/^(?:Segundo|Conforme|According to|Según)\s+/iu', '', $prefix);
                         $yearList = self::yearList($year[1]);
+                        $narrativeLocator = isset($year[2]) && $year[2] !== '' ? $year[2] : null;
+                        if (count($yearList) > 1 && $narrativeLocator !== null) { $unparsedGroups++; continue; }
                         $secondary = count($yearList) === 1 ? self::secondaryCitation($prefix . ', ' . $year[1], '', $entries, $aliases, $personalPattern) : null;
                         if ($secondary !== null) {
                             $secondary['placement'] = 'narrative';
@@ -110,7 +112,7 @@ final class ReferenceAnalysis
                                 if (!$candidate) { $author=null; }
                             }
                             if ($author !== null) {
-                                foreach ($yearList as $value) { $parsed[] = $author + ['year'=>$value,'placement'=>'narrative','item_index'=>0,'multiple_years'=>count($yearList)>1,
+                                foreach ($yearList as $value) { $parsed[] = $author + ['locator'=>$narrativeLocator,'year'=>$value,'placement'=>'narrative','item_index'=>0,'multiple_years'=>count($yearList)>1,
                                     'spacing_ok'=>$offset>0 && preg_match('/\s$/u',substr($text,0,$offset))===1 && preg_match('/,\S/u',$inside)!==1]; }
                             }
                             else { $unparsedGroups++; }
