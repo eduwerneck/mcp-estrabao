@@ -974,3 +974,24 @@ bytes/estado restaurados. Capturas inspecionadas em evidence/stage40. Containers
 desligados. Sem produção, VM Oracle, arquivos reais, mensagens ou deploy.
 Limites em STAGE40.md/APA7.md; sem nova consulta normativa. Regressão integrada
 anterior não repetida e CI remoto da branch ainda não verificado.
+
+
+## Etapa 41 — modelos declarados de dados e software
+
+Em 19/11/2026, sobre b597a79 (merge PR #41, com as Etapas 39/40 na main), motor
+0.32.0, plugin 0.24.0.0, APA 17.0.0 e formatos 10.0.0. Matching/citações e
+contratos preservados. 1399 testes por PHP 8.4.27 e 8.1.27, zero falhas;
+lint de 103 arquivos PHP, Python, dois schemas CLI e diff aprovados.
+
+38 verificações OJS 3.3.0.20/Chromium: quatro falhas de itálico bloquearam com
+orientação específica, minuta privada e POST nativo. Quatro cenários de dados,
+opcionais ausentes, sigla oficial e metadado ambíguo permaneceram revisáveis,
+sem conclusão automática. Tipo/versão/fonte reais e capitalização oficial
+permanecem para conferência humana; campos indisponíveis não são presumidos.
+
+Nenhum conjunto de dados ou software referenciado é acessado ou executado.
+Isolamento, versão instalada, e-mail neutralizado e mounts read-only confirmados;
+bytes/estado restaurados. Capturas vistas em evidence/stage41. Containers
+desligados ao fim. Sem produção, VM Oracle, arquivos reais, mensagens ou deploy.
+Limites em STAGE41.md/APA7.md; sem nova consulta normativa. Regressão integrada
+anterior não repetida e CI remoto da nova branch ainda não verificado.

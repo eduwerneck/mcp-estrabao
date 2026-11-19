@@ -67,7 +67,14 @@ final class ReferenceStyleAudit
                     $mixedEntry = true;
                     self::check($checks, 'journal_legacy_labels', false, 'Na referência de periódico APA 7, remover os rótulos v., n. e p./pp.; apresentar volume(número), páginas ou identificador, com a formatação correspondente.');
                 }
-                if ($fields !== null && in_array($fields['type'],['repository_thesis_declared','unpublished_thesis_declared','numbered_report_declared'],true)) {
+                if ($fields!==null && in_array($fields['type'],['dataset_declared','software_declared'],true)) {
+                    $type=$fields['type'];
+                    self::check($checks,'digital_work_title_italic',self::emphasis($paragraph,$fields['title'],true),'No modelo declarado de conjunto de dados ou software, o título da obra fica em itálico.');
+                    self::check($checks,'digital_work_description_plain',self::emphasis($paragraph,$fields['description'],false),'A descrição entre colchetes do conjunto de dados ou software não fica em itálico.');
+                    if ($fields['version']!==null) { self::check($checks,'digital_work_version_plain',self::emphasis($paragraph,$fields['version'],false),'A versão informada entre parênteses na referência de dados ou software não fica em itálico.'); }
+                    if ($fields['source']!==null) { self::check($checks,'digital_work_source_plain',self::emphasis($paragraph,$fields['source'],false),'No modelo declarado de dados ou software, a fonte, editora ou repositório após a descrição não fica em itálico.'); }
+                    self::check($checks,'digital_work_source_review',null,'Confirmar autoria, tipo, versão e fonte da obra efetivamente usada, e se a fonte pode ser omitida; não exigir versão, editora ou identificador inexistente. Não foi executado software nem consultado o conjunto de dados.');
+                } elseif ($fields !== null && in_array($fields['type'],['repository_thesis_declared','unpublished_thesis_declared','numbered_report_declared'],true)) {
                     $type=$fields['type'];
                     self::check($checks,'declared_work_title_italic',self::emphasis($paragraph,$fields['title'],true),'No modelo declarado de tese, dissertação ou relatório, o título da obra fica em itálico.');
                     self::check($checks,'declared_work_description_plain',self::emphasis($paragraph,$fields['description'],false),'A descrição entre colchetes da tese/dissertação ou o número entre parênteses do relatório não fica em itálico.');
@@ -118,7 +125,9 @@ final class ReferenceStyleAudit
                         self::check($checks, 'standalone_source_plain', true, 'Fonte da obra autônoma sem itálico.');
                     } else { self::check($checks, 'work_type_and_italic', null, 'Confirmar se é livro, relatório, página ou periódico sem volume antes de exigir itálico em um campo específico.'); }
                 } else { self::check($checks, 'work_type_unresolved', null, 'Tipo ou campos da obra não reconhecidos; revisar com o modelo APA 7 adequado.'); }
-                if ($fields !== null && $type !== 'unresolved') {
+                if (in_array($type,['dataset_declared','software_declared'],true)) {
+                    self::check($checks,'digital_work_title_case_review',null,'Conferir a grafia oficial do título de dados ou software, preservando nomes próprios, siglas e capitalização do produto; não converter automaticamente.');
+                } elseif ($fields !== null && $type !== 'unresolved') {
                     $title = substr($text, $fields['title']['start'], $fields['title']['end'] - $fields['title']['start']);
                     $case = \Estrabao\Text\TitleCase::inspect($title, $language);
                     self::check($checks, 'work_title_full_uppercase', $case['status'] === CheckResult::UNKNOWN ? null : $case['status'] === CheckResult::PASS, 'Evitar caixa alta integral no título; sentence case, nomes próprios e siglas exigem conferência.');
@@ -249,6 +258,9 @@ final class ReferenceStyleAudit
     private static function fields(string $content, int $offset): ?array
     {
         $content = rtrim($content); if (substr($content, -1) === '.') { $content = substr($content, 0, -1); }
+        $digital=ReferenceDigitalWorks::fields($content,$offset);
+        if ($digital!==null) { return $digital; }
+        if (preg_match('/\[(?:Data set|Conjunto de dados|Computer software|Software)\b/iu',$content)) { return null; }
         $longWork=ReferenceLongWorks::fields($content,$offset);
         if ($longWork!==null) { return $longWork; }
         // A partly recognized descriptor must not fall through as a book or journal.
