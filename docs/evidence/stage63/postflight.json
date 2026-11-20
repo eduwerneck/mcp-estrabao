@@ -1,0 +1,12 @@
+{
+  "reused_containers": {
+    "estrabao-lab-62-restore-web": "exited",
+    "estrabao-lab-62-restore-db": "exited"
+  },
+  "services_stopped": true,
+  "synthetic_data_retained_privately": true,
+  "environment_published": false,
+  "external_desk_sent": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false
+}

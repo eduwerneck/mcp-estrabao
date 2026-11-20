@@ -1,6 +1,6 @@
-# Pendências e sequência de desenvolvimento — Etapa 62
+# Pendências e sequência de desenvolvimento — Etapa 63
 
-Estado em 20/11/2026, base 528c655, após o ensaio da Etapa 62. O [balanço atual](TRIAGE_COVERAGE.md)
+Estado em 20/11/2026, base a6bde90, após o ensaio da Etapa 63. O [balanço atual](TRIAGE_COVERAGE.md)
 distingue bloqueio APA, diagnósticos e registro editorial. Entrega/homologação de
 um fluxo não certifica APA integral nem autoriza produção.
 
@@ -16,10 +16,12 @@ um fluxo não certifica APA integral nem autoriza produção.
 | 60 | Balanço atual e plano de instalação isolada | Documental; não instala ou certifica novos recursos |
 | 61 | Pacotes e instalação/atualização em cópias limpas OJS 3.3.0.20 | Dois componentes manuais; não certifica a infraestrutura real |
 | 62 | UID de serviço, concorrência e recuperação completa isolada | Sem transação conjunta upload/conclusão, power-loss ou certificação de infraestrutura real |
+| 63 | Percurso nativo do autor até conclusão após correção/revisão | Recebimento não é aceite/publicação; não certifica todas as diretrizes/APA |
 
 Detalhes em [STAGE55.md](STAGE55.md), [STAGE56.md](STAGE56.md),
 [STAGE57.md](STAGE57.md), [STAGE58.md](STAGE58.md), [STAGE59.md](STAGE59.md),
-[STAGE60.md](STAGE60.md), [STAGE61.md](STAGE61.md) e [STAGE62.md](STAGE62.md).
+[STAGE60.md](STAGE60.md), [STAGE61.md](STAGE61.md), [STAGE62.md](STAGE62.md)
+e [STAGE63.md](STAGE63.md).
 As prioridades anteriores foram parcialmente entregues; não continuar anunciando
 .doc, EN/ES ou datas completas como totalmente ausentes.
 
@@ -27,14 +29,13 @@ As prioridades anteriores foram parcialmente entregues; não continuar anunciand
 
 | Etapa | Trabalho | Critério de conclusão proposto |
 | --- | --- | --- |
-| 63 | Ensaio editorial completo nessa cópia | Submissão/correção/reanálise/revisão/devolutiva/conclusão com dados sintéticos; nenhuma mensagem externa ou publicação real |
-| Operação adicional | Transação conjunta upload/confirmação, falhas de I/O/power-loss, TLS/proxy e caches persistentes | Projetar garantias próprias e ensaiar na infraestrutura isolada representativa; o lock atual não as fornece |
+| 64 proposta | Garantia entre mudança de arquivo e confirmação final | Projeto explícito de coordenação e teste determinístico da corrida no wizard isolado, sem presumir transação que hoje não existe |
+| Operação adicional | Falhas de I/O/power-loss, TLS/proxy e caches persistentes | Projetar garantias próprias e ensaiar na infraestrutura isolada representativa; o lock atual não as fornece |
 | Posteriores | Exceções APA e leitura fora do subconjunto | Priorizar por impacto e exemplo sintético; cada ampliação com versão, limites e testes próprios |
 
 Um item por PR, com título/descrição para abertura manual. A numeração é um plano,
-não promessa de encerramento de toda APA. As Etapas 61–62 ensaiaram
-instalação/operação apenas
-em cópias sintéticas isoladas, sem produção ou VM Oracle. Achados futuros podem
+não promessa de encerramento de toda APA. As Etapas 61–63 ensaiaram
+instalação/operação apenas em cópias sintéticas isoladas, sem produção ou VM Oracle. Achados futuros podem
 exigir corrigir/reenquadrar a entrega seguinte, mantendo o escopo explícito.
 
 ## Lacunas técnicas/editoriais que continuam abertas

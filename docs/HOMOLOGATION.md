@@ -1,4 +1,22 @@
-# Estado atual da homologação — Etapa 62
+# Estado atual da homologação — Etapa 63
+
+Base **a6bde90**, **20/11/2026**. A [Etapa 63](STAGE63.md) aprovou **40 verificações**
+do fluxo HTTP nativo: criação do rascunho pelo autor, multipart, metadados, bloqueio
+ABNT, minuta, revisão do Word, nova análise, revisão humana, CSRF e conclusão.
+O resultado é recebimento da submissão, sem aceite ou publicação automática.
+
+Produto inalterado: motor **0.44.0**, plugin **0.39.0.0**, 73 hashes conferidos.
+Reexecutados **15 testes de pacote e 11 de backup**, lint de dois helpers PHP e
+compilação Python. Zero falhas finais. Não são novos testes de navegador visual
+nem nova regressão de 2.120 PHP/16 JS. [Resultados](evidence/stage63/validation.json),
+[reprodução](EDITORIAL_REHEARSAL.md) e achados preparatórios registrados.
+
+Cópia sintética restaurada da Etapa 62, sem produção/Oracle ou envio da minuta.
+Core temporariamente instrumentado no diagnóstico foi restaurado byte a byte.
+Logs HTTP da janela final sem PHP Fatal/Warning. Serviços encerrados ao terminar.
+A transação conjunta upload/confirmação e demais limites abaixo seguem pendentes.
+
+## Ensaio operacional anterior — Etapa 62
 
 Ensaio em **20/11/2026**, base **528c655**. Produto sem alteração: motor
 **0.44.0**, plugin **0.39.0.0**. A [Etapa 62](STAGE62.md) executou **45 verificações
@@ -74,7 +92,8 @@ documentação/contrato CLI; não apresenta esses números como nova regressão.
 
 [Etapa 61](STAGE61.md): pacotes e instalação/atualização.
 [Etapa 62](STAGE62.md): ensaio operacional limitado e recuperação isolada.
-Próxima: Etapa 63, ensaio editorial amplo nessa cópia.
+[Etapa 63](STAGE63.md): percurso editorial nativo concluído nessa cópia.
+Próxima proposta: Etapa 64, garantia entre mudança do arquivo e confirmação final.
 Não instalar, ativar ou publicar na revista por causa deste balanço. Produção e
 VM Oracle permanecem fora do escopo. O ambiente não foi publicado novamente.
 

@@ -1,4 +1,4 @@
-# Balanço da triagem — cobertura editorial preservada até a Etapa 62
+# Balanço da triagem — cobertura editorial preservada até a Etapa 63
 
 Conferência documental em 20/11/2026, base 6a117b1 (merge PR #60, Etapa 59).
 Motor **0.44.0**, plugin **0.39.0.0**, laboratório OJS **3.3.0.20**.
@@ -134,7 +134,9 @@ Esta auditoria não homologa a instalação real nem certifica APA integral.
 2. Etapa 62 executada: permissões, concorrência na revisão e backup/recuperação
    em duas cópias sintéticas; [resultados e limites](STAGE62.md). Não fornece
    transação conjunta entre upload e confirmação final ou certificação real.
-3. Etapa 63 proposta: ensaio editorial completo nessa cópia e balanço de resultados.
+3. Etapa 63 executada: percurso nativo de submissão/correção/reanálise/revisão e
+   conclusão, sem aceite ou publicação; [resultados](STAGE63.md).
+   Etapa 64 proposta: coordenação da mudança de arquivo com a confirmação final.
 4. Exceções APA, meses espanhóis e variantes .doc: priorizar separadamente por
    impacto e exemplos sintéticos, sem promessa de certificação completa.
 

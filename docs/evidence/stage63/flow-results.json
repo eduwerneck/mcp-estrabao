@@ -1,0 +1,162 @@
+[
+  {
+    "case": "native author creates a new draft at step 2",
+    "passed": true
+  },
+  {
+    "case": "author uploads DOCX by native authenticated multipart",
+    "passed": true
+  },
+  {
+    "case": "server retains uploaded synthetic DOCX bytes",
+    "passed": true
+  },
+  {
+    "case": "native upload step advances to metadata",
+    "passed": true
+  },
+  {
+    "case": "author saves metadata and advances to confirmation",
+    "passed": true
+  },
+  {
+    "case": "native author record retained",
+    "passed": true
+  },
+  {
+    "case": "ABNT cannot receive editorial APA approval",
+    "passed": true
+  },
+  {
+    "case": "ABNT is blocked at native final confirmation",
+    "passed": true
+  },
+  {
+    "case": "desk names APA correction and does not accept ABNT",
+    "passed": true
+  },
+  {
+    "case": "desk identifies missing English and Spanish metadata",
+    "passed": true
+  },
+  {
+    "case": "desk includes title or manuscript guideline corrections",
+    "passed": true
+  },
+  {
+    "case": "generating desk does not mutate document",
+    "passed": true
+  },
+  {
+    "case": "desk does not generate an APA release",
+    "passed": true
+  },
+  {
+    "case": "twelve human checklist categories begin pending",
+    "passed": true
+  },
+  {
+    "case": "editor records guideline adjustments separately",
+    "passed": true
+  },
+  {
+    "case": "non-APA checklist cannot override ABNT",
+    "passed": true
+  },
+  {
+    "case": "author submits corrected Word as native revision",
+    "passed": true
+  },
+  {
+    "case": "revision has a new file ID with same logical submission file",
+    "passed": true
+  },
+  {
+    "case": "corrected file bytes match submitted DOCX",
+    "passed": true
+  },
+  {
+    "case": "author replaces uppercase metadata title",
+    "passed": true
+  },
+  {
+    "case": "OJS bibliography preserves Enter between references",
+    "passed": true
+  },
+  {
+    "case": "old checklist form cannot approve corrected analysis",
+    "passed": true
+  },
+  {
+    "case": "correction removes proven ABNT from new desk",
+    "passed": true
+  },
+  {
+    "case": "new desk removes now-filled English Spanish metadata failures",
+    "passed": true
+  },
+  {
+    "case": "correction invalidates old non-APA checklist",
+    "passed": true
+  },
+  {
+    "case": "old checklist history remains present",
+    "passed": true
+  },
+  {
+    "case": "corrected references become explicitly reviewable",
+    "passed": true
+  },
+  {
+    "case": "correction does not auto-release",
+    "passed": true
+  },
+  {
+    "case": "corrected article waits for explicit human APA review",
+    "passed": true
+  },
+  {
+    "case": "editor records current corrected metadata review",
+    "passed": true
+  },
+  {
+    "case": "checklist review alone does not release APA",
+    "passed": true
+  },
+  {
+    "case": "author cannot view private desk or checklist",
+    "passed": true
+  },
+  {
+    "case": "explicit human APA decision enables confirmation",
+    "passed": true
+  },
+  {
+    "case": "human release preserves native CSRF requirement",
+    "passed": true
+  },
+  {
+    "case": "revoked human release prevents completion",
+    "passed": true
+  },
+  {
+    "case": "reviewed corrected article concludes native wizard",
+    "passed": true
+  },
+  {
+    "case": "conclusion is submission receipt not publication",
+    "passed": true
+  },
+  {
+    "case": "review and completion preserve corrected file bytes",
+    "passed": true
+  },
+  {
+    "case": "APA and non-APA histories survive native conclusion",
+    "passed": true
+  },
+  {
+    "case": "other synthetic submissions remain unchanged",
+    "passed": true
+  }
+]
