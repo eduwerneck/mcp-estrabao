@@ -236,3 +236,14 @@ Os 462 avisos PHP de fixtures de estrutura são idênticos aos da Etapa 56.
 Liberações anteriores precisam de nova revisão devido à mudança do motor.
 Evidências em evidence/stage57; APA integral e operação real continuam por
 homologar. Nenhuma implantação na revista ou mudança de política de seções.
+
+## Atualização da Etapa 58
+
+Motor 0.43.0 e plugin 0.38.0.0 ligam datas completas pessoais reconhecidas a
+chaves autor–ano únicas. 1037 verificações OJS aprovadas: 32 suítes e
+ciclos DOCX/DOC/EN/ES/datas completas, incluindo os 21 modos APA anteriores.
+1.982 testes por PHP (8.4.27/8.1.27), 16 JavaScript, lint de 130 PHP, compilação
+Python e schemas CLI aprovados. Os 462 avisos PHP de fixtures de estrutura
+são idênticos aos da Etapa 57. Liberações anteriores exigem nova revisão
+do motor. Evidências em evidence/stage58; meses/autorias/datas fora da gramática
+e homologação operacional continuam pendentes. Sem implantação na revista.

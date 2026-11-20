@@ -1,0 +1,202 @@
+[
+  {
+    "case": "articleorder-inverse incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "articleorder-inverse desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-inverse draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "articleorder-inverse does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "articleorder-inverse wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "articleorder-inverse author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-suffix incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "articleorder-suffix desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-suffix draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "articleorder-suffix does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "articleorder-suffix wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "articleorder-suffix author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-es incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "articleorder-es desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-es draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "articleorder-es does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "articleorder-es wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "articleorder-es author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "articleorder-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-an remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-an has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-an cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-pt-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-ambiguous remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-ambiguous has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-ambiguous cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-empty remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-empty has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-empty cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-nested remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-nested has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-nested cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-collision remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-collision has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-collision cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "articleorder-uncertain remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "articleorder-uncertain has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "articleorder-uncertain cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

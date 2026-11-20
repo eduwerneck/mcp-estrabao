@@ -1,0 +1,102 @@
+[
+  {
+    "case": "recognized DOC has human route and explicit declarations",
+    "passed": true
+  },
+  {
+    "case": "DOC scope explains no extraction no conversion and ABNT veto",
+    "passed": true
+  },
+  {
+    "case": "DOC starts without release",
+    "passed": true
+  },
+  {
+    "case": "DOC cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "author sees accepted DOC and human review guidance",
+    "passed": true
+  },
+  {
+    "case": "opening declaration missing cannot write review",
+    "passed": true
+  },
+  {
+    "case": "APA declaration missing cannot write review",
+    "passed": true
+  },
+  {
+    "case": "invalid CSRF cannot write review",
+    "passed": true
+  },
+  {
+    "case": "author cannot save DOC review",
+    "passed": true
+  },
+  {
+    "case": "editor downloads DOC with correct filename and binary signature",
+    "passed": true
+  },
+  {
+    "case": "author cannot download via private DOC route",
+    "passed": true
+  },
+  {
+    "case": "DOC release records human mode privately",
+    "passed": true
+  },
+  {
+    "case": "human DOC release is shown with route in history",
+    "passed": true
+  },
+  {
+    "case": "old form replay is refused",
+    "passed": true
+  },
+  {
+    "case": "review preserves DOC source bytes",
+    "passed": true
+  },
+  {
+    "case": "DOC release cannot bypass native CSRF",
+    "passed": true
+  },
+  {
+    "case": "explicitly reviewed DOC completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "revoked DOC cannot complete",
+    "passed": true
+  },
+  {
+    "case": "new DOC version invalidates previous release",
+    "passed": true
+  },
+  {
+    "case": "changed DOC still needs a new human review",
+    "passed": true
+  },
+  {
+    "case": "encrypted DOC cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "protected DOC stays pending rather than accepted",
+    "passed": true
+  },
+  {
+    "case": "DOC route does not weaken existing DOCX ABNT block",
+    "passed": true
+  },
+  {
+    "case": "all original workflow records preserved",
+    "passed": true
+  },
+  {
+    "case": "original lab pointer restored",
+    "passed": true
+  }
+]

@@ -101,3 +101,13 @@ Seções editoriais traduzidas, títulos/estruturas fora do subconjunto, datas
 completas no matcher e marcadores `s.f.`/`en prensa` continuam pendentes.
 A próxima entrega prevista é correspondência com datas completas; a auditoria
 cronológica já existente não implementa essa relação.
+
+## Atualização após a Etapa 58
+
+[STAGE58.md](STAGE58.md) entrega a primeira correspondência com datas completas
+pessoais reconhecidas, preservando coortes ambíguas e sem atribuir letras.
+Instituições com datas completas, meses espanhóis, precisão/edições fora da
+gramática e sufixos não são resolvidos por aproximação. A próxima prioridade
+proposta é datas especiais em espanhol (`s.f.`/`en prensa`), seguida do balanço
+de cobertura e homologação isolada. As propostas posteriores não são entregas
+já implementadas nem autorização para produção.

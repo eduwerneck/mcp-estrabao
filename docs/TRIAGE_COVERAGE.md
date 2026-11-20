@@ -23,6 +23,10 @@ Atualização posterior da [Etapa 57](STAGE57.md): citações EN/ES passam a ser
 conferidas com idioma declarado e fronteiras lexicais documentadas. Isso não
 aprova traduções de seções editoriais nem encerra as lacunas do matcher.
 
+Atualização posterior da [Etapa 58](STAGE58.md): o matcher liga datas completas
+pessoais reconhecidas a autor–ano em contexto único; ambiguidades/edições/sufixos
+continuam humanos. Os limites do calendário e da auditoria de formato permanecem.
+
 ## Conclusão principal
 
 **Diagnóstico no relatório não equivale a bloqueio na entrada.** O bloqueio

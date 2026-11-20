@@ -151,3 +151,13 @@ localizadores e fonte consultada em secundárias; apud segue bloqueado. Mistura
 de idioma, contexto incompleto e estruturas fora da gramática ficam para revisão.
 Não valida semanticamente as fontes nem amplia o matcher para datas completas.
 Motor 0.42.0 exige nova revisão das versões anteriormente liberadas em 0.41.0.
+
+## Correspondência com datas completas — Etapa 58
+
+[STAGE58.md](STAGE58.md) projeta o ano declarado de datas completas válidas
+no calendário EN/PT já reconhecido, somente no matcher pessoal. Candidatas
+múltiplas, sufixos e edição original permanecem para revisão. O parser de
+formato e a política não mudam; datas e referências não são reescritas.
+A ligação é possível nos perfis pt/en/es, sem ampliar meses espanhóis ou
+certificar identidade da obra. Motor 0.43.0 exige nova revisão de liberações
+anteriores; não há aprovação automática.

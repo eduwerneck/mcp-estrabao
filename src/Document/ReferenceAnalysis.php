@@ -19,6 +19,7 @@ final class ReferenceAnalysis
         'et_al_period' => 'Escrever et al. com ponto após al.',
         'multi_author_disambiguation_review' => 'Conferir a necessidade e a extensão dos nomes adicionais para distinguir obras com o mesmo primeiro autor e ano.',
         'institutional_alias_review' => 'Conferir a apresentação do nome completo e da sigla institucional na primeira citação; vínculo literal não confirma identidade nem introdução correta.',
+        'full_date_source_review' => 'Conferir a obra e a data completa declarada; a ligação autor–ano não confirma identidade, edição ou sufixos e não atribui letras automaticamente.',
         'citation_language_conjunction_review' => 'Conferir a conjunção narrativa no idioma declarado; não traduzir nomes nem presumir erro em trecho de outro idioma.',
         'secondary_source_review' => 'Conferir a fonte efetivamente consultada na citação secundária; não exigir a obra original não consultada na lista nem presumir o histórico de leitura.',
         'secondary_apud_not_allowed' => 'A Estrabão não aceita apud em citações secundárias. Usar como citado em e identificar a fonte efetivamente consultada.',
@@ -40,8 +41,9 @@ final class ReferenceAnalysis
         'citation_spacing' => 'Na parentética, inserir espaço após a vírgula; na narrativa, antes do parêntese do ano.',
         'personal_surname_full_uppercase' => 'Conferir capitalização do sobrenome; maiúsculas isoladas não provam ABNT.',
     ];
-    private const REVIEW_ISSUES = ['citation_language_conjunction_review','personal_surname_full_uppercase','multi_author_disambiguation_review','institutional_alias_review','secondary_source_review','citation_year_list_duplicates_review','citation_year_list_authorship_review','citation_group_order_review','author_year_disambiguation_review','special_date_review','citation_locator_review','direct_quote_source_review','direct_quote_block_review','direct_quote_boundary_review','quoted_citation_review'];
+    private const REVIEW_ISSUES = ['full_date_source_review','citation_language_conjunction_review','personal_surname_full_uppercase','multi_author_disambiguation_review','institutional_alias_review','secondary_source_review','citation_year_list_duplicates_review','citation_year_list_authorship_review','citation_group_order_review','author_year_disambiguation_review','special_date_review','citation_locator_review','direct_quote_source_review','direct_quote_block_review','direct_quote_boundary_review','quoted_citation_review'];
     const SURNAME = '\p{L}[\p{L}\p{Pd}\x{2019}\x{0027}]{0,63}';
+    private const FULL_DATE_HEAD = '\s*[0-9]{4}[a-z]?\s*,[^)]{1,8192}';
     const DATE_TOKEN = '(?:[0-9]{4}[a-z]?|[ns]\\.\\s*d\\.(?:-[a-z])?|in press|no prelo)';
     const YEAR_SIGNAL = '[0-9]{4}[a-z]?|n\.\s*d\.|s\.\s*d\.|in press|no prelo';
 
@@ -61,6 +63,8 @@ final class ReferenceAnalysis
         if (!$limit) {
             foreach ($referenceTexts as $index => $paragraph) {
                 $entry = self::parseEntry($paragraph['text']) ?? InstitutionalAuthors::entry($paragraph['text']);
+                if($entry!==null && preg_match('/\('.self::FULL_DATE_HEAD.'\)\s*\.\s+/iu',$paragraph['text'])){$entry=null;}
+                if($entry===null){$entry=self::fullDateEntry($paragraph['text']);}
                 if ($entry === null) { $unparsed++; }
                 else { $entry['reference_index'] = $index; $entry['paragraph_index'] = $paragraph['index']; $entries[] = $entry; }
                 $url = preg_match('~https://doi\.org/10\.[0-9]{4,9}/\S+~iu', $paragraph['text']);
@@ -78,6 +82,7 @@ final class ReferenceAnalysis
                 }
             }
         }
+        $fullDateCount=count(array_filter($entries,function($e){return !empty($e['full_date']);}));
         $aliases = InstitutionalAuthors::aliases($bodyTexts, $entries);
         $personalPattern = self::citationPattern($entries);
         $hasInstitutional = count(array_filter($entries, function ($entry) { return ($entry['kind'] ?? null) === 'institutional'; })) > 0;
@@ -136,7 +141,7 @@ final class ReferenceAnalysis
                             $unparsedGroups++;
                         }
                     }
-                    $groupIssues = self::groupIssues($parsed,$entries,$boundaries && !$unparsed && $balanced && $beforeUnparsed === $unparsedGroups);
+                    $groupIssues = self::groupIssues($parsed,$entries,$boundaries && !$unparsed && !$fullDateCount && $balanced && $beforeUnparsed === $unparsedGroups);
                     foreach ($parsed as $parsedIndex => $citation) {
                         $citation['group_issues']=$groupIssues[$parsedIndex]??[];
                         $citation['syntax_complete']=$balanced;
@@ -151,7 +156,7 @@ final class ReferenceAnalysis
             }
         }
         $styleCounts = ['conforme' => 0, 'não conforme' => 0, 'indeterminado' => 0]; $styleSamples = [];
-        $etAlComplete=$etAlContextComplete && $boundaries && !$unparsed && !$unparsedGroups && !$limit && $personalPattern!==null && !count(array_filter($citations,function ($c) { return !empty($c['secondary']) || !empty($c['inside_quotes']); }));
+        $etAlComplete=$etAlContextComplete && !$fullDateCount && $boundaries && !$unparsed && !$unparsedGroups && !$limit && $personalPattern!==null && !count(array_filter($citations,function ($c) { return !empty($c['secondary']) || !empty($c['inside_quotes']); }));
         $etAlCache=[];
         $quoteCounts=['quoted_citation_candidates'=>0,'candidate_count'=>0,'long_candidates'=>0,'boundary_candidates'=>0,'missing_locator_candidates'=>0];
         $bodyByIndex=[];foreach($bodyTexts as $p){$bodyByIndex[$p['index']]=$p['text'];}
@@ -167,12 +172,21 @@ final class ReferenceAnalysis
                 if ($entry['year'] !== $citation['year']) { continue; }
                 if (self::matches($citation, $entry)) { $matches[] = $entry['reference_index']; $matchParagraphs[] = $entry['paragraph_index']; }
             }
-            $suffixIssue=self::suffixIssue($citation,$entries,$boundaries && !$unparsed);
+            $suffixIssue=self::suffixIssue($citation,$entries,$boundaries && !$unparsed && !$fullDateCount);
             if ($suffixIssue!==null) { $weak=true; }
-            if (count($matches) === 1) { $state = 'matched'; $matched++; $used[$matches[0]] = true; }
-            elseif (count($matches) > 1 || $weak) { $state = 'ambiguous'; $ambiguous++; }
+            $fullDateRelated=[];
+            foreach($entries as $entry){if(!empty($entry['full_date']) && self::weakName($entry['authors'][0],$citation['authors'][0]) && (substr($entry['year'],0,4)===substr($citation['year'],0,4) || self::originalCandidate($citation,$entry))){$fullDateRelated[]=$entry;}}
+            $fullDateAmbiguous=false;
+            if($fullDateRelated){
+                $cohort=0;foreach($entries as $entry){if(substr($entry['year'],0,4)===substr($citation['year'],0,4) && self::weakName($entry['authors'][0],$citation['authors'][0])){$cohort++;}}
+                $fullDateAmbiguous=$unparsed>0 || !$boundaries || $cohort!==1 || preg_match('/^[0-9]{4}$/D',$citation['year'])!==1;
+                foreach($fullDateRelated as $entry){if(!empty($entry['original_year']) || !empty($entry['original_year_review'])){$fullDateAmbiguous=true;}}
+            }
+            if (count($matches) === 1 && !$fullDateAmbiguous) { $state = 'matched'; $matched++; $used[$matches[0]] = true; }
+            elseif (count($matches) > 1 || $weak || $fullDateAmbiguous) { $state = 'ambiguous'; $ambiguous++; }
             else { $state = 'unresolved'; $missing++; }
             $styleIssues = $citation['group_issues'] ?? [];
+            if($fullDateRelated){$styleIssues[]='full_date_source_review';}
             $direct=CitationLocator::inspect($bodyByIndex[$citation['paragraph_index']],$citation,count($matches),$language);
             $styleIssues=array_merge($styleIssues,$direct['issues']);
             if($direct['quote_candidate']){$quoteCounts['candidate_count']++;if($direct['long']){$quoteCounts['long_candidates']++;}if($direct['boundary']){$quoteCounts['boundary_candidates']++;}if($direct['missing_locator']){$quoteCounts['missing_locator_candidates']++;}}
@@ -227,7 +241,7 @@ final class ReferenceAnalysis
         if ($unparsedGroups) { $reasons[] = 'unparsed_citation_groups'; }
         if ($numeric) { $reasons[] = 'numeric_citation_candidates'; }
         if ($ambiguous) { $reasons[] = 'ambiguous_author_date_match'; }
-        return ['language'=>$language,'citation_language_profile'=>'declared_pt_en_es_v1','direct_quote_counts'=>$quoteCounts,'direct_quote_review'=>CitationLocator::reviewGuidance($quoteCounts), 'citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
+        return ['full_date_references'=>$fullDateCount,'full_date_matching_profile'=>'unique_personal_author_year_v1','language'=>$language,'citation_language_profile'=>'declared_pt_en_es_v1','direct_quote_counts'=>$quoteCounts,'direct_quote_review'=>CitationLocator::reviewGuidance($quoteCounts), 'citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
             'citation_style_samples_omitted' => max(0, array_sum($styleCounts) - count($styleSamples)), 'segmentation_complete' => $boundaries, 'closed_subset' => $closed, 'inspection_limit_reached' => $limit,
             'et_al_context_complete'=>$etAlComplete,'et_al_cohort_limit'=>32,'compound_name_lookup_complete' => $personalPattern !== null, 'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
             'recognized_citations' => count($citations), 'unparsed_citation_groups' => $unparsedGroups,
@@ -236,6 +250,20 @@ final class ReferenceAnalysis
             'doi_signals' => $doi, 'reasons' => array_values(array_unique($reasons)), 'reference_samples' => $referenceSamples,
             'reference_samples_omitted' => max(0, count($referenceTexts) - count($referenceSamples)),
             'citation_samples' => $samples, 'citation_samples_omitted' => max(0, count($citations) - count($samples))];
+    }
+
+    /** Matcher-only projection of a valid, explicit day/month/year; never changes source text or formatting audit. */
+    private static function fullDateEntry(string $text): ?array
+    {
+        $pattern='[0-9]{4}, (?:[\\p{L}]+ [0-9]{1,2}|[0-9]{1,2} de [\\p{L}]+)';
+        $heads=self::DATE_TOKEN.'|'.self::FULL_DATE_HEAD;
+        if(strlen($text)>8192 || preg_match_all('/\\((?:'.$heads.')\\)\\s*\\.\\s+/iu',$text)!==1
+            || !preg_match('/\\(('.$pattern.')\\)\\.\\s+/iu',$text,$date,PREG_OFFSET_CAPTURE)){return null;}
+        $parts=WebReference::publicationParts($date[1][0]);if($parts===null){return null;}
+        $normalized=substr_replace($text,(string)$parts[0],$date[1][1],strlen($date[1][0]));
+        $entry=self::parseEntry($normalized);if($entry===null){return null;}
+        $entry['content_start']+=strlen($date[1][0])-4;$entry['full_date']=true;
+        return $entry;
     }
 
     public static function parseEntry(string $text): ?array
