@@ -1,0 +1,82 @@
+[
+  {
+    "case": "matching-compound-style incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-style desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-style draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-style does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-style wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-style author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-missing incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-missing desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-missing draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-missing does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-missing wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-missing author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-partial remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-partial has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "matching-compound-partial cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

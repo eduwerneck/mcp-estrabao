@@ -1850,3 +1850,30 @@ operacional da revista. Nenhuma verificação automática de APA é aplicada ao 
 DOC. Variantes fora do subconjunto identificado continuam pendentes.
 Somente laboratório interno e dados sintéticos, com mensagens desativadas; sem
 produção, VM Oracle, comunicação externa, publicação do ambiente ou deploy.
+
+## Etapa 57 — citações EN/ES com idioma declarado
+
+Base 3254cdd (merge PR #57), 20/11/2026. Motor 0.42.0, plugin 0.37.0.0.
+Referências APA 27.0.0, correspondência 14.0.0, citações 12.0.0 e formatos
+17.0.0. Perfis lexicais ampliados sem impor títulos de seções traduzidos.
+
+- 1.875 testes, zero falhas, em PHP 8.4.27 e 8.1.27; 73 casos novos.
+- 462 avisos preexistentes por execução PHP de fixtures de ManuscriptStructure
+  (`numbered`/`reason`), com a mesma contagem/distribuição da Etapa 56.
+- 16 JavaScript, lint de 128 PHP, compilação Python, schemas CLI e links aprovados.
+- 993 verificações OJS integradas: 32 suítes de painéis/APA, mais ciclos
+  DOCX (27), DOC (25) e EN/ES (32). Inclui os 21 modos APA anteriores.
+- O ensaio isolado EN/ES também passou 32 verificações; não foi somado ao total
+  integrado. Os ciclos criam novos rascunhos sintéticos e preservam registros
+  e ponteiro originais; não apagam o histórico anterior nem os novos rascunhos.
+- Citação reconhecida, erro bloqueante, ambiguidade, secundária/apud, correção,
+  nova revisão, arquivo novo e CSRF exercitados no OJS 3.3.0.20 real do laboratório.
+- Liberação assinada para motor/regra anteriores não aprova a nova análise;
+  schemas preservados, contrato da minuta e bridge alinhados às novas versões.
+- Inspeção visual das minutas e revisão; fontes e resultados selecionados em
+  evidence/stage57. Sem manuscritos reais, credenciais ou configurações privadas.
+
+Não infere idioma, identidade ou consulta a fontes. Não certifica APA integral,
+traduções de seções editoriais, fidelidade de transcrições ou datas completas
+no matcher. Ambiguidades e estruturas fora da gramática continuam para revisão.
+Sem produção, VM Oracle, envio externo, publicação do ambiente ou deploy.

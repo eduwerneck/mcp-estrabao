@@ -1,7 +1,7 @@
 """Sequential integration runner for the existing internal synthetic lab only.
 Does not provision, install or upgrade. Default suites are read-only/reversible.
 --with-apa-regression adds the targeted APA suites; --with-submission-cycle creates fresh synthetic drafts and records APA review/
-completion only in the internal lab; --with-doc-cycle adds fresh manual DOC review/completion; no external publication or messages.
+completion only in the internal lab; --with-doc-cycle adds fresh manual DOC review/completion; --with-language-cycle adds EN/ES citation review/completion; no external publication or messages.
 """
 import json,os,subprocess,sys
 from pathlib import Path
@@ -116,3 +116,19 @@ if '--with-doc-cycle' in sys.argv:
  summary['browser_checks']+=len(data)
  (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
  print('PASS fresh DOC cycle ('+str(len(data))+')',flush=True)
+
+# Optional declared-language citation cycle creates its own drafts and restores the lab pointer.
+if '--with-language-cycle' in sys.argv:
+ summary['overall_passed']=False;summary['language_cycle_requested']=True
+ (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
+ directory=ROOT/'language-cycle';directory.mkdir(exist_ok=True)
+ env=os.environ.copy();env['ESTRABAO_LANGUAGE_EVIDENCE_DIR']=str(directory);env['PYTHONPATH']=str(HERE)
+ with (directory/'run.log').open('w')as log:
+  process=subprocess.run([sys.executable,str(HERE/'language-panel.py')],env=env,stdout=log,stderr=subprocess.STDOUT)
+ if process.returncode:raise RuntimeError('Fresh EN/ES cycle failed; inspect its private run.log')
+ data=json.loads((directory/'results.json').read_text())
+ if not data or not all(r['passed']for r in data):raise RuntimeError('Missing or failed EN/ES cycle assertions')
+ summary['overall_passed']=True;summary['language_cycle_checks']=len(data);summary['language_cycle_passed']=True
+ summary['browser_checks']+=len(data)
+ (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
+ print('PASS fresh EN/ES cycle ('+str(len(data))+')',flush=True)

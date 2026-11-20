@@ -1,0 +1,26 @@
+[
+  {
+    "case": "legacy title and subtitle show translated guidance",
+    "passed": true
+  },
+  {
+    "case": "guidance is linked accessibly to both inputs",
+    "passed": true
+  },
+  {
+    "case": "typed acronym text is not rewritten",
+    "passed": true
+  },
+  {
+    "case": "discarded client edit was not automatically saved",
+    "passed": true
+  },
+  {
+    "case": "publication form has title and subtitle guidance",
+    "passed": true
+  },
+  {
+    "case": "title inspection does not change workflow state",
+    "passed": true
+  }
+]
