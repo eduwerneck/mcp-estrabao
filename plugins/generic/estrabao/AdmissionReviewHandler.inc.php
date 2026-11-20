@@ -46,6 +46,17 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $this->renderReview($request, $request->getUserVar('submissionId'), $message);
     }
 
+    function saveEditorialReview($args, $request)
+    {
+        $draft=null;
+        try {
+            require_once __DIR__ . '/EditorialReviewService.inc.php';
+            $draft=(new EstrabaoEditorialReviewService())->save($request,$request->getUserVar('submissionId'));
+            $message='plugins.generic.estrabao.editorialSaved';
+        } catch (\Throwable $error) { $message='plugins.generic.estrabao.editorialNotSaved'; }
+        $this->renderReview($request,$request->getUserVar('submissionId'),$message,$draft);
+    }
+
     private function renderReview($request, $submissionId, $message, $draft = null)
     {
         try { (new EstrabaoAdmissionReviewService())->requireEditor($request); }
@@ -60,6 +71,15 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $manager->assign('downloadReviewUrl', $model && $model['analysis']['fingerprint']
             ? $request->getRouter()->url($request, null, 'estrabaoAdmission', 'download', null,
                 ['submissionId' => $model['submission_id'], 'fingerprint' => $model['analysis']['fingerprint']]) : null);
+        $editorial=null;
+        if ($draft && $model) {
+            try {
+                require_once __DIR__ . '/EditorialReviewService.inc.php';
+                $editorial=(new EstrabaoEditorialReviewService())->view($request,$model['submission_id'],$draft);
+            } catch (\Throwable $error) { $editorial=['available'=>false]; }
+        }
+        $manager->assign('editorialReviewModel',$editorial);
+        $manager->assign('saveEditorialReviewUrl',$request->getRouter()->url($request,null,'estrabaoAdmission','saveEditorialReview'));
         $manager->assign('deskDraftModel', $draft);
         $manager->assign('deskDraftUrl', $request->getRouter()->url($request, null, 'estrabaoAdmission', 'deskDraft'));
         $manager->assign('reviewModel', $model);

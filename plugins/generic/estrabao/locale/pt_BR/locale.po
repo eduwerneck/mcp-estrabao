@@ -239,3 +239,93 @@ msgstr "Conferência de citações diretas"
 
 msgid "plugins.generic.estrabao.fullDateReviewTitle"
 msgstr "Conferência de datas bibliográficas"
+
+msgid "plugins.generic.estrabao.editorialTitle"
+msgstr "Registro da conferência editorial"
+
+msgid "plugins.generic.estrabao.editorialScope"
+msgstr "Registre o que foi conferido nesta análise. Os estados não são preenchidos pelo motor. Este registro não libera a submissão, não muda os resultados da triagem e não substitui a revisão APA."
+
+msgid "plugins.generic.estrabao.editorialCurrent"
+msgstr "Há um registro correspondente a esta análise."
+
+msgid "plugins.generic.estrabao.editorialStale"
+msgstr "O último registro corresponde a outra análise. Confira novamente os itens antes de registrar."
+
+msgid "plugins.generic.estrabao.editorialEmpty"
+msgstr "Nenhuma conferência registrada para esta análise."
+
+msgid "plugins.generic.estrabao.editorialDeclaration"
+msgstr "Confirmo os estados selecionados para o arquivo e os dados desta análise. Este registro não constitui aceite editorial."
+
+msgid "plugins.generic.estrabao.editorialSave"
+msgstr "Salvar conferência"
+
+msgid "plugins.generic.estrabao.editorialSaved"
+msgstr "Conferência editorial registrada. A liberação APA permanece independente."
+
+msgid "plugins.generic.estrabao.editorialNotSaved"
+msgstr "Conferência não salva. Gere novamente a análise e confira os estados selecionados."
+
+msgid "plugins.generic.estrabao.editorialUnavailable"
+msgstr "O registro de conferência está indisponível. A minuta e a revisão APA continuam independentes."
+
+msgid "plugins.generic.estrabao.editorialLimit"
+msgstr "O histórico atingiu o limite de registros. A minuta e a revisão APA continuam disponíveis."
+
+msgid "plugins.generic.estrabao.editorialHistory"
+msgstr "Histórico da conferência editorial"
+
+msgid "plugins.generic.estrabao.editorialMatches"
+msgstr "Registro desta análise."
+
+msgid "plugins.generic.estrabao.editorialOther"
+msgstr "Registro de outra análise."
+
+msgid "plugins.generic.estrabao.editorialState_pending"
+msgstr "Pendente"
+
+msgid "plugins.generic.estrabao.editorialState_reviewed"
+msgstr "Conferido pelo editor"
+
+msgid "plugins.generic.estrabao.editorialState_adjustments"
+msgstr "Necessita ajustes"
+
+msgid "plugins.generic.estrabao.editorialState_not_applicable"
+msgstr "Não se aplica (conferido pelo editor)"
+
+msgid "plugins.generic.estrabao.editorialItem_metadata"
+msgstr "Metadados nos três idiomas"
+
+msgid "plugins.generic.estrabao.editorialItem_abstracts"
+msgstr "Resumos e palavras-chave"
+
+msgid "plugins.generic.estrabao.editorialItem_authors"
+msgstr "Autoria e ORCID"
+
+msgid "plugins.generic.estrabao.editorialItem_structure"
+msgstr "Estrutura e seções"
+
+msgid "plugins.generic.estrabao.editorialItem_length"
+msgstr "Extensão do manuscrito"
+
+msgid "plugins.generic.estrabao.editorialItem_presentation"
+msgstr "Apresentação e títulos"
+
+msgid "plugins.generic.estrabao.editorialItem_visuals"
+msgstr "Figuras, tabelas e gráficos"
+
+msgid "plugins.generic.estrabao.editorialItem_footnotes"
+msgstr "Notas"
+
+msgid "plugins.generic.estrabao.editorialItem_credit"
+msgstr "Contribuições CRediT"
+
+msgid "plugins.generic.estrabao.editorialItem_funding"
+msgstr "Fomento e consistência Word/OJS"
+
+msgid "plugins.generic.estrabao.editorialItem_ethics"
+msgstr "Ética e declaração aplicável"
+
+msgid "plugins.generic.estrabao.editorialItem_ai"
+msgstr "Declaração e finalidade de IA"

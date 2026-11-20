@@ -239,3 +239,93 @@ msgstr "Direct quotation review"
 
 msgid "plugins.generic.estrabao.fullDateReviewTitle"
 msgstr "Bibliographic date review"
+
+msgid "plugins.generic.estrabao.editorialTitle"
+msgstr "Editorial review record"
+
+msgid "plugins.generic.estrabao.editorialScope"
+msgstr "Record what was reviewed in this analysis. The engine does not prefill these states. This record does not release submission, change triage findings or replace APA review."
+
+msgid "plugins.generic.estrabao.editorialCurrent"
+msgstr "A record matches this analysis."
+
+msgid "plugins.generic.estrabao.editorialStale"
+msgstr "The latest record belongs to another analysis. Review the items again before recording."
+
+msgid "plugins.generic.estrabao.editorialEmpty"
+msgstr "No review recorded for this analysis."
+
+msgid "plugins.generic.estrabao.editorialDeclaration"
+msgstr "I confirm the selected states for the file and data in this analysis. This record is not editorial acceptance."
+
+msgid "plugins.generic.estrabao.editorialSave"
+msgstr "Save review record"
+
+msgid "plugins.generic.estrabao.editorialSaved"
+msgstr "Editorial review recorded. APA release remains independent."
+
+msgid "plugins.generic.estrabao.editorialNotSaved"
+msgstr "Review not saved. Generate the analysis again and check the selected states."
+
+msgid "plugins.generic.estrabao.editorialUnavailable"
+msgstr "Review records are unavailable. The draft and APA review remain independent."
+
+msgid "plugins.generic.estrabao.editorialLimit"
+msgstr "The record limit has been reached. The draft and APA review remain available."
+
+msgid "plugins.generic.estrabao.editorialHistory"
+msgstr "Editorial review history"
+
+msgid "plugins.generic.estrabao.editorialMatches"
+msgstr "Record for this analysis."
+
+msgid "plugins.generic.estrabao.editorialOther"
+msgstr "Record for another analysis."
+
+msgid "plugins.generic.estrabao.editorialState_pending"
+msgstr "Pending"
+
+msgid "plugins.generic.estrabao.editorialState_reviewed"
+msgstr "Reviewed by editor"
+
+msgid "plugins.generic.estrabao.editorialState_adjustments"
+msgstr "Needs adjustments"
+
+msgid "plugins.generic.estrabao.editorialState_not_applicable"
+msgstr "Not applicable (reviewed by editor)"
+
+msgid "plugins.generic.estrabao.editorialItem_metadata"
+msgstr "Metadata in all three languages"
+
+msgid "plugins.generic.estrabao.editorialItem_abstracts"
+msgstr "Abstracts and keywords"
+
+msgid "plugins.generic.estrabao.editorialItem_authors"
+msgstr "Authorship and ORCID"
+
+msgid "plugins.generic.estrabao.editorialItem_structure"
+msgstr "Structure and sections"
+
+msgid "plugins.generic.estrabao.editorialItem_length"
+msgstr "Manuscript length"
+
+msgid "plugins.generic.estrabao.editorialItem_presentation"
+msgstr "Presentation and headings"
+
+msgid "plugins.generic.estrabao.editorialItem_visuals"
+msgstr "Figures, tables and charts"
+
+msgid "plugins.generic.estrabao.editorialItem_footnotes"
+msgstr "Notes"
+
+msgid "plugins.generic.estrabao.editorialItem_credit"
+msgstr "CRediT contributions"
+
+msgid "plugins.generic.estrabao.editorialItem_funding"
+msgstr "Funding and Word/OJS consistency"
+
+msgid "plugins.generic.estrabao.editorialItem_ethics"
+msgstr "Ethics and applicable statement"
+
+msgid "plugins.generic.estrabao.editorialItem_ai"
+msgstr "AI declaration and purpose"

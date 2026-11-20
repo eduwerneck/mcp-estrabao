@@ -134,6 +134,45 @@
                 {/if}
             </details>
         </section>
+        {if $editorialReviewModel}
+        <section id="estrabaoEditorialReview" aria-labelledby="estrabaoEditorialTitle">
+            <h3 id="estrabaoEditorialTitle">{translate key="plugins.generic.estrabao.editorialTitle"}</h3>
+            <p>{translate key="plugins.generic.estrabao.editorialScope"}</p>
+            {if $editorialReviewModel.available}
+                {if $editorialReviewModel.current}<p id="estrabaoEditorialCurrent">{translate key="plugins.generic.estrabao.editorialCurrent"}</p>
+                {elseif $editorialReviewModel.has_history}<p id="estrabaoEditorialStale">{translate key="plugins.generic.estrabao.editorialStale"}</p>
+                {else}<p>{translate key="plugins.generic.estrabao.editorialEmpty"}</p>{/if}
+                <form id="estrabaoEditorialForm" method="post" action="{$saveEditorialReviewUrl|escape}">
+                    {csrf}
+                    <input type="hidden" name="submissionId" value="{$reviewModel.submission_id|escape}">
+                    <input type="hidden" name="fingerprint" value="{$reviewModel.analysis.fingerprint|escape}">
+                    <input type="hidden" name="manuscriptType" value="{$deskDraftModel.manuscript_type|escape}">
+                    <input type="hidden" name="editorialFingerprint" value="{$editorialReviewModel.fingerprint|escape}">
+                    <input type="hidden" name="editorialRevision" value="{$editorialReviewModel.revision|escape}">
+                    {foreach from=$editorialReviewModel.items item=check}
+                    <p><label for="estrabaoEditorial_{$check.id|escape}">{translate key="plugins.generic.estrabao.{$check.label}"}</label>
+                    <select id="estrabaoEditorial_{$check.id|escape}" name="editorialStates[{$check.id|escape}]">
+                        <option value="pending"{if $check.state == 'pending'} selected{/if}>{translate key="plugins.generic.estrabao.editorialState_pending"}</option>
+                        <option value="reviewed"{if $check.state == 'reviewed'} selected{/if}>{translate key="plugins.generic.estrabao.editorialState_reviewed"}</option>
+                        <option value="adjustments"{if $check.state == 'adjustments'} selected{/if}>{translate key="plugins.generic.estrabao.editorialState_adjustments"}</option>
+                        {if $check.conditional}<option value="not_applicable"{if $check.state == 'not_applicable'} selected{/if}>{translate key="plugins.generic.estrabao.editorialState_not_applicable"}</option>{/if}
+                    </select></p>
+                    {/foreach}
+                    {if $editorialReviewModel.can_save}
+                    <label><input type="checkbox" name="editorialReviewed" value="1" required> {translate key="plugins.generic.estrabao.editorialDeclaration"}</label>
+                    <button type="submit">{translate key="plugins.generic.estrabao.editorialSave"}</button>
+                    {else}<p>{translate key="plugins.generic.estrabao.editorialLimit"}</p>{/if}
+                </form>
+                <details id="estrabaoEditorialHistory"><summary>{translate key="plugins.generic.estrabao.editorialHistory"}</summary>
+                <ul>{foreach from=$editorialReviewModel.events item=event}
+                    <li>{$event.display_time|escape} — {translate key="plugins.generic.estrabao.reviewEditor"} {$event.reviewer_id|escape};
+                    {if $event.manuscript_type == 'article'}{translate key="plugins.generic.estrabao.deskArticle"}{else}{translate key="plugins.generic.estrabao.deskCommunication"}{/if}.
+                    {if $event.matches_analysis}{translate key="plugins.generic.estrabao.editorialMatches"}{else}{translate key="plugins.generic.estrabao.editorialOther"}{/if}
+                    <ul>{foreach from=$event.states key=itemId item=state}<li>{translate key="plugins.generic.estrabao.editorialItem_$itemId"}: {translate key="plugins.generic.estrabao.editorialState_$state"}</li>{/foreach}</ul></li>
+                {foreachelse}<li>{translate key="plugins.generic.estrabao.editorialEmpty"}</li>{/foreach}</ul></details>
+            {else}<p>{translate key="plugins.generic.estrabao.editorialUnavailable"}</p>{/if}
+        </section>
+        {/if}
         <script>
         {literal}
         (function () {

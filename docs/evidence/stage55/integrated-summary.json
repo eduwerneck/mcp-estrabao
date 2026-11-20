@@ -1,0 +1,94 @@
+{
+  "overall_passed": true,
+  "requested_fresh_cycle": true,
+  "base_commit": "9f9dacedcb2ee67f594dbf705bbcb9d200a0e75b",
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.35.0.0",
+    "plugin_files": "0.35.0.0",
+    "engine": "0.41.0"
+  },
+  "suite_count": 11,
+  "browser_checks": 131,
+  "suites": [
+    {
+      "suite": "desk-panel.py",
+      "arguments": [],
+      "checks": 13,
+      "passed": true
+    },
+    {
+      "suite": "editorial-panel.py",
+      "arguments": [],
+      "checks": 26,
+      "passed": true
+    },
+    {
+      "suite": "apa-mixed.py",
+      "arguments": [],
+      "checks": 5,
+      "passed": true
+    },
+    {
+      "suite": "footnote-panel.py",
+      "arguments": [],
+      "checks": 9,
+      "passed": true
+    },
+    {
+      "suite": "article-dates.py",
+      "arguments": [],
+      "checks": 10,
+      "passed": true
+    },
+    {
+      "suite": "credit-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "funding-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ethics-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ai-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "title-guidance.py",
+      "arguments": [],
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "suite": "reference-guidance.py",
+      "arguments": [],
+      "checks": 19,
+      "passed": true
+    }
+  ],
+  "workflow_state_preserved": true,
+  "fixture_mode": "synthetic_only",
+  "production_accessed": false,
+  "external_messages_sent": false,
+  "apa_regression_requested": false,
+  "limitations": [
+    "default_theme_only",
+    "no_operational_production_homologation"
+  ],
+  "fresh_cycle_checks": 27,
+  "fresh_cycle_passed": true,
+  "original_workflow_records_preserved": true
+}

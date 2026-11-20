@@ -70,3 +70,8 @@ correções APA no formulário, conforme STAGE15.md.
 
 O documento real usado para aprovar a redação, sua carta específica e suas notas
 internas ficam fora do repositório e das fixtures. Nenhuma comunicação foi enviada.
+
+A [Etapa 55](STAGE55.md) acrescenta registro privado e separado de conferência
+editorial. Seus estados não são inseridos na carta copiada e não alteram os
+resultados usados na minuta. Salvar a conferência não envia a devolutiva nem
+libera APA; o editor continua responsável por revisar os motivos aplicáveis.

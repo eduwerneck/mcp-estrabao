@@ -40,7 +40,7 @@ command(['docker','exec','estrabao-lab-15-web','sh','-c','find cache -maxdepth 1
 def state():return command(['docker','exec','estrabao-lab-15-web','php','/tmp/state-query.php'])
 before=state();suites=[]
 # Each suite creates its own sessions. Fixtures restore bytes/records in finally.
-plan=[('desk-panel.py','ESTRABAO_DESK_EVIDENCE_DIR'),('apa-mixed.py','ESTRABAO_APA_EVIDENCE_DIR'),
+plan=[('desk-panel.py','ESTRABAO_DESK_EVIDENCE_DIR'),('editorial-panel.py','ESTRABAO_EDITORIAL_EVIDENCE_DIR'),('apa-mixed.py','ESTRABAO_APA_EVIDENCE_DIR'),
  ('footnote-panel.py','ESTRABAO_FOOTNOTE_EVIDENCE_DIR'),('article-dates.py','ESTRABAO_DATE_EVIDENCE_DIR'),
  ('credit-panel.py','ESTRABAO_CREDIT_EVIDENCE_DIR'),('funding-panel.py','ESTRABAO_FUNDING_EVIDENCE_DIR'),
  ('ethics-panel.py','ESTRABAO_ETHICS_EVIDENCE_DIR'),('ai-panel.py','ESTRABAO_AI_EVIDENCE_DIR'),
