@@ -247,3 +247,14 @@ Python e schemas CLI aprovados. Os 462 avisos PHP de fixtures de estrutura
 são idênticos aos da Etapa 57. Liberações anteriores exigem nova revisão
 do motor. Evidências em evidence/stage58; meses/autorias/datas fora da gramática
 e homologação operacional continuam pendentes. Sem implantação na revista.
+
+## Atualização da Etapa 59
+
+Motor 0.44.0 e plugin 0.39.0.0 reconhecem s.f./en prensa com conferência privada,
+sem confirmar publicação/edição. 1138 verificações OJS aprovadas em 32 suítes
+e ciclos DOCX/DOC/EN/ES/datas completas/marcadores espanhóis, incluindo os 21 modos
+APA anteriores. 2.120 testes por PHP (8.4.27/8.1.27), 16 JavaScript, lint de 132 PHP,
+compilação Python e schemas CLI aprovados. Os 462 avisos PHP de fixtures de
+estrutura são idênticos aos da Etapa 58. Liberações antigas precisam de nova
+revisão do motor. Evidências em evidence/stage59; variantes e homologação
+operacional continuam pendentes. Sem implantação na revista.

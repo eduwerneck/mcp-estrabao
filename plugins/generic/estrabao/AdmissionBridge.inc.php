@@ -102,7 +102,7 @@ class EstrabaoAdmissionBridge
                 ];
                 $reviewable = $decision !== 'not_accepted' && ($result['evidence']['source_available'] ?? false)
                     && $binding['submission_file_id'] > 0 && $binding['file_id'] > 0
-                    && $binding['rule_version'] === '28.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
+                    && $binding['rule_version'] === '29.0.0' && $binding['policy_version'] === 'apa-required-2026-11-12';
                 $corrections = [];
                 foreach ($result['evidence']['style_audit']['samples'] ?? [] as $sample) {
                     foreach ($sample['checks'] ?? [] as $entryCheck) {
@@ -132,7 +132,7 @@ class EstrabaoAdmissionBridge
                 if (($matching['closed_subset'] ?? false) && ($matching['unresolved_citations'] ?? 0) > 0) {
                     $corrections[] = 'Conferir autoria, ano e sufixo das citações sem referência correspondente. Em citações secundárias, conferir a fonte efetivamente consultada.';
                 }
-                $response = ['full_date_review'=>$result['evidence']['style_audit']['full_date_review']??[], 'direct_quote_review'=>$matching['direct_quote_review']??[], 'decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
+                $response = ['special_date_review'=>(($matching['special_date_citations']??0)+($matching['special_date_references']??0))>0,'full_date_review'=>$result['evidence']['style_audit']['full_date_review']??[], 'direct_quote_review'=>$matching['direct_quote_review']??[], 'decision' => $decision, 'corrections' => array_slice(array_values(array_unique($corrections)), 0, 5),
                     'fingerprint' => hash('sha256', json_encode($binding)),
                     'binding' => $binding, 'reviewable' => $reviewable];
                 if ($includeDocument) { $response['document'] = $document; }

@@ -1909,3 +1909,34 @@ autoria pessoal com dia/mês/ano reconhecidos pelo calendário EN/PT existente;
 meses espanhóis, instituições e datas/edições fora da gramática continuam humanos.
 Não certifica APA integral. Sem produção, VM Oracle, envio externo, publicação
 do ambiente ou deploy.
+
+## Etapa 59 — marcadores espanhóis de data
+
+Base ac26b55 (merge PR #59), 20/11/2026. Motor 0.44.0, plugin 0.39.0.0.
+APA 29.0.0, correspondência 16.0.0, formatos 18.0.0 e citações 14.0.0.
+
+- 2.120 testes, zero falhas, em PHP 8.4.27 e 8.1.27: 138 casos novos. Dois
+  casos antigos de s.f. não reconhecido foram atualizados para outra variante
+  fora da gramática; a nova cobertura testa explicitamente s.f./en prensa.
+- Os 462 avisos preexistentes por execução PHP de fixtures de estrutura
+  (numbered/reason) são idênticos aos da Etapa 58; nenhum aviso novo na comparação.
+- 16 JavaScript, lint de 132 PHP, compilação Python, schemas CLI, chaves de locale
+  e links documentais aprovados.
+- 1138 verificações OJS integradas: 32 suítes, incluindo os 21 modos APA,
+  mais ciclos DOCX (27), DOC (25), EN/ES (32), datas completas
+  (47) e marcadores espanhóis (98). Ensaio isolado: 92, sem somá-lo ao total.
+- Os dois marcadores nos três perfis: ligação, erro bloqueante, ficha privada,
+  divergência/sufixo, equivalência, apud, revisão humana, troca de arquivo,
+  CSRF e conclusão exercitados. A ficha também é conferida no caso divergente.
+- Contadores de referências e citações independem das 32 amostras; marcador só
+  na referência orienta o editor sem gerar ano. Assinatura anterior não libera
+  a nova análise. Conteúdo original preservado nos testes e sem consulta externa.
+- Registros e ponteiro originais preservados; os novos rascunhos são sintéticos.
+  Evidências e manifesto em evidence/stage59, sem credenciais ou configurações
+  privadas. Nenhum manuscrito real foi usado.
+
+A equivalência é lexical, sem comprovar estado real da publicação ou identidade/
+edição. Não atribui sufixos, não gera anos e não traduz o arquivo. Variantes
+fora da gramática e meses espanhóis permanecem pendentes. Não certifica APA
+integral nem a operação real da revista. Sem produção, VM Oracle, envio externo,
+publicação do ambiente ou deploy.

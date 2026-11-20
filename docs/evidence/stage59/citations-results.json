@@ -1,0 +1,58 @@
+[
+  {
+    "case": "citation-many incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "citation-many desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "citation-many draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "citation-many does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "citation-many wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "citation-many author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "citation-period incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "citation-period desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "citation-period draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "citation-period does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "citation-period wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "citation-period author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

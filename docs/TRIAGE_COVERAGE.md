@@ -27,6 +27,10 @@ Atualização posterior da [Etapa 58](STAGE58.md): o matcher liga datas completa
 pessoais reconhecidas a autor–ano em contexto único; ambiguidades/edições/sufixos
 continuam humanos. Os limites do calendário e da auditoria de formato permanecem.
 
+Atualização posterior da [Etapa 59](STAGE59.md): s.f./en prensa passam a ser
+reconhecidos como estados declarados, com equivalência de chaves e conferência
+privada. Isso não comprova ausência de data, publicação ou edição real.
+
 ## Conclusão principal
 
 **Diagnóstico no relatório não equivale a bloqueio na entrada.** O bloqueio

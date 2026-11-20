@@ -1,0 +1,222 @@
+[
+  {
+    "case": "quote-range incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "quote-range desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "quote-range draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "quote-range does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "quote-range wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "quote-range author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "quote-marker incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "quote-marker desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "quote-marker draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "quote-marker does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "quote-marker wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "quote-marker author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "quote-single incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "quote-single desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "quote-single draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "quote-single does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "quote-single wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "quote-single author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "quote-short remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-short has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-short has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-short private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-short cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "quote-long remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-long has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-long has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-long private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-long cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "quote-boundary remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-boundary has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-boundary has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-boundary private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-boundary cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "quote-missing remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-missing has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-missing has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-missing private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-missing cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "quote-paragraph remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-paragraph has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-paragraph has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-paragraph private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-paragraph cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "quote-time remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-time has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-time has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-time private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-time cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "quote-nested remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "quote-nested has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "quote-nested has private direct quotation guidance",
+    "passed": true
+  },
+  {
+    "case": "quote-nested private guidance does not copy quoted text",
+    "passed": true
+  },
+  {
+    "case": "quote-nested cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

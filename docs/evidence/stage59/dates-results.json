@@ -1,0 +1,130 @@
+[
+  {
+    "case": "special-style incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "special-style desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "special-style draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "special-style does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "special-style wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "special-style author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "special-missing incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "special-missing desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "special-missing draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "special-missing does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "special-missing wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "special-missing author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "special-apud incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "special-apud desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "special-apud draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "special-apud does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "special-apud wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "special-apud author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "special-undated remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "special-undated has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "special-undated cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "special-press remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "special-press has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "special-press cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "special-divergent remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "special-divergent has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "special-divergent cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "special-suffix remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "special-suffix has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "special-suffix cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

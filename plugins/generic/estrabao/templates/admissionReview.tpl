@@ -20,6 +20,12 @@
         {else}
             <p>{translate key="plugins.generic.estrabao.apaReviewRequired"}</p>
         {/if}
+        {if isset($reviewModel.analysis.special_date_review) && $reviewModel.analysis.special_date_review}
+        <section id="estrabaoSpecialDateReview" aria-labelledby="estrabaoSpecialDateTitle">
+            <h3 id="estrabaoSpecialDateTitle">{translate key="plugins.generic.estrabao.specialDateReviewTitle"}</h3>
+            <p>{translate key="plugins.generic.estrabao.specialDateReviewInstructions"}</p>
+        </section>
+        {/if}
         {if isset($reviewModel.analysis.full_date_review) && $reviewModel.analysis.full_date_review}
             <section id="estrabaoFullDateReview" aria-labelledby="estrabaoFullDateTitle">
                 <h3 id="estrabaoFullDateTitle">{translate key="plugins.generic.estrabao.fullDateReviewTitle"}</h3>
