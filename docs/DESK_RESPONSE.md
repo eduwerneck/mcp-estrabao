@@ -75,3 +75,8 @@ A [Etapa 55](STAGE55.md) acrescenta registro privado e separado de conferência
 editorial. Seus estados não são inseridos na carta copiada e não alteram os
 resultados usados na minuta. Salvar a conferência não envia a devolutiva nem
 libera APA; o editor continua responsável por revisar os motivos aplicáveis.
+
+Na via `.doc` da [Etapa 56](STAGE56.md), o texto Word não é extraído: os critérios
+do manuscrito permanecem inconclusivos. Metadados disponíveis podem alimentar
+a minuta, sem alegar ausência de conteúdo não lido. A conferência humana APA
+fica no histórico privado e não é enviada ao autor automaticamente.

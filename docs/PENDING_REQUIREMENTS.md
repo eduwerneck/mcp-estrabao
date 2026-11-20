@@ -11,7 +11,7 @@ não é uma autorização para ampliar automaticamente o bloqueio de admissão.
 | Locales | Confirmar códigos configurados no OJS e mapeamento para pt_BR/en_US/es_ES, inclusive variantes regionais. |
 | Autoria | Snapshot lê a coleção de autores disponível na publicação corrente para conferir ORCID. Completude/ordem real, nomes, múltiplas afiliações e contribuição significativa continuam para conferência; não há limite numérico editorial de autores. |
 | ORCID | Política de normalização e verificação autenticada de identidade; autorização explícita antes de consulta externa. |
-| Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); Etapa 18 acrescenta normalização de marcadores Word e perfil de texto parcial para imagens/tabelas simples. `.doc`, títulos equivalentes e conteúdos complexos continuam pendentes. |
+| Manuscrito Word | Revista sem template; aceita .doc e .docx. Estrutura e limites por tipo registrados em EDITORIAL_POLICY.md. Extração DOCX e seções implementadas com cobertura limitada (STAGE3.md); Etapa 18 acrescenta normalização de marcadores Word e perfil de texto parcial para imagens/tabelas simples. Etapa 56 oferece via humana vinculada para um subconjunto Word `.doc`; leitura automática, variantes não identificadas, títulos equivalentes e conteúdos complexos continuam pendentes. |
 | Extração segura | Limites ZIP/XML e falhas indeterminadas implementados em STAGE3.md; estilos/herança dos títulos resolvidos no subconjunto de STAGE4.md; Etapa 18 amplia cobertura de texto Word com figuras/tabelas simples e registra exclusões, sem certificar leitura integral. Listas vinculadas e scripts complexos continuam pendentes. Página e tipografia declaradas implementadas no subconjunto de STAGE5.md; intervalo de extensão com exclusões em STAGE6.md, sem convenção editorial oficial de palavra. |
 | Figuras/tabelas | Inventário e limite das comunicações implementados no subconjunto de STAGE7.md; confirmar unidades de figuras compostas, função editorial, associação de legendas e ampliar formatos/cobertura. |
 | Caixa de títulos | Escopo confirmado para metadados e manuscrito; sinalização local em STAGE8.md, sem reescrita. Etapa 19 acrescenta orientação nos formulários OJS e reconhecimento de título/subtítulo combinados no Word. Homologação no tema/CSS da revista e tratamento semântico de siglas continuam pendentes. |
@@ -84,3 +84,11 @@ CRediT, fomento, ética e IA. Não armazena provas anexas nem certifica o conte�
 conferido. A liberação APA e a política de bloqueio continuam independentes.
 As prioridades seguintes (.doc, idiomas/datas e homologação operacional)
 continuam pendentes e devem ser tratadas em entregas separadas.
+
+## Atualização após a Etapa 56
+
+[STAGE56.md](STAGE56.md) entrega a primeira via humana para `.doc` identificável,
+sem conversão exigida ou verificação automática de APA. CFB v4, mini-stream de
+WordDocument, arquivos protegidos/não reconhecidos e outros limites continuam
+pendentes de encaminhamento; a aceitação editorial de `.doc` foi preservada.
+Citações/correspondência EN/ES, datas e homologação operacional seguem na fila.

@@ -126,7 +126,7 @@ class EstrabaoAdmissionReviewService
             || !hash_equals($analysis['fingerprint'], $fingerprint)
             || ($analysis['binding']['file_id'] ?? 0) <= 0) { throw new RuntimeException('review_stale_or_blocked'); }
         // The file id is server-resolved and belongs to this authorized submission.
-        Services::get('file')->download($analysis['binding']['file_id'], 'manuscrito.docx', false);
+        Services::get('file')->download($analysis['binding']['file_id'], (($analysis['source_format']??null)==='doc' ? 'manuscrito.doc' : 'manuscrito.docx'), false);
     }
 
     function save($request, $submissionId)
@@ -147,20 +147,23 @@ class EstrabaoAdmissionReviewService
                 if ($action === 'approve') {
                     $analysis = (new EstrabaoAdmissionBridge())->analyze($form);
                     if (!$analysis['fingerprint'] || !hash_equals($fingerprint, $analysis['fingerprint'])
-                        || count($ledger['events']) >= 99 || !($analysis['reviewable'] ?? false)) { throw new RuntimeException('review_stale_or_blocked'); }
+                        || count($ledger['events']) >= 99 || !($analysis['reviewable'] ?? false)
+                        || (($analysis['review_mode']??null)==='doc_manual_v1' && $request->getUserVar('docOpened')!=='1')) { throw new RuntimeException('review_stale_or_blocked'); }
                 } else {
                     // Revocation must remain possible even after the manuscript becomes unreadable.
                     $last = end($ledger['events']);
                     if (!$last || !hash_equals($fingerprint, $last['fingerprint'])) { throw new RuntimeException('review_stale_or_blocked'); }
                 }
+                $mode=$action==='approve' ? ($analysis['review_mode']??null) : ($last['review_mode']??null);
                 $ledger['events'][] = ['sequence' => count($ledger['events']) + 1, 'action' => $action,
                     'reviewer_id' => (int) $request->getUser()->getId(), 'recorded_at' => gmdate('Y-m-d\TH:i:s\Z'),
                     'fingerprint' => $fingerprint];
+                if($mode!==null){$ledger['events'][count($ledger['events'])-1]['review_mode']=$mode;}
                 return true;
             });
     }
 
-    /** A human release never overrides a proven APA failure or an unreadable source. */
+    /** A human release never overrides a proven APA failure or a source without an eligible review route. */
     function allows($form, array $analysis)
     {
         if (!($analysis['reviewable'] ?? false) || !$analysis['fingerprint']
@@ -171,6 +174,7 @@ class EstrabaoAdmissionReviewService
                 if (count($ledger['events']) >= 100) { return false; }
                 $last = end($ledger['events']);
                 return $last && $last['action'] === 'approve' && hash_equals($last['fingerprint'], $analysis['fingerprint'])
+                    && ($last['review_mode']??null)===($analysis['review_mode']??null)
                     && DAORegistry::getDAO('RoleDAO')->userHasRole($form->context->getId(), $last['reviewer_id'], ROLE_ID_MANAGER);
             });
     }

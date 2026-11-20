@@ -1820,3 +1820,33 @@ Os 21 modos específicos APA da Etapa 53 não foram reexecutados. Não certifica
 APA integral, veracidade da declaração humana ou a operação real da revista.
 Somente fixtures sintéticas no laboratório interno, mensagens desativadas; sem
 produção, VM Oracle, comunicação com autores, publicação do ambiente ou deploy.
+
+## Etapa 56 — conferência humana de Word .doc
+
+Base 3409742 (merge PR #56), 20/11/2026. Plugin 0.36.0.0 e motor 0.41.0.
+Identificação binária limitada, sem extração de texto, seguida de abertura/leitura
+e revisão APA declaradas pelo gerente, registradas por versão.
+
+- 1.802 testes, zero falhas, em PHP 8.4.27 e 8.1.27; 43 casos novos.
+- 462 avisos preexistentes por execução PHP em fixtures de ManuscriptStructure
+  (`numbered`/`reason` ausentes), com mesma contagem/distribuição da Etapa 55.
+  Não houve mudança nesse motor ou novos avisos nessa comparação.
+- 16 JavaScript; lint de 126 PHP, compilação Python, schemas CLI de relatório e
+  minuta, unicidade de chaves de tradução e links documentais aprovados.
+- 156 verificações OJS integradas: 104 nos 11 painéis, 27 no ciclo DOCX, 25 no DOC.
+- Repetição final DOC: 25 verificações após rechecagem limitada/ajuste visual,
+  sem somá-las novamente ao total integrado.
+- Download autorizado com extensão correta, duas declarações obrigatórias,
+  CSRF/permissões/replay, histórico privado, conclusão/revogação, arquivo novo,
+  fonte protegida, preservação dos registros e ponteiro originais exercitados.
+- Word 97 produzido somente de RTF sintético, reaberto/exportado para texto e
+  comparado com a fonte conhecida. Casos adversos gerados sem conteúdo ativo.
+- Inspeção visual dos avisos ao editor e autor. Motor/contratos idênticos à base;
+  manifesto e evidências selecionadas em evidence/stage56.
+
+Não houve regressão dos 21 modos APA específicos nesta etapa, validação semântica
+de abertura por um editor real, certificação integral de APA/ABNT ou homologação
+operacional da revista. Nenhuma verificação automática de APA é aplicada ao texto
+DOC. Variantes fora do subconjunto identificado continuam pendentes.
+Somente laboratório interno e dados sintéticos, com mensagens desativadas; sem
+produção, VM Oracle, comunicação externa, publicação do ambiente ou deploy.

@@ -133,3 +133,12 @@ diacríticos/partículas, apresentação inicial de siglas, prefixos mínimos es
 variantes de citações diretas/localizadores fora das Etapas 45–46 e datas completas/originais. Conferência do teor,
 da autoria, da fonte consultada e da existência dos dados permanece humana.
 Não tratar esses itens como concluídos por ausência de falha automática.
+
+## Word .doc — via humana da Etapa 56
+
+A [Etapa 56](STAGE56.md) distingue uma via explícita de conferência humana para
+um subconjunto de Word binário. Não aplica detecção automática de APA/ABNT ao
+conteúdo `.doc`; exige declaração de abertura/leitura e conferência APA/diretrizes,
+com histórico e vínculo da versão. Não libera por extensão nem substitui falha
+comprovada em DOCX. A revisão humana não certifica o comportamento semântico
+do arquivo; variantes não identificadas continuam pendentes.

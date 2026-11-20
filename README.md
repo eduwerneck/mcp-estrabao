@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 55 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 56 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). O conjunto foi
 validado no laboratório OJS isolado; o tema e a infraestrutura reais da revista
 ainda não foram homologados. Não há certificação completa de APA ou servidor MCP.
@@ -212,3 +212,8 @@ isolada; não altera o bloqueio nem publica mudanças na revista.
 A [Etapa 55](docs/STAGE55.md) registra a conferência editorial de 12 grupos
 fora de APA, com estados explícitos, responsável e histórico privado vinculado
 à análise. Não substitui a liberação APA nem cria novos bloqueios automáticos.
+
+A [Etapa 56](docs/STAGE56.md) acrescenta conferência humana explícita para
+um subconjunto de Word `.doc`, com download vinculado e histórico da revisão.
+Não exige conversão nem extrai texto/valida APA automaticamente nesses arquivos.
+Variantes não identificadas continuam pendentes, sem rejeição por extensão.

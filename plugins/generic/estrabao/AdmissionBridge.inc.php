@@ -56,6 +56,29 @@ class EstrabaoAdmissionBridge
         }
         $language = ['pt_BR' => 'pt', 'en_US' => 'en', 'es_ES' => 'es'][$submission->getLocale()] ?? null;
         if (!$language) { return ['decision' => 'manual_review_required', 'fingerprint' => null]; }
+        if (strtolower(pathinfo($path, PATHINFO_EXTENSION)) === 'doc') {
+            require_once __DIR__ . '/LegacyDocSource.inc.php';
+            $document=(new EstrabaoLegacyDocSource())->read($path);
+            $before=$document['sha256'];
+            if (!($document['manual_source_identified']??false) || !$before) {
+                return ['decision'=>'manual_review_required','fingerprint'=>null,'reviewable'=>false,'source_format'=>'doc'];
+            }
+            // Recheck with the same bounded probe; never hash an oversized/changed file unboundedly.
+            clearstatcache(true,$path); $freshDocument=(new EstrabaoLegacyDocSource())->read($path);
+            $after=$freshDocument['sha256'];
+            if (!($freshDocument['manual_source_identified']??false) || !$after || !hash_equals($before,$after)) {
+                return ['decision'=>'manual_review_required','fingerprint'=>null,'reviewable'=>false,'source_format'=>'doc'];
+            }
+            $binding=['context_id'=>(int)$context->getId(),'submission_id'=>(int)$submission->getId(),
+                'submission_file_id'=>(int)$file->getId(),'file_id'=>(int)$file->getData('fileId'),
+                'document_sha256'=>$before,'language'=>$language,'engine_version'=>\Estrabao\Reporting\Report::ENGINE_VERSION,
+                'policy_version'=>'apa-required-2026-11-12','review_mode'=>EstrabaoLegacyDocSource::MODE];
+            $response=['decision'=>'manual_review_required','fingerprint'=>hash('sha256',json_encode($binding)),
+                'binding'=>$binding,'reviewable'=>$binding['submission_file_id']>0 && $binding['file_id']>0,
+                'source_format'=>'doc','review_mode'=>EstrabaoLegacyDocSource::MODE,'corrections'=>[]];
+            if($includeDocument){$response['document']=$document;}
+            return $response;
+        }
         $before = hash_file('sha256', $path);
         $document = (new \Estrabao\Document\DocxReader())->read($path);
         $checks = (new \Estrabao\Rules\References($document, $language))->evaluate(
