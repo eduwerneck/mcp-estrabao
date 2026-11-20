@@ -1,0 +1,94 @@
+[
+  {
+    "case": "model-book incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "model-book desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "model-book draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "model-book does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "model-book wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "model-book author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "model-chapter incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "model-chapter desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "model-chapter draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "model-chapter does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "model-chapter wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "model-chapter author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "model-article incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "model-article desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "model-article draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "model-article does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "model-article wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "model-article author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "model-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "model-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "model-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

@@ -85,3 +85,8 @@ A [Etapa 57](STAGE57.md) inclui incompatibilidades comprovadas das citações
 EN/ES na minuta reconhecida pelas novas versões de regra. Ambiguidades de
 idioma e contexto permanecem reservadas à revisão; a carta continua revisável
 e em português, sem tradução ou envio automático.
+
+Na [Etapa 58](STAGE58.md), data completa reconhecida pode fornecer uma chave
+para a citação autor–ano. A minuta não acusa ausência quando há candidata
+ambígua, nem atribui letras/identidade; conferências da data/fonte ficam para
+revisão. Uma incompatibilidade independente comprovada continua comunicável.

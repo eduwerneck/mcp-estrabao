@@ -1877,3 +1877,35 @@ Não infere idioma, identidade ou consulta a fontes. Não certifica APA integral
 traduções de seções editoriais, fidelidade de transcrições ou datas completas
 no matcher. Ambiguidades e estruturas fora da gramática continuam para revisão.
 Sem produção, VM Oracle, envio externo, publicação do ambiente ou deploy.
+
+## Etapa 58 — correspondência com datas completas
+
+Base 7632136 (merge PR #58), 20/11/2026. Motor 0.43.0, plugin 0.38.0.0.
+APA 28.0.0, correspondência 15.0.0 e citações 13.0.0; formatos 17.0.0 preservados.
+
+- 1.982 testes, zero falhas, em PHP 8.4.27 e 8.1.27: 108 casos novos; um
+  caso anterior de data não reconhecida foi substituído pela nova cobertura.
+- Os 462 avisos preexistentes por execução PHP, de fixtures de estrutura
+  (numbered/reason), são idênticos aos da Etapa 57. Nenhum aviso novo na comparação.
+- 16 JavaScript; lint de 130 PHP, compilação Python, schemas CLI e links aprovados.
+- 1037 verificações OJS integradas em 32 suítes, incluindo os 21 modos APA,
+  mais ciclos DOCX (27), DOC (25), EN/ES (32) e datas completas
+  (44). Ensaio inicial de datas: 44; repetição final: 47, sem somá-los ao total.
+  Os três novos casos nativos de referências coladas entraram na repetição final;
+  os PHPs também foram reexecutados após essa proteção.
+- Ciclo combinado agora lê nove referências, incluindo duas datas completas
+  antes indeterminadas, mantendo sete citações ligadas e nenhuma nova falha de estilo.
+- Ligação única, duplicatas/coortes, sufixos, calendário, edição original,
+  referências coladas e proteção contra novas provas de et al./ordenação cobertos.
+- No OJS: erro local bloqueante, minuta, ambiguidade, revisão explícita, troca
+  de arquivo mesmo com bytes iguais, CSRF e conclusão nos três perfis.
+- Registros e ponteiro originais preservados; novos rascunhos são sintéticos.
+  Inspeção visual e manifesto/evidências em evidence/stage58, sem credenciais
+  ou configurações privadas. Nenhum manuscrito real foi usado.
+
+Datas não são completadas ou reescritas, nem sufixos/identidades atribuídos.
+O parser de formato e os contratos permanecem iguais. Projeção apenas de
+autoria pessoal com dia/mês/ano reconhecidos pelo calendário EN/PT existente;
+meses espanhóis, instituições e datas/edições fora da gramática continuam humanos.
+Não certifica APA integral. Sem produção, VM Oracle, envio externo, publicação
+do ambiente ou deploy.

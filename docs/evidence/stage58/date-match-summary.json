@@ -1,0 +1,11 @@
+{
+  "overall_passed": true,
+  "checks": 44,
+  "engine": "0.43.0",
+  "plugin": "0.38.0.0",
+  "fixture_mode": "fresh_synthetic_only",
+  "original_records_preserved": true,
+  "production_accessed": false,
+  "external_messages_sent": false,
+  "full_apa_validation": false
+}

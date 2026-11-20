@@ -1,0 +1,154 @@
+[
+  {
+    "case": "year-suffix incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "year-suffix desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "year-suffix draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "year-suffix does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "year-suffix wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "year-suffix author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-late incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-late desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-late draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-late does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-late wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-late author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "year-order incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "year-order desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "year-order draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "year-order does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "year-order wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "year-order author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "work-order incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "work-order desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "work-order draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "work-order does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "work-order wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "work-order author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "year-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "year-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "year-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "year-authorship remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "year-authorship has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "year-authorship cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-ambiguous remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-ambiguous has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "year-suffix-ambiguous cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "year-partial-suffix remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "year-partial-suffix has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "year-partial-suffix cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

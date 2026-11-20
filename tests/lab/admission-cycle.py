@@ -50,7 +50,7 @@ try:
  def inspect_corrected():return json.loads(subprocess.check_output(['docker','exec','-e','ESTRABAO_SYNTHETIC_LAB=1','estrabao-lab-15-web','php','/tmp/replace.php','--inspect-corrected']))
  corrected=inspect_corrected();analysis=corrected['analysis']
  check('correction uses a new server file',int(corrected['file_id'])!=int(state['submissions']['abnt']['file_id']))
- check('combined years et al undated and narrative locator keys are all linked',corrected['available'] and analysis['parsed_references']==7 and analysis['unparsed_references']==2 and analysis['recognized_citations']==7 and analysis['matched_citations']==7 and analysis['unparsed_citation_groups']==0 and analysis['citation_style_counts']['não conforme']==0)
+ check('combined years et al undated and narrative locator keys are all linked',corrected['available'] and analysis['parsed_references']==9 and analysis['unparsed_references']==0 and analysis['recognized_citations']==7 and analysis['matched_citations']==7 and analysis['unparsed_citation_groups']==0 and analysis['citation_style_counts']['não conforme']==0)
  check('combined quote keeps location and technical word interval',analysis['direct_quote_counts']['candidate_count']==1 and analysis['direct_quote_counts']['missing_locator_candidates']==0 and any(s['word_interval']==[39,39] and s['locator_kind']=='pages' for s in analysis['citation_style_samples']))
  audit=corrected['style_audit']
  check('combined single author and coauthors have safe declared order',audit['author_list_order_status']=='conforme' and audit['author_list_pairs_checked']==2 and audit['alphabetical_order_status']=='conforme')

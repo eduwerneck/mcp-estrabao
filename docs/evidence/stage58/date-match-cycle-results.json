@@ -1,0 +1,178 @@
+[
+  {
+    "case": "pt declared locale drives full-date matching",
+    "passed": true
+  },
+  {
+    "case": "pt narrative ampersand proves a blocking incompatibility",
+    "passed": true
+  },
+  {
+    "case": "pt failed source cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "pt blocked source cannot complete native wizard",
+    "passed": true
+  },
+  {
+    "case": "pt draft contains recognized citation correction",
+    "passed": true
+  },
+  {
+    "case": "pt two full dates preserve matching ambiguity and no automatic release",
+    "passed": true
+  },
+  {
+    "case": "pt suffix is not invented or treated as a proven mismatch",
+    "passed": true
+  },
+  {
+    "case": "pt corrected full-date citation becomes reviewable without automatic release",
+    "passed": true
+  },
+  {
+    "case": "pt corrected source still requires explicit human review",
+    "passed": true
+  },
+  {
+    "case": "pt explicit review activates current release",
+    "passed": true
+  },
+  {
+    "case": "pt new file ID invalidates release even with equal source bytes",
+    "passed": true
+  },
+  {
+    "case": "pt stale release cannot complete new version",
+    "passed": true
+  },
+  {
+    "case": "pt release preserves native CSRF check",
+    "passed": true
+  },
+  {
+    "case": "pt reviewed current version completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "en declared locale drives full-date matching",
+    "passed": true
+  },
+  {
+    "case": "en narrative ampersand proves a blocking incompatibility",
+    "passed": true
+  },
+  {
+    "case": "en failed source cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "en blocked source cannot complete native wizard",
+    "passed": true
+  },
+  {
+    "case": "en draft contains recognized citation correction",
+    "passed": true
+  },
+  {
+    "case": "en two full dates preserve matching ambiguity and no automatic release",
+    "passed": true
+  },
+  {
+    "case": "en suffix is not invented or treated as a proven mismatch",
+    "passed": true
+  },
+  {
+    "case": "en corrected full-date citation becomes reviewable without automatic release",
+    "passed": true
+  },
+  {
+    "case": "en corrected source still requires explicit human review",
+    "passed": true
+  },
+  {
+    "case": "en explicit review activates current release",
+    "passed": true
+  },
+  {
+    "case": "en new file ID invalidates release even with equal source bytes",
+    "passed": true
+  },
+  {
+    "case": "en stale release cannot complete new version",
+    "passed": true
+  },
+  {
+    "case": "en release preserves native CSRF check",
+    "passed": true
+  },
+  {
+    "case": "en reviewed current version completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "es declared locale drives full-date matching",
+    "passed": true
+  },
+  {
+    "case": "es narrative ampersand proves a blocking incompatibility",
+    "passed": true
+  },
+  {
+    "case": "es failed source cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "es blocked source cannot complete native wizard",
+    "passed": true
+  },
+  {
+    "case": "es draft contains recognized citation correction",
+    "passed": true
+  },
+  {
+    "case": "es two full dates preserve matching ambiguity and no automatic release",
+    "passed": true
+  },
+  {
+    "case": "es suffix is not invented or treated as a proven mismatch",
+    "passed": true
+  },
+  {
+    "case": "es corrected full-date citation becomes reviewable without automatic release",
+    "passed": true
+  },
+  {
+    "case": "es corrected source still requires explicit human review",
+    "passed": true
+  },
+  {
+    "case": "es explicit review activates current release",
+    "passed": true
+  },
+  {
+    "case": "es new file ID invalidates release even with equal source bytes",
+    "passed": true
+  },
+  {
+    "case": "es stale release cannot complete new version",
+    "passed": true
+  },
+  {
+    "case": "es release preserves native CSRF check",
+    "passed": true
+  },
+  {
+    "case": "es reviewed current version completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "original workflow records preserved",
+    "passed": true
+  },
+  {
+    "case": "original lab pointer restored",
+    "passed": true
+  }
+]
