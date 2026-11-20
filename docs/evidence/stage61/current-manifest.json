@@ -1,0 +1,526 @@
+{
+  "archives": {
+    "engine.tar.gz": "08dff087a6a400b3430471859a328de9b9fdd08cce8b2d7723d57e3aed80ddd4",
+    "plugin.tar.gz": "96d84430030514c906aaa939fdb43b90e1d0fea746a3f35ad93906f067521e82"
+  },
+  "engine_version": "0.44.0",
+  "files": [
+    {
+      "component": "engine",
+      "path": "estrabao-engine/contracts/desk-response.schema.json",
+      "sha256": "71f51e11e09eda47907f792244d6ce0297637baff468664886ada2847493c6ed",
+      "size": 3060,
+      "source": "contracts/desk-response.schema.json"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/contracts/report.schema.json",
+      "sha256": "d82626393c00702390cb5a9ac235b9379d14f8715e48a2446490f889f41c9a85",
+      "size": 1918,
+      "source": "contracts/report.schema.json"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/contracts/submission.schema.json",
+      "sha256": "573e6a2683a6159b6189aa66231131a56f6bde1a001717821173d827f9bc913f",
+      "size": 2550,
+      "source": "contracts/submission.schema.json"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/AdmissionBridge.inc.php",
+      "sha256": "e622fcdc8c0093a4bf70f500267052cbcfcd2c8d5445b6c727c0621d90adf45a",
+      "size": 11042,
+      "source": "plugins/generic/estrabao/AdmissionBridge.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/AdmissionReviewHandler.inc.php",
+      "sha256": "0a651a1154916da8016b43c46c1ba5ab6c16254b7f889b6d7d6a4f8d08c1c343",
+      "size": 4613,
+      "source": "plugins/generic/estrabao/AdmissionReviewHandler.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/AdmissionReviewService.inc.php",
+      "sha256": "979e8508045047b32f192d8800a81203fdd31354b3ee3fa6589fcb9ec4bbc909",
+      "size": 12006,
+      "source": "plugins/generic/estrabao/AdmissionReviewService.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/AdmissionReviewStore.inc.php",
+      "sha256": "6e29df0b3e08108d9bd5faa87e34308f7f9fa85c2bd10eb43669f5c124899698",
+      "size": 4013,
+      "source": "plugins/generic/estrabao/AdmissionReviewStore.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/ArticleSubmittedDate.inc.php",
+      "sha256": "596e5b368ac3b338634a0a9daf015758ad44181e9190763468542e4d6baec790",
+      "size": 2932,
+      "source": "plugins/generic/estrabao/ArticleSubmittedDate.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/EditorialReviewService.inc.php",
+      "sha256": "3eab0c4d9318caf01ee029d8bf2b338292ab70b9d19ac6d506126f7e00114cdb",
+      "size": 5861,
+      "source": "plugins/generic/estrabao/EditorialReviewService.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/EditorialReviewStore.inc.php",
+      "sha256": "3ae41e948187d7308d04a8274b799e227653289873dd0a9cf2f8196a1649306f",
+      "size": 5579,
+      "source": "plugins/generic/estrabao/EditorialReviewStore.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/EstrabaoPlugin.inc.php",
+      "sha256": "8411bc85a6648756c34ae96291abeda0abc331a84ae5e0a8e74b54da54efbeee",
+      "size": 7781,
+      "source": "plugins/generic/estrabao/EstrabaoPlugin.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/LegacyDocSource.inc.php",
+      "sha256": "5b6ecf54e2e04d0310a238850e3cbcc79a58ff14c8cc87c6f0b74a1c7e56fea5",
+      "size": 5936,
+      "source": "plugins/generic/estrabao/LegacyDocSource.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/SubmissionSnapshot.inc.php",
+      "sha256": "9157136251f7a1da7e636a57319c3c6ff23b75feeb5b66702de392454edb7115",
+      "size": 3684,
+      "source": "plugins/generic/estrabao/SubmissionSnapshot.inc.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/index.php",
+      "sha256": "617b3dcab9533479417c4f6e8a634b3c2f3e8e15129d311d68a71977f87ef6be",
+      "size": 85,
+      "source": "plugins/generic/estrabao/index.php"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/locale/en_US/locale.po",
+      "sha256": "f7630d6ef33483df938dbe2110a339f130b374c0c771969d426799273b610a5c",
+      "size": 16679,
+      "source": "plugins/generic/estrabao/locale/en_US/locale.po"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/locale/es_ES/locale.po",
+      "sha256": "0a535365df65783d033caa6142bd8cb2e5f97e0f2aae97639344302ed4f0871b",
+      "size": 17588,
+      "source": "plugins/generic/estrabao/locale/es_ES/locale.po"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/locale/pt_BR/locale.po",
+      "sha256": "f3627798ab83fb56f120f8a5c9272238afea42fd99370eb4a1de83892f1d850a",
+      "size": 17740,
+      "source": "plugins/generic/estrabao/locale/pt_BR/locale.po"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/reference-guidance.js",
+      "sha256": "fd5b2b65e4b43e10b4c67ef7f86bc6642206d5f8ef685be144e4872c648043e7",
+      "size": 5074,
+      "source": "plugins/generic/estrabao/reference-guidance.js"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/templates/admissionReview.tpl",
+      "sha256": "5de8977445216aa7b886dfffb6f7a752d464b2943e702e0310909630ebec7e24",
+      "size": 17475,
+      "source": "plugins/generic/estrabao/templates/admissionReview.tpl"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/templates/articleSubmittedDate.tpl",
+      "sha256": "ee62ac50695b93cd9918c06f02af74206518ea5365f26b77ea56eb55c17e3c68",
+      "size": 308,
+      "source": "plugins/generic/estrabao/templates/articleSubmittedDate.tpl"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/title-guidance.js",
+      "sha256": "336f8679124d3557f6f6bce5cf3f6f994d823a79ed2b452c0a3a086af83d7416",
+      "size": 1481,
+      "source": "plugins/generic/estrabao/title-guidance.js"
+    },
+    {
+      "component": "plugin",
+      "path": "estrabao/version.xml",
+      "sha256": "b4a2612ab79a20db87d2617ea5f6b598f26afd37fd7f1f6a6ab6204a7c2a74af",
+      "size": 323,
+      "source": "plugins/generic/estrabao/version.xml"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Contracts/CheckResult.php",
+      "sha256": "14261c0dd9ad7282220f82b8ff86dd3e0ec0c01cfc4ffb383260cc6e3a0f3f7c",
+      "size": 972,
+      "source": "src/Contracts/CheckResult.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Contracts/Rule.php",
+      "sha256": "54a7effd9a260e965519eca728fcfbdd111bd009acff87dddfb4bf539835811e",
+      "size": 180,
+      "source": "src/Contracts/Rule.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Contracts/Submission.php",
+      "sha256": "5611536e74d4a038b8cc0feebfdbc9487e1742ede7ba9992f6a2f6390c989d8e",
+      "size": 5008,
+      "source": "src/Contracts/Submission.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ApaPersonalAuthors.php",
+      "sha256": "81de2ecce95cdf9ad500b2db1f7bd727614fb3ad41798d5589c1391e6124eeb1",
+      "size": 2172,
+      "source": "src/Document/ApaPersonalAuthors.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/BodyTextProfile.php",
+      "sha256": "e135966421f76e5415ff4dad6f145f4283ae5b363eada4400930f4752ad9bfe8",
+      "size": 8372,
+      "source": "src/Document/BodyTextProfile.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/CitationLocator.php",
+      "sha256": "bea4b046d6b3efe045b8b7b463e346c0842566f3c7b518496c76f1e2fe4452d8",
+      "size": 5500,
+      "source": "src/Document/CitationLocator.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/DocumentSource.php",
+      "sha256": "54da51da68a1293ee9968383cdd4f05b99506b7bad8e0f70b03931260a326dae",
+      "size": 635,
+      "source": "src/Document/DocumentSource.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/DocxCompatibility.php",
+      "sha256": "a3771c78f5a76eb8ef2345d1f511c86cd432ad355e43b4649fdb629cac8f346c",
+      "size": 2021,
+      "source": "src/Document/DocxCompatibility.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/DocxReader.php",
+      "sha256": "d34c0dd1fd2105caccd516b37ff69fdf3ace77510eaa4109a0cea1b32663a64a",
+      "size": 14975,
+      "source": "src/Document/DocxReader.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/FootnoteInventory.php",
+      "sha256": "b0e80cb15fbcd8c960924832139bc770f6e813ec4a7509b6cc7891d5fe51a81e",
+      "size": 8522,
+      "source": "src/Document/FootnoteInventory.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/InstitutionalAuthors.php",
+      "sha256": "f6d01969b7ec3f87f1e6203b4e5fc3a174bede7032ff23c9741cd3f9aa14a4ee",
+      "size": 3251,
+      "source": "src/Document/InstitutionalAuthors.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ManuscriptSegments.php",
+      "sha256": "e98385125971f4aff6dc5708a40099686c492646191375cb35ca04cdea0ae159",
+      "size": 5404,
+      "source": "src/Document/ManuscriptSegments.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/PackageRelationships.php",
+      "sha256": "5e0cd706bf67049f45b4585fb11749b37da13d0361b1f8c04a5c6f619d13334e",
+      "size": 1874,
+      "source": "src/Document/PackageRelationships.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/PageLayout.php",
+      "sha256": "07ada08b8a00e3a9503799312b611417a55e448e4c195a0cffad0292ddac573c",
+      "size": 3098,
+      "source": "src/Document/PageLayout.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceAnalysis.php",
+      "sha256": "f6f63a34bbf5b2053430263aeb39ae5037a209cc37f7aa6db1c1ee876d74061d",
+      "size": 45815,
+      "source": "src/Document/ReferenceAnalysis.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceDateOrder.php",
+      "sha256": "70e726193155942855d52441d527d133f5955b92d7fd64d28d422633980d6b38",
+      "size": 2586,
+      "source": "src/Document/ReferenceDateOrder.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceDigitalWorks.php",
+      "sha256": "44e4ac2347035e2ef3936dff868f69f2cc6b287eb289cc9bbfd195e612f5b1e3",
+      "size": 1200,
+      "source": "src/Document/ReferenceDigitalWorks.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceLongWorks.php",
+      "sha256": "bf9d477b216e41a60a66924441f1b003a7ab9ec9510832f10470487dc0b57e5d",
+      "size": 1911,
+      "source": "src/Document/ReferenceLongWorks.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceModels.php",
+      "sha256": "8aa4124993ba4edc622bfdbd058df10c5523ec993593aceda7d730e20ee6d5f6",
+      "size": 1477,
+      "source": "src/Document/ReferenceModels.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceOrder.php",
+      "sha256": "838d2ab365f7a87f642b3bf1ac8aa338028a63fd6a784530024fb7795ad6e610",
+      "size": 8610,
+      "source": "src/Document/ReferenceOrder.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceRevisions.php",
+      "sha256": "46ec948891f33c3908e7eaa9018c8f88987262df7ae6ed6ce8cfb4500eb51560",
+      "size": 2558,
+      "source": "src/Document/ReferenceRevisions.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceSections.php",
+      "sha256": "a3c558662690534fee3fa67486b0bf478f35670ac5588b5030a08654ad6daa64",
+      "size": 4413,
+      "source": "src/Document/ReferenceSections.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceStyleAudit.php",
+      "sha256": "d83a99189b86c176c9a42c4909c668d7680f3593272a4b76bf79747b5dec556f",
+      "size": 37078,
+      "source": "src/Document/ReferenceStyleAudit.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/ReferenceTitleOrder.php",
+      "sha256": "cefdc58845af3f2c643680b82cbca6e672b4b91a4d346e35eea9a855eb747767",
+      "size": 5700,
+      "source": "src/Document/ReferenceTitleOrder.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/StyleResolver.php",
+      "sha256": "56d66475ccdb1eaec97285283d98837f8f3efc12caa7b41dd8ccf0fe053e90bc",
+      "size": 26822,
+      "source": "src/Document/StyleResolver.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/VisualInventory.php",
+      "sha256": "2ad8b527a39ea03b0c9e085e3c551125e9d3bf5cee04576e1e8d441147885747",
+      "size": 6878,
+      "source": "src/Document/VisualInventory.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Document/WebReference.php",
+      "sha256": "4a852c5457c63908422bfd694eee214daa7d1e9772d20b6cba013a4a6d7358f9",
+      "size": 3208,
+      "source": "src/Document/WebReference.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Reporting/DeskResponse.php",
+      "sha256": "0772b0d32a03ea5ec486689cdf088db0bf1dc0f507d5970f30e4f91125f6b0c7",
+      "size": 26718,
+      "source": "src/Reporting/DeskResponse.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Reporting/Report.php",
+      "sha256": "221debfc1c2d16dd7dd0a7a4081090ff4ce0cf530187fc9f260c148cffe2218e",
+      "size": 1069,
+      "source": "src/Reporting/Report.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/AbstractLabels.php",
+      "sha256": "98db4d551293f9545b5467025d0a00ee9f61e0b50554d303431f520a92e0a6e3",
+      "size": 3281,
+      "source": "src/Rules/AbstractLabels.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/AbstractLength.php",
+      "sha256": "0ba527c9741144ee67a494e8ae3f13bc2e7a80522f5431a73c6a4c33f3020064",
+      "size": 2855,
+      "source": "src/Rules/AbstractLength.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/AiDeclaration.php",
+      "sha256": "da9b0139daed521c33412bc8c8373eb78e62af74f92616f9e54381522c2ee571",
+      "size": 6829,
+      "source": "src/Rules/AiDeclaration.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/CreditContent.php",
+      "sha256": "23015d98b98b030cf511e52361e3068f8ad1e5dd3bf73cbd01f6a4894cc70f10",
+      "size": 4286,
+      "source": "src/Rules/CreditContent.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/DefaultRules.php",
+      "sha256": "274a7f8371a0b7b85b781eac6dbfdd7439ce6bdf7a187b8405313db394a8812f",
+      "size": 799,
+      "source": "src/Rules/DefaultRules.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/EthicsReview.php",
+      "sha256": "31c80b9c75272bfd45a6fefb8c8f061753e177d0008f9539d465adc2f8d22084",
+      "size": 3365,
+      "source": "src/Rules/EthicsReview.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/Footnotes.php",
+      "sha256": "1c0b31657acb3f8f929747498099f62017fb93f312d822a0ff99a256f8c28635",
+      "size": 2449,
+      "source": "src/Rules/Footnotes.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/FundingConsistency.php",
+      "sha256": "40d7195e9713e16c3ebf5b9f642f653f96126d1b5f39dc8745f60d02be09b939",
+      "size": 7040,
+      "source": "src/Rules/FundingConsistency.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/KeywordCount.php",
+      "sha256": "837cc28dd76a9dddd4621ff66906286dd17a991633a773c60fac1068513d6b30",
+      "size": 1889,
+      "source": "src/Rules/KeywordCount.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/ManuscriptFormatting.php",
+      "sha256": "ead891af8d07e80177f57f370f78e5a702914f92cc07b90955fefad95f038abe",
+      "size": 6306,
+      "source": "src/Rules/ManuscriptFormatting.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/ManuscriptLength.php",
+      "sha256": "d4eb31d3f658bb3ef80b73742603fc6c607a3d7dfdc78695aea327bbff6259bc",
+      "size": 2668,
+      "source": "src/Rules/ManuscriptLength.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/ManuscriptStructure.php",
+      "sha256": "3c7a02e109bb40852b75b6476cf2b7d40828dbce8f7f1cead5ee79743cbd3213",
+      "size": 6061,
+      "source": "src/Rules/ManuscriptStructure.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/ManuscriptTitleCase.php",
+      "sha256": "e0a8ca8336b38b88fee90f95e0425d215047fe3810df3a4b17635257588e5850",
+      "size": 7205,
+      "source": "src/Rules/ManuscriptTitleCase.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/MetadataPresence.php",
+      "sha256": "2432154f2a3c7a81be21f425b6b6dc56a69a29e4bd805773e9678dd1d8902b63",
+      "size": 1522,
+      "source": "src/Rules/MetadataPresence.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/MetadataTitleCase.php",
+      "sha256": "dd1047dcaef12a8e76cd2816d878ab29f15ca589f921d09505f79a84c0beccd2",
+      "size": 1243,
+      "source": "src/Rules/MetadataTitleCase.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/Orcid.php",
+      "sha256": "58d2d44043527462b3e9a460fbd003760c2b5d7216b69b295a5d9da0a9e6387a",
+      "size": 2358,
+      "source": "src/Rules/Orcid.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/References.php",
+      "sha256": "27ba4c82260d086f083942183be5c8bb6a2828bfbdedbf932035fb38fdf8c77e",
+      "size": 6020,
+      "source": "src/Rules/References.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Rules/VisualCount.php",
+      "sha256": "d2abf931f62342e86aab6f3e6e7786fffb8bb8cb215b96c5ebc5f9cafa7013e5",
+      "size": 1962,
+      "source": "src/Rules/VisualCount.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Text/PlainText.php",
+      "sha256": "8c53c81ebec77368a1200efd8374c9e0e1d70564bb7195cbef1805b120e22084",
+      "size": 879,
+      "source": "src/Text/PlainText.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Text/TitleCase.php",
+      "sha256": "c80fbb8bb57e2f509c72f89fbbd22495b3627e1307ab3ecb377806187b034c9a",
+      "size": 2041,
+      "source": "src/Text/TitleCase.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/Text/WordInterval.php",
+      "sha256": "75d3747492345b49ec1a615b2930d6cf39f0033c207f3c88b6cf51d346debcbf",
+      "size": 922,
+      "source": "src/Text/WordInterval.php"
+    },
+    {
+      "component": "engine",
+      "path": "estrabao-engine/src/bootstrap.php",
+      "sha256": "32ab4f63cb7f11d2c9a31a3871940a1945a3085b29ea79b2341d0a4c5ea4a2ae",
+      "size": 323,
+      "source": "src/bootstrap.php"
+    }
+  ],
+  "install_mode": "manual_two_components",
+  "ojs_target": "3.3.0.20",
+  "plugin_version": "0.39.0.0",
+  "schema_version": 1,
+  "source_commit": "43eaf8fa68a2d5ba2da264396b9c2b6ff70b8d00",
+  "source_epoch": 1795189030
+}

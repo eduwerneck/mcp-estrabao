@@ -1,5 +1,9 @@
 # Desenvolvimento e instalação
 
+**Procedimento atual:** [instalação e atualização isoladas — Etapa 61](INSTALLATION.md).
+Plugin 0.39.0.0/motor 0.44.0, em dois componentes. As descrições de esqueleto
+e procedimentos futuros abaixo registram etapas históricas, não o estado atual.
+
 ## Ambiente local
 
 Use o checkout existente da tarefa em nuvem; não é necessário criar worktree.

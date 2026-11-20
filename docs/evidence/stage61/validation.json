@@ -1,0 +1,60 @@
+{
+  "base": "43eaf8fa68a2d5ba2da264396b9c2b6ff70b8d00",
+  "date": "2026-11-20",
+  "engine": "0.44.0",
+  "plugin": "0.39.0.0",
+  "product_files_unchanged": 73,
+  "installation_mode": "manual_two_components",
+  "fresh_install": true,
+  "upgrade_from": {
+    "commit": "76321361b2aa86925b7949008a9600c81461a10e",
+    "plugin": "0.37.0.0",
+    "engine": "0.42.0"
+  },
+  "package_tests": 15,
+  "ojs_browser_checks": 84,
+  "suites": {
+    "fresh-negative-results": 10,
+    "fresh-results": 21,
+    "fresh-ui-results": 3,
+    "upgrade-extended-results": 14,
+    "upgrade-negative-results": 10,
+    "upgrade-results": 26
+  },
+  "final_failures": 0,
+  "php_regression": {
+    "runtime": "8.4.27",
+    "tests": 2120,
+    "failures": 0,
+    "preexisting_fixture_warning_lines": 462
+  },
+  "javascript_tests": 16,
+  "php_lint_files": 134,
+  "python_compile": true,
+  "full_stage59_integrated_browser_regression_reexecuted": false,
+  "initial_issues_resolved": [
+    "zero_tar_mtime_breaks_smarty_use_commit_timestamp",
+    "installer_charset_and_allowed_hosts_defaults_require_explicit_local_values",
+    "disk_capacity_required_sequential_browsers"
+  ],
+  "http_log_review": {
+    "fresh_initial_template_fatals": 3,
+    "upgrade_fatals": 0,
+    "php_warning_lines": 0,
+    "gallery_connections_blocked_by_internal_network": {
+      "fresh": 4,
+      "upgrade": 2
+    }
+  },
+  "ledger_bytes_preserved_on_upgrade": true,
+  "previous_engine_release_invalidated": true,
+  "non_apa_checklist_stale_after_upgrade": true,
+  "native_ui_enable_disable_confirmed": true,
+  "operational_backup_restore_certified": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false,
+  "external_messages_sent": false,
+  "environment_published": false,
+  "services_stopped_after_tests": true,
+  "relative_document_links_checked": 140
+}

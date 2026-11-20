@@ -1,0 +1,14 @@
+[
+  {
+    "case": "administrator checkbox disables plugin",
+    "passed": true
+  },
+  {
+    "case": "administrator checkbox re-enables plugin",
+    "passed": true
+  },
+  {
+    "case": "UI toggles preserve histories",
+    "passed": true
+  }
+]

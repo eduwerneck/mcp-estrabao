@@ -1,0 +1,13 @@
+{
+  "containers": {
+    "estrabao-lab-61-fresh-web": "exited",
+    "estrabao-lab-61-fresh-db": "exited",
+    "estrabao-lab-61-upgrade-web": "exited",
+    "estrabao-lab-61-upgrade-db": "exited"
+  },
+  "services_stopped": true,
+  "browser_containers_removed": true,
+  "synthetic_data_retained_privately": true,
+  "production_accessed": false,
+  "oracle_vm_accessed": false
+}

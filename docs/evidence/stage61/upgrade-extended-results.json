@@ -1,0 +1,58 @@
+[
+  {
+    "case": "foreign manager POST preserves private history",
+    "passed": true
+  },
+  {
+    "case": "foreign manager cannot download private manuscript",
+    "passed": true
+  },
+  {
+    "case": "foreign manager cannot view private review",
+    "passed": true
+  },
+  {
+    "case": "apud fixture is a new server file",
+    "passed": true
+  },
+  {
+    "case": "apud is explicitly refused without approval",
+    "passed": true
+  },
+  {
+    "case": "apud cannot complete",
+    "passed": true
+  },
+  {
+    "case": "correction creates another server file",
+    "passed": true
+  },
+  {
+    "case": "correction becomes reviewable without release",
+    "passed": true
+  },
+  {
+    "case": "corrected version still requires human review",
+    "passed": true
+  },
+  {
+    "case": "corrected reviewed version completes",
+    "passed": true
+  },
+  {
+    "case": "completion preserves manuscript bytes",
+    "passed": true
+  },
+  {
+    "case": "administrator checkbox disables plugin",
+    "passed": true
+  },
+  {
+    "case": "administrator checkbox re-enables plugin",
+    "passed": true
+  },
+  {
+    "case": "UI toggles preserve histories",
+    "passed": true
+  }
+]

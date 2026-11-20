@@ -1,4 +1,4 @@
-# Balanço atual da triagem — Etapa 60
+# Balanço da triagem — cobertura da Etapa 60 e instalação da Etapa 61
 
 Conferência documental em 20/11/2026, base 6a117b1 (merge PR #60, Etapa 59).
 Motor **0.44.0**, plugin **0.39.0.0**, laboratório OJS **3.3.0.20**.
@@ -128,8 +128,9 @@ Os **2.120 testes por PHP, 16 JavaScript e 1.138 verificações OJS** são da
 O código/contratos permanecem idênticos à base e ao manifesto de produto testado.
 Esta auditoria não homologa a instalação real nem certifica APA integral.
 
-1. Etapa 61 proposta: pacote, instalação/atualização e configuração em cópia limpa
-   isolada do OJS 3.3.0.20, com critérios em [INSTALLATION_PLAN.md](INSTALLATION_PLAN.md).
+1. Etapa 61 executada: pacotes e instalação/atualização em duas cópias limpas
+   isoladas OJS 3.3.0.20; [resultados e limites](STAGE61.md) e [guia](INSTALLATION.md).
+   A cobertura editorial desta auditoria permanece igual; isso não homologa a revista.
 2. Etapa 62 proposta: permissões operacionais, concorrência de uploads e backup/
    recuperação em ambiente isolado representativo.
 3. Etapa 63 proposta: ensaio editorial completo nessa cópia e balanço de resultados.

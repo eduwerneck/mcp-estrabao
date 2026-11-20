@@ -1,10 +1,22 @@
-# Estado atual da homologação — Etapa 60
+# Estado atual da homologação — Etapa 61
 
-Balanço documental em 20/11/2026, base 6a117b1 (merge PR #60). Motor 0.44.0,
-plugin 0.39.0.0; OJS 3.3.0.20 em laboratório interno sintético. Nesta etapa não
-se iniciaram serviços, instalaram pacotes ou executaram novas suítes funcionais.
+Ensaio em 20/11/2026, base 43eaf8f. Motor **0.44.0**, plugin **0.39.0.0**,
+produto preservado. A [Etapa 61](STAGE61.md) executou instalação nova e atualização
+0.37/0.42 → 0.39/0.44 em duas cópias limpas OJS 3.3.0.20, sem checkout montado.
 
-## Última execução funcional: Etapa 59
+- **15 testes de pacote** e **84 verificações OJS/navegador**, zero falhas finais.
+- **2.120 testes PHP 8.4.27**, zero falhas; 462 avisos preexistentes de fixtures.
+- **16 testes JavaScript**, zero falhas. Lint dos PHP e compilação Python conferidos.
+- Código/motor/configuração privada separados; versões nativas e 73 hashes
+  instalados conferidos; históricos preservados, liberação antiga invalidada.
+- Serviços de ensaio encerrados, rede interna sem portas; dados/credenciais novos.
+- [Evidências desta execução](evidence/stage61/validation.json),
+  [guia](INSTALLATION.md) e [achados resolvidos/limites](STAGE61.md).
+
+Os erros iniciais de configuração/mtime e as consultas da galeria bloqueadas
+pela rede são documentados na Etapa 61, separados dos resultados finais.
+
+## Regressão integrada anterior: Etapa 59
 
 | Evidência anterior | Resultado |
 | --- | --- |
@@ -25,8 +37,9 @@ documentação/contrato CLI; não apresenta esses números como nova regressão.
 
 ## O que esse laboratório não homologa
 
-- Instalação em cópia limpa, empacotamento/atualização/distribuição e ciclo
-  operacional de habilitação/desabilitação ainda precisam de ensaio específico.
+- A instalação/atualização e o ciclo de habilitação da Etapa 61 valem para as
+  cópias sintéticas. Distribuição autossuficiente por galeria e instalação na
+  infraestrutura representativa da revista continuam sem homologação.
 - Tema Padrão e perfil visual informado foram exercitados localmente; isso não
   confirma arquivos/configuração da revista, seus campos, locales ou infraestrutura.
 - Permissões/usuário de serviço reais, concorrência com uploads e recuperação de
@@ -38,8 +51,8 @@ documentação/contrato CLI; não apresenta esses números como nova regressão.
 
 ## Sequência proposta
 
-[Plano da Etapa 61](INSTALLATION_PLAN.md): pacote e instalação/atualização em
-cópia limpa isolada, com critérios e evidências definidos. Etapa 62: operação,
+[Etapa 61 concluída](STAGE61.md): pacotes e instalação/atualização em cópias
+limpas isoladas. Etapa 62: operação,
 concorrência e backup/recuperação. Etapa 63: ensaio editorial nessa cópia.
 Não instalar, ativar ou publicar na revista por causa deste balanço. Produção e
 VM Oracle permanecem fora do escopo. O ambiente não foi publicado novamente.

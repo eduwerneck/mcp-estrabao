@@ -1,0 +1,66 @@
+{
+  "containers": [
+    {
+      "name": "estrabao-lab-61-fresh-web",
+      "image_id": "sha256:04ac07ef381b85ad3539891bf5193540bbe0f8df5af9e97124754e8db2f4605d",
+      "configured_image_digest": "pkpofficial/ojs@sha256:87198f196f9f396ae0342a21dba6b9a9cf7afe35c58576758ee37998adf2c9e1",
+      "running_at_preflight": true,
+      "internal_network_only": true,
+      "published_ports": {},
+      "checkout_bind_mounts": [],
+      "sendmail_neutralized": true,
+      "runtime": {
+        "smtp_disabled": true,
+        "beacon_disabled": true,
+        "scheduled_tasks_disabled": true,
+        "engine_outside_webroot": true,
+        "store_private_mode": "0700",
+        "php": "8.1.27"
+      }
+    },
+    {
+      "name": "estrabao-lab-61-fresh-db",
+      "image_id": "sha256:c53db5be6a29e6f75003283db05221f12988f7bcbf1a09e347c866a898fbdfd5",
+      "configured_image_digest": "mariadb@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114",
+      "running_at_preflight": true,
+      "internal_network_only": true,
+      "published_ports": {},
+      "checkout_bind_mounts": []
+    },
+    {
+      "name": "estrabao-lab-61-upgrade-web",
+      "image_id": "sha256:04ac07ef381b85ad3539891bf5193540bbe0f8df5af9e97124754e8db2f4605d",
+      "configured_image_digest": "pkpofficial/ojs@sha256:87198f196f9f396ae0342a21dba6b9a9cf7afe35c58576758ee37998adf2c9e1",
+      "running_at_preflight": true,
+      "internal_network_only": true,
+      "published_ports": {},
+      "checkout_bind_mounts": [],
+      "sendmail_neutralized": true,
+      "runtime": {
+        "smtp_disabled": true,
+        "beacon_disabled": true,
+        "scheduled_tasks_disabled": true,
+        "engine_outside_webroot": true,
+        "store_private_mode": "0700",
+        "php": "8.1.27"
+      }
+    },
+    {
+      "name": "estrabao-lab-61-upgrade-db",
+      "image_id": "sha256:c53db5be6a29e6f75003283db05221f12988f7bcbf1a09e347c866a898fbdfd5",
+      "configured_image_digest": "mariadb@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114",
+      "running_at_preflight": true,
+      "internal_network_only": true,
+      "published_ports": {},
+      "checkout_bind_mounts": []
+    }
+  ],
+  "browser_image_digest": "selenium/standalone-chromium@sha256:b211549a4c35f11826bc1a7559b9f23ff055198517f8cb7d49ef74df01c5e38d",
+  "browser_network": "container:respective-stage61-web",
+  "public_ports": false,
+  "checkout_mounts": false,
+  "new_random_synthetic_credentials": true,
+  "new_databases_and_volumes": true,
+  "production_accessed": false,
+  "oracle_vm_accessed": false
+}
