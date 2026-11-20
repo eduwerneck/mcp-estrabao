@@ -204,7 +204,7 @@ final class ReferenceStyleAudit
         if (strlen($text) > 8192) { return null; }
         $head = ReferenceAnalysis::parseEntry($text);
         if ($head !== null) { $head['date_token']=$head['year']; $head['kind'] = 'personal'; $head['date_format_resolved'] = preg_match('/^[0-9]{4}[a-z]?$/D',$head['year'])===1; $head['author_list'] = ApaPersonalAuthors::inspect($head['author_key']); return $head; }
-        if (strlen($text) > 8192 || !preg_match('/\((n\.d\.|s\.d\.|in press|no prelo|[0-9]{4}, (?:[\p{L}]+(?: [0-9]{1,2})?|[0-9]{1,2} de [\p{L}]+))\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) {
+        if (strlen($text) > 8192 || !preg_match('/\((n\.d\.|s\.d\.|s\.\s*f\.|in press|no prelo|en prensa|[0-9]{4}, (?:[\p{L}]+(?: [0-9]{1,2})?|[0-9]{1,2} de [\p{L}]+))\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) {
             // Institutional author with an ordinary year.
             if (!preg_match('/\(([0-9]{4}[a-z]?)\)\.\s+/iu', $text, $date, PREG_OFFSET_CAPTURE)) { return null; }
         }
@@ -224,7 +224,7 @@ final class ReferenceStyleAudit
 
     private static function dateFormat(string $date): bool
     {
-        if (preg_match('/^(?:[0-9]{4}[a-z]?|n\.d\.|s\.d\.|in press|no prelo)$/iuD', $date)) { return true; }
+        if (preg_match('/^(?:[0-9]{4}[a-z]?|n\.d\.|s\.d\.|s\.\s*f\.|in press|no prelo|en prensa)$/iuD', $date)) { return true; }
         return WebReference::publicationDate($date)===true;
     }
 

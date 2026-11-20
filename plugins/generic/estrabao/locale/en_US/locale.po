@@ -350,3 +350,9 @@ msgstr "Human .doc review"
 
 msgid "plugins.generic.estrabao.docAuthorPending"
 msgstr "The journal accepts .doc files. This version requires human APA review by an editor before completion. It was not rejected for being .doc and automatic conversion is not required."
+
+msgid "plugins.generic.estrabao.specialDateReviewTitle"
+msgstr "Special date review"
+
+msgid "plugins.generic.estrabao.specialDateReviewInstructions"
+msgstr "Check the source for the absence of a date or in-press status and the consulted edition. s.f. and en prensa are declared markers: they do not prove publication, generate a year or get replaced automatically. Preserve declared suffixes and review ambiguities."

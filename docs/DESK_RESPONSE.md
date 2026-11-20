@@ -90,3 +90,8 @@ Na [Etapa 58](STAGE58.md), data completa reconhecida pode fornecer uma chave
 para a citação autor–ano. A minuta não acusa ausência quando há candidata
 ambígua, nem atribui letras/identidade; conferências da data/fonte ficam para
 revisão. Uma incompatibilidade independente comprovada continua comunicável.
+
+A [Etapa 59](STAGE59.md) inclui marcadores espanhóis na análise. O estado de
+publicação e sufixos ambíguos ficam para revisão, sem gerar ano ou acusar ausência
+indevidamente. A ficha privada de datas especiais não compõe a carta copiada,
+e a identificação de um marcador não é comprovação de publicação/consulta.

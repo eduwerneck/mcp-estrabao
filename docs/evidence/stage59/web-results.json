@@ -1,0 +1,154 @@
+[
+  {
+    "case": "web-publication incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "web-publication desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "web-publication draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "web-publication does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "web-publication wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "web-publication author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "web-retrieval incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "web-retrieval desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "web-retrieval draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "web-retrieval does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "web-retrieval wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "web-retrieval author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "web-url incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "web-url desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "web-url draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "web-url does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "web-url wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "web-url author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "web-empty-host incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "web-empty-host desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "web-empty-host draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "web-empty-host does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "web-empty-host wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "web-empty-host author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "web-correct remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "web-correct has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "web-correct cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "web-year remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "web-year has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "web-year cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "web-nosite remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "web-nosite has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "web-nosite cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "web-unknownmonth remains reviewable",
+    "passed": true
+  },
+  {
+    "case": "web-unknownmonth has no editorial release",
+    "passed": true
+  },
+  {
+    "case": "web-unknownmonth cannot complete without human review",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

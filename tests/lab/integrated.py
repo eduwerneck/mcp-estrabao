@@ -1,7 +1,7 @@
 """Sequential integration runner for the existing internal synthetic lab only.
 Does not provision, install or upgrade. Default suites are read-only/reversible.
 --with-apa-regression adds the targeted APA suites; --with-submission-cycle creates fresh synthetic drafts and records APA review/
-completion only in the internal lab; --with-doc-cycle adds fresh manual DOC review/completion; --with-language-cycle adds EN/ES citation review/completion; --with-date-match-cycle adds full-date matching; no external publication or messages.
+completion only in the internal lab; --with-doc-cycle adds fresh manual DOC review/completion; --with-language-cycle adds EN/ES citation review/completion; --with-date-match-cycle adds full-date matching; --with-spanish-date-cycle adds s.f./en prensa review; no external publication or messages.
 """
 import json,os,subprocess,sys
 from pathlib import Path
@@ -148,3 +148,19 @@ if '--with-date-match-cycle' in sys.argv:
  summary['browser_checks']+=len(data)
  (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
  print('PASS fresh full-date matching cycle ('+str(len(data))+')',flush=True)
+
+# Optional Spanish special-date cycle creates its own drafts and restores the lab pointer.
+if '--with-spanish-date-cycle' in sys.argv:
+ summary['overall_passed']=False;summary['spanish_date_cycle_requested']=True
+ (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
+ directory=ROOT/'spanish-date-cycle';directory.mkdir(exist_ok=True)
+ env=os.environ.copy();env['ESTRABAO_SPANISH_DATE_EVIDENCE_DIR']=str(directory);env['PYTHONPATH']=str(HERE)
+ with (directory/'run.log').open('w')as log:
+  process=subprocess.run([sys.executable,str(HERE/'spanish-date-panel.py')],env=env,stdout=log,stderr=subprocess.STDOUT)
+ if process.returncode:raise RuntimeError('Fresh Spanish special-date cycle failed; inspect its private run.log')
+ data=json.loads((directory/'results.json').read_text())
+ if not data or not all(r['passed']for r in data):raise RuntimeError('Missing or failed Spanish special-date cycle assertions')
+ summary['overall_passed']=True;summary['spanish_date_cycle_checks']=len(data);summary['spanish_date_cycle_passed']=True
+ summary['browser_checks']+=len(data)
+ (ROOT/'summary.json').write_text(json.dumps(summary,indent=2))
+ print('PASS fresh Spanish special-date cycle ('+str(len(data))+')',flush=True)

@@ -111,3 +111,12 @@ gramática e sufixos não são resolvidos por aproximação. A próxima priorida
 proposta é datas especiais em espanhol (`s.f.`/`en prensa`), seguida do balanço
 de cobertura e homologação isolada. As propostas posteriores não são entregas
 já implementadas nem autorização para produção.
+
+## Atualização após a Etapa 59
+
+[STAGE59.md](STAGE59.md) entrega s.f./en prensa com equivalências internas e
+conferência privada do estado/edição. A próxima etapa proposta é atualizar o
+balanço APA/triagem, separando bloqueio, conferência humana e cobertura ausente.
+Meses espanhóis, formatos/autorais/edições fora do subconjunto e variantes `.doc`
+continuam pendentes. Instalação limpa e homologação operacional isolada continuam
+planejadas; nenhuma entrega autoriza produção ou uso da VM Oracle.

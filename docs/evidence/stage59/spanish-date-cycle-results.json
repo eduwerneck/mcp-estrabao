@@ -1,0 +1,394 @@
+[
+  {
+    "case": "pt s.f. declared marker is parsed in the server locale",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. narrative ampersand remains blocked",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. private panel warns against inferred publication or year",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. blocked source cannot complete",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. draft contains the proven citation correction",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. divergence stays ambiguous with private guidance",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. date label is not presumed to be an absent author",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. lexical equivalent links without automatic release",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. apud remains blocked",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. corrected marker stays pending explicit review",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. matching marker cannot finish without review",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. human review activates the current release",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. new file ID invalidates review with unchanged bytes",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. stale release cannot complete",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. release preserves native CSRF",
+    "passed": true
+  },
+  {
+    "case": "pt s.f. explicitly reviewed current source completes",
+    "passed": true
+  },
+  {
+    "case": "en s.f. declared marker is parsed in the server locale",
+    "passed": true
+  },
+  {
+    "case": "en s.f. narrative ampersand remains blocked",
+    "passed": true
+  },
+  {
+    "case": "en s.f. private panel warns against inferred publication or year",
+    "passed": true
+  },
+  {
+    "case": "en s.f. blocked source cannot complete",
+    "passed": true
+  },
+  {
+    "case": "en s.f. draft contains the proven citation correction",
+    "passed": true
+  },
+  {
+    "case": "en s.f. divergence stays ambiguous with private guidance",
+    "passed": true
+  },
+  {
+    "case": "en s.f. date label is not presumed to be an absent author",
+    "passed": true
+  },
+  {
+    "case": "en s.f. lexical equivalent links without automatic release",
+    "passed": true
+  },
+  {
+    "case": "en s.f. apud remains blocked",
+    "passed": true
+  },
+  {
+    "case": "en s.f. corrected marker stays pending explicit review",
+    "passed": true
+  },
+  {
+    "case": "en s.f. matching marker cannot finish without review",
+    "passed": true
+  },
+  {
+    "case": "en s.f. human review activates the current release",
+    "passed": true
+  },
+  {
+    "case": "en s.f. new file ID invalidates review with unchanged bytes",
+    "passed": true
+  },
+  {
+    "case": "en s.f. stale release cannot complete",
+    "passed": true
+  },
+  {
+    "case": "en s.f. release preserves native CSRF",
+    "passed": true
+  },
+  {
+    "case": "en s.f. explicitly reviewed current source completes",
+    "passed": true
+  },
+  {
+    "case": "es s.f. declared marker is parsed in the server locale",
+    "passed": true
+  },
+  {
+    "case": "es s.f. narrative ampersand remains blocked",
+    "passed": true
+  },
+  {
+    "case": "es s.f. private panel warns against inferred publication or year",
+    "passed": true
+  },
+  {
+    "case": "es s.f. blocked source cannot complete",
+    "passed": true
+  },
+  {
+    "case": "es s.f. draft contains the proven citation correction",
+    "passed": true
+  },
+  {
+    "case": "es s.f. divergence stays ambiguous with private guidance",
+    "passed": true
+  },
+  {
+    "case": "es s.f. date label is not presumed to be an absent author",
+    "passed": true
+  },
+  {
+    "case": "es s.f. lexical equivalent links without automatic release",
+    "passed": true
+  },
+  {
+    "case": "es s.f. apud remains blocked",
+    "passed": true
+  },
+  {
+    "case": "es s.f. corrected marker stays pending explicit review",
+    "passed": true
+  },
+  {
+    "case": "es s.f. matching marker cannot finish without review",
+    "passed": true
+  },
+  {
+    "case": "es s.f. human review activates the current release",
+    "passed": true
+  },
+  {
+    "case": "es s.f. new file ID invalidates review with unchanged bytes",
+    "passed": true
+  },
+  {
+    "case": "es s.f. stale release cannot complete",
+    "passed": true
+  },
+  {
+    "case": "es s.f. release preserves native CSRF",
+    "passed": true
+  },
+  {
+    "case": "es s.f. explicitly reviewed current source completes",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa declared marker is parsed in the server locale",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa narrative ampersand remains blocked",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa private panel warns against inferred publication or year",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa blocked source cannot complete",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa draft contains the proven citation correction",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa divergence stays ambiguous with private guidance",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa date label is not presumed to be an absent author",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa lexical equivalent links without automatic release",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa apud remains blocked",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa corrected marker stays pending explicit review",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa matching marker cannot finish without review",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa human review activates the current release",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa new file ID invalidates review with unchanged bytes",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa stale release cannot complete",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa release preserves native CSRF",
+    "passed": true
+  },
+  {
+    "case": "pt en prensa explicitly reviewed current source completes",
+    "passed": true
+  },
+  {
+    "case": "en en prensa declared marker is parsed in the server locale",
+    "passed": true
+  },
+  {
+    "case": "en en prensa narrative ampersand remains blocked",
+    "passed": true
+  },
+  {
+    "case": "en en prensa private panel warns against inferred publication or year",
+    "passed": true
+  },
+  {
+    "case": "en en prensa blocked source cannot complete",
+    "passed": true
+  },
+  {
+    "case": "en en prensa draft contains the proven citation correction",
+    "passed": true
+  },
+  {
+    "case": "en en prensa divergence stays ambiguous with private guidance",
+    "passed": true
+  },
+  {
+    "case": "en en prensa date label is not presumed to be an absent author",
+    "passed": true
+  },
+  {
+    "case": "en en prensa lexical equivalent links without automatic release",
+    "passed": true
+  },
+  {
+    "case": "en en prensa apud remains blocked",
+    "passed": true
+  },
+  {
+    "case": "en en prensa corrected marker stays pending explicit review",
+    "passed": true
+  },
+  {
+    "case": "en en prensa matching marker cannot finish without review",
+    "passed": true
+  },
+  {
+    "case": "en en prensa human review activates the current release",
+    "passed": true
+  },
+  {
+    "case": "en en prensa new file ID invalidates review with unchanged bytes",
+    "passed": true
+  },
+  {
+    "case": "en en prensa stale release cannot complete",
+    "passed": true
+  },
+  {
+    "case": "en en prensa release preserves native CSRF",
+    "passed": true
+  },
+  {
+    "case": "en en prensa explicitly reviewed current source completes",
+    "passed": true
+  },
+  {
+    "case": "es en prensa declared marker is parsed in the server locale",
+    "passed": true
+  },
+  {
+    "case": "es en prensa narrative ampersand remains blocked",
+    "passed": true
+  },
+  {
+    "case": "es en prensa private panel warns against inferred publication or year",
+    "passed": true
+  },
+  {
+    "case": "es en prensa blocked source cannot complete",
+    "passed": true
+  },
+  {
+    "case": "es en prensa draft contains the proven citation correction",
+    "passed": true
+  },
+  {
+    "case": "es en prensa divergence stays ambiguous with private guidance",
+    "passed": true
+  },
+  {
+    "case": "es en prensa date label is not presumed to be an absent author",
+    "passed": true
+  },
+  {
+    "case": "es en prensa lexical equivalent links without automatic release",
+    "passed": true
+  },
+  {
+    "case": "es en prensa apud remains blocked",
+    "passed": true
+  },
+  {
+    "case": "es en prensa corrected marker stays pending explicit review",
+    "passed": true
+  },
+  {
+    "case": "es en prensa matching marker cannot finish without review",
+    "passed": true
+  },
+  {
+    "case": "es en prensa human review activates the current release",
+    "passed": true
+  },
+  {
+    "case": "es en prensa new file ID invalidates review with unchanged bytes",
+    "passed": true
+  },
+  {
+    "case": "es en prensa stale release cannot complete",
+    "passed": true
+  },
+  {
+    "case": "es en prensa release preserves native CSRF",
+    "passed": true
+  },
+  {
+    "case": "es en prensa explicitly reviewed current source completes",
+    "passed": true
+  },
+  {
+    "case": "original workflow records preserved",
+    "passed": true
+  },
+  {
+    "case": "original lab pointer restored",
+    "passed": true
+  }
+]

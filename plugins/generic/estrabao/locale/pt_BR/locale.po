@@ -350,3 +350,9 @@ msgstr "Conferência humana de .doc"
 
 msgid "plugins.generic.estrabao.docAuthorPending"
 msgstr "A revista aceita arquivos .doc. Esta versão precisa de conferência humana de APA pelo editor antes da conclusão. Não foi rejeitada por ser .doc e não exige conversão automática."
+
+msgid "plugins.generic.estrabao.specialDateReviewTitle"
+msgstr "Conferência de datas especiais"
+
+msgid "plugins.generic.estrabao.specialDateReviewInstructions"
+msgstr "Confira na fonte a ausência de data ou a situação no prelo e a edição consultada. s.f. e en prensa são marcadores declarados: não comprovam publicação, não geram um ano e não são substituídos automaticamente. Preserve os sufixos informados e confira ambiguidades."

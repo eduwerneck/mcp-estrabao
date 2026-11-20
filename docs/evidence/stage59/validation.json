@@ -1,0 +1,48 @@
+{
+  "base": "ac26b55",
+  "engine": "0.44.0",
+  "plugin": "0.39.0.0",
+  "rules": {
+    "references.apa7": "29.0.0",
+    "references.citation_matching": "16.0.0",
+    "references.apa7.recognized_formats": "18.0.0",
+    "references.apa7.citation_format": "14.0.0"
+  },
+  "style_profile": "apa7_reference_patterns_v13",
+  "special_date_profile": "declared_nd_sd_sf_press_v2",
+  "contracts_identical_to_base": true,
+  "php_tests": {
+    "8.4.27": {
+      "tests": 2120,
+      "failures": 0,
+      "preexisting_structure_fixture_warnings": 462,
+      "warnings_identical_to_stage58": true
+    },
+    "8.1.27": {
+      "tests": 2120,
+      "failures": 0,
+      "preexisting_structure_fixture_warnings": 462,
+      "warnings_identical_to_stage58": true
+    }
+  },
+  "new_php_tests": 138,
+  "php_lint_files": 132,
+  "javascript_tests": 16,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "integrated_browser_checks": 1138,
+  "reversible_suites": 32,
+  "fresh_docx_cycle_checks": 27,
+  "fresh_doc_cycle_checks": 25,
+  "fresh_language_cycle_checks": 32,
+  "fresh_date_match_cycle_checks": 47,
+  "fresh_spanish_date_cycle_checks": 98,
+  "apa_specific_modes_reexecuted": 21,
+  "additional_isolated_spanish_date_checks": 92,
+  "source_dates_rewritten": false,
+  "publication_status_certified": false,
+  "full_apa_validation": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false,
+  "external_messages_sent": false
+}

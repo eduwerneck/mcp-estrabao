@@ -1,0 +1,58 @@
+[
+  {
+    "case": "compound incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "compound desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "compound draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "compound does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "compound wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "compound author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "abbreviated incompatible reference cannot be released",
+    "passed": true
+  },
+  {
+    "case": "abbreviated desk draft has specific correction",
+    "passed": true
+  },
+  {
+    "case": "abbreviated draft keeps private bibliography out",
+    "passed": true
+  },
+  {
+    "case": "abbreviated does not label entire bibliography ABNT",
+    "passed": true
+  },
+  {
+    "case": "abbreviated wizard rejects valid form and retains state",
+    "passed": true
+  },
+  {
+    "case": "abbreviated author receives concrete correction",
+    "passed": true
+  },
+  {
+    "case": "original workflow state restored",
+    "passed": true
+  },
+  {
+    "case": "original manuscript bytes restored",
+    "passed": true
+  }
+]

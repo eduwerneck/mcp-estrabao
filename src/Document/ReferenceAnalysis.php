@@ -44,8 +44,8 @@ final class ReferenceAnalysis
     private const REVIEW_ISSUES = ['full_date_source_review','citation_language_conjunction_review','personal_surname_full_uppercase','multi_author_disambiguation_review','institutional_alias_review','secondary_source_review','citation_year_list_duplicates_review','citation_year_list_authorship_review','citation_group_order_review','author_year_disambiguation_review','special_date_review','citation_locator_review','direct_quote_source_review','direct_quote_block_review','direct_quote_boundary_review','quoted_citation_review'];
     const SURNAME = '\p{L}[\p{L}\p{Pd}\x{2019}\x{0027}]{0,63}';
     private const FULL_DATE_HEAD = '\s*[0-9]{4}[a-z]?\s*,[^)]{1,8192}';
-    const DATE_TOKEN = '(?:[0-9]{4}[a-z]?|[ns]\\.\\s*d\\.(?:-[a-z])?|in press|no prelo)';
-    const YEAR_SIGNAL = '[0-9]{4}[a-z]?|n\.\s*d\.|s\.\s*d\.|in press|no prelo';
+    const DATE_TOKEN = '(?:[0-9]{4}[a-z]?|(?:[ns]\\.\\s*d\\.|s\\.\\s*f\\.)(?:-[a-z])?|in press|no prelo|en prensa)';
+    const YEAR_SIGNAL = '[0-9]{4}[a-z]?|n\.\s*d\.|s\.\s*[df]\.|in press|no prelo|en prensa';
 
     public static function analyze(array $document, bool $etAlContextComplete = true, string $language = 'pt'): array
     {
@@ -83,6 +83,7 @@ final class ReferenceAnalysis
             }
         }
         $fullDateCount=count(array_filter($entries,function($e){return !empty($e['full_date']);}));
+        $specialDateReferences=count(array_filter($entries,function($e){return self::specialDate($e['year']);}));
         $aliases = InstitutionalAuthors::aliases($bodyTexts, $entries);
         $personalPattern = self::citationPattern($entries);
         $hasInstitutional = count(array_filter($entries, function ($entry) { return ($entry['kind'] ?? null) === 'institutional'; })) > 0;
@@ -160,6 +161,7 @@ final class ReferenceAnalysis
         $etAlCache=[];
         $quoteCounts=['quoted_citation_candidates'=>0,'candidate_count'=>0,'long_candidates'=>0,'boundary_candidates'=>0,'missing_locator_candidates'=>0];
         $bodyByIndex=[];foreach($bodyTexts as $p){$bodyByIndex[$p['index']]=$p['text'];}
+        $specialDateCitations=0;
         $samples = []; $matched = 0; $missing = 0; $ambiguous = 0; $used = [];
         foreach ($limit ? [] : $citations as $citation) {
             // Unlinked institutional aliases cannot prove a reference absent, including in mixed lists.
@@ -190,7 +192,7 @@ final class ReferenceAnalysis
             $direct=CitationLocator::inspect($bodyByIndex[$citation['paragraph_index']],$citation,count($matches),$language);
             $styleIssues=array_merge($styleIssues,$direct['issues']);
             if($direct['quote_candidate']){$quoteCounts['candidate_count']++;if($direct['long']){$quoteCounts['long_candidates']++;}if($direct['boundary']){$quoteCounts['boundary_candidates']++;}if($direct['missing_locator']){$quoteCounts['missing_locator_candidates']++;}}
-            if (self::specialDate($citation['year'])) { $styleIssues[]='special_date_review'; }
+            if (self::specialDate($citation['year'])) { $styleIssues[]='special_date_review';$specialDateCitations++; }
             if (($citation['secondary_marker'] ?? null) === 'apud') { $styleIssues[]='secondary_apud_not_allowed'; }
             if ($suffixIssue!==null) { $styleIssues[]=$suffixIssue; }
             $etAlIssue=null;
@@ -241,7 +243,7 @@ final class ReferenceAnalysis
         if ($unparsedGroups) { $reasons[] = 'unparsed_citation_groups'; }
         if ($numeric) { $reasons[] = 'numeric_citation_candidates'; }
         if ($ambiguous) { $reasons[] = 'ambiguous_author_date_match'; }
-        return ['full_date_references'=>$fullDateCount,'full_date_matching_profile'=>'unique_personal_author_year_v1','language'=>$language,'citation_language_profile'=>'declared_pt_en_es_v1','direct_quote_counts'=>$quoteCounts,'direct_quote_review'=>CitationLocator::reviewGuidance($quoteCounts), 'citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
+        return ['special_date_references'=>$specialDateReferences,'special_date_citations'=>$specialDateCitations,'special_date_profile'=>'declared_nd_sd_sf_press_v2','full_date_references'=>$fullDateCount,'full_date_matching_profile'=>'unique_personal_author_year_v1','language'=>$language,'citation_language_profile'=>'declared_pt_en_es_v1','direct_quote_counts'=>$quoteCounts,'direct_quote_review'=>CitationLocator::reviewGuidance($quoteCounts), 'citation_style_counts' => $styleCounts, 'citation_style_samples' => $styleSamples,
             'citation_style_samples_omitted' => max(0, array_sum($styleCounts) - count($styleSamples)), 'segmentation_complete' => $boundaries, 'closed_subset' => $closed, 'inspection_limit_reached' => $limit,
             'et_al_context_complete'=>$etAlComplete,'et_al_cohort_limit'=>32,'compound_name_lookup_complete' => $personalPattern !== null, 'reference_count' => count($referenceTexts), 'parsed_references' => count($entries), 'unparsed_references' => $unparsed,
             'recognized_citations' => count($citations), 'unparsed_citation_groups' => $unparsedGroups,
@@ -358,8 +360,8 @@ final class ReferenceAnalysis
     public static function dateKey(string $token): string
     {
         $value=strtolower(preg_replace('/\\s+/u','',trim($token)));
-        if (preg_match('/^[ns]\\.d\\.(?:-([a-z]))?$/D',$value,$m)) { return 'undated'.(isset($m[1])?'-'.$m[1]:''); }
-        if ($value==='inpress' || $value==='noprelo') { return 'inpress'; }
+        if (preg_match('/^(?:[ns]\\.d\\.|s\\.f\\.)(?:-([a-z]))?$/D',$value,$m)) { return 'undated'.(isset($m[1])?'-'.$m[1]:''); }
+        if ($value==='inpress' || $value==='noprelo' || $value==='enprensa') { return 'inpress'; }
         return $value;
     }
 
@@ -493,7 +495,7 @@ final class ReferenceAnalysis
 
     private static function citationAuthors(string $text, ?string $personalPattern = null, string $language = 'pt'): ?array
     {
-        if ($language!=='pt' && preg_match('/^(?:In|On|At|Year|Since|Until|Figure|Table|Appendix|En|Año|Desde|Hasta|Figura|Tabla|Cuadro|Anexo)$/iuD',$text)) { return null; }
+        if ($language!=='pt' && preg_match('/^(?:In|On|At|Year|Date|Published|Publication|Fecha|Fechas|Publicado|Publicación|Since|Until|Figure|Table|Appendix|En|Año|Desde|Hasta|Figura|Tabla|Cuadro|Anexo)$/iuD',$text)) { return null; }
         $name = $personalPattern ?? self::SURNAME;
         if (preg_match('~^(' . $name . ')\s+et\s+al(\.)?$~iuD', $text, $match) && self::citationName($match[1])) { return ['authors' => [$match[1]], 'form' => 'et_al', 'et_al_period' => !empty($match[2])]; }
         // Multi-author forms remain bounded and use only the existing single-surname grammar.
@@ -515,7 +517,7 @@ final class ReferenceAnalysis
         }
         if (preg_match('~^(' . $name . ')\s+(&|e|and|y)\s+(' . $name . ')$~iuD', $text, $match) && self::citationName($match[1]) && self::citationName($match[3])) { return ['authors' => [$match[1], $match[3]], 'form' => 'two_authors', 'conjunction' => $match[2]]; }
         if (preg_match('~^(' . $name . ')$~uD', $text, $match) && self::citationName($match[1])) {
-            if (preg_match('/^(?:Em|No|Na|Ano|Desde|Até|Dados|Figura|Tabela|Gráfico|Quadro)$/iuD', $match[1])) { return null; }
+            if (preg_match('/^(?:Em|No|Na|Ano|Data|Publicado|Desde|Até|Dados|Figura|Tabela|Gráfico|Quadro)$/iuD', $match[1])) { return null; }
             return ['authors' => [$match[1]], 'form' => 'single_author'];
         }
         return null;

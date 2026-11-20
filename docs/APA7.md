@@ -161,3 +161,11 @@ formato e a política não mudam; datas e referências não são reescritas.
 A ligação é possível nos perfis pt/en/es, sem ampliar meses espanhóis ou
 certificar identidade da obra. Motor 0.43.0 exige nova revisão de liberações
 anteriores; não há aprovação automática.
+
+## Marcadores espanhóis de data — Etapa 59
+
+[STAGE59.md](STAGE59.md) reconhece s.f./en prensa e suas equivalências lexicais
+com n.d./s.d. e in press/no prelo, conservando os sufixos suportados. O estado
+real da obra e a edição continuam humanos. Não gera ano nem atribui letras;
+variante não reconhecida não vira ausência comprovada. Motor 0.44.0 exige nova
+revisão de liberações anteriores. A ficha de datas é privada e não envia cartas.

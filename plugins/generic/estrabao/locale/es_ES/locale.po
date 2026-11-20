@@ -350,3 +350,9 @@ msgstr "Revisión humana de .doc"
 
 msgid "plugins.generic.estrabao.docAuthorPending"
 msgstr "La revista acepta archivos .doc. Esta versión requiere revisión humana de APA por el editor antes de finalizar. No fue rechazada por ser .doc y no exige conversión automática."
+
+msgid "plugins.generic.estrabao.specialDateReviewTitle"
+msgstr "Revisión de fechas especiales"
+
+msgid "plugins.generic.estrabao.specialDateReviewInstructions"
+msgstr "Compruebe en la fuente la ausencia de fecha o el estado en prensa y la edición consultada. s.f. y en prensa son marcadores declarados: no prueban publicación, no generan un año ni se sustituyen automáticamente. Conserve los sufijos indicados y revise las ambigüedades."
