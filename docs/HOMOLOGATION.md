@@ -1,5 +1,9 @@
 # Homologação integrada — laboratório local
 
+A [Etapa 54](TRIAGE_COVERAGE.md) acrescenta somente o balanço documental das
+diretrizes e prioridades. Os resultados abaixo são da execução da Etapa 53;
+não houve nova regressão integrada, mudança de produto ou homologação de produção.
+
 Resultado em 19/11/2026: **regressão aprovada no laboratório**, base aa855f8
 (merge PR #53). A [Etapa 53](STAGE53.md) preserva motor 0.41.0 e plugin 0.34.0.0.
 

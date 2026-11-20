@@ -1,0 +1,63 @@
+{
+  "base_commit": "35f87321db875a1ff21ebdb5e2604e37c973fab8",
+  "assessed_on": "2026-11-19",
+  "functional_change": false,
+  "new_editorial_requirements": false,
+  "product_versions_preserved": true,
+  "sources": {
+    "policy": "docs/EDITORIAL_POLICY.md",
+    "gate": "plugins/generic/estrabao/AdmissionBridge.inc.php",
+    "human_release": "plugins/generic/estrabao/AdmissionReviewService.inc.php",
+    "default_rules": "src/Rules/DefaultRules.php",
+    "reader": "src/Document/DocxReader.php",
+    "reference_languages": "src/Rules/References.php",
+    "visual_limits": "docs/STAGE7.md",
+    "integration": "docs/STAGE53.md"
+  },
+  "source_hashes_at_base": {
+    "docs/EDITORIAL_POLICY.md": "db3e8fa64bc447a2117eef0e46f9eabbe33a4b4bda1f20b04566af67cee64a7c",
+    "plugins/generic/estrabao/AdmissionBridge.inc.php": "a62af4c088262964dd751793c3fe5b666276f301adace6dc345754ecb5e5ed7e",
+    "plugins/generic/estrabao/AdmissionReviewService.inc.php": "84e8e7c25c8b00658dc4a9f11159e140801a5b82b1e08e38526db8b9141e134b",
+    "src/Rules/DefaultRules.php": "274a7f8371a0b7b85b781eac6dbfdd7439ce6bdf7a187b8405313db394a8812f",
+    "src/Document/DocxReader.php": "d34c0dd1fd2105caccd516b37ff69fdf3ace77510eaa4109a0cea1b32663a64a",
+    "src/Rules/References.php": "21aff18e6c197418e1f4e64d2988548d83e994fcbfdf5016271b69b5b6e42ce1",
+    "docs/STAGE7.md": "fe8e71c9af3914ff36d1310dd23f14fbb6fab3fb5a5b88b6b07559ad121c4e31",
+    "docs/STAGE53.md": "34bd1ef8668d07a12302ff4a9f2872ec5d9e14e89eb3d3d1535a831001b41df8"
+  },
+  "findings": [
+    {
+      "id": "additional_gate_scope",
+      "result": "APA and citation directives only; native OJS validation and technical holds remain",
+      "source": "plugins/generic/estrabao/AdmissionBridge.inc.php"
+    },
+    {
+      "id": "other_diagnostics",
+      "result": "DefaultRules reports inform draft; APA release is not approval of every editorial requirement",
+      "source": "plugins/generic/estrabao/AdmissionReviewService.inc.php"
+    },
+    {
+      "id": "legacy_word",
+      "result": ".doc accepted in recorded policy; .docx reader only; unreadable source not reviewable by current release",
+      "source": "src/Document/DocxReader.php"
+    },
+    {
+      "id": "citation_languages",
+      "result": "citation matching/style evaluated for pt; recognized reference formats for pt/en/es",
+      "source": "src/Rules/References.php"
+    },
+    {
+      "id": "full_dates_matching",
+      "result": "integrated example has seven matcher-recognized references and two full-date entries inspected by date audit",
+      "source": "docs/STAGE53.md"
+    }
+  ],
+  "roadmap_status": "proposed_documentary_priorities_only",
+  "prior_validation_stage": 53,
+  "prior_php_tests_each": 1716,
+  "prior_javascript_tests": 16,
+  "prior_browser_checks": 910,
+  "prior_tests_not_reexecuted": true,
+  "production_accessed": false,
+  "oracle_vm_accessed": false,
+  "external_messages_sent": false
+}

@@ -14,6 +14,14 @@ Este documento registra requisitos. O motor da Etapa 2 implementa presença,
 ORCID, marcadores e extensão dos resumos e quantidade de palavras-chave;
 os critérios técnicos e limites estão em STAGE2.md.
 
+## Leitura atual deste registro — Etapa 54
+
+Este é o registro histórico dos requisitos recebidos; expressões como futura ou
+pendente nos trechos originais não descrevem, sozinhas, o estado atual do código.
+O balanço em [TRIAGE_COVERAGE.md](TRIAGE_COVERAGE.md) cruza essas exigências com
+as entregas e distingue bloqueio APA, diagnóstico/minuta e conferência humana.
+Esta nota não modifica o texto aprovado, sua vigência pública ou a política.
+
 ## Exigências explícitas
 
 | Área | Artigos | Comunicações de Pesquisa |
