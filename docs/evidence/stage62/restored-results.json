@@ -1,0 +1,58 @@
+[
+  {
+    "case": "restored review retains valid human APA release",
+    "passed": true
+  },
+  {
+    "case": "restored non-APA review matches snapshot",
+    "passed": true
+  },
+  {
+    "case": "author cannot read restored private review",
+    "passed": true
+  },
+  {
+    "case": "corrupt restored ledger prevents conclusion",
+    "passed": true
+  },
+  {
+    "case": "technical refusal does not expose private paths or data",
+    "passed": true
+  },
+  {
+    "case": "missing restored ledger cannot auto-release",
+    "passed": true
+  },
+  {
+    "case": "complete recovery restores exact APA ledger",
+    "passed": true
+  },
+  {
+    "case": "complete recovery removes out-of-snapshot target residue",
+    "passed": true
+  },
+  {
+    "case": "recovered config remains read-only to runtime",
+    "passed": true
+  },
+  {
+    "case": "human release becomes valid after coherent recovery",
+    "passed": true
+  },
+  {
+    "case": "recovered release cannot bypass native CSRF",
+    "passed": true
+  },
+  {
+    "case": "coherently recovered reviewed draft completes wizard",
+    "passed": true
+  },
+  {
+    "case": "native conclusion does not modify recovered manuscript or review bytes",
+    "passed": true
+  },
+  {
+    "case": "ABNT remains blocked after backup recovery",
+    "passed": true
+  }
+]

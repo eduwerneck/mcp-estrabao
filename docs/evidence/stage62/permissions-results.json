@@ -1,0 +1,22 @@
+[
+  {
+    "case": "other UID cannot read private configuration",
+    "passed": true
+  },
+  {
+    "case": "other UID cannot traverse manuscript directory",
+    "passed": true
+  },
+  {
+    "case": "other UID cannot write private review directory",
+    "passed": true
+  },
+  {
+    "case": "killed pre-commit writer preserves exact ledger bytes",
+    "passed": true
+  },
+  {
+    "case": "OS releases dead writer lock for next transaction",
+    "passed": true
+  }
+]

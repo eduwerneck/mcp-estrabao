@@ -1,0 +1,6 @@
+[
+  {
+    "case": "restoration refuses a running application before mutation",
+    "passed": true
+  }
+]

@@ -1,6 +1,6 @@
-# Pendências e sequência de desenvolvimento — Etapa 61
+# Pendências e sequência de desenvolvimento — Etapa 62
 
-Estado em 20/11/2026, base 43eaf8f, após o ensaio da Etapa 61. O [balanço atual](TRIAGE_COVERAGE.md)
+Estado em 20/11/2026, base 528c655, após o ensaio da Etapa 62. O [balanço atual](TRIAGE_COVERAGE.md)
 distingue bloqueio APA, diagnósticos e registro editorial. Entrega/homologação de
 um fluxo não certifica APA integral nem autoriza produção.
 
@@ -14,24 +14,26 @@ um fluxo não certifica APA integral nem autoriza produção.
 | 58 | Correspondência com datas completas pessoais EN/PT reconhecidas | Coortes/edições/sufixos, instituições e meses espanhóis limitados |
 | 59 | s.f./en prensa e ficha privada | Estado real e veracidade continuam humanos; variantes fora da gramática não são completadas |
 | 60 | Balanço atual e plano de instalação isolada | Documental; não instala ou certifica novos recursos |
-| 61 | Pacotes e instalação/atualização em cópias limpas OJS 3.3.0.20 | Dois componentes manuais; não certifica operação/recuperação representativas |
+| 61 | Pacotes e instalação/atualização em cópias limpas OJS 3.3.0.20 | Dois componentes manuais; não certifica a infraestrutura real |
+| 62 | UID de serviço, concorrência e recuperação completa isolada | Sem transação conjunta upload/conclusão, power-loss ou certificação de infraestrutura real |
 
 Detalhes em [STAGE55.md](STAGE55.md), [STAGE56.md](STAGE56.md),
 [STAGE57.md](STAGE57.md), [STAGE58.md](STAGE58.md), [STAGE59.md](STAGE59.md),
-[STAGE60.md](STAGE60.md) e [STAGE61.md](STAGE61.md). As prioridades anteriores
-foram parcialmente entregues;
-não continuar anunciando .doc, EN/ES ou datas completas como totalmente ausentes.
+[STAGE60.md](STAGE60.md), [STAGE61.md](STAGE61.md) e [STAGE62.md](STAGE62.md).
+As prioridades anteriores foram parcialmente entregues; não continuar anunciando
+.doc, EN/ES ou datas completas como totalmente ausentes.
 
 ## Sequência proposta para acompanhamento
 
 | Etapa | Trabalho | Critério de conclusão proposto |
 | --- | --- | --- |
-| 62 | Homologação operacional isolada representativa | Permissões, mudanças concorrentes de arquivo/metadados, backup/restauração e recuperação de registros exercitados, com limites restantes documentados |
 | 63 | Ensaio editorial completo nessa cópia | Submissão/correção/reanálise/revisão/devolutiva/conclusão com dados sintéticos; nenhuma mensagem externa ou publicação real |
+| Operação adicional | Transação conjunta upload/confirmação, falhas de I/O/power-loss, TLS/proxy e caches persistentes | Projetar garantias próprias e ensaiar na infraestrutura isolada representativa; o lock atual não as fornece |
 | Posteriores | Exceções APA e leitura fora do subconjunto | Priorizar por impacto e exemplo sintético; cada ampliação com versão, limites e testes próprios |
 
 Um item por PR, com título/descrição para abertura manual. A numeração é um plano,
-não promessa de encerramento de toda APA. A Etapa 61 ensaiou instalação apenas
+não promessa de encerramento de toda APA. As Etapas 61–62 ensaiaram
+instalação/operação apenas
 em cópias sintéticas isoladas, sem produção ou VM Oracle. Achados futuros podem
 exigir corrigir/reenquadrar a entrega seguinte, mantendo o escopo explícito.
 
@@ -53,10 +55,10 @@ exigir corrigir/reenquadrar a entrega seguinte, mantendo o escopo explícito.
 | Notas | Duas linhas no documento paginado, notas manuais/de fim e cobertura fora do subconjunto |
 | CRediT/fomento/ética/IA | Veracidade, atribuição/taxonomia, equivalência de apoio, aplicabilidade/parecer e finalidade/interação; campos reais OJS por homologar |
 | Revisão posterior à aprovação | Comprovação profissional e controle de novos autores nessa fase ainda sem fluxo específico; não criar falha de triagem inicial |
-| Registros privados | Retenção/exportação/provas, auditoria operacional e recuperação; lock local não certifica transação conjunta com uploads |
+| Registros privados | Recuperação completa sintética ensaiada; faltam retenção/exportação/provas, auditoria representativa e garantias conjuntas com uploads/power-loss |
 | Tema/datas HTML | Perfil visual informado testado localmente; arquivos/versão/configuração e dados históricos reais ainda por homologar |
 | Canais alternativos | API, importações/quickSubmit e outros caminhos fora do wizard não homologados |
-| Infraestrutura | Compatibilidade exata OJS/PHP, ARM64, TLS/proxy, usuário de serviço e instalação representativa; sem reutilizar dados/segredos reais |
+| Infraestrutura | Usuário 100 e instalação isolada ensaiados; faltam infraestrutura real/ARM64/TLS/proxy/OPcache e falhas de I/O, sem reutilizar dados/segredos reais |
 | Débito de validação | 462 avisos PHP preexistentes em fixtures de estrutura, separados de falhas e de observação de produto em produção |
 | MCP opcional | Sem servidor/transporte/autenticação/ferramentas; o nome do repositório não implementa MCP |
 

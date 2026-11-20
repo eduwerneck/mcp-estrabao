@@ -1,0 +1,70 @@
+[
+  {
+    "case": "web runtime UID is unprivileged",
+    "passed": true
+  },
+  {
+    "case": "service cannot write code engine or config",
+    "passed": true
+  },
+  {
+    "case": "service writes runtime directories",
+    "passed": true
+  },
+  {
+    "case": "two simultaneous approvals append exactly one event",
+    "passed": true
+  },
+  {
+    "case": "two simultaneous checklist saves append one event",
+    "passed": true
+  },
+  {
+    "case": "checklist race preserves APA ledger",
+    "passed": true
+  },
+  {
+    "case": "review external lock refuses write",
+    "passed": true
+  },
+  {
+    "case": "editorial external lock refuses write",
+    "passed": true
+  },
+  {
+    "case": "private ledger and lock are 0600: review-1-2.json",
+    "passed": true
+  },
+  {
+    "case": "private ledger and lock are 0600: editorial-1-2.json",
+    "passed": true
+  },
+  {
+    "case": "concurrent server file change invalidates old approval",
+    "passed": true
+  },
+  {
+    "case": "changed file cannot complete from raced approval",
+    "passed": true
+  },
+  {
+    "case": "concurrent metadata change leaves checklist stale",
+    "passed": true
+  },
+  {
+    "case": "metadata change retains independent APA release",
+    "passed": true
+  },
+  {
+    "case": "metadata race retains history prefix",
+    "passed": true
+  },
+  {
+    "case": "fresh snapshot receives new explicit human review",
+    "passed": true
+  },
+  {
+    "case": "ABNT remains blocked in non-root multiworker runtime",
+    "passed": true
+  }
+]

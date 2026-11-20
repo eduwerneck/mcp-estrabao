@@ -1,0 +1,61 @@
+{
+  "containers": [
+    {
+      "name": "estrabao-lab-62-source-web",
+      "image_id": "sha256:04ac07ef381b85ad3539891bf5193540bbe0f8df5af9e97124754e8db2f4605d",
+      "configured_image_digest": "pkpofficial/ojs@sha256:87198f196f9f396ae0342a21dba6b9a9cf7afe35c58576758ee37998adf2c9e1",
+      "internal_network_only": true,
+      "published_ports": false,
+      "checkout_bind_mounts": false,
+      "state": "exited",
+      "user": "100:101",
+      "php_cli_server_workers": 4,
+      "sendmail_neutralized": true,
+      "no_new_privileges": true
+    },
+    {
+      "name": "estrabao-lab-62-source-db",
+      "image_id": "sha256:c53db5be6a29e6f75003283db05221f12988f7bcbf1a09e347c866a898fbdfd5",
+      "configured_image_digest": "mariadb@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114",
+      "internal_network_only": true,
+      "published_ports": false,
+      "checkout_bind_mounts": false,
+      "state": "running"
+    },
+    {
+      "name": "estrabao-lab-62-restore-web",
+      "image_id": "sha256:04ac07ef381b85ad3539891bf5193540bbe0f8df5af9e97124754e8db2f4605d",
+      "configured_image_digest": "pkpofficial/ojs@sha256:87198f196f9f396ae0342a21dba6b9a9cf7afe35c58576758ee37998adf2c9e1",
+      "internal_network_only": true,
+      "published_ports": false,
+      "checkout_bind_mounts": false,
+      "state": "running",
+      "user": "100:101",
+      "php_cli_server_workers": 4,
+      "sendmail_neutralized": true,
+      "no_new_privileges": true
+    },
+    {
+      "name": "estrabao-lab-62-restore-db",
+      "image_id": "sha256:c53db5be6a29e6f75003283db05221f12988f7bcbf1a09e347c866a898fbdfd5",
+      "configured_image_digest": "mariadb@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114",
+      "internal_network_only": true,
+      "published_ports": false,
+      "checkout_bind_mounts": false,
+      "state": "running"
+    }
+  ],
+  "restored_runtime": {
+    "smtp_disabled": true,
+    "beacon_disabled": true,
+    "scheduled_tasks_disabled": true,
+    "review_dir_mode": "0700",
+    "config_mode": "0440",
+    "php": "8.1.27"
+  },
+  "new_synthetic_databases_volumes_and_credentials": true,
+  "authenticated_native_http": true,
+  "selenium_used": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false
+}

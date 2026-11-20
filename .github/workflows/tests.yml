@@ -28,3 +28,4 @@ jobs:
         with:
           python-version: '3.11'
       - run: python -m unittest discover -s tests/package -v
+      - run: python -m unittest discover -s tests/operations -v
