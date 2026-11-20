@@ -3,7 +3,9 @@
 Procedimento ensaiado na [Etapa 61](STAGE61.md), com dados sintéticos. Plugin
 **0.39.0.0**, motor **0.44.0**. Distribuição **manual em dois componentes**;
 enviar somente o arquivo do plugin pela galeria não configura o motor nem os
-registros privados. Não é procedimento de implantação da revista.
+registros privados. A [Etapa 62](OPERATIONS.md) acrescenta ensaio de permissões,
+concorrência e recuperação, com limites operacionais explícitos. Não é procedimento
+de implantação da revista.
 
 ## Pacotes e origem
 
@@ -106,10 +108,12 @@ nova liberação e conclusão pelo wizard.
 Em atualizações futuras, limpar caches de dados/templates pelo administrador da
 cópia e recarregar o runtime quando houver cache persistente de PHP. Não remover
 arquivos editoriais para limpar cache. O ensaio usou PHP sem OPcache persistente;
-cache/invalidação sob infraestrutura representativa integra a Etapa 62.
+cache/invalidação sob infraestrutura representativa continua pendente após o
+ensaio limitado da Etapa 62.
 
-Esse procedimento **não demonstra rollback** do banco e dos registros. Preparar e
-ensaiar backup/restauração é trabalho da Etapa 62. Não interpretar a preservação
+Esse procedimento **não demonstra rollback** do banco e dos registros.
+Backup/restauração foram ensaiados na cópia isolada da [Etapa 62](OPERATIONS.md).
+Não interpretar a preservação
 dos hashes como prova de recuperação operacional ou transação conjunta com uploads.
 
 ## Reprodução automatizada do laboratório

@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "ojs": "3.3.0.20",
+  "engine": "0.44.0",
+  "plugin": "0.39.0.0",
+  "source_quiesced": true,
+  "components": {
+    "database.sql": {
+      "size": 297966,
+      "sha256": "9629d11f432f1a3d04220b92d8f21a3520bde5ab68550b1f61b049a1cb15e19b"
+    },
+    "files.tar": {
+      "size": 36864,
+      "sha256": "f12b07b3fa3ccb8a572353db8aae1742eea13383e5234191d8543db4d22adda0"
+    },
+    "public.tar": {
+      "size": 3584,
+      "sha256": "7fc28eacf4adddf8a5f3b517071f7805feff70891d9e9a646241efe94ab13666"
+    },
+    "config.inc.php": {
+      "size": 16319,
+      "sha256": "0a32cafda59b77bfdf2c05b7dad562b4c907f3acd54b583c590db952aee73c52"
+    },
+    "state.json": {
+      "size": 359,
+      "sha256": "5a3b06177c7a2311868e9fcf2eaa41d68aa3d560cec9f4d216e649114439ed4a"
+    }
+  },
+  "inventory_counts": {
+    "files": 44,
+    "public": 5
+  },
+  "snapshot_private_mode": "0700",
+  "components_private_mode": "0600",
+  "sql_config_manuscripts_and_ledgers_committed": false
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "case": "source remains stopped for consistent backup",
+    "passed": true
+  },
+  {
+    "case": "complete backup verifies",
+    "passed": true
+  },
+  {
+    "case": "corrupt backup refused before changing target database",
+    "passed": true
+  },
+  {
+    "case": "restored native database exactly matches quiesced SQL",
+    "passed": true
+  },
+  {
+    "case": "files restored with bytes ownership and modes",
+    "passed": true
+  },
+  {
+    "case": "public restored with bytes ownership and modes",
+    "passed": true
+  },
+  {
+    "case": "restoration uses different private volumes",
+    "passed": true
+  },
+  {
+    "case": "restored application still runs as UID 100",
+    "passed": true
+  }
+]

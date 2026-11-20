@@ -1,4 +1,24 @@
-# Estado atual da homologação — Etapa 61
+# Estado atual da homologação — Etapa 62
+
+Ensaio em **20/11/2026**, base **528c655**. Produto sem alteração: motor
+**0.44.0**, plugin **0.39.0.0**. A [Etapa 62](STAGE62.md) executou **45 verificações
+operacionais** no OJS real por HTTP autenticado/CLI, **11 testes offline de backup**
+e **15 de empacotamento**, sem falhas finais. PHP 8.1.27, quatro workers sob
+UID 100:101, bancos/volumes novos e sintéticos, rede interna sem portas públicas.
+
+Confirmados: permissões, locks e revisão concorrente, troca de arquivo/metadados,
+backup com aplicação parada, restauração coerente em outra cópia, recuperação
+completa repetida e conclusão nativa com CSRF. Nenhum PHP Warning/Fatal nos logs
+HTTP das duas cópias. Serviços encerrados após o ensaio. [Evidências](evidence/stage62/validation.json)
+e [procedimento e limites](OPERATIONS.md).
+
+Isso não certifica transação conjunta upload/conclusão, power-loss/rename,
+rollback de qualquer falha de I/O, TLS/proxy, OPcache persistente ou infraestrutura
+real. Não houve nova suíte visual nem nova execução manual dos 2.120 PHP/16 JS.
+Os resultados abaixo pertencem às etapas identificadas.
+
+## Instalação e regressão anteriores — Etapa 61
+
 
 Ensaio em 20/11/2026, base 43eaf8f. Motor **0.44.0**, plugin **0.39.0.0**,
 produto preservado. A [Etapa 61](STAGE61.md) executou instalação nova e atualização
@@ -42,8 +62,9 @@ documentação/contrato CLI; não apresenta esses números como nova regressão.
   infraestrutura representativa da revista continuam sem homologação.
 - Tema Padrão e perfil visual informado foram exercitados localmente; isso não
   confirma arquivos/configuração da revista, seus campos, locales ou infraestrutura.
-- Permissões/usuário de serviço reais, concorrência com uploads e recuperação de
-  backup não são certificados pelo lock privado dos registros.
+- UID 100, concorrência e recuperação foram exercitados na cópia da Etapa 62;
+  isso não certifica o usuário de serviço real, transação upload/conclusão ou
+  recuperação diante de qualquer falha de hardware/I/O.
 - ARM64, TLS/proxy, API/importações/quickSubmit e outros canais seguem sem ensaio
   operacional representativo. Os dois runtimes do motor não certificam o OJS em PHP 8.4.
 - APA integral, veracidade de declarações, fontes e edição/identidade continuam
@@ -51,9 +72,9 @@ documentação/contrato CLI; não apresenta esses números como nova regressão.
 
 ## Sequência proposta
 
-[Etapa 61 concluída](STAGE61.md): pacotes e instalação/atualização em cópias
-limpas isoladas. Etapa 62: operação,
-concorrência e backup/recuperação. Etapa 63: ensaio editorial nessa cópia.
+[Etapa 61](STAGE61.md): pacotes e instalação/atualização.
+[Etapa 62](STAGE62.md): ensaio operacional limitado e recuperação isolada.
+Próxima: Etapa 63, ensaio editorial amplo nessa cópia.
 Não instalar, ativar ou publicar na revista por causa deste balanço. Produção e
 VM Oracle permanecem fora do escopo. O ambiente não foi publicado novamente.
 

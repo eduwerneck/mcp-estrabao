@@ -1,10 +1,10 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-Estado atual: [instalação isolada da Etapa 61](docs/STAGE61.md),
+Estado atual: [ensaio operacional da Etapa 62](docs/STAGE62.md),
 [balanço da triagem](docs/TRIAGE_COVERAGE.md) e
 [próximas entregas](docs/PENDING_REQUIREMENTS.md).
-As Etapas 1 a 61 implementam um motor PHP local, contratos JSON, testes sintéticos e
+As Etapas 1 a 62 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). O conjunto foi
 validado no laboratório OJS isolado; o tema e a infraestrutura reais da revista
 ainda não foram homologados. Não há certificação completa de APA ou servidor MCP.
@@ -241,3 +241,8 @@ A [Etapa 61](docs/STAGE61.md) entrega pacotes reproduzíveis e testa instalaçã
 nova e atualização em cópias limpas OJS 3.3.0.20, sem montar o checkout. O
 [guia](docs/INSTALLATION.md) descreve os dois componentes, configuração privada
 e preservação/invalidação das revisões. Produção e VM Oracle seguem fora do escopo.
+
+A [Etapa 62](docs/STAGE62.md) testa serviço não root, gravações simultâneas,
+locks e restauração completa em outra cópia isolada. O [guia operacional](docs/OPERATIONS.md)
+registra a preservação dos dados, os testes nativos e os limites que permanecem,
+incluindo a ausência de transação conjunta entre upload e confirmação final.

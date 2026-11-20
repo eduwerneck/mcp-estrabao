@@ -1,0 +1,14 @@
+{
+  "containers": {
+    "estrabao-lab-62-source-web": "exited",
+    "estrabao-lab-62-source-db": "exited",
+    "estrabao-lab-62-restore-web": "exited",
+    "estrabao-lab-62-restore-db": "exited"
+  },
+  "all_stage62_services_stopped": true,
+  "stage61_reconstructible_stopped_containers_removed": true,
+  "stage61_volumes_and_private_configuration_preserved": true,
+  "stage62_synthetic_backup_and_volumes_retained_privately": true,
+  "production_accessed": false,
+  "oracle_vm_accessed": false
+}
