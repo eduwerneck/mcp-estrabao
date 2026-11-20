@@ -5,14 +5,15 @@ namespace Estrabao\Document;
 /** Shared lexical boundaries, not semantic identification of all bibliographic material. */
 final class ReferenceSections
 {
-    public static function extract(array $document): array
+    public static function extract(array $document, string $language = 'pt'): array
     {
+        if (!in_array($language,['pt','en','es'],true)) { return ['references'=>[],'body'=>[],'complete'=>false]; }
         if (count($document['paragraphs']) > ReferenceAnalysis::MAX_PARAGRAPHS) { throw new \RuntimeException('inspection_limit'); }
         $referenceTexts = []; $bodyTexts = []; $found = []; $zone = 'prefix'; $boundaries = true; $seenBody = false;
         foreach ($document['paragraphs'] as $paragraph) {
             if (preg_match('//u', $paragraph['text']) !== 1 || preg_match('/\p{M}/u', $paragraph['text'])) { throw new \RuntimeException('normalization_unavailable'); }
             $text = trim($paragraph['text']); if ($text === '') { continue; }
-            $label = self::section($text);
+            $label = self::section($text,$language);
             if ($label !== null) {
                 if ($zone === 'abstract' && in_array($label, ManuscriptSegments::CORE, true)) { $boundaries = false; }
                 if (in_array($label, ManuscriptSegments::CORE, true)) { $seenBody = true; }
@@ -39,10 +40,22 @@ final class ReferenceSections
         return ['references' => $referenceTexts, 'body' => $bodyTexts, 'complete' => $boundaries];
     }
 
-    private static function section(string $text): ?string
+    private static function section(string $text, string $language): ?string
     {
-        foreach (array_merge(ManuscriptSegments::CORE, ['Referências', 'Créditos (CRediT)', 'Fontes de Fomento']) as $label) {
-            if (preg_match('/^(?:[0-9]+(?:\.[0-9]+)*[.)]?\s+)?' . preg_quote($label, '/') . '$/iuD', $text)) { return $label; }
+        // Lexical boundaries for citation inspection only; not approved/required editorial section names.
+        $profiles = [
+            'pt'=>array_combine(array_merge(ManuscriptSegments::CORE,['Referências','Créditos (CRediT)','Fontes de Fomento']),array_merge(ManuscriptSegments::CORE,['Referências','Créditos (CRediT)','Fontes de Fomento'])),
+            'en'=>['Introduction'=>'Introdução','Methodology'=>'Metodologia','Methods'=>'Metodologia',
+                'Results and Discussion'=>'Resultados e Discussão','Conclusions'=>'Considerações Finais',
+                'Conclusion'=>'Considerações Finais','Final Considerations'=>'Considerações Finais',
+                'References'=>'Referências','Funding'=>'Fontes de Fomento','CRediT author statement'=>'Créditos (CRediT)'],
+            'es'=>['Introducción'=>'Introdução','Metodología'=>'Metodologia','Métodos'=>'Metodologia',
+                'Resultados y Discusión'=>'Resultados e Discussão','Consideraciones Finales'=>'Considerações Finais',
+                'Conclusiones'=>'Considerações Finais','Conclusión'=>'Considerações Finais',
+                'Referencias'=>'Referências','Financiación'=>'Fontes de Fomento','Contribuciones de autoría (CRediT)'=>'Créditos (CRediT)'],
+        ];
+        foreach ($profiles[$language] as $label=>$key) {
+            if (preg_match('/^(?:[0-9]+(?:\.[0-9]+)*[.)]?\s+)?' . preg_quote($label, '/') . '$/iuD', $text)) { return $key; }
         }
         return null;
     }

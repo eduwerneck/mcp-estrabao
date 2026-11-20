@@ -92,3 +92,12 @@ sem conversão exigida ou verificação automática de APA. CFB v4, mini-stream 
 WordDocument, arquivos protegidos/não reconhecidos e outros limites continuam
 pendentes de encaminhamento; a aceitação editorial de `.doc` foi preservada.
 Citações/correspondência EN/ES, datas e homologação operacional seguem na fila.
+
+## Atualização após a Etapa 57
+
+[STAGE57.md](STAGE57.md) entrega a primeira cobertura de citações EN/ES por idioma
+declarado, com referências lexicamente delimitadas e preservação de ambiguidades.
+Seções editoriais traduzidas, títulos/estruturas fora do subconjunto, datas
+completas no matcher e marcadores `s.f.`/`en prensa` continuam pendentes.
+A próxima entrega prevista é correspondência com datas completas; a auditoria
+cronológica já existente não implementa essa relação.

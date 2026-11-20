@@ -1,0 +1,130 @@
+[
+  {
+    "case": "en declared locale drives citation analysis",
+    "passed": true
+  },
+  {
+    "case": "en narrative ampersand proves a blocking incompatibility",
+    "passed": true
+  },
+  {
+    "case": "en failed source cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "en blocked source cannot complete native wizard",
+    "passed": true
+  },
+  {
+    "case": "en draft contains recognized citation correction",
+    "passed": true
+  },
+  {
+    "case": "en foreign narrative conjunction stays for human review",
+    "passed": true
+  },
+  {
+    "case": "en apud remains blocked with only consulted source linked",
+    "passed": true
+  },
+  {
+    "case": "en localized secondary marker keeps consulted source only",
+    "passed": true
+  },
+  {
+    "case": "en corrected language citation becomes reviewable without automatic release",
+    "passed": true
+  },
+  {
+    "case": "en corrected source still requires explicit human review",
+    "passed": true
+  },
+  {
+    "case": "en explicit review activates current release",
+    "passed": true
+  },
+  {
+    "case": "en new file ID invalidates release even with equal source bytes",
+    "passed": true
+  },
+  {
+    "case": "en stale release cannot complete new version",
+    "passed": true
+  },
+  {
+    "case": "en release preserves native CSRF check",
+    "passed": true
+  },
+  {
+    "case": "en reviewed current version completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "es declared locale drives citation analysis",
+    "passed": true
+  },
+  {
+    "case": "es narrative ampersand proves a blocking incompatibility",
+    "passed": true
+  },
+  {
+    "case": "es failed source cannot receive a release",
+    "passed": true
+  },
+  {
+    "case": "es blocked source cannot complete native wizard",
+    "passed": true
+  },
+  {
+    "case": "es draft contains recognized citation correction",
+    "passed": true
+  },
+  {
+    "case": "es foreign narrative conjunction stays for human review",
+    "passed": true
+  },
+  {
+    "case": "es apud remains blocked with only consulted source linked",
+    "passed": true
+  },
+  {
+    "case": "es localized secondary marker keeps consulted source only",
+    "passed": true
+  },
+  {
+    "case": "es corrected language citation becomes reviewable without automatic release",
+    "passed": true
+  },
+  {
+    "case": "es corrected source still requires explicit human review",
+    "passed": true
+  },
+  {
+    "case": "es explicit review activates current release",
+    "passed": true
+  },
+  {
+    "case": "es new file ID invalidates release even with equal source bytes",
+    "passed": true
+  },
+  {
+    "case": "es stale release cannot complete new version",
+    "passed": true
+  },
+  {
+    "case": "es release preserves native CSRF check",
+    "passed": true
+  },
+  {
+    "case": "es reviewed current version completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "original workflow records preserved",
+    "passed": true
+  },
+  {
+    "case": "original lab pointer restored",
+    "passed": true
+  }
+]

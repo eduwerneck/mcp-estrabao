@@ -1,0 +1,49 @@
+{
+  "base": "3254cdd",
+  "engine": "0.42.0",
+  "plugin": "0.37.0.0",
+  "rules": {
+    "references.apa7": "27.0.0",
+    "references.citation_matching": "14.0.0",
+    "references.apa7.citation_format": "12.0.0",
+    "references.apa7.recognized_formats": "17.0.0"
+  },
+  "contracts_identical_to_base": true,
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1875,
+      "failures": 0,
+      "preexisting_structure_fixture_warnings": 462,
+      "warnings_identical_to_stage56": true
+    },
+    "8.1.27": {
+      "tests": 1875,
+      "failures": 0,
+      "preexisting_structure_fixture_warnings": 462,
+      "warnings_identical_to_stage56": true
+    }
+  },
+  "new_php_tests": 73,
+  "php_lint_files": 128,
+  "javascript_tests": 16,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "integrated_browser_checks": 993,
+  "reversible_suites": 32,
+  "fresh_docx_cycle_checks": 27,
+  "fresh_doc_cycle_checks": 25,
+  "fresh_language_cycle_checks": 32,
+  "apa_specific_modes_reexecuted": 21,
+  "additional_isolated_language_checks": 32,
+  "languages_explicitly_declared": [
+    "pt",
+    "en",
+    "es"
+  ],
+  "language_inferred": false,
+  "new_editorial_section_requirements": false,
+  "full_apa_validation": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false,
+  "external_messages_sent": false
+}

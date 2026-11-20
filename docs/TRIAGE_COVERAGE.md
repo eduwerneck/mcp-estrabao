@@ -19,6 +19,10 @@ subconjunto `.doc` identificável, com declaração de leitura e revisão APA, s
 extração automática. A retenção técnica de outras fontes e variantes permanece.
 As tabelas abaixo preservam o balanço histórico da Etapa 54.
 
+Atualização posterior da [Etapa 57](STAGE57.md): citações EN/ES passam a ser
+conferidas com idioma declarado e fronteiras lexicais documentadas. Isso não
+aprova traduções de seções editoriais nem encerra as lacunas do matcher.
+
 ## Conclusão principal
 
 **Diagnóstico no relatório não equivale a bloqueio na entrada.** O bloqueio

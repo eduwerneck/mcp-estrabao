@@ -142,3 +142,12 @@ conteúdo `.doc`; exige declaração de abertura/leitura e conferência APA/dire
 com histórico e vínculo da versão. Não libera por extensão nem substitui falha
 comprovada em DOCX. A revisão humana não certifica o comportamento semântico
 do arquivo; variantes não identificadas continuam pendentes.
+
+## Citações EN/ES — Etapa 57
+
+[STAGE57.md](STAGE57.md) habilita a análise de citações em inglês/espanhol,
+com idioma declarado e limites lexicais documentados. Inclui conjunções, et al.,
+localizadores e fonte consultada em secundárias; apud segue bloqueado. Mistura
+de idioma, contexto incompleto e estruturas fora da gramática ficam para revisão.
+Não valida semanticamente as fontes nem amplia o matcher para datas completas.
+Motor 0.42.0 exige nova revisão das versões anteriormente liberadas em 0.41.0.

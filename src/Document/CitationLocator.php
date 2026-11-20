@@ -14,10 +14,10 @@ final class CitationLocator
         return substr_count($prefix,'"')%2!==0 || substr_count($prefix,'“')!==substr_count($prefix,'”');
     }
 
-    public static function inspect(string $text,array $citation,int $matches): array
+    public static function inspect(string $text,array $citation,int $matches,string $language='pt'): array
     {
         $r=['issues'=>[],'kind'=>null,'quote_candidate'=>false,'word_interval'=>null,'long'=>false,'boundary'=>false,'missing_locator'=>false];
-        $quote=self::quotedText($text,$citation);
+        $quote=self::quotedText($text,$citation,$language);
         $locator=$citation['locator']??($quote['locator']??null);
         if (is_string($locator)) {
             if (preg_match('/^(p|pp)\.\s*([0-9]{1,9})(?:[-–]([0-9]{1,9}))?$/iuD',$locator,$m)) {
@@ -44,7 +44,7 @@ final class CitationLocator
     }
 
     /** Local quote association only; returned text is never included in report evidence. */
-    private static function quotedText(string $text,array $citation): ?array
+    private static function quotedText(string $text,array $citation,string $language): ?array
     {
         if (($citation['group_item_count']??0)!==1 || empty($citation['syntax_complete'])
             || empty($citation['group_complete']) || !empty($citation['secondary'])
@@ -56,7 +56,8 @@ final class CitationLocator
             $locator=$citation['locator']??null;
         } elseif (($citation['placement']??null)==='narrative') {
             // The existing parser requires the author prefix at paragraph start. Do not search arbitrary prose.
-            if (!preg_match('/^\s*(?:(?:afirma|declara|escreve|observa|states|writes)\s*)?:?\s*(["“])([^"“”]+)(["”])(?:\s*\(('.self::PATTERN.')\))?\s*[.!?]?$/iuD',$after,$m)) { return null; }
+            $verbs='afirma|declara|escreve|observa|states|writes'.($language==='es'?'|señala|sostiene|escribe':'');
+            if (!preg_match('/^\s*(?:(?:'.$verbs.')\s*)?:?\s*(["“])([^"“”]+)(["”])(?:\s*\(('.self::PATTERN.')\))?\s*[.!?]?$/iuD',$after,$m)) { return null; }
             $tailLocator=isset($m[4]) && $m[4]!==''?$m[4]:null;
             if (($citation['locator']??null)!==null && $tailLocator!==null) { return null; }
             $locator=$citation['locator']??$tailLocator;

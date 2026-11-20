@@ -80,3 +80,8 @@ Na via `.doc` da [Etapa 56](STAGE56.md), o texto Word não é extraído: os crit
 do manuscrito permanecem inconclusivos. Metadados disponíveis podem alimentar
 a minuta, sem alegar ausência de conteúdo não lido. A conferência humana APA
 fica no histórico privado e não é enviada ao autor automaticamente.
+
+A [Etapa 57](STAGE57.md) inclui incompatibilidades comprovadas das citações
+EN/ES na minuta reconhecida pelas novas versões de regra. Ambiguidades de
+idioma e contexto permanecem reservadas à revisão; a carta continua revisável
+e em português, sem tradução ou envio automático.

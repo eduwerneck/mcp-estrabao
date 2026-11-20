@@ -225,3 +225,14 @@ de estrutura, idênticos aos da Etapa 55; nenhum aviso novo nessa comparação.
 Os 21 modos APA específicos não foram reexecutados. Conferência humana declarada
 não prova abertura/semântica; variantes DOC e operação real continuam limitadas.
 Evidências selecionadas em evidence/stage56; sem implantação na revista.
+
+## Atualização da Etapa 57
+
+Motor 0.42.0 e plugin 0.37.0.0 ampliam citações EN/ES por idioma declarado.
+993 verificações OJS aprovadas, em 32 suítes e ciclos DOCX/DOC/EN/ES;
+incluem os 21 modos APA anteriores. 1.875 testes por PHP (8.4.27/8.1.27),
+16 JavaScript, lint de 128 PHP, compilação Python e schemas CLI aprovados.
+Os 462 avisos PHP de fixtures de estrutura são idênticos aos da Etapa 56.
+Liberações anteriores precisam de nova revisão devido à mudança do motor.
+Evidências em evidence/stage57; APA integral e operação real continuam por
+homologar. Nenhuma implantação na revista ou mudança de política de seções.

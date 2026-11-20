@@ -128,7 +128,7 @@ test('ordem de seções não é imposta', function () use ($single) {
     $doc = countDocument(['Referências', $single, 'Metodologia', 'Texto (Silva, 2020).', 'Introdução', 'Resultados e Discussão', 'Considerações Finais']);
     same('conforme', referenceChecks($doc)[1]['status']);
 });
-foreach (['en', 'es', null] as $language) {
+foreach (['de', 'fr', null] as $language) {
     test('idioma de delimitação não suportado ' . ($language ?? 'null'), function () use ($language) {
         $checks = referenceChecks(referenceDocument(), $language);
         foreach ($checks as $check) { same('indeterminado', $check['status']); same(false, isset($check['evidence']['analysis'])); }
@@ -161,9 +161,9 @@ foreach (['conforme' => 'Silva', 'não conforme' => 'Souza'] as $expected => $na
         withDocx(docxParts(docxBody(array_column($doc['paragraphs'], 'text'))), function ($path) use ($expected) {
             list($code, $out, $err) = cli([__DIR__ . '/fixtures/with-subtitles.json', $path, 'article', 'pt']);
             same(0, $code); same('', $err);
-            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.41.0', $report['engine_version']);
+            $report = json_decode($out, true, 64, JSON_THROW_ON_ERROR); same('0.42.0', $report['engine_version']);
             $checks = array_column($report['checks'], null, 'rule_id');
-            same($expected, $checks['references.citation_matching']['status']); same('13.0.0', $checks['references.citation_matching']['rule_version']);
+            same($expected, $checks['references.citation_matching']['status']); same('14.0.0', $checks['references.citation_matching']['rule_version']);
             same($expected === 'não conforme' ? 'não conforme' : 'indeterminado', $checks['references.apa7']['status']);
             same(hash_file('sha256', $path), $checks['references.apa7']['evidence']['document_sha256']);
             same(false, strpos($out, 'Livro sintético') !== false); same(false, strpos($out, $path) !== false);

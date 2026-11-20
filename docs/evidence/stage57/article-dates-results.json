@@ -1,0 +1,42 @@
+[
+  {
+    "case": "anonymous article shows real submission calendar date",
+    "passed": true
+  },
+  {
+    "case": "submitted date precedes published in the same native box",
+    "passed": true
+  },
+  {
+    "case": "original published date is retained",
+    "passed": true
+  },
+  {
+    "case": "one date only",
+    "passed": true
+  },
+  {
+    "case": "display does not write workflow dates or status",
+    "passed": true
+  },
+  {
+    "case": "date is server rendered without JavaScript",
+    "passed": true
+  },
+  {
+    "case": "missing submitted date leaves publication intact",
+    "passed": true
+  },
+  {
+    "case": "incoherent submitted date is omitted",
+    "passed": true
+  },
+  {
+    "case": "unpublished preview has no public submitted indicator",
+    "passed": true
+  },
+  {
+    "case": "fixture restores original workflow records",
+    "passed": true
+  }
+]
