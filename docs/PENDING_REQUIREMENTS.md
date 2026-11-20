@@ -1,6 +1,6 @@
-# Pendências e sequência de desenvolvimento — Etapa 60
+# Pendências e sequência de desenvolvimento — Etapa 61
 
-Estado em 20/11/2026, base 6a117b1, após a Etapa 59. O [balanço atual](TRIAGE_COVERAGE.md)
+Estado em 20/11/2026, base 43eaf8f, após o ensaio da Etapa 61. O [balanço atual](TRIAGE_COVERAGE.md)
 distingue bloqueio APA, diagnósticos e registro editorial. Entrega/homologação de
 um fluxo não certifica APA integral nem autoriza produção.
 
@@ -14,24 +14,25 @@ um fluxo não certifica APA integral nem autoriza produção.
 | 58 | Correspondência com datas completas pessoais EN/PT reconhecidas | Coortes/edições/sufixos, instituições e meses espanhóis limitados |
 | 59 | s.f./en prensa e ficha privada | Estado real e veracidade continuam humanos; variantes fora da gramática não são completadas |
 | 60 | Balanço atual e plano de instalação isolada | Documental; não instala ou certifica novos recursos |
+| 61 | Pacotes e instalação/atualização em cópias limpas OJS 3.3.0.20 | Dois componentes manuais; não certifica operação/recuperação representativas |
 
 Detalhes em [STAGE55.md](STAGE55.md), [STAGE56.md](STAGE56.md),
-[STAGE57.md](STAGE57.md), [STAGE58.md](STAGE58.md), [STAGE59.md](STAGE59.md) e
-[STAGE60.md](STAGE60.md). As prioridades anteriores foram parcialmente entregues;
+[STAGE57.md](STAGE57.md), [STAGE58.md](STAGE58.md), [STAGE59.md](STAGE59.md),
+[STAGE60.md](STAGE60.md) e [STAGE61.md](STAGE61.md). As prioridades anteriores
+foram parcialmente entregues;
 não continuar anunciando .doc, EN/ES ou datas completas como totalmente ausentes.
 
 ## Sequência proposta para acompanhamento
 
 | Etapa | Trabalho | Critério de conclusão proposto |
 | --- | --- | --- |
-| 61 | Pacote e instalação/atualização em cópia limpa OJS 3.3.0.20 | Artefato/manifesto reproduzíveis, engine privado, configuração explícita e ciclo de registro/habilitação/desabilitação testado; [plano](INSTALLATION_PLAN.md) |
 | 62 | Homologação operacional isolada representativa | Permissões, mudanças concorrentes de arquivo/metadados, backup/restauração e recuperação de registros exercitados, com limites restantes documentados |
 | 63 | Ensaio editorial completo nessa cópia | Submissão/correção/reanálise/revisão/devolutiva/conclusão com dados sintéticos; nenhuma mensagem externa ou publicação real |
 | Posteriores | Exceções APA e leitura fora do subconjunto | Priorizar por impacto e exemplo sintético; cada ampliação com versão, limites e testes próprios |
 
 Um item por PR, com título/descrição para abertura manual. A numeração é um plano,
-não promessa de encerramento de toda APA nem instalação já executada. A Etapa 61
-não inclui produção ou VM Oracle. Faltas reveladas pela instalação limpa podem
+não promessa de encerramento de toda APA. A Etapa 61 ensaiou instalação apenas
+em cópias sintéticas isoladas, sem produção ou VM Oracle. Achados futuros podem
 exigir corrigir/reenquadrar a entrega seguinte, mantendo o escopo explícito.
 
 ## Lacunas técnicas/editoriais que continuam abertas

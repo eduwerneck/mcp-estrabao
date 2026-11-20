@@ -1,5 +1,9 @@
 # Plano da Etapa 61 — pacote e instalação limpa isolada
 
+**Execução e resultado:** [Etapa 61](STAGE61.md);
+[procedimento ensaiado](INSTALLATION.md). Os critérios abaixo preservam o plano
+original, com limites operacionais ainda destinados à Etapa 62.
+
 Plano revisável da Etapa 60 (20/11/2026, base 6a117b1). Não é relatório de execução
 nem procedimento aprovado para a revista real. Alvo inicial: **OJS 3.3.0.20** em
 cópia local limpa, somente dados sintéticos, sem produção ou VM Oracle.

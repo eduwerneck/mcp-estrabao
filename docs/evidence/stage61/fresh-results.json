@@ -1,0 +1,86 @@
+[
+  {
+    "case": "native OJS target and required extensions",
+    "passed": true
+  },
+  {
+    "case": "native plugin version registered",
+    "passed": true
+  },
+  {
+    "case": "gate starts explicitly disabled",
+    "passed": true
+  },
+  {
+    "case": "packaged engine activates review",
+    "passed": true
+  },
+  {
+    "case": "no automatic release",
+    "passed": true
+  },
+  {
+    "case": "inconclusive draft waits for review",
+    "passed": true
+  },
+  {
+    "case": "human review releases analysis",
+    "passed": true
+  },
+  {
+    "case": "both private histories created",
+    "passed": true
+  },
+  {
+    "case": "disable removes private handler",
+    "passed": true
+  },
+  {
+    "case": "disable preserves histories",
+    "passed": true
+  },
+  {
+    "case": "re-enable restores release",
+    "passed": true
+  },
+  {
+    "case": "re-enable preserves histories",
+    "passed": true
+  },
+  {
+    "case": "native CSRF required",
+    "passed": true
+  },
+  {
+    "case": "reviewed draft completes native wizard",
+    "passed": true
+  },
+  {
+    "case": "ABNT offers no approval",
+    "passed": true
+  },
+  {
+    "case": "ABNT cannot complete wizard",
+    "passed": true
+  },
+  {
+    "case": "author cannot view private form",
+    "passed": true
+  },
+  {
+    "case": "missing engine fails closed",
+    "passed": true
+  },
+  {
+    "case": "missing engine does not leak paths",
+    "passed": true
+  },
+  {
+    "case": "administrator discovers plugin",
+    "passed": true
+  },
+  {
+    "case": "no checkout mounts",
+    "passed": true
+  }
+]

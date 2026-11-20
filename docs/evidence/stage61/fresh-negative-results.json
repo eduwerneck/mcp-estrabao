@@ -1,0 +1,42 @@
+[
+  {
+    "case": "author POST does not mutate ledger",
+    "passed": true
+  },
+  {
+    "case": "bad CSRF does not mutate ledger",
+    "passed": true
+  },
+  {
+    "case": "valid POST appends review event",
+    "passed": true
+  },
+  {
+    "case": "stale revision cannot replay",
+    "passed": true
+  },
+  {
+    "case": "insecure review directory blocks released draft",
+    "passed": true
+  },
+  {
+    "case": "corrupt ledger blocks released draft",
+    "passed": true
+  },
+  {
+    "case": "corrupt record leaks no paths or contents",
+    "passed": true
+  },
+  {
+    "case": "negative storage tests restore exact history",
+    "passed": true
+  },
+  {
+    "case": "explicit gate off retains native completion",
+    "passed": true
+  },
+  {
+    "case": "disabled plugin retains native completion",
+    "passed": true
+  }
+]
