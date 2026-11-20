@@ -1,0 +1,268 @@
+{
+  "scope": "synthetic_complete_snapshot_without_docx_type_or_language",
+  "limitations": [
+    "conditional_rule_ids_may_be_absent",
+    "not_a_coverage_percentage",
+    "not_full_apa_validation"
+  ],
+  "instances": 51,
+  "distinct_rule_ids": 32,
+  "report_schema_valid": true,
+  "rules": [
+    {
+      "rule_id": "metadata.title.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.title.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.title.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.abstract.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.abstract.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.abstract.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.keywords.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.keywords.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.keywords.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "author.orcid.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "author.orcid.syntax",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "author.orcid.presence",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "author.orcid.syntax",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "author.orcid.identity",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "abstract.labels",
+      "rule_version": "2.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "abstract.labels",
+      "rule_version": "2.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "abstract.labels",
+      "rule_version": "2.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "abstract.word_limit",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "abstract.word_limit",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "abstract.word_limit",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.keywords.count",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.keywords.count",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.keywords.count",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "manuscript.docx.structure",
+      "rule_version": "3.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.page.a4",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.page.margins",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.body.font",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.body.font_size",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.body.line_spacing",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.word_limit",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.visuals.count",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.title.case",
+      "rule_version": "1.0.0",
+      "status": "conforme"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "metadata.subtitle.case",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.headings.case",
+      "rule_version": "3.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.footnotes.count",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.footnotes.lines",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "references.apa7",
+      "rule_version": "29.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "references.citation_matching",
+      "rule_version": "16.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "references.apa7.recognized_formats",
+      "rule_version": "18.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "references.apa7.citation_format",
+      "rule_version": "14.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.credit.content",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.credit.verification",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.funding",
+      "rule_version": "2.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.ethics.review",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.ai.declaration",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    },
+    {
+      "rule_id": "manuscript.ai.verification",
+      "rule_version": "1.0.0",
+      "status": "indeterminado"
+    }
+  ]
+}

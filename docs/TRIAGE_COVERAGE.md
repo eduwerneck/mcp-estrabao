@@ -1,178 +1,139 @@
-# Balanço da triagem e prioridades
+# Balanço atual da triagem — Etapa 60
 
-Revisão documental em 19/11/2026, base 35f8732 (merge PR #54), após a Etapa 53.
-Motor 0.41.0, plugin 0.34.0.0 e OJS de laboratório 3.3.0.20. Este balanço não
-altera regras, versões, formulários ou a política de admissão.
+Conferência documental em 20/11/2026, base 6a117b1 (merge PR #60, Etapa 59).
+Motor **0.44.0**, plugin **0.39.0.0**, laboratório OJS **3.3.0.20**.
+Esta etapa consolida o estado entregue; não muda regras, versões ou política.
 
-A base editorial é o texto recebido do responsável e seus adendos em
-[EDITORIAL_POLICY.md](EDITORIAL_POLICY.md). A vigência pública e as Condições
-para submissão ainda precisam ser confirmadas; não houve acesso ao site de
-produção ou à VM Oracle para este balanço. O histórico de entregas não substitui
-a conferência do código atual.
+As diretrizes são as recebidas do responsável e registradas em
+[EDITORIAL_POLICY.md](EDITORIAL_POLICY.md). Sua vigência pública e as Condições
+para submissão ainda precisam de confirmação na homologação. Não foi consultada
+produção ou VM Oracle. O balanço histórico está na [Etapa 54](STAGE54.md);
+as entregas [55](STAGE55.md), [56](STAGE56.md), [57](STAGE57.md),
+[58](STAGE58.md) e [59](STAGE59.md) explicam as ampliações posteriores.
 
-Atualização posterior: a [Etapa 55](STAGE55.md), plugin 0.35.0.0, implementa
-o registro privado da conferência dos critérios fora de APA. O balanço abaixo
-preserva o diagnóstico da Etapa 54; a liberação APA continua independente.
+## Três decisões independentes
 
-Atualização posterior da [Etapa 56](STAGE56.md): há via humana para um
-subconjunto `.doc` identificável, com declaração de leitura e revisão APA, sem
-extração automática. A retenção técnica de outras fontes e variantes permanece.
-As tabelas abaixo preservam o balanço histórico da Etapa 54.
+1. **Confirmação da submissão:** o adaptador acrescenta retenção de APA/diretrizes
+   de citações ao wizard. Incompatibilidade comprovada exige correção; inconclusivo
+   exige revisão humana da versão elegível. Não existe aprovação automática.
+2. **Conferência editorial não APA:** o gerente registra estados de 12 grupos,
+   responsável e histórico, vinculados à análise. Não concede/revoga a liberação
+   APA nem transforma diagnóstico em novo bloqueio automático.
+3. **Aceite e publicação:** não são concedidos por nenhum desses registros. A
+   minuta é revisável/copíavel e não é enviada automaticamente.
 
-Atualização posterior da [Etapa 57](STAGE57.md): citações EN/ES passam a ser
-conferidas com idioma declarado e fronteiras lexicais documentadas. Isso não
-aprova traduções de seções editoriais nem encerra as lacunas do matcher.
+As validações nativas do OJS permanecem exigidas. O comportamento foi exercitado
+no wizard, com plugin habilitado e admission_gate ativo; não foi homologado para
+API, importações, quickSubmit ou outros canais.
 
-Atualização posterior da [Etapa 58](STAGE58.md): o matcher liga datas completas
-pessoais reconhecidas a autor–ano em contexto único; ambiguidades/edições/sufixos
-continuam humanos. Os limites do calendário e da auditoria de formato permanecem.
+## O que impede a confirmação
 
-Atualização posterior da [Etapa 59](STAGE59.md): s.f./en prensa passam a ser
-reconhecidos como estados declarados, com equivalência de chaves e conferência
-privada. Isso não comprova ausência de data, publicação ou edição real.
-
-## Conclusão principal
-
-**Diagnóstico no relatório não equivale a bloqueio na entrada.** O bloqueio
-adicional do plugin na confirmação do wizard é de APA/diretrizes de citações.
-Os outros critérios podem produzir não conformidades na minuta, mas não são
-transformados por esse adaptador em condições automáticas de admissão.
-As validações nativas do OJS continuam independentes; este quadro não as remove
-nem certifica toda a configuração de campos da revista.
-
-A liberação humana existente declara revisão de APA para a versão atual do
-arquivo. Não registra aprovação integral de metadados, extensão, ética, fomento,
-IA, CRediT ou apresentação visual. Não equivale a aceite editorial/publicação.
-
-Evidência: [AdmissionBridge](../plugins/generic/estrabao/AdmissionBridge.inc.php)
-avalia References; [AdmissionReviewService](../plugins/generic/estrabao/AdmissionReviewService.inc.php)
-usa DefaultRules para gerar a minuta, mas salva liberação com apaReviewed.
-[DefaultRules](../src/Rules/DefaultRules.php) reúne os demais diagnósticos.
-
-## 1. O que impede a conclusão no adaptador atual
-
-Condições: plugin habilitado, admission_gate ativado e confirmação pelo wizard
-exercitado no laboratório. Não afirmar o mesmo para API, importações ou outros
-canais não homologados.
-
-| Situação | Comportamento atual | Limite |
+| Situação | Resultado do adaptador | Limite |
 | --- | --- | --- |
-| Incompatibilidade APA comprovada | Não aceita a conclusão e apresenta correções reconhecidas | Abrange somente os modelos/padrões cobertos; não identifica toda ABNT por aproximação |
-| Padrão ABNT reconhecido | Bloqueia; liberação humana não supera a falha | Caixa alta isolada não prova ABNT |
-| Apud em citação secundária reconhecida | Bloqueia por regra editorial explícita | Menção explicativa fora da gramática não é infração; não é alegação de veto universal na APA |
-| APA inconclusiva, com fonte legível | Mantém pendente até revisão humana expressa | Sem erro detectado não significa conformidade integral |
-| Arquivo novo ou motor/regra diferentes da liberação | Liberação anterior deixa de valer | Não certifica concorrência de uploads em infraestrutura real |
-| Fonte ilegível, arquivo ausente/ambíguo ou contexto sem vínculo verificável | Retém a conclusão; liberação não fica disponível quando falta análise revisável | Limitação técnica não vira acusação editorial nem rejeição por extensão |
-| Revisão revogada, usuário sem permissão ou CSRF inválido | Não permite usar a liberação para concluir | Preserva controles nativos do OJS |
+| Incompatibilidade APA reconhecida | Não aceita concluir; apresenta correções aplicáveis | Não identifica toda ABNT ou toda infração APA por aproximação |
+| Padrão ABNT composto reconhecido | Exige correção; aprovação humana não supera a falha | Caixa alta isolada não prova ABNT |
+| Apud em secundária reconhecida | Bloqueia por decisão editorial explícita | Não confundir menção explicativa/transcrição com infração; não é veto universal atribuído à APA |
+| Fonte analisável sem incompatibilidade comprovada | Permanece pendente até revisão humana expressa | Ausência de erro não certifica APA integral |
+| Fonte sem vínculo/revisão elegível, ausente ou ambígua | Retém por limitação técnica/contexto | Não acusar infração editorial por falta de leitura |
+| Novo arquivo/IDs, idioma, motor/regra diferentes da assinatura | Liberação antiga não autoriza a versão atual | Concorrência real de uploads ainda precisa de homologação operacional |
+| Revogação, permissão insuficiente, POST/CSRF inválido ou revisão antiga | Não permite usar/gravar a liberação | Preserva controles nativos e vínculo à revista/submissão |
 
-O detalhe APA está em [APA7.md](APA7.md): formatos, autoria, itálicos, DOI
-informado, citações, localizadores, ordem, títulos/sufixos e datas completas são
-**coberturas parciais**. O motor não consulta fontes nem autentica identidades.
+Fontes: [References](../src/Rules/References.php),
+[AdmissionBridge](../plugins/generic/estrabao/AdmissionBridge.inc.php),
+[serviço de revisão](../plugins/generic/estrabao/AdmissionReviewService.inc.php) e
+[hook do wizard](../plugins/generic/estrabao/EstrabaoPlugin.inc.php).
+O escopo de autoria, citações, formatos, ordenação e datas está em [APA7.md](APA7.md).
 
-## 2. O que é diagnosticado, sem novo bloqueio automático por esse critério
+## Formatos, idiomas e datas
 
-Não conformidade objetiva pode compor a devolutiva revisada pelo editor.
-Inconclusivos ficam separados, sem acusação ao autor. A coluna abaixo descreve
-o motor/minuta, não uma nova autorização de bloqueio na confirmação do wizard.
-
-| Exigência documentada | Cobertura no relatório/minuta | O que permanece humano ou limitado |
+| Frente entregue | Capacidade atual | Pendência humana/técnica |
 | --- | --- | --- |
-| Título, resumo e palavras-chave em pt/en/es | Presença nos dados disponíveis da publicação corrente | Locales reais, qualidade/tradução e disponibilidade da fonte; ausência no Word não prova ausência no OJS |
-| Resumos até 250 palavras | Contagem técnica por idioma | Hífens e convenção editorial de palavra; fonte incompleta não prova excesso/ausência |
-| Marcadores de resumo | Alternativas expressamente aprovadas nos três idiomas | Não adicionar sinônimos/plurais nem exigir todos os rótulos de um mesmo grupo |
-| 3 a 4 palavras-chave por idioma | Quantidade reconhecida | Duplicatas são registradas, sem criar exigência de unicidade |
-| ORCID de todos os autores | Presença, formato e checksum dos autores disponíveis | Identidade/autenticação não verificadas; coleção de autores precisa estar íntegra |
-| Estrutura do manuscrito | Seções portuguesas reconhecidas, com tipo informado e leitura suficiente | Traduções das seções não aprovadas, títulos ambíguos e presença de conteúdo substancial |
-| Seções não numeradas e em negrito | Numeração/negrito efetivos no subconjunto de estilos suportado | Heranças complexas e renderização; não exige template ou nomes de estilos Word |
-| Artigos de 4.000 a 8.000 palavras; comunicações de 1.000 a 3.500 | Intervalo técnico com exclusões, tipo informado e segmentação portuguesa verificável | Convenção oficial de contagem, documentos parciais e outras línguas; não é contagem oficial do Word |
-| A4, margens 3 cm, Times New Roman 12 e espaçamento 1,5 | Propriedades declaradas no subconjunto de seções/runs/estilos suportado | Layout visual e exceções; não impor espaçamento APA genérico diferente da diretriz editorial |
-| Evitar títulos/subtítulos integralmente em caixa alta | Sinalização em metadados e manuscrito; orientação nos formulários | Siglas/nomes próprios, casos semânticos e CSS real; sem reescrita automática |
-| Até 6 figuras/tabelas nas comunicações | Inventário estrutural e falha quando o mínimo comprovado supera 6 | Imagens/figuras compostas e unidades incertas; não aplicar esse máximo aos artigos |
-| Até 3 notas de rodapé | Contagem de notas Word vinculadas no inventário suportado | Notas manuais/de fim e cobertura incompleta; duas linhas exigem paginação visual |
-| Créditos (CRediT) | Seção/conteúdo reconhecidos e ficha interna | Taxonomia, atribuição, contribuição significativa e veracidade; preservar anonimização |
-| Fomento Word/OJS | Conflitos comprovados em padrões limitados, se supportingAgencies estiver disponível ao autor | Equivalência agência/projeto e natureza financeira/institucional; não presume fomento nem exige declaração de ausência universal |
-| Ética quando aplicável | Localizador de possíveis menções e ficha interna | Aplicabilidade, parecer/número/autenticidade ou declaração formal de não aplicabilidade; nunca inferir dispensa |
-| Declarar uso ou não uso de IA no manuscrito | Presença em padrões limitados; ausência só com leitura suficiente; ficha interna | Finalidade permitida, ferramenta, interação e veracidade; não usa detector nem exige repetição no OJS |
-| Referências separadas no metadado OJS | Orientação de uma referência por Enter e aviso local de possível colagem | Não valida APA/Crossref, não exige linha em branco extra e não salva/reorganiza o campo |
+| DOCX | Leitura ZIP/XML limitada, estilos suportados e perfis parciais | Não certifica leitura integral, renderização, todos os objetos/estilos ou fidelidade |
+| Word .doc | Via humana vinculada para um subconjunto CFB v3 identificável; declaração de abertura/leitura e APA, download e histórico | Sem texto/APA automático. CFB v4, WordDocument em mini-stream, proteção/variantes não reconhecidas e limites continuam pendentes de encaminhamento; não se exige conversão por mudança da política |
+| PDF | Sem triagem automática do plugin | Leitura humana de um PDF fornecido não implementa leitor nem muda a diretriz de Word |
+| Citações pt/en/es | Idioma declarado, autoria–ano e formato nos limites lexicais da Etapa 57 | Não infere idioma; não aprova traduções das seções editoriais nem resolve toda prosa/sigla/estrutura |
+| Datas completas | Matcher pessoal projeta ano declarado de dia/mês/ano válidos EN/PT, com candidata única; auditoria cronológica anterior permanece | Coortes, sufixos, edição original, instituições e outras precisões permanecem limitados; meses espanhóis não foram adicionados |
+| n.d./s.d./s.f. e in press/no prelo/en prensa | Equivalência interna de estados declarados; conserva sufixos suportados e ficha privada | Não confirma ausência de data/publicação/aceite/edição; não gera ano, atribui letras ou reescreve a referência |
+
+Fontes: [DocxReader](../src/Document/DocxReader.php),
+[LegacyDocSource](../plugins/generic/estrabao/LegacyDocSource.inc.php),
+[ReferenceSections](../src/Document/ReferenceSections.php),
+[ReferenceAnalysis](../src/Document/ReferenceAnalysis.php) e
+[calendário](../src/Document/WebReference.php).
+O vínculo da revisão APA considera o vínculo do arquivo/IDs, idioma, motor/regra e
+política; não é uma aprovação de metadados/autoria. O checklist tem vínculo
+mais amplo com o snapshot/tipo/autoria disponíveis e continua independente.
+
+Uma fonte pode ser suficiente para uma regra e insuficiente para outra; não
+converter perfil parcial em ausência comprovada de conteúdo.
+
+## Diagnósticos e minuta, sem novo impedimento automático por esses critérios
+
+| Exigência recebida | Cobertura entregue | Conferência restante |
+| --- | --- | --- |
+| Título/resumo/palavras-chave pt/en/es | Presença nos metadados disponíveis; resumo até 250 palavras e 3–4 palavras-chave; rótulos aprovados | Locales reais, tradução/qualidade, convenção de palavra; não exigir todos os sinônimos de um grupo ou unicidade não prevista |
+| ORCID de todos os autores | Presença/formato/checksum da coleção disponível | Identidade/autenticação, completude da autoria e afiliações |
+| Estrutura e seções | Rótulos portugueses e tipo informado; negrito/numeração no subconjunto de estilos | Conteúdo substantivo, exceções e traduções não aprovadas; sem template exigido |
+| Extensão | Artigos 4.000–8.000; comunicações 1.000–3.500; exclusões técnicas com contexto suficiente | Contagem oficial Word/convenção editorial e línguas/documentos fora da segmentação |
+| A4, margens 3 cm, TNR 12, espaçamento 1,5 | Propriedades declaradas suportadas | Renderização/exceções; não substituir diretriz da revista por espaçamento genérico APA |
+| Títulos/subtítulos sem caixa alta integral | Sinalização e orientação em metadados e manuscrito | Nomes/siglas e CSS real; sem reescrita automática |
+| Visuais | Inventário e máximo de 6 nas comunicações quando o mínimo comprovado supera o limite | Não aplicar máximo aos artigos; figuras compostas, 300 dpi, formatos, autoria/conteúdo e editabilidade exigem inspeção |
+| Notas | Contagem Word até 3 no inventário suportado; indicadores/ficha de notas de fim | Duas linhas no documento paginado, notas manuais e extração parcial |
+| CRediT | Seção/conteúdo reconhecidos e orientação | Papéis, atribuição, contribuição significativa e veracidade; preservar anonimização |
+| Fomento | Consistência Word/supportingAgencies se a disponibilidade do campo ao autor estiver confirmada | Agências/projetos e natureza do apoio; não inferir omissão nem exigir declaração universal de ausência |
+| Ética | Possíveis menções/localizador e ficha | Aplicabilidade, parecer/autenticidade e declaração; não inferir dispensa |
+| IA | Declaração de uso ou não uso no texto, em padrões limitados | Finalidade, ferramenta, interação e veracidade; sem detector ou duplicação obrigatória OJS |
+| Referências no metadado OJS | Orientação/aviso local de uma referência por Enter | Sem edição/salvamento automático, exigência de linha em branco extra ou certificação Crossref/APA |
 
 Fontes: [DefaultRules](../src/Rules/DefaultRules.php),
-[SubmissionSnapshot](../plugins/generic/estrabao/SubmissionSnapshot.inc.php),
-[estrutura](../src/Rules/ManuscriptStructure.php),
-[formatação](../src/Rules/ManuscriptFormatting.php),
-[extensão](../src/Rules/ManuscriptLength.php),
-[visuais](../src/Rules/VisualCount.php),
-[ORCID](../src/Rules/Orcid.php),
-[notas](../src/Rules/Footnotes.php),
-[fomento](STAGE24.md), [ética](STAGE25.md), [IA](STAGE26.md) e
-[separação de referências](STAGE43.md).
+[snapshot OJS](../plugins/generic/estrabao/SubmissionSnapshot.inc.php),
+[notas](STAGE20.md), [CRediT](STAGE23.md), [fomento](STAGE24.md),
+[ética](STAGE25.md), [IA](STAGE26.md), [títulos](STAGE19.md) e
+[metadado das referências](STAGE43.md).
 
-A leitura DOCX pode ter perfil parcial. Cobertura suficiente para uma regra não
-significa leitura integral para todas as outras: extensão, seções, notas e APA
-têm condições próprias. Fonte ausente/incompleta produz indeterminado, sem ser
-convertida em descumprimento editorial.
+## Registro da conferência editorial
 
-## 3. O que exige conferência ou ainda não tem verificação específica
+A [Etapa 55](STAGE55.md) registra metadados, resumos/palavras-chave, autoria/ORCID,
+estrutura, extensão, apresentação/títulos, visuais, notas, CRediT, fomento, ética e
+IA. Estados: pendente, conferido pelo editor e necessita ajustes; não se aplica
+somente em visuais, notas, fomento e ética, por decisão humana.
 
-| Exigência/capacidade | Estado atual | Consequência prática |
-| --- | --- | --- |
-| Word .doc, aceito pela política | Leitor automático somente .docx | Não anunciar suporte integral a Word. A retenção técnica do wizard não oferece revisão equivalente de fonte ilegível; falta um fluxo alternativo verificável, sem trocar a política por obrigação de converter |
-| PDF | Sem triagem automática | Avaliação humana de arquivo fornecido não equivale a suporte do plugin nem altera a política de arquivo Word |
-| Citações/referências em inglês e espanhol | Auditoria de formatos atende pt/en/es; correspondência e formato de citações são executados somente em pt | Não anunciar cobertura equivalente nas três línguas; revisão humana para as partes não analisadas |
-| Referências com datas completas | Cronologia específica já conferida; matcher autor–ano não incorpora essas entradas | Exemplo integrado tem nove referências, sete reconhecidas pelo matcher e duas conferidas pela auditoria de datas; sufixos/contexto dessas entradas ficam humanos |
-| SI | Sem regra específica de validação de unidades | Conferência editorial, sem acusação por ausência de detector |
-| 300 dpi e formatos JPEG/TIFF/EPS | Inventário não verifica resolução/formato editorial das figuras | Inspeção das imagens; definição de mínimo/exato e dimensão de exibição ainda pendente |
-| Tabelas/gráficos editáveis | Inventário não prova editabilidade | Conferir objetos e arquivos, sem inferir editabilidade por extensão |
-| Títulos/autoria dentro de imagens | Sem inspeção específica de conteúdo de imagem | Conferência visual; ausência de metadado não prova ausência de autoria |
-| Duas linhas por nota | Não há renderizador para medir linhas | Conferir no documento paginado; ficha interna não equivale a registro persistido de toda revisão visual |
-| Revisão profissional após aprovação; sem novos autores depois | Sem controle específico de comprovação/histórico nessa fase | Planejar no estágio editorial correspondente, não reprovar a submissão inicial por requisito posterior |
-| Rastreabilidade da revisão não APA | Há fichas/orientações, mas o registro de liberação é de APA | Não interpretar a assinatura da revisão APA como aprovação de todos os itens |
-| Infraestrutura/tema/configuração reais | Homologação somente local, no OJS 3.3.0.20/Tema Padrão | Não ativar/publicar por causa do balanço; preparar ensaio isolado representativo |
-| Servidor MCP | Não implementado | O nome do repositório não prova transporte, autenticação ou ferramentas MCP disponíveis |
+Não há preenchimento pelo motor. Último evento correspondente à análise fornece
+os estados; mudança do vínculo volta a pendente e conserva histórico. O vínculo
+inclui arquivo/metadados/publicação/tipo, versões e digest da autoria disponível.
+Responsável/horário e estados são privados, com limites de 100 eventos/256 KiB;
+não há anexos de prova, comentários livres ou certificação da veracidade.
 
-Evidências: [DocxReader](../src/Document/DocxReader.php),
-[References](../src/Rules/References.php), [inventário visual](STAGE7.md),
-[notas](STAGE20.md), [ciclo integrado](STAGE53.md) e
-[registro de revisão](../plugins/generic/estrabao/AdmissionReviewService.inc.php).
+Fonte: [EditorialReviewService](../plugins/generic/estrabao/EditorialReviewService.inc.php)
+e [armazenamento separado](../plugins/generic/estrabao/EditorialReviewStore.inc.php).
+A revisão APA é independente; registrar necessita ajustes não revoga APA, e
+marcar todos conferidos não supera ABNT/apud comprovados nem conclui a submissão.
 
-## 4. O que não deve virar exigência nova
+## Coberturas ausentes e controles posteriores
 
-DOI ausente não reprova: disponibilidade é recomendação, embora DOI informado
-possa ter formato incompatível. Zotero/Mendeley são recomendações; Zenodo não é
-obrigatório para toda submissão. Linguagem clara/inclusiva exige leitura humana.
-Não há limite numérico de autores. Não exigir template, títulos de seção
-traduzidos por suposição ou declaração universal de ausência de fomento.
-O veto editorial de apud é o aprovado, no padrão reconhecido; não presumir quais
-obras o autor efetivamente consultou.
+SI, resolução/conteúdo real das imagens, editabilidade e fidelidade/localização
+na fonte não são certificados. Comprovação de revisão profissional e controle de
+novos autores após aprovação pertencem à fase editorial correspondente, sem
+regra específica implementada para reprovar a submissão inicial. Não há servidor
+MCP com transporte/autenticação/ferramentas implementado.
 
-## 5. Prioridades propostas para as próximas entregas
+DOI ausente não reprova; DOI informado pode ter formato incompatível. Gestores
+bibliográficos são recomendação; Zenodo não é exigência universal. Não há máximo
+numérico de autores nem template oficial. Recomendações não viram requisitos novos.
 
-Estas são propostas de planejamento, não requisitos novos já publicados ou
-mudanças já autorizadas no fluxo de admissão. Um PR por objetivo verificável.
+## Evidência e próximos passos
 
-| Prioridade | Entrega proposta | Critério concreto de conclusão |
-| --- | --- | --- |
-| 1 — esclarecer e registrar a triagem integral | Painel/checklist editorial consolidado dos critérios não APA, com fonte, escopo, pendência e registro por versão da análise | Ensaio sintético em que APA foi revisada, mas há metadado/estrutura/declaração pendente; interface não apresenta o manuscrito como integralmente aprovado e registra o que foi conferido. Não tornar todo item impeditivo silenciosamente |
-| 2 — resolver o caminho dos formatos aceitos | Fluxo de conferência para .doc e demais fontes indisponíveis, compatível com a política Word e com controle de versão | Arquivo .doc aceito na política tem encaminhamento editorial explícito, sem certificação automática de leitura, sem conversão/envio externos silenciosos e sem liberar falha APA comprovada por outra via |
-| 3 — ampliar cobertura de maior impacto na entrada | Correspondência/citações EN/ES e integração de datas completas ao matcher, em entregas separadas | Provas positivas/negativas de idioma, ano/sufixo, edição, ambiguidade e liberação; não reduzir data completa ao ano para fabricar identidade nem inventar traduções das seções |
-| 4 — preparar homologação operacional isolada | Instalação/configuração do pacote em cópia sintética representativa, campos/locales, tema, permissões, arquivo atual e habilitação/desabilitação | Instalação reproduzível e retorno ao estado anterior no laboratório; distinguir testes de upload pela interface dos ensaios atuais via API local/DAO; produção/VM Oracle fora do escopo |
-| 5 — ampliar exceções APA selecionadas | Escolher lacuna por impacto observado, não apenas continuar a lista de sinais/partículas | Exemplo sintético revisável, regra documentada, diagnóstico/devolutiva/bloqueio de falha comprovada, incerteza preservada e regressão pertinente |
+Os **2.120 testes por PHP, 16 JavaScript e 1.138 verificações OJS** são da
+[Etapa 59](evidence/stage59/validation.json), não uma execução da Etapa 60.
+O código/contratos permanecem idênticos à base e ao manifesto de produto testado.
+Esta auditoria não homologa a instalação real nem certifica APA integral.
 
-A próxima implementação recomendada é a prioridade 1, mantendo explícito o
-limite do bloqueio APA e registrando as demais conferências. Prioridades 2 e 3
-são lacunas de uso relevantes antes de apresentar o conjunto como triagem geral.
-Para qualquer novo impedimento por critério não APA, a regra de admissão precisa
-ser definida expressamente; este documento não altera o comportamento atual.
+1. Etapa 61 proposta: pacote, instalação/atualização e configuração em cópia limpa
+   isolada do OJS 3.3.0.20, com critérios em [INSTALLATION_PLAN.md](INSTALLATION_PLAN.md).
+2. Etapa 62 proposta: permissões operacionais, concorrência de uploads e backup/
+   recuperação em ambiente isolado representativo.
+3. Etapa 63 proposta: ensaio editorial completo nessa cópia e balanço de resultados.
+4. Exceções APA, meses espanhóis e variantes .doc: priorizar separadamente por
+   impacto e exemplos sintéticos, sem promessa de certificação completa.
 
-## 6. Base de verificação deste balanço
-
-O levantamento cruzou política recebida, regras atuais, adaptação OJS e evidências
-da [Etapa 53](STAGE53.md): 1716 testes por PHP, 16 JavaScript e 910 verificações no
-OJS local. São resultados daquela execução, não novos testes nesta etapa.
-
-A inspeção CLI de snapshot sintético sem DOCX/tipo gerou 51 instâncias e 32 IDs
-distintos. Isso não mede porcentagem de cobertura editorial: regras se repetem
-por idioma/autor e algumas dependem da fonte/contexto. Por exemplo,
-manuscript.headings.format é condicional e não aparece nesse inventário.
-O manifesto comprova os 70 arquivos de produto/contratos idênticos à base.
-Não houve nova consulta normativa externa, acesso a produção, VM Oracle,
-comunicação com autores, instalação ou publicação do ambiente.
+Um PR por entrega. Planejamento não instala, ativa ou publica nada na revista.

@@ -1,7 +1,9 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-As Etapas 1 a 59 implementam um motor PHP local, contratos JSON, testes sintéticos e
+Estado atual: [balanço da Etapa 60](docs/TRIAGE_COVERAGE.md) e
+[próximas entregas](docs/PENDING_REQUIREMENTS.md).
+As Etapas 1 a 60 implementam um motor PHP local, contratos JSON, testes sintéticos e
 um adaptador experimental de bloqueio no wizard OJS (Etapa 13). O conjunto foi
 validado no laboratório OJS isolado; o tema e a infraestrutura reais da revista
 ainda não foram homologados. Não há certificação completa de APA ou servidor MCP.
@@ -204,7 +206,7 @@ A [Etapa 53](docs/STAGE53.md) consolida 910 verificações no OJS local com
 títulos, subtítulos, artigos iniciais e datas completas no ciclo de correção,
 sem mudar o produto ou dispensar revisão humana.
 
-O [balanço da Etapa 54](docs/TRIAGE_COVERAGE.md) distingue bloqueio APA na
+O [balanço da Etapa 54](docs/STAGE54.md) distingue bloqueio APA na
 confirmação, diagnósticos para devolutiva e verificações humanas/ausentes. Registra
 as prioridades propostas para triagem consolidada, Word .doc, idiomas e homologação
 isolada; não altera o bloqueio nem publica mudanças na revista.
@@ -229,3 +231,7 @@ datas ou atribuir sufixos. Ligação técnica não substitui a conferência da f
 A [Etapa 59](docs/STAGE59.md) reconhece `s.f.` e `en prensa`, preservando sufixos
 e dúvidas de estado/edição. A ficha privada orienta a conferência na fonte,
 sem gerar ano, traduzir o arquivo ou confirmar publicação automaticamente.
+
+A [Etapa 60](docs/STAGE60.md) consolida cobertura, revisão humana e lacunas,
+com plano de pacote/instalação limpa isolada. É documental: mantém motor 0.44.0
+e plugin 0.39.0.0, sem novos bloqueios, deploy ou publicação do ambiente.
