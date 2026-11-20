@@ -1,0 +1,97 @@
+{
+  "overall_passed": true,
+  "requested_fresh_cycle": true,
+  "base_commit": "340974271b4780fab5f1c295b8b9d378e42a357e",
+  "runtime": {
+    "php": "8.1.27",
+    "ojs": "3.3.0.20",
+    "installed_plugin": "0.36.0.0",
+    "plugin_files": "0.36.0.0",
+    "engine": "0.41.0"
+  },
+  "suite_count": 11,
+  "browser_checks": 156,
+  "suites": [
+    {
+      "suite": "desk-panel.py",
+      "arguments": [],
+      "checks": 13,
+      "passed": true
+    },
+    {
+      "suite": "editorial-panel.py",
+      "arguments": [],
+      "checks": 26,
+      "passed": true
+    },
+    {
+      "suite": "apa-mixed.py",
+      "arguments": [],
+      "checks": 5,
+      "passed": true
+    },
+    {
+      "suite": "footnote-panel.py",
+      "arguments": [],
+      "checks": 9,
+      "passed": true
+    },
+    {
+      "suite": "article-dates.py",
+      "arguments": [],
+      "checks": 10,
+      "passed": true
+    },
+    {
+      "suite": "credit-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "funding-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ethics-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "ai-panel.py",
+      "arguments": [],
+      "checks": 4,
+      "passed": true
+    },
+    {
+      "suite": "title-guidance.py",
+      "arguments": [],
+      "checks": 6,
+      "passed": true
+    },
+    {
+      "suite": "reference-guidance.py",
+      "arguments": [],
+      "checks": 19,
+      "passed": true
+    }
+  ],
+  "workflow_state_preserved": true,
+  "fixture_mode": "synthetic_only",
+  "production_accessed": false,
+  "external_messages_sent": false,
+  "apa_regression_requested": false,
+  "limitations": [
+    "default_theme_only",
+    "no_operational_production_homologation"
+  ],
+  "fresh_cycle_checks": 27,
+  "fresh_cycle_passed": true,
+  "original_workflow_records_preserved": true,
+  "doc_cycle_requested": true,
+  "doc_cycle_checks": 25,
+  "doc_cycle_passed": true
+}

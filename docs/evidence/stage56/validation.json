@@ -1,0 +1,40 @@
+{
+  "base": "3409742",
+  "engine": "0.41.0",
+  "plugin": "0.36.0.0",
+  "doc_review_mode": "doc_manual_v1",
+  "engine_and_contract_files_identical_to_base": true,
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1802,
+      "failures": 0,
+      "preexisting_structure_fixture_warnings": 462,
+      "warnings_identical_to_stage55": true
+    },
+    "8.1.27": {
+      "tests": 1802,
+      "failures": 0,
+      "preexisting_structure_fixture_warnings": 462,
+      "warnings_identical_to_stage55": true
+    }
+  },
+  "new_php_tests": 43,
+  "php_lint_files": 126,
+  "javascript_tests": 16,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "integrated_browser_checks": 156,
+  "reversible_panel_suites": 11,
+  "fresh_docx_cycle_checks": 27,
+  "fresh_doc_cycle_checks": 25,
+  "additional_final_doc_repeat_checks": 25,
+  "apa_specific_21_modes_reexecuted": false,
+  "synthetic_word97_export_and_roundtrip_verified": true,
+  "synthetic_doc_sha256": "c6199bb07d24a22d34ead57b3e452afb46cd96c1180388a3973aea4d3be9bb80",
+  "full_apa_validation": false,
+  "doc_automatic_apa_detection": false,
+  "human_opening_semantics_certified": false,
+  "production_accessed": false,
+  "oracle_vm_accessed": false,
+  "external_messages_sent": false
+}

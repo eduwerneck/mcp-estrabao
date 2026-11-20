@@ -97,7 +97,7 @@ class EstrabaoPlugin extends GenericPlugin
             // Never disclose internal paths, manuscript content or exception details.
             $decision = 'manual_review_required';
         }
-        $key = $decision === 'not_accepted' ? 'apaNotAccepted' : 'apaReviewRequired';
+        $key = $decision === 'not_accepted' ? 'apaNotAccepted' : ((($analysis['source_format']??null)==='doc') ? 'docAuthorPending' : 'apaReviewRequired');
         $form->addError('estrabaoAdmission', __('plugins.generic.estrabao.' . $key));
         if ($decision === 'not_accepted') {
             foreach ($analysis['corrections'] ?? [] as $index => $correction) {

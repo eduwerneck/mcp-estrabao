@@ -329,3 +329,24 @@ msgstr "Ética y declaración correspondiente"
 
 msgid "plugins.generic.estrabao.editorialItem_ai"
 msgstr "Declaración y finalidad de IA"
+
+msgid "plugins.generic.estrabao.docReviewTitle"
+msgstr "Revisión humana de archivo Word .doc"
+
+msgid "plugins.generic.estrabao.docReviewScope"
+msgstr "La revista acepta .doc. No se extrajo el texto ni se verificó APA automáticamente. Descargue la versión vinculada, ábrala con macros deshabilitadas y revise referencias y citas. No libere si no puede leerlas íntegramente o encuentra ABNT, apud u otra incompatibilidad con APA. No se exige conversión a .docx."
+
+msgid "plugins.generic.estrabao.docReviewUnavailable"
+msgstr "No se pudo identificar este archivo en el subconjunto Word binario soportado. Queda pendiente de tratamiento editorial, sin rechazo por formato ni liberación desde esta pantalla."
+
+msgid "plugins.generic.estrabao.docOpenedDeclaration"
+msgstr "Abrí esta versión del archivo .doc y confirmé que pude leer íntegramente referencias y citas."
+
+msgid "plugins.generic.estrabao.docApaDeclaration"
+msgstr "Revisé personalmente APA y las directrices de citas, incluida la ausencia de ABNT y apud. Solicito la liberación APA de esta versión; no es aceptación editorial."
+
+msgid "plugins.generic.estrabao.docReviewEvent"
+msgstr "Revisión humana de .doc"
+
+msgid "plugins.generic.estrabao.docAuthorPending"
+msgstr "La revista acepta archivos .doc. Esta versión requiere revisión humana de APA por el editor antes de finalizar. No fue rechazada por ser .doc y no exige conversión automática."

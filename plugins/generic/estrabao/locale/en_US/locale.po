@@ -329,3 +329,24 @@ msgstr "Ethics and applicable statement"
 
 msgid "plugins.generic.estrabao.editorialItem_ai"
 msgstr "AI declaration and purpose"
+
+msgid "plugins.generic.estrabao.docReviewTitle"
+msgstr "Human review of Word .doc file"
+
+msgid "plugins.generic.estrabao.docReviewScope"
+msgstr "The journal accepts .doc. Text extraction and automated APA checks were not performed. Download the bound version, open it with macros disabled and review references and citations. Do not release if you cannot read them in full or find ABNT, apud or another APA incompatibility. Conversion to .docx is not required."
+
+msgid "plugins.generic.estrabao.docReviewUnavailable"
+msgstr "This file could not be identified within the supported binary Word subset. It remains pending editorial handling, without rejection by format or release through this screen."
+
+msgid "plugins.generic.estrabao.docOpenedDeclaration"
+msgstr "I opened this version of the .doc file and confirmed that I could read all references and citations."
+
+msgid "plugins.generic.estrabao.docApaDeclaration"
+msgstr "I personally checked APA and the citation guidelines, including the absence of ABNT and apud. I request APA release for this version; this is not editorial acceptance."
+
+msgid "plugins.generic.estrabao.docReviewEvent"
+msgstr "Human .doc review"
+
+msgid "plugins.generic.estrabao.docAuthorPending"
+msgstr "The journal accepts .doc files. This version requires human APA review by an editor before completion. It was not rejected for being .doc and automatic conversion is not required."

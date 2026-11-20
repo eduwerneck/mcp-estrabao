@@ -14,6 +14,11 @@ Atualização posterior: a [Etapa 55](STAGE55.md), plugin 0.35.0.0, implementa
 o registro privado da conferência dos critérios fora de APA. O balanço abaixo
 preserva o diagnóstico da Etapa 54; a liberação APA continua independente.
 
+Atualização posterior da [Etapa 56](STAGE56.md): há via humana para um
+subconjunto `.doc` identificável, com declaração de leitura e revisão APA, sem
+extração automática. A retenção técnica de outras fontes e variantes permanece.
+As tabelas abaixo preservam o balanço histórico da Etapa 54.
+
 ## Conclusão principal
 
 **Diagnóstico no relatório não equivale a bloqueio na entrada.** O bloqueio

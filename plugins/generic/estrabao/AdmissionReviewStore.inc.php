@@ -21,7 +21,7 @@ class EstrabaoAdmissionReviewStore
             clearstatcache(true, $path);
             if (is_file($path) && (filesize($path) > 262144 || (fileperms($path) & 0077) !== 0)) { throw new RuntimeException('review_unavailable'); }
             $raw = is_file($path) ? file_get_contents($path) : '';
-            if ($raw === false) { throw new RuntimeException('review_unavailable'); }
+            if ($raw === false || ($raw === '' && is_file($path))) { throw new RuntimeException('review_unavailable'); }
             $ledger = $raw === '' ? ['schema_version' => 1, 'context_id' => (int) $contextId,
                 'submission_id' => (int) $submissionId, 'events' => []] : json_decode($raw, true, 32, JSON_THROW_ON_ERROR);
             if (!is_array($ledger) || ($ledger['schema_version'] ?? null) !== 1
@@ -32,7 +32,7 @@ class EstrabaoAdmissionReviewStore
                 throw new RuntimeException('review_unavailable');
             }
             foreach ($ledger['events'] as $i => $event) {
-                if (!is_array($event) || ($event['sequence'] ?? null) !== $i + 1
+                if (!is_array($event) || (isset($event['review_mode']) && $event['review_mode']!=='doc_manual_v1') || ($event['sequence'] ?? null) !== $i + 1
                     || !in_array($event['action'] ?? null, ['approve', 'revoke'], true)
                     || !is_int($event['reviewer_id'] ?? null) || $event['reviewer_id'] <= 0
                     || !is_string($event['fingerprint'] ?? null) || !preg_match('/^[a-f0-9]{64}$/D', $event['fingerprint'])

@@ -212,3 +212,16 @@ Os 21 modos específicos APA da Etapa 53 não foram reexecutados nesta etapa.
 compilação Python e schemas CLI aprovados. O registro humano é independente
 da liberação APA. Evidências em evidence/stage55; limites operacionais e
 ausência de homologação na instalação real permanecem.
+
+## Atualização da Etapa 56
+
+Plugin 0.36.0.0, motor 0.41.0: via humana vinculada para um subconjunto Word
+`.doc`, sem leitor de texto/APA automático nem conversão exigida. 156 verificações
+OJS aprovadas: 104 nos 11 painéis, 27 no ciclo DOCX e 25 no novo ciclo DOC.
+O ensaio final DOC repetiu 25 verificações após ajuste da rechecagem limitada.
+1.802 testes por PHP (8.4.27 e 8.1.27), 16 JavaScript, lint de 126 PHP, compilação
+Python e schemas CLI aprovados. Persistem 462 avisos por execução PHP de fixtures
+de estrutura, idênticos aos da Etapa 55; nenhum aviso novo nessa comparação.
+Os 21 modos APA específicos não foram reexecutados. Conferência humana declarada
+não prova abertura/semântica; variantes DOC e operação real continuam limitadas.
+Evidências selecionadas em evidence/stage56; sem implantação na revista.

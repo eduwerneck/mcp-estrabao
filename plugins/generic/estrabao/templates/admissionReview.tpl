@@ -32,16 +32,24 @@
             <ul>{foreach from=$reviewModel.analysis.direct_quote_review item=guidance}<li>{$guidance|escape}</li>{/foreach}</ul>
         </section>
         {/if}
+        {if isset($reviewModel.analysis.source_format) && $reviewModel.analysis.source_format == 'doc'}
+        <section id="estrabaoDocReview"><h3>{translate key="plugins.generic.estrabao.docReviewTitle"}</h3>
+        <p>{translate key="plugins.generic.estrabao.docReviewScope"}</p>
+        {if !$reviewModel.analysis.reviewable}<p>{translate key="plugins.generic.estrabao.docReviewUnavailable"}</p>{/if}</section>
+        {/if}
         <p>{translate key="plugins.generic.estrabao.reviewReadFile"}</p>
         {if $downloadReviewUrl}<p><a href="{$downloadReviewUrl|escape}">{translate key="plugins.generic.estrabao.reviewDownload"}</a></p>{/if}
         {if $reviewModel.analysis.reviewable}
-        <form method="post" action="{$saveReviewUrl|escape}">
+        <form id="estrabaoApaReviewForm" method="post" action="{$saveReviewUrl|escape}">
             {csrf}
             <input type="hidden" name="submissionId" value="{$reviewModel.submission_id|escape}">
             <input type="hidden" name="fingerprint" value="{$reviewModel.analysis.fingerprint|escape}">
             <input type="hidden" name="revision" value="{$reviewModel.revision|escape}">
             {if $reviewModel.analysis.reviewable}
-                <label><input type="checkbox" name="apaReviewed" value="1"> {translate key="plugins.generic.estrabao.reviewDeclaration"}</label>
+                {if isset($reviewModel.analysis.review_mode) && $reviewModel.analysis.review_mode == 'doc_manual_v1'}
+                <p><label><input type="checkbox" name="docOpened" value="1" required> {translate key="plugins.generic.estrabao.docOpenedDeclaration"}</label></p>
+                <p><label><input type="checkbox" name="apaReviewed" value="1" required> {translate key="plugins.generic.estrabao.docApaDeclaration"}</label></p>
+                {else}<label><input type="checkbox" name="apaReviewed" value="1"> {translate key="plugins.generic.estrabao.reviewDeclaration"}</label>{/if}
                 <button type="submit" name="reviewAction" value="approve">{translate key="plugins.generic.estrabao.reviewApprove"}</button>
             {/if}
         </form>
@@ -199,6 +207,7 @@
         <ul>
         {foreach from=$reviewModel.events item=event}
             <li>{$event.display_time|escape} — {translate key="plugins.generic.estrabao.reviewEditor"} {$event.reviewer_id|escape}:
+                {if isset($event.review_mode) && $event.review_mode == 'doc_manual_v1'}{translate key="plugins.generic.estrabao.docReviewEvent"} — {/if}
                 {if $event.action == 'approve'}{translate key="plugins.generic.estrabao.reviewApproved"}{else}{translate key="plugins.generic.estrabao.reviewRevoked"}{/if}
             </li>
         {foreachelse}
