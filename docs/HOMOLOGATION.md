@@ -201,3 +201,14 @@ Esse ponto deve ser conferido junto ao tema e idiomas da homologação represent
 Não há sinal verde para implantação na revista a partir deste ensaio. O perfil informado foi reproduzido na Etapa 28. Restam arquivos/versão do tema
 e configuração sanitizada para uma homologação equivalente,
 sem acessar produção ou a VM Oracle nesta conversa.
+
+## Atualização da Etapa 55
+
+Plugin 0.35.0.0, motor 0.41.0: 131 verificações OJS nesta entrega
+(104 nos 11 painéis, incluindo 26 do checklist; 27 no novo ciclo completo).
+Um ensaio adicional de 26 verificações confirmou o runner final do checklist.
+Os 21 modos específicos APA da Etapa 53 não foram reexecutados nesta etapa.
+1.759 testes por PHP (8.4.27 e 8.1.27), 16 JavaScript, lint de 123 PHP,
+compilação Python e schemas CLI aprovados. O registro humano é independente
+da liberação APA. Evidências em evidence/stage55; limites operacionais e
+ausência de homologação na instalação real permanecem.

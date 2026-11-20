@@ -1,0 +1,30 @@
+{
+  "base": "9f9dace",
+  "engine": "0.41.0",
+  "plugin": "0.35.0.0",
+  "checklist": "1.0.0",
+  "php_tests": {
+    "8.4.27": {
+      "tests": 1759,
+      "failures": 0
+    },
+    "8.1.27": {
+      "tests": 1759,
+      "failures": 0
+    }
+  },
+  "php_lint_files": 123,
+  "javascript_tests": 16,
+  "python_compile": true,
+  "cli_report_and_desk_schemas_valid": true,
+  "integrated_browser_checks": 131,
+  "reversible_suites": 11,
+  "fresh_cycle_checks": 27,
+  "editorial_targeted_checks": 26,
+  "targeted_checks_included_in_integration": true,
+  "additional_targeted_repeat_checks": 26,
+  "apa_specific_21_modes_reexecuted": false,
+  "full_apa_validation": false,
+  "production_accessed": false,
+  "oracle_accessed": false
+}

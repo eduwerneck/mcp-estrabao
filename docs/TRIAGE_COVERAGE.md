@@ -10,6 +10,10 @@ para submissão ainda precisam ser confirmadas; não houve acesso ao site de
 produção ou à VM Oracle para este balanço. O histórico de entregas não substitui
 a conferência do código atual.
 
+Atualização posterior: a [Etapa 55](STAGE55.md), plugin 0.35.0.0, implementa
+o registro privado da conferência dos critérios fora de APA. O balanço abaixo
+preserva o diagnóstico da Etapa 54; a liberação APA continua independente.
+
 ## Conclusão principal
 
 **Diagnóstico no relatório não equivale a bloqueio na entrada.** O bloqueio

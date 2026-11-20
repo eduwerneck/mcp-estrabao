@@ -239,3 +239,93 @@ msgstr "Revisión de citas directas"
 
 msgid "plugins.generic.estrabao.fullDateReviewTitle"
 msgstr "Revisión de fechas bibliográficas"
+
+msgid "plugins.generic.estrabao.editorialTitle"
+msgstr "Registro de revisión editorial"
+
+msgid "plugins.generic.estrabao.editorialScope"
+msgstr "Registre lo revisado en este análisis. El motor no completa los estados. Este registro no libera la presentación, cambia los resultados ni sustituye la revisión APA."
+
+msgid "plugins.generic.estrabao.editorialCurrent"
+msgstr "Hay un registro correspondiente a este análisis."
+
+msgid "plugins.generic.estrabao.editorialStale"
+msgstr "El último registro corresponde a otro análisis. Revise los elementos antes de registrar."
+
+msgid "plugins.generic.estrabao.editorialEmpty"
+msgstr "No hay revisión registrada para este análisis."
+
+msgid "plugins.generic.estrabao.editorialDeclaration"
+msgstr "Confirmo los estados seleccionados para el archivo y los datos de este análisis. Este registro no constituye aceptación editorial."
+
+msgid "plugins.generic.estrabao.editorialSave"
+msgstr "Guardar revisión"
+
+msgid "plugins.generic.estrabao.editorialSaved"
+msgstr "Revisión editorial registrada. La liberación APA sigue siendo independiente."
+
+msgid "plugins.generic.estrabao.editorialNotSaved"
+msgstr "Revisión no guardada. Genere el análisis nuevamente y compruebe los estados seleccionados."
+
+msgid "plugins.generic.estrabao.editorialUnavailable"
+msgstr "El registro no está disponible. El borrador y la revisión APA siguen siendo independientes."
+
+msgid "plugins.generic.estrabao.editorialLimit"
+msgstr "Se alcanzó el límite de registros. El borrador y la revisión APA siguen disponibles."
+
+msgid "plugins.generic.estrabao.editorialHistory"
+msgstr "Historial de revisión editorial"
+
+msgid "plugins.generic.estrabao.editorialMatches"
+msgstr "Registro de este análisis."
+
+msgid "plugins.generic.estrabao.editorialOther"
+msgstr "Registro de otro análisis."
+
+msgid "plugins.generic.estrabao.editorialState_pending"
+msgstr "Pendiente"
+
+msgid "plugins.generic.estrabao.editorialState_reviewed"
+msgstr "Revisado por el editor"
+
+msgid "plugins.generic.estrabao.editorialState_adjustments"
+msgstr "Necesita ajustes"
+
+msgid "plugins.generic.estrabao.editorialState_not_applicable"
+msgstr "No corresponde (revisado por el editor)"
+
+msgid "plugins.generic.estrabao.editorialItem_metadata"
+msgstr "Metadatos en los tres idiomas"
+
+msgid "plugins.generic.estrabao.editorialItem_abstracts"
+msgstr "Resúmenes y palabras clave"
+
+msgid "plugins.generic.estrabao.editorialItem_authors"
+msgstr "Autoría y ORCID"
+
+msgid "plugins.generic.estrabao.editorialItem_structure"
+msgstr "Estructura y secciones"
+
+msgid "plugins.generic.estrabao.editorialItem_length"
+msgstr "Extensión del manuscrito"
+
+msgid "plugins.generic.estrabao.editorialItem_presentation"
+msgstr "Presentación y títulos"
+
+msgid "plugins.generic.estrabao.editorialItem_visuals"
+msgstr "Figuras, tablas y gráficos"
+
+msgid "plugins.generic.estrabao.editorialItem_footnotes"
+msgstr "Notas"
+
+msgid "plugins.generic.estrabao.editorialItem_credit"
+msgstr "Contribuciones CRediT"
+
+msgid "plugins.generic.estrabao.editorialItem_funding"
+msgstr "Financiación y coherencia Word/OJS"
+
+msgid "plugins.generic.estrabao.editorialItem_ethics"
+msgstr "Ética y declaración correspondiente"
+
+msgid "plugins.generic.estrabao.editorialItem_ai"
+msgstr "Declaración y finalidad de IA"

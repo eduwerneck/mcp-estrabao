@@ -1,0 +1,106 @@
+[
+  {
+    "case": "private form has twelve categories and translated labels",
+    "passed": true
+  },
+  {
+    "case": "automatic report does not prefill human review",
+    "passed": true
+  },
+  {
+    "case": "not applicable restricted to conditional categories",
+    "passed": true
+  },
+  {
+    "case": "checklist does not offer APA approval for ABNT",
+    "passed": true
+  },
+  {
+    "case": "record persists selected human states",
+    "passed": true
+  },
+  {
+    "case": "record includes operator time and analysis identity",
+    "passed": true
+  },
+  {
+    "case": "APA ledger is untouched",
+    "passed": true
+  },
+  {
+    "case": "ABNT remains blocked after checklist save",
+    "passed": true
+  },
+  {
+    "case": "fresh generation recovers review for same data",
+    "passed": true
+  },
+  {
+    "case": "missing declaration refused without ledger write",
+    "passed": true
+  },
+  {
+    "case": "invalid CSRF refused without ledger write",
+    "passed": true
+  },
+  {
+    "case": "invalid state refused without ledger write",
+    "passed": true
+  },
+  {
+    "case": "forged fingerprint refused without ledger write",
+    "passed": true
+  },
+  {
+    "case": "author cannot save private checklist",
+    "passed": true
+  },
+  {
+    "case": "author cannot view private checklist",
+    "passed": true
+  },
+  {
+    "case": "next record appends rather than overwriting",
+    "passed": true
+  },
+  {
+    "case": "stale tab cannot replay record",
+    "passed": true
+  },
+  {
+    "case": "metadata change rejects stale confirmation",
+    "passed": true
+  },
+  {
+    "case": "changed analysis starts pending with retained history",
+    "passed": true
+  },
+  {
+    "case": "new analysis records a distinct binding",
+    "passed": true
+  },
+  {
+    "case": "earlier matching event does not replace latest different analysis",
+    "passed": true
+  },
+  {
+    "case": "history shows states without manuscript identity values",
+    "passed": true
+  },
+  {
+    "case": "broken checklist storage preserves draft and APA view",
+    "passed": true
+  },
+  {
+    "case": "recording did not change workflow state",
+    "passed": true
+  },
+  {
+    "case": "original metadata and ledger bytes restored",
+    "passed": true
+  },
+  {
+    "case": "original workflow records restored",
+    "passed": true
+  }
+]

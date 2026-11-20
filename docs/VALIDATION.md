@@ -1797,3 +1797,26 @@ A vigência pública da política e as Condições para submissão não foram
 confirmadas. Sem nova consulta normativa externa, acesso a produção, VM Oracle,
 comunicação com autores, execução de serviços, publicação do ambiente ou deploy.
 Próximas prioridades são propostas, não implementação nem requisito novo vigente.
+
+## Etapa 55 — conferência editorial independente
+
+Base 9f9dace (merge PR #55), 19/11/2026. Plugin 0.35.0.0 e motor 0.41.0.
+Registro privado de 12 grupos não APA, estados explícitos e histórico por
+análise, sem liberar/revogar APA nem mudar o gate.
+
+- 1.759 testes, zero falhas, em PHP 8.4.27 e 8.1.27; 43 casos novos.
+- 16 testes JavaScript, lint de 123 PHP, compilação Python, schemas de relatório
+  e minuta e unicidade das chaves de tradução aprovados.
+- 131 verificações integradas OJS 3.3.0.20: 104 nos 11 painéis e 27 no ciclo
+  completo novo. Incluem 26 verificações do checklist.
+- Ensaio adicional final do checklist: 26 verificações, sem contá-las novamente
+  no total integrado. Metadados, ledger e workflow originais restaurados.
+- Estados inválidos, CSRF, acesso, replay, alterações da fonte/autoria, histórico
+  desatualizado, armazenamento inválido/vazio e independência APA exercitados.
+- Inspeção visual da interface nativa em português. Produto/regras do motor
+  preservados; manifesto e evidências selecionadas em evidence/stage55.
+
+Os 21 modos específicos APA da Etapa 53 não foram reexecutados. Não certifica
+APA integral, veracidade da declaração humana ou a operação real da revista.
+Somente fixtures sintéticas no laboratório interno, mensagens desativadas; sem
+produção, VM Oracle, comunicação com autores, publicação do ambiente ou deploy.
