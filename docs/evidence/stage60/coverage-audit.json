@@ -1,0 +1,94 @@
+{
+  "base": "6a117b1",
+  "method": "static_reading_of_sources_and_prior_synthetic_evidence",
+  "normative_external_lookup_performed": false,
+  "findings": [
+    {
+      "id": "wizard_apa_gate",
+      "classification": "apa_gate",
+      "source_files": [
+        "plugins/generic/estrabao/EstrabaoPlugin.inc.php",
+        "plugins/generic/estrabao/AdmissionBridge.inc.php",
+        "src/Rules/References.php"
+      ],
+      "finding": "The opt-in wizard uses APA/citation results; a proven failure is not released and native validation remains required."
+    },
+    {
+      "id": "apa_release",
+      "classification": "human_review",
+      "source_files": [
+        "plugins/generic/estrabao/AdmissionReviewService.inc.php",
+        "plugins/generic/estrabao/AdmissionReviewStore.inc.php"
+      ],
+      "finding": "Authorized manager POST/CSRF and version-bound APA declaration; no acceptance/publication or external communication."
+    },
+    {
+      "id": "non_apa_diagnostics",
+      "classification": "diagnostic_without_new_gate",
+      "source_files": [
+        "src/Rules/DefaultRules.php",
+        "plugins/generic/estrabao/AdmissionReviewService.inc.php",
+        "src/Reporting/DeskResponse.php"
+      ],
+      "finding": "DefaultRules feeds the reviewed draft; non-APA findings do not become new automatic wizard admission conditions."
+    },
+    {
+      "id": "editorial_checklist",
+      "classification": "separate_manual_record",
+      "source_files": [
+        "plugins/generic/estrabao/EditorialReviewService.inc.php",
+        "plugins/generic/estrabao/EditorialReviewStore.inc.php"
+      ],
+      "finding": "Twelve manually selected groups, separate append-only ledger, stale analysis reset, no APA grant/revocation."
+    },
+    {
+      "id": "legacy_doc",
+      "classification": "limited_manual_route",
+      "source_files": [
+        "plugins/generic/estrabao/LegacyDocSource.inc.php",
+        "plugins/generic/estrabao/AdmissionBridge.inc.php",
+        "plugins/generic/estrabao/AdmissionReviewService.inc.php"
+      ],
+      "finding": "CFB v3 subset identified without text extraction; human opening/APA declarations required; unsupported variants remain pending."
+    },
+    {
+      "id": "citation_languages",
+      "classification": "bounded_automated_checks",
+      "source_files": [
+        "src/Document/ReferenceSections.php",
+        "src/Document/ReferenceAnalysis.php",
+        "src/Rules/References.php"
+      ],
+      "finding": "Declared pt/en/es lexical profiles for citations, not approval of translated mandatory editorial sections."
+    },
+    {
+      "id": "full_dates",
+      "classification": "bounded_personal_matching",
+      "source_files": [
+        "src/Document/ReferenceAnalysis.php",
+        "src/Document/WebReference.php"
+      ],
+      "finding": "Unique personal candidate may project a valid explicit EN/PT day-month-year; ambiguity/original edition/suffixes stay reviewable."
+    },
+    {
+      "id": "special_dates",
+      "classification": "declared_markers_only",
+      "source_files": [
+        "src/Document/ReferenceAnalysis.php",
+        "src/Document/ReferenceStyleAudit.php",
+        "plugins/generic/estrabao/templates/admissionReview.tpl"
+      ],
+      "finding": "s.f./en prensa are recognized declarations; no generated year or publication/edition certification; private guidance also uses reference count."
+    },
+    {
+      "id": "operational_readiness",
+      "classification": "not_certified",
+      "source_files": [
+        "tests/lab/preflight.php",
+        "tests/lab/integrated.py",
+        "docs/evidence/stage59/integrated-summary.json"
+      ],
+      "finding": "Synthetic internal lab evidence is not clean-install/production infrastructure, concurrent upload or backup/recovery certification."
+    }
+  ]
+}

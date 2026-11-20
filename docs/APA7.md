@@ -1,171 +1,64 @@
-# APA 7 na entrada da submissão
+# Cobertura atual de APA 7 — Etapa 60
 
-Prioridade editorial confirmada em 18/11/2026: ampliar a conferência de APA 7
-antes do empacotamento. Referências em ABNT não são aceitas. A regra operacional
-é exigir correção quando há incompatibilidade comprovada; conteúdo inconclusivo
-fica para conferência editorial, sem avanço automático. A presença de um padrão
-misto não autoriza classificar toda a bibliografia como ABNT.
+Balanço em 20/11/2026, base 6a117b1 (merge PR #60, Etapa 59). Motor 0.44.0,
+plugin 0.39.0.0. Regras: APA 29.0.0, correspondência 16.0.0, formatos 18.0.0 e
+citações 14.0.0. Esta etapa é documental e preserva comportamento/versões.
 
-Este mapa distingue o que o motor verifica do que ainda precisa ser implementado
-ou conferido. Nenhuma ausência de erro equivale à certificação completa de APA 7.
-Decisão editorial de 18/11/2026: apud não é aceito em citações secundárias;
-orientar como citado em e fonte consultada. Esse veto não presume ABNT pela palavra.
-O adaptador atua na confirmação do wizard; não impede o autor de salvar rascunho.
-API, importações e outros caminhos não foram homologados.
+A política recebida exige APA na submissão e não aceita ABNT. A instrução de
+18/11/2026 também veta apud em secundárias reconhecidas; esse veto é editorial,
+não uma afirmação de proibição universal na APA. Erro comprovado exige correção;
+inconclusivo exige revisão humana, sem aprovação automática. O bloqueio atua na
+confirmação; a decisão editorial de rejeição e o envio de desk são separados.
+O autor pode salvar rascunho.
 
-| Frente | Cobertura atual | Falta para ampliar |
+O adaptador foi exercitado na confirmação do wizard OJS, com opt-in ativo.
+API/importações e operação real não foram homologadas. Liberação APA da versão
+não é aceite editorial, publicação ou aprovação da triagem inteira. Ver
+[balanço da triagem](TRIAGE_COVERAGE.md) e [homologação](HOMOLOGATION.md).
+
+## Mapa entregue e lacunas
+
+| Frente | Cobertura atual | Limite/pendência |
 | --- | --- | --- |
-| ABNT e formatos mistos | Padrões compostos de autoria/data após fonte; cidade/editora, rótulos de periódico, DOI antigo e separadores reconhecidos | Padrões fora da gramática e tipos jurídicos; Etapa 31 acrescenta ABNT institucional no subconjunto |
-| Autores de referências | Sobrenomes simples e compostos, partículas delimitadas, iniciais, separadores, limite de 20 nomes não abreviados; estrutura 19 + reticências + último (Etapa 29) | Sufixos, outras partículas, confirmação de identidade, ordem e total real na fonte |
-| Citações no corpo | Formatos autor–ano reconhecidos, & versus conjunção narrativa, espaços e correspondência no subconjunto português; Etapa 30 confere três ou mais autores, ponto de et al. e protege a desambiguação; Etapa 31 liga nomes institucionais e siglas explicitamente declaradas; Etapa 32 confere a fonte consultada e veta apud; Etapa 34 liga sobrenomes compostos literais; Etapa 35 confere anos/sufixos e ordem; Etapa 36 confere et al. colidente, quantidade omitida e suficiência dos nomes no contexto seguro | Outras instituições/siglas e sua primeira apresentação, nomes compostos fora da gramática, resolução do prefixo mínimo em exceções, outras formas secundárias, agrupamentos fora da cobertura, atribuição das letras por título e outras desambiguações |
-| Datas especiais e precisão | Etapa 52 confere pares de datas completas explícitas, com orientação privada e revisão de sufixos/edição, sem completar dia ou mês; Etapa 37 liga n.d./s.d. e in press/no prelo, incluindo sufixos explícitos de obras sem data; mantém divergências e o estado real da publicação para revisão | Confirmar ausência de data/aceite na fonte, uniformização editorial do idioma, datas completas por tipo, datas originais/republicações e ordenação desses estados |
-| Referências por tipo | Campos e itálicos de subconjuntos de artigos/capítulos; Etapa 33 amplia editoria, edição, metadados sem itálico e ordem numérica de páginas; obras autônomas com edição seguem candidatas visuais; Etapa 39 confere título, descrição e fonte em modelos declarados de tese/dissertação e relatório numerado; Etapa 41 acrescenta modelos explícitos de dados/software e versão quando declarada | Ampliar outras edições/traduções, descrições/graus e fontes de trabalhos acadêmicos fora da gramática, relatórios sem número/tipos especiais, páginas e variantes de dados/software |
-| Traduções e republicações | Etapa 42 confere nomes/função de tradução sem itálico, edição inglesa reconhecida, separadores no modelo Trans., indicação original sem itálico e cronologia declarada; protege anos originais na correspondência | Identificar obra/edição real, outros papéis/idiomas, modelos por tipo e correspondência completa de citações com dois anos; barra permanece indeterminada |
-| Ordem e títulos | Etapa 44 confere cronologia de listas pessoais declaradas idênticas com anos numéricos e compara prefixos literais decisivos, inclusive nomes com partículas/acentos; Etapa 47 acrescenta autor único antes de coautoria e comparação dos coautores seguintes após prefixo pessoal declarado idêntico; Etapa 49 confere títulos e sequência dos sufixos em conjuntos pessoais completos de mesmo ano, nos modelos e chaves seguras; Etapa 50 amplia artigos iniciais por concordância de leituras com/sem prefixo, sem inferir idioma; Etapa 51 amplia subtítulos e pontuação delimitada por comparação literal segura; título integralmente em caixa alta no subconjunto anterior | Empates/sufixos fora da Etapa 49 (artigos iniciais, pontuação, duplicatas, datas especiais), iniciais distintas, prefixos comuns com duas ou mais pessoas e comprimentos diferentes, colação ambígua, datas especiais/originais, comparações não adjacentes e sentence case sem alterar nomes próprios/siglas |
-| DOI e URL | Formato de DOI informado; ausência de DOI não reprova; Etapa 40 confere estrutura de URL HTTP e calendários reconhecidos, sem acessar links | Correspondência com fonte/metadados, disponibilidade do destino, tipo de obra e necessidade real de data de consulta |
-| Citações diretas | Etapas 45–46: p./pp. e intervalo de páginas no vínculo único completo; candidatos entre aspas parentéticos e narrativos, localizador junto ao ano ou ao fim da transcrição delimitada, orientação privada | Fidelidade/localização real, layout, narrativas fora do modelo, blocos sem aspas e fontes sem paginação exigem conferência; citações internas não geram correção automática |
-| Documento e extração | DOCX seguro e perfis parciais explicitados | Casos fora da extração, apresentação renderizada; PDF e .doc não têm triagem automática |
+| ABNT/formatos mistos | Padrões compostos de posição de autor/data, separadores, cidade/editora e rótulos reconhecidos | Sem identificação universal por aproximação; maiúsculas isoladas não provam ABNT |
+| Autoria pessoal | Nomes simples/compostos e partículas delimitadas, iniciais, separadores, lista até 20; estrutura abreviada 19 + reticências + último | Identidade, autoria/ordem/total reais, sufixos e nomes fora da gramática |
+| Citações pt/en/es | Idioma declarado; chaves literais, conjunções, espaços, et al., anos e grupos reconhecidos | Delimitação lexical, outras prosa/siglas/estruturas; não infere idioma nem aprova traduções de seções editoriais |
+| Instituições/siglas | Prefixos e aliases explicitamente declarados no subconjunto | Primeira apresentação, identidade, instituições fora da gramática; não deriva siglas por iniciais |
+| Secundárias/apud | Liga só a fonte consultada; como citado em/as cited in/como se citó en nos perfis; apud reconhecido bloqueia | Não exige original não consultado; transcrições e variantes fora da gramática exigem revisão |
+| Datas completas | Auditoria de calendário/ordem e matcher pessoal com data EN/PT completa válida e candidata única | Sem inferir dia, identidade, edição ou letras; coortes e precisões mistas ficam humanas; instituições/meses espanhóis ainda limitados |
+| Datas especiais | n.d./s.d./s.f. e in press/no prelo/en prensa; equivalência interna, sufixos de ausência de data suportados e ficha privada | Não confirma ausência de data, aceite/publicação ou edição; variantes como en prensa-a ficam fora da gramática |
+| Correspondência | Citações reconhecidas para referências; ausência só em subconjunto fechado | Identidade/fonte lida ficam humanas; o sentido referências para citações não é verificado exaustivamente |
+| Tipos e itálicos | Subconjuntos de artigos, capítulos/editoria/edição, teses/dissertações, relatórios numerados e dados/software declarados | Outros modelos, graus/fontes, relatórios sem número e descrições fora da gramática |
+| Tradução/republicação | Metadados declarados e cronologia original/edição; protege ano original na correspondência | Identificar obra/edição efetivas, citações com barra e formatos fora do subconjunto |
+| Ordenação/títulos/sufixos | Prefixos decisivos, autor único/coautorias, títulos/sufixos em coortes seguras; artigos iniciais/pontuação com leitura concordante | Empates, duplicatas, colação, iniciais distintas, obras/estados/edições ambíguos; não atribui letras ou reescreve títulos |
+| DOI/URL | Formato do DOI informado e estrutura de URL/calendários reconhecidos | Ausência de DOI não reprova; não verifica existência, metadados ou disponibilidade dos links |
+| Transcrições/localizadores | p./pp. e intervalos no vínculo seguro; candidatos delimitados parentéticos/narrativos e orientação privada | Fidelidade, fonte real, blocos/layout, fontes sem paginação e formas fora da gramática |
+| DOCX | Leitura limitada e perfis parciais com regras condicionadas à cobertura | Não equivale à renderização/extração integral de qualquer documento |
+| .doc | Via humana vinculada em subconjunto CFB v3, com declaração de leitura e APA | Não aplica detecção automática de APA/ABNT ao texto; variantes não reconhecidas ficam pendentes, sem exigir conversão ou rejeitar a extensão |
 
-O [balanço geral da Etapa 54](TRIAGE_COVERAGE.md) registra uma distinção operacional:
-só o componente APA/diretrizes de citações alimenta o bloqueio adicional atual.
-A correspondência/formato de citações é executada em pt; formatos de referências
-são auditados em pt/en/es. Datas completas têm auditoria própria, mas essas entradas
-ainda não integram o matcher autor–ano. Isso permanece revisão, não conformidade
-presumida. As próximas prioridades não são apenas novas exceções de pontuação.
+Fontes principais: [References](../src/Rules/References.php),
+[ReferenceAnalysis](../src/Document/ReferenceAnalysis.php),
+[ReferenceStyleAudit](../src/Document/ReferenceStyleAudit.php),
+[ordenação](../src/Document/ReferenceOrder.php),
+[transcrições](../src/Document/CitationLocator.php),
+[bridge](../plugins/generic/estrabao/AdmissionBridge.inc.php).
+Ampliações recentes: [Etapa 56](STAGE56.md), [57](STAGE57.md), [58](STAGE58.md) e
+[59](STAGE59.md). Limites específicos desses documentos continuam válidos.
 
-## Ordem de continuidade
+## O que falta e como acompanhar
 
-1. Autoria pessoal e listas abreviadas: entregue na Etapa 29, incluindo bloqueio
-   e orientação ao autor no OJS local.
-2. Citações no texto: três ou mais autores/et al. e proteção da desambiguação
-   entregues na Etapa 30. Etapa 31 acrescenta instituições/siglas declaradas, com
-   ambiguidades para revisão. Etapa 32 acrescenta citações secundárias com correspondência da fonte consultada
-   e veto editorial a apud. Primeira apresentação de siglas, outras formas
-   secundárias e prefixo mínimo da desambiguação seguem humanos.
-3. Modelos por tipo: Etapa 33 amplia artigos, obras autônomas com edição e
-   capítulos com editoria/edição/páginas. Seguem outros tipos, traduções e campos
-   não cobertos, sem adivinhar o tipo da obra.
-4. Etapa 34 amplia a correspondência para sobrenomes compostos literais, com
-   proteção das formas parciais e limites de vocabulário. Seguem outras
-   desambiguações e localizadores. Etapa 35 acrescenta múltiplos anos explícitos,
-   divergências de sufixo e ordem de citações pessoais ASCII. Seguem atribuição
-   das letras, outras formas de agrupamento e ordenação bibliográfica ampliada.
-   Etapa 36 acrescenta desambiguação de et al. e pelo menos dois nomes omitidos,
-   preservando iniciais, duplicatas e contextos incompletos para revisão.
-5. Etapa 37 liga marcadores sem data/no prelo e preserva sufixos informados.
-   Datas divergentes, grupos mistos e estado de publicação ficam para revisão;
-   não converte idioma nem escolhe o ano da obra.
-6. Etapa 38 repete o fluxo autor–correção–nova análise–revisão na cópia isolada
-   do OJS, combinando anos/sufixos, et al. e datas especiais no mesmo documento.
-7. Etapa 39 acrescenta modelos declarados de teses/dissertações em repositório
-   e não publicadas e relatórios numerados. Conferência de título/descrição/fonte
-   não confirma grau, instituição, publicação ou existência do número informado.
-8. Etapa 40 acrescenta calendários e sintaxe de URL HTTP, reconhece datas de
-   consulta informadas e mantém identificação de página/site para revisão, sem
-   impor data completa, nome do site ou data de consulta a todos os casos.
-9. Etapa 41 acrescenta modelos declarados de dados/software, com versão/fonte
-   quando informadas; sem presumir tipo por URL, confirmar existência ou executar
-   o programa. Grafia oficial e uso da versão permanecem para revisão humana.
-10. Etapa 42 acrescenta metadados de tradução, publicação original e proteção
-    de datas relacionadas. Não presume livro pela presença de tradutor, nem
-    escolhe a edição; a citação com barra continua para revisão.
-11. Etapa 43 acrescenta orientação editorial no metadado Referências do OJS:
-    uma referência completa por Enter, com aviso de possível concatenação.
-    Esse aviso não valida APA nem garante identificação/registro Crossref.
-12. Etapa 44 acrescenta cronologia adjacente da mesma autoria declarada e
-    prefixos alfabéticos seguros. Empates/variantes de autoria, anos especiais ou
-    originais e colação incerta continuam humanos; não reorganiza o arquivo.
-13. Etapa 45 confere p./pp. e intervalos inequívocos e sinaliza candidatos a
-    citações diretas para revisão privada, protegendo citações internas.
-14. Etapa 46 amplia narrativas com localizador junto ao ano e associação terminal
-    em transcrições delimitadas, sem inferir fonte por proximidade.
-15. Etapa 47 amplia ordenação adjacente entre autor único e coautorias e entre
-    coautores seguintes após prefixos pessoais declarados idênticos.
-16. Etapa 48 reúne a regressão integrada atual, com correção combinada e revisão
-    humana antes de concluir a submissão no laboratório local.
-17. Etapa 49 amplia ordem dos títulos e sequência de letras na mesma autoria/ano
-    em conjuntos completos reconhecidos, protegendo anos originais e duplicatas.
-18. Etapa 50 amplia artigos iniciais quando leituras literal e sem prefixo
-    concordam; divergência, empate e idioma efetivo continuam para revisão.
-19. Etapa 51 amplia subtítulos e pontuação delimitada quando a primeira diferença
-    decisiva é entre letras; sinais divergentes continuam para revisão.
-20. Etapa 52 confere calendário de pares adjacentes com dia/mês/ano explícitos
-    e mesma autoria declarada; tipo, edição e sufixos permanecem para revisão.
-21. Etapa 53 reúne a regressão integrada atual e o ciclo com títulos/pontuação
-    e datas completas, preservando revisão humana e limites do matcher.
-22. Seguem variantes fora da cobertura, layout e fidelidade das transcrições,
-    identidade, edição e fonte efetivamente consultada para revisão humana.
+Não há certificação integral de APA. A vigência pública das diretrizes ainda
+precisa ser confirmada; não foi feita nova consulta normativa externa para este
+balanço. Identidade, veracidade, obra consultada e fidelidade permanecem humanas.
 
-Cada ampliação precisa provar diagnóstico, devolutiva, bloqueio, tratamento de
-incerteza e preservação do manuscrito. Alterar a versão do motor invalida as
-liberações anteriores; uma liberação editorial não pode superar erro comprovado.
-A interface opt-in existente precisa estar habilitada para exercer o bloqueio.
+As prioridades de instalação/atualização em cópia limpa, operação isolada e ensaio
+editorial estão em [PENDING_REQUIREMENTS.md](PENDING_REQUIREMENTS.md). Exceções
+normativas e variantes de leitura serão priorizadas por impacto/exemplo sintético,
+sem prazo de encerramento de toda APA. Pacote e ensaio não são deploy autorizado.
 
-## Base e limites normativos
+As contagens da [Etapa 59](evidence/stage59/validation.json) são evidência anterior:
+2.120 testes por PHP, 16 JavaScript, 1.138 verificações OJS. Não foram reexecutados
+nesta etapa documental. Manifesto e verificações atuais em [STAGE60.md](STAGE60.md).
 
-O requisito editorial e a regra de 20/21 autores já estão documentados nas Etapas
-11 e 21. Mantém-se a referência técnica CSL registrada em STAGE11.md, que não
-substitui o manual oficial. Em 18/11/2026, tentativas de consultar APA Style
-(elements-list-entry) e Purdue OWL (reference-list-basic-rules) receberam 403 do
-proxy; seu conteúdo não foi consultado nem incorporado nesta etapa. Não se
-anuncia nova validação normativa externa. O motor não consulta rede.
-
-A revista mantém suas diretrizes próprias de apresentação; não se impõe uma
-regra genérica de APA que contradiga o espaçamento editorial documentado.
-Identidade de autores, existência/correção bibliográfica, sentido das citações
-e fidelidade à fonte permanecem para conferência humana.
-
-## Pendências para encerrar a frente
-
-A Etapa 37 fecha a ligação dos marcadores especiais neste subconjunto, não toda
-APA 7. A Etapa 38 consolida a regressão integrada
-na base histórica: erro → correção → nova análise → revisão humana, com bloqueio
-por falha comprovada e invalidação da liberação anterior. Os 32 ensaios
-direcionados da Etapa 37 foram incorporados à regressão ampliada; resultado e
-limites em HOMOLOGATION.md. A Etapa 48 repete e amplia a regressão integrada
-na base então atual, incluindo narrativas/localizadores e ordenação entre coautorias.
-A Etapa 53 consolida a regressão da base atual com títulos, pontuação e datas
-completas; isso não amplia a cobertura normativa.
-
-A matriz acima continua aberta para variantes de teses/relatórios e outros tipos
-bibliográficos (páginas, dados/software e traduções), ordenação da lista com empates,
-diacríticos/partículas, apresentação inicial de siglas, prefixos mínimos especiais,
-variantes de citações diretas/localizadores fora das Etapas 45–46 e datas completas/originais. Conferência do teor,
-da autoria, da fonte consultada e da existência dos dados permanece humana.
-Não tratar esses itens como concluídos por ausência de falha automática.
-
-## Word .doc — via humana da Etapa 56
-
-A [Etapa 56](STAGE56.md) distingue uma via explícita de conferência humana para
-um subconjunto de Word binário. Não aplica detecção automática de APA/ABNT ao
-conteúdo `.doc`; exige declaração de abertura/leitura e conferência APA/diretrizes,
-com histórico e vínculo da versão. Não libera por extensão nem substitui falha
-comprovada em DOCX. A revisão humana não certifica o comportamento semântico
-do arquivo; variantes não identificadas continuam pendentes.
-
-## Citações EN/ES — Etapa 57
-
-[STAGE57.md](STAGE57.md) habilita a análise de citações em inglês/espanhol,
-com idioma declarado e limites lexicais documentados. Inclui conjunções, et al.,
-localizadores e fonte consultada em secundárias; apud segue bloqueado. Mistura
-de idioma, contexto incompleto e estruturas fora da gramática ficam para revisão.
-Não valida semanticamente as fontes nem amplia o matcher para datas completas.
-Motor 0.42.0 exige nova revisão das versões anteriormente liberadas em 0.41.0.
-
-## Correspondência com datas completas — Etapa 58
-
-[STAGE58.md](STAGE58.md) projeta o ano declarado de datas completas válidas
-no calendário EN/PT já reconhecido, somente no matcher pessoal. Candidatas
-múltiplas, sufixos e edição original permanecem para revisão. O parser de
-formato e a política não mudam; datas e referências não são reescritas.
-A ligação é possível nos perfis pt/en/es, sem ampliar meses espanhóis ou
-certificar identidade da obra. Motor 0.43.0 exige nova revisão de liberações
-anteriores; não há aprovação automática.
-
-## Marcadores espanhóis de data — Etapa 59
-
-[STAGE59.md](STAGE59.md) reconhece s.f./en prensa e suas equivalências lexicais
-com n.d./s.d. e in press/no prelo, conservando os sufixos suportados. O estado
-real da obra e a edição continuam humanos. Não gera ano nem atribui letras;
-variante não reconhecida não vira ausência comprovada. Motor 0.44.0 exige nova
-revisão de liberações anteriores. A ficha de datas é privada e não envia cartas.
+O [histórico até a Etapa 59](APA7_HISTORY.md) preserva as ampliações, tentativas
+de consulta normativa registradas e referências anteriores. Não é a fila vigente.
