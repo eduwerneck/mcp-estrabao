@@ -2,7 +2,8 @@
 
 **Procedimento atual:** [instalação e atualização isoladas — Etapa 61](INSTALLATION.md).
 Plugin 0.39.0.0/motor 0.44.0, em dois componentes.
-[Permissões, concorrência e recuperação ensaiadas — Etapa 62](OPERATIONS.md). As descrições de esqueleto
+[Permissões, concorrência e recuperação ensaiadas — Etapa 62](OPERATIONS.md).
+[Percurso editorial nativo sintético — Etapa 63](EDITORIAL_REHEARSAL.md). As descrições de esqueleto
 e procedimentos futuros abaixo registram etapas históricas, não o estado atual.
 
 ## Ambiente local

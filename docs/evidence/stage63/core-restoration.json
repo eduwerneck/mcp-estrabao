@@ -1,0 +1,17 @@
+[
+  {
+    "path": "lib/pkp/classes/security/authorization/internal/UserAccessibleWorkflowStagePolicy.inc.php",
+    "sha256": "b3c35513281ae802c9cad62456df8ae4bed1c2328d41dd61382c4d8385b93a7e",
+    "identical_to_unmodified_same_image_source": true
+  },
+  {
+    "path": "lib/pkp/classes/security/authorization/internal/UserAccessibleWorkflowStageRequiredPolicy.inc.php",
+    "sha256": "36d22da9f7ee3de6c5081296089908628b54e9b54f980890d389a01459b6e40e",
+    "identical_to_unmodified_same_image_source": true
+  },
+  {
+    "path": "lib/pkp/controllers/wizard/fileUpload/FileUploadWizardHandler.inc.php",
+    "sha256": "cf9496ce451a6d3a963d19a621edbd2a656b33bc85f6489d2935b7fa0e29f8f2",
+    "identical_to_unmodified_same_image_source": true
+  }
+]

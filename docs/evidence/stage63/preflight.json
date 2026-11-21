@@ -1,0 +1,16 @@
+{
+  "reused_instance": "estrabao-lab-62-restore-web",
+  "reused_database": "estrabao-lab-62-restore-db",
+  "application_image_digest": "pkpofficial/ojs@sha256:87198f196f9f396ae0342a21dba6b9a9cf7afe35c58576758ee37998adf2c9e1",
+  "database_image_digest": "mariadb@sha256:c7d726a1c0d29e486a1ab4ef0c76c75431a11428e76c50e99ba32106cea04114",
+  "user": "100:101",
+  "internal_network_only": true,
+  "published_ports": false,
+  "checkout_bind_mounts": false,
+  "sendmail_neutralized": true,
+  "new_draft_created_by_author_http": true,
+  "synthetic_trilingual_context_configuration": true,
+  "production_accessed": false,
+  "oracle_vm_accessed": false,
+  "preexisting_submission_states_unchanged": true
+}
