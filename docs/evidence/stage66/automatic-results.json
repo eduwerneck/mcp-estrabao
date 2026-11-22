@@ -1,0 +1,70 @@
+[
+  {
+    "case": "native author creates draft",
+    "passed": true
+  },
+  {
+    "case": "native multipart upload succeeds",
+    "passed": true
+  },
+  {
+    "case": "reference field is visible in homologation",
+    "passed": true
+  },
+  {
+    "case": "funding field is visible in homologation",
+    "passed": true
+  },
+  {
+    "case": "draft reaches confirmation",
+    "passed": true
+  },
+  {
+    "case": "invalid CSRF cannot complete or reject",
+    "passed": true
+  },
+  {
+    "case": "native confirmation reports completion",
+    "passed": true
+  },
+  {
+    "case": "submission is received then declined",
+    "passed": true
+  },
+  {
+    "case": "author sees automatic rejection and letter",
+    "passed": true
+  },
+  {
+    "case": "editor sees automatic decision",
+    "passed": true
+  },
+  {
+    "case": "editor cannot release already declined submission",
+    "passed": true
+  },
+  {
+    "case": "one native decline decision belongs to configured editor",
+    "passed": true
+  },
+  {
+    "case": "native email log contains automatic letter",
+    "passed": true
+  },
+  {
+    "case": "repeat confirmation is idempotent",
+    "passed": true
+  },
+  {
+    "case": "unavailable engine receives without automatic rejection",
+    "passed": true
+  },
+  {
+    "case": "author sees editorial pending after analyzer failure",
+    "passed": true
+  },
+  {
+    "case": "editor receives native task after analyzer failure",
+    "passed": true
+  }
+]

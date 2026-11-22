@@ -371,3 +371,27 @@ msgstr "Manuscrito em análise"
 
 msgid "plugins.generic.estrabao.reviewFileUnidentified"
 msgstr "Não foi possível identificar um único arquivo para esta análise."
+
+msgid "plugins.generic.estrabao.autoRetry"
+msgstr "Não foi possível concluir esta operação. Atualize a página e confira o estado da submissão antes de tentar novamente."
+
+msgid "plugins.generic.estrabao.autoDeclined"
+msgstr "Submissão rejeitada na triagem automática"
+
+msgid "plugins.generic.estrabao.autoPending"
+msgstr "Submissão recebida — aguardando conferência editorial"
+
+msgid "plugins.generic.estrabao.autoMailStatus"
+msgstr "Comunicação por e-mail"
+
+msgid "plugins.generic.estrabao.autoLog"
+msgstr "Triagem automática (política {$policy}), resultado {$outcome}, sob responsabilidade editorial da conta {$editorId}."
+
+msgid "plugins.generic.estrabao.autoMailSent"
+msgstr "Encaminhada ao serviço de e-mail."
+
+msgid "plugins.generic.estrabao.autoMailFailed"
+msgstr "Falha no envio; a equipe editorial foi avisada. A decisão permanece registrada."
+
+msgid "plugins.generic.estrabao.autoMailPending"
+msgstr "Envio pendente de conferência editorial."

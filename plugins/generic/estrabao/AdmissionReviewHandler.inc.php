@@ -93,6 +93,14 @@ class EstrabaoAdmissionReviewHandler extends Handler
                 }
             } catch (\Throwable $error) { /* Identification must not change the review result. */ }
         }
+        $automatic = null;
+        if ($identity && Config::getVar('estrabao', 'post_submission_triage') === true) {
+            require_once __DIR__ . '/AutomaticTriage.inc.php';
+            $automatic = EstrabaoAutomaticTriage::state($identity['id']);
+            if ($automatic) { $message = null; $model = null; }
+        }
+        $manager->assign('automaticTriage', $automatic);
+        $manager->assign('automaticResultTemplate', self::$plugin->getTemplateResource('automaticResult.tpl'));
         $manager->assign('reviewIdentity', $identity);
         $manager->assign('downloadReviewUrl', $model && $model['analysis']['fingerprint']
             ? $request->getRouter()->url($request, null, 'estrabaoAdmission', 'download', null,

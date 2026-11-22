@@ -13,6 +13,9 @@ class EstrabaoPlugin extends GenericPlugin
             HookRegistry::register('TemplateManager::display', [$this, 'titleFormAssets']);
         }
         if ($this->getEnabled($mainContextId) && Config::getVar('estrabao', 'admission_gate') === true) {
+            HookRegistry::register('SubmissionHandler::saveSubmit', [$this, 'automaticConfirmation']);
+            HookRegistry::register('submissionsubmitstep3form::Constructor', [$this, 'automaticMetadata']);
+            HookRegistry::register('TemplateManager::fetch', [$this, 'automaticCompletion']);
             HookRegistry::register('submissionsubmitstep4form::validate', [$this, 'validateAdmission']);
             HookRegistry::register('LoadHandler', [$this, 'loadReviewHandler']);
             HookRegistry::register('TemplateManager::display', [$this, 'reviewNavigationAssets']);
@@ -77,6 +80,10 @@ class EstrabaoPlugin extends GenericPlugin
             ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
         $manager->addJavaScript('estrabao-reference-guidance', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/reference-guidance.js',
             ['contexts'=>['backend'], 'priority'=>20]);
+        if (Config::getVar('estrabao', 'post_submission_triage') === true) {
+            $manager->addJavaScript('estrabao-funding-guidance', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/funding-guidance.js',
+                ['contexts'=>['backend'], 'priority'=>20]);
+        }
         return false;
     }
 
@@ -104,6 +111,7 @@ class EstrabaoPlugin extends GenericPlugin
 
     function validateAdmission($hookName, $args)
     {
+        if (Config::getVar('estrabao', 'post_submission_triage') === true) { return false; }
         $form = $args[0];
         try {
             $context = Application::get()->getRequest()->getContext();
@@ -131,6 +139,57 @@ class EstrabaoPlugin extends GenericPlugin
         // Continue Form::validate: its native notification exposes these errors.
         // Returning true here would skip notification creation and hide the reason.
         return false;
+    }
+
+    /** Keep native fields visible in the author wizard, without modifying stored journal settings. */
+    function automaticMetadata($hookName, $args)
+    {
+        $context = Application::get()->getRequest()->getContext();
+        if ($context && $this->getEnabled($context->getId())
+            && Config::getVar('estrabao', 'post_submission_triage') === true) {
+            $context->setData('citations', 'request');
+            $context->setData('agencies', 'request');
+        }
+        return false;
+    }
+
+    function automaticConfirmation($hookName, $args)
+    {
+        $request = Application::get()->getRequest(); $context = $request->getContext();
+        if ((int)$args[0] !== 4 || !$context || !$this->getEnabled($context->getId())
+            || Config::getVar('estrabao', 'post_submission_triage') !== true) { return false; }
+        $form = $args[2];
+        // Native handler already authorizes the submission. Native form checks POST and CSRF.
+        if (!$form->validate()) { return false; }
+        require_once __DIR__ . '/AutomaticTriage.inc.php';
+        try {
+            (new EstrabaoAutomaticTriage())->complete($form, $request);
+            $json = new JSONMessage(true); $json->setEvent('setStep', 5);
+        } catch (\Throwable $error) {
+            $json = new JSONMessage(false, __('plugins.generic.estrabao.autoRetry'));
+        }
+        // This native hook has no response slot; emit the same JSON envelope as saveStep.
+        header('Content-Type: application/json; charset=utf-8');
+        echo $json->getString();
+        exit;
+    }
+
+    function automaticCompletion($hookName, $args)
+    {
+        if ($args[1] !== 'submission/form/complete.tpl'
+            || Config::getVar('estrabao', 'post_submission_triage') !== true) { return false; }
+        $request = Application::get()->getRequest(); $context = $request->getContext();
+        if (!$context || !$this->getEnabled($context->getId())) { return false; }
+        // This template is fetched only by the authorized native submission handler.
+        $manager = $args[0]; $id = (int)$manager->getTemplateVars('submissionId');
+        $submission = DAORegistry::getDAO('SubmissionDAO')->getById($id);
+        if (!$submission || (int)$submission->getContextId() !== (int)$context->getId()) { return false; }
+        require_once __DIR__ . '/AutomaticTriage.inc.php';
+        $state = EstrabaoAutomaticTriage::state($id);
+        if (!$state) { return false; }
+        $manager->assign('automaticTriage', $state);
+        $args[4] = $manager->fetch($this->getTemplateResource('automaticComplete.tpl'));
+        return true;
     }
 
     function loadReviewHandler($hookName, $args)

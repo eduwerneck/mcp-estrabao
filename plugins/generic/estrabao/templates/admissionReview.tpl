@@ -21,6 +21,9 @@
         <button type="submit">{translate key="plugins.generic.estrabao.reviewOpen"}</button>
     </form>
     {if $reviewIdentity}</details>{/if}
+    {if $automaticTriage}
+        {include file=$automaticResultTemplate}
+    {/if}
     {if $reviewModel}
         {if $reviewModel.analysis.decision == 'not_accepted'}
             <p>{translate key="plugins.generic.estrabao.apaNotAccepted"}</p>
