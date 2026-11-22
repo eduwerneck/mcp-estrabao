@@ -356,3 +356,9 @@ msgstr "Revisión de fechas especiales"
 
 msgid "plugins.generic.estrabao.specialDateReviewInstructions"
 msgstr "Compruebe en la fuente la ausencia de fecha o el estado en prensa y la edición consultada. s.f. y en prensa son marcadores declarados: no prueban publicación, no generan un año ni se sustituyen automáticamente. Conserve los sufijos indicados y revise las ambigüedades."
+
+msgid "plugins.generic.estrabao.viewTriage"
+msgstr "Ver evaluación preliminar"
+
+msgid "plugins.generic.estrabao.reviewNotPending"
+msgstr "La evaluación de admisión está disponible solo para borradores en el paso 4 (Confirmación). Este envío no está en ese paso. No se ha modificado ninguna decisión."
