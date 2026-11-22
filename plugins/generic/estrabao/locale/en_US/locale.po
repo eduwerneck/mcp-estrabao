@@ -356,3 +356,9 @@ msgstr "Special date review"
 
 msgid "plugins.generic.estrabao.specialDateReviewInstructions"
 msgstr "Check the source for the absence of a date or in-press status and the consulted edition. s.f. and en prensa are declared markers: they do not prove publication, generate a year or get replaced automatically. Preserve declared suffixes and review ambiguities."
+
+msgid "plugins.generic.estrabao.viewTriage"
+msgstr "View triage"
+
+msgid "plugins.generic.estrabao.reviewNotPending"
+msgstr "Admission triage is available only for drafts at step 4 (Confirmation). This submission is not at that step. No decision has been changed."

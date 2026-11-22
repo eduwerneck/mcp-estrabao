@@ -15,6 +15,7 @@ class EstrabaoPlugin extends GenericPlugin
         if ($this->getEnabled($mainContextId) && Config::getVar('estrabao', 'admission_gate') === true) {
             HookRegistry::register('submissionsubmitstep4form::validate', [$this, 'validateAdmission']);
             HookRegistry::register('LoadHandler', [$this, 'loadReviewHandler']);
+            HookRegistry::register('TemplateManager::display', [$this, 'reviewNavigationAssets']);
         }
         return true;
     }
@@ -75,6 +76,28 @@ class EstrabaoPlugin extends GenericPlugin
                 'review'=>__('plugins.generic.estrabao.referenceSeparationReview')], JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';',
             ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
         $manager->addJavaScript('estrabao-reference-guidance', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/reference-guidance.js',
+            ['contexts'=>['backend'], 'priority'=>20]);
+        return false;
+    }
+
+    /** Add a contextual action to expanded submission-list rows, for editorial managers only. */
+    function reviewNavigationAssets($hookName, $args)
+    {
+        if (($args[1] ?? null) !== 'dashboard/index.tpl') { return false; }
+        $request = Application::get()->getRequest();
+        $context = $request->getContext();
+        if (!$context || !$this->getEnabled($context->getId())
+            || Config::getVar('estrabao', 'admission_gate') !== true) { return false; }
+        require_once __DIR__ . '/AdmissionReviewService.inc.php';
+        try { (new EstrabaoAdmissionReviewService())->requireEditor($request); }
+        catch (\Throwable $error) { return false; }
+        $manager = $args[0];
+        $config = ['url' => $request->getRouter()->url($request, null, 'estrabaoAdmission', 'review'),
+            'label' => __('plugins.generic.estrabao.viewTriage')];
+        $manager->addJavaScript('estrabao-review-navigation-config', 'window.estrabaoReviewNavigation=' .
+            json_encode($config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';',
+            ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
+        $manager->addJavaScript('estrabao-review-navigation', $request->getBaseUrl() . '/' . $this->getPluginPath() . '/review-navigation.js',
             ['contexts'=>['backend'], 'priority'=>20]);
         return false;
     }

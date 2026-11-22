@@ -356,3 +356,9 @@ msgstr "Conferência de datas especiais"
 
 msgid "plugins.generic.estrabao.specialDateReviewInstructions"
 msgstr "Confira na fonte a ausência de data ou a situação no prelo e a edição consultada. s.f. e en prensa são marcadores declarados: não comprovam publicação, não geram um ano e não são substituídos automaticamente. Preserve os sufixos informados e confira ambiguidades."
+
+msgid "plugins.generic.estrabao.viewTriage"
+msgstr "Visualizar triagem"
+
+msgid "plugins.generic.estrabao.reviewNotPending"
+msgstr "A triagem de admissão está disponível apenas para rascunhos na etapa 4 (Confirmação). Esta submissão não está nessa etapa. Nenhuma decisão foi alterada."

@@ -65,8 +65,16 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $manager = TemplateManager::getManager($request);
         $model = null;
         if ($submissionId !== null && $submissionId !== '') {
-            try { $model = (new EstrabaoAdmissionReviewService())->view($request, $submissionId); }
-            catch (\Throwable $error) { $message = 'plugins.generic.estrabao.reviewUnavailable'; }
+            try {
+                $submission = is_scalar($submissionId) && preg_match('/^[1-9][0-9]{0,8}$/D', (string) $submissionId)
+                    ? DAORegistry::getDAO('SubmissionDAO')->getById((int) $submissionId) : null;
+                if ($submission && (int) $submission->getContextId() === (int) $request->getContext()->getId()
+                    && (int) $submission->getSubmissionProgress() !== 4) {
+                    $message = 'plugins.generic.estrabao.reviewNotPending';
+                } else {
+                    $model = (new EstrabaoAdmissionReviewService())->view($request, $submissionId);
+                }
+            } catch (\Throwable $error) { $message = 'plugins.generic.estrabao.reviewUnavailable'; }
         }
         $manager->assign('downloadReviewUrl', $model && $model['analysis']['fingerprint']
             ? $request->getRouter()->url($request, null, 'estrabaoAdmission', 'download', null,
