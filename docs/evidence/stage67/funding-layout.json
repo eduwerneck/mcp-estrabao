@@ -1,0 +1,18 @@
+[
+  {
+    "case": "single_locale",
+    "visible_help": true,
+    "native_field_section": true,
+    "no_duplicate": true,
+    "ajax_replacement": true,
+    "bibliography_unchanged": true
+  },
+  {
+    "case": "multiple_locales",
+    "visible_help": true,
+    "native_field_section": true,
+    "no_duplicate": true,
+    "ajax_replacement": true,
+    "bibliography_unchanged": true
+  }
+]
