@@ -1,0 +1,82 @@
+[
+  {
+    "case": "editor receives navigation configuration",
+    "passed": true
+  },
+  {
+    "case": "expanded row links to its own submission",
+    "passed": true
+  },
+  {
+    "case": "accessible name includes submission id",
+    "passed": true
+  },
+  {
+    "case": "reopening menu creates one action only",
+    "passed": true
+  },
+  {
+    "case": "malformed row id removes action",
+    "passed": true
+  },
+  {
+    "case": "action returns after list reload",
+    "passed": true
+  },
+  {
+    "case": "author does not receive navigation configuration",
+    "passed": true
+  },
+  {
+    "case": "author has no triage action",
+    "passed": true
+  },
+  {
+    "case": "native direct author access remains denied",
+    "passed": true
+  },
+  {
+    "case": "completed submission has explicit stage explanation",
+    "passed": true
+  },
+  {
+    "case": "completed submission offers no release form",
+    "passed": true
+  },
+  {
+    "case": "pending submission still opens triage",
+    "passed": true
+  },
+  {
+    "case": "review identifies selected submission",
+    "passed": true
+  },
+  {
+    "case": "review shows submission title",
+    "passed": true
+  },
+  {
+    "case": "review shows bound manuscript name",
+    "passed": true
+  },
+  {
+    "case": "lookup is secondary and collapsed",
+    "passed": true
+  },
+  {
+    "case": "another submission lookup remains available",
+    "passed": true
+  },
+  {
+    "case": "native row action opens its own review page",
+    "passed": true
+  },
+  {
+    "case": "gate disabled omits navigation configuration",
+    "passed": true
+  },
+  {
+    "case": "gate disabled omits triage action",
+    "passed": true
+  }
+]

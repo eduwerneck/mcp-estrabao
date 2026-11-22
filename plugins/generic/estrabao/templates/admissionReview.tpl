@@ -3,6 +3,15 @@
     <h1>{translate key="plugins.generic.estrabao.reviewTitle"}</h1>
     <p>{translate key="plugins.generic.estrabao.reviewScope"}</p>
     {if $reviewMessage}<p role="status">{translate key=$reviewMessage}</p>{/if}
+    {if $reviewIdentity}
+        <section aria-labelledby="estrabaoCurrentSubmission">
+            <h2 id="estrabaoCurrentSubmission">{translate key="plugins.generic.estrabao.reviewSubmission"} {$reviewIdentity.id|escape}</h2>
+            <p class="estrabaoReviewTitle">{$reviewIdentity.title|escape}</p>
+            <p>{translate key="plugins.generic.estrabao.reviewManuscript"}: {if $reviewIdentity.filename}{$reviewIdentity.filename|escape}{else}{translate key="plugins.generic.estrabao.reviewFileUnidentified"}{/if}</p>
+        </section>
+        <details class="estrabaoReviewLookup">
+            <summary>{translate key="plugins.generic.estrabao.reviewAnother"}</summary>
+    {/if}
     <form method="get" action="{$reviewUrl|escape}">
         {foreach from=$reviewLookupParams key=param item=value}
             <input type="hidden" name="{$param|escape}" value="{$value|escape}">
@@ -11,8 +20,8 @@
         <input id="estrabaoSubmissionId" name="submissionId" type="number" min="1" max="999999999" required>
         <button type="submit">{translate key="plugins.generic.estrabao.reviewOpen"}</button>
     </form>
+    {if $reviewIdentity}</details>{/if}
     {if $reviewModel}
-        <h2>{translate key="plugins.generic.estrabao.reviewSubmission"} {$reviewModel.submission_id|escape}</h2>
         {if $reviewModel.analysis.decision == 'not_accepted'}
             <p>{translate key="plugins.generic.estrabao.apaNotAccepted"}</p>
         {elseif $reviewModel.release_active}

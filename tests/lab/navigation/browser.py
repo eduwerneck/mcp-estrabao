@@ -96,6 +96,16 @@ with sync_playwright() as p:
     check('completed submission offers no release form', 'id="estrabaoApaReviewForm"' not in page['body'])
     page = native_editor.get('/index.php/estrabao-lab/estrabaoAdmission/review?submissionId=' + str(pending['id']))
     check('pending submission still opens triage', 'page_estrabao_review' in page['body'] and 'reviewNotPending' not in page['body'] and 'Esta submissão não está nessa etapa' not in page['body'])
+    editor.goto(BASE + '/estrabaoAdmission/review?submissionId=' + str(pending['id']))
+    identity = editor.locator('#estrabaoCurrentSubmission')
+    identity.wait_for()
+    check('review identifies selected submission', identity.inner_text().strip().endswith(str(pending['id'])))
+    check('review shows submission title', bool(editor.locator('.estrabaoReviewTitle').inner_text().strip()))
+    check('review shows bound manuscript name', 'Não foi possível identificar' not in editor.locator('section[aria-labelledby="estrabaoCurrentSubmission"]').inner_text())
+    check('lookup is secondary and collapsed', not editor.locator('.estrabaoReviewLookup').evaluate('el => el.open') and not editor.locator('#estrabaoSubmissionId').is_visible())
+    editor.locator('.estrabaoReviewLookup summary').click()
+    check('another submission lookup remains available', editor.locator('#estrabaoSubmissionId').is_visible())
+    editor.screenshot(path='/tmp/estrabao-stage65-identity.png')
     # Confirm that the contextual action really navigates, with no typed URL/id.
     editor.goto(BASE + '/submissions#active')
     row = editor.locator('.listPanel__item--submission:visible').first
@@ -122,6 +132,6 @@ with sync_playwright() as p:
         gate('On')
     browser.close()
 
-out = ROOT / 'docs/evidence/stage64'
+out = ROOT / 'docs/evidence/stage65'
 out.mkdir(parents=True, exist_ok=True)
 (out / 'navigation-results.json').write_text(json.dumps(results, indent=2) + '\n')

@@ -64,18 +64,36 @@ class EstrabaoAdmissionReviewHandler extends Handler
         $this->setupTemplate($request);
         $manager = TemplateManager::getManager($request);
         $model = null;
+        $identity = null;
         if ($submissionId !== null && $submissionId !== '') {
             try {
                 $submission = is_scalar($submissionId) && preg_match('/^[1-9][0-9]{0,8}$/D', (string) $submissionId)
                     ? DAORegistry::getDAO('SubmissionDAO')->getById((int) $submissionId) : null;
-                if ($submission && (int) $submission->getContextId() === (int) $request->getContext()->getId()
-                    && (int) $submission->getSubmissionProgress() !== 4) {
+                if ($submission && (int) $submission->getContextId() === (int) $request->getContext()->getId()) {
+                    $identity = ['id' => (int) $submission->getId(), 'title' => $submission->getLocalizedTitle(), 'filename' => null];
+                }
+                if ($identity && (int) $submission->getSubmissionProgress() !== 4) {
                     $message = 'plugins.generic.estrabao.reviewNotPending';
                 } else {
                     $model = (new EstrabaoAdmissionReviewService())->view($request, $submissionId);
                 }
             } catch (\Throwable $error) { $message = 'plugins.generic.estrabao.reviewUnavailable'; }
         }
+        // Show only the file bound to this analysis; never choose an arbitrary attachment.
+        if ($identity && $model && isset($model['analysis']['binding']['submission_file_id'])) {
+            try {
+                foreach (Services::get('submissionFile')->getMany(['submissionIds' => [$identity['id']],
+                    'fileStages' => [SUBMISSION_FILE_SUBMISSION], 'includeDependentFiles' => false]) as $file) {
+                    if ((int) $file->getId() === (int) $model['analysis']['binding']['submission_file_id']
+                        && (int) $file->getData('submissionId') === $identity['id']
+                        && (int) $file->getData('fileId') === (int) $model['analysis']['binding']['file_id']) {
+                        $identity['filename'] = $file->getLocalizedData('name');
+                        break;
+                    }
+                }
+            } catch (\Throwable $error) { /* Identification must not change the review result. */ }
+        }
+        $manager->assign('reviewIdentity', $identity);
         $manager->assign('downloadReviewUrl', $model && $model['analysis']['fingerprint']
             ? $request->getRouter()->url($request, null, 'estrabaoAdmission', 'download', null,
                 ['submissionId' => $model['submission_id'], 'fingerprint' => $model['analysis']['fingerprint']]) : null);
