@@ -362,3 +362,12 @@ msgstr "Visualizar triagem"
 
 msgid "plugins.generic.estrabao.reviewNotPending"
 msgstr "A triagem de admissão está disponível apenas para rascunhos na etapa 4 (Confirmação). Esta submissão não está nessa etapa. Nenhuma decisão foi alterada."
+
+msgid "plugins.generic.estrabao.reviewAnother"
+msgstr "Abrir outra submissão"
+
+msgid "plugins.generic.estrabao.reviewManuscript"
+msgstr "Manuscrito em análise"
+
+msgid "plugins.generic.estrabao.reviewFileUnidentified"
+msgstr "Não foi possível identificar um único arquivo para esta análise."

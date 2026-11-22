@@ -362,3 +362,12 @@ msgstr "View triage"
 
 msgid "plugins.generic.estrabao.reviewNotPending"
 msgstr "Admission triage is available only for drafts at step 4 (Confirmation). This submission is not at that step. No decision has been changed."
+
+msgid "plugins.generic.estrabao.reviewAnother"
+msgstr "Open another submission"
+
+msgid "plugins.generic.estrabao.reviewManuscript"
+msgstr "Manuscript under review"
+
+msgid "plugins.generic.estrabao.reviewFileUnidentified"
+msgstr "A unique file could not be identified for this analysis."

@@ -362,3 +362,12 @@ msgstr "Ver evaluación preliminar"
 
 msgid "plugins.generic.estrabao.reviewNotPending"
 msgstr "La evaluación de admisión está disponible solo para borradores en el paso 4 (Confirmación). Este envío no está en ese paso. No se ha modificado ninguna decisión."
+
+msgid "plugins.generic.estrabao.reviewAnother"
+msgstr "Abrir otro envío"
+
+msgid "plugins.generic.estrabao.reviewManuscript"
+msgstr "Manuscrito en revisión"
+
+msgid "plugins.generic.estrabao.reviewFileUnidentified"
+msgstr "No se pudo identificar un único archivo para este análisis."

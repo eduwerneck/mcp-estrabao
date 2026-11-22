@@ -30,6 +30,8 @@ class AdmissionTestRecord {
     function getId() { return $this->getData('id'); }
     function getContextId() { return $this->getData('contextId'); }
     function getLocale() { return $this->getData('locale'); }
+    function getLocalizedTitle() { return $this->getData('title') ?? ''; }
+    function getLocalizedData($key) { return $this->getData($key); }
     function getCurrentPublication() { return $this->getData('currentPublication'); }
     function getSubmissionProgress() { return $this->getData('submissionProgress'); }
 }
