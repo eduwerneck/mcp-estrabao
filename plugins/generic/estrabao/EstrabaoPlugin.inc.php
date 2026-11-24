@@ -1,6 +1,7 @@
 <?php
 /** OJS 3.3.0.20: API legada; bloqueio de confirmação opt-in em homologação. */
 import('lib.pkp.classes.plugins.GenericPlugin');
+require_once __DIR__ . '/TestScope.inc.php';
 
 class EstrabaoPlugin extends GenericPlugin
 {
@@ -26,6 +27,7 @@ class EstrabaoPlugin extends GenericPlugin
     /** Only the public article landing page; no galley, preview or metadata writes. */
     function articleSubmittedDate($hookName, $args)
     {
+        if (EstrabaoTestScope::active()) { return false; }
         if (($args[1] ?? null) !== 'frontend/pages/article.tpl') { return false; }
         $request = Application::get()->getRequest(); $context = $request->getContext();
         if (!$context || !$this->getEnabled($context->getId())) { return false; }
@@ -49,6 +51,7 @@ class EstrabaoPlugin extends GenericPlugin
     /** Advisory descriptions in the publication metadata form (author/editor). */
     function titleFormConfig($hookName, $args)
     {
+        if (EstrabaoTestScope::active()) { return false; }
         $context = Application::get()->getRequest()->getContext();
         if (!$context || !$this->getEnabled($context->getId())) { return false; }
         $config =& $args[0];
@@ -65,6 +68,7 @@ class EstrabaoPlugin extends GenericPlugin
     /** Legacy wizard fields are inserted by AJAX; the script only adds help text. */
     function titleFormAssets($hookName, $args)
     {
+        if (!EstrabaoTestScope::requestMatches(Application::get()->getRequest())) { return false; }
         $request = Application::get()->getRequest(); $context = $request->getContext();
         if (!$context || !$this->getEnabled($context->getId())) { return false; }
         $manager = $args[0];
@@ -101,6 +105,7 @@ class EstrabaoPlugin extends GenericPlugin
         $manager = $args[0];
         $config = ['url' => $request->getRouter()->url($request, null, 'estrabaoAdmission', 'review'),
             'label' => __('plugins.generic.estrabao.viewTriage')];
+        if (EstrabaoTestScope::active()) { $config['testSubmissionId'] = (string)EstrabaoTestScope::id(); }
         $manager->addJavaScript('estrabao-review-navigation-config', 'window.estrabaoReviewNavigation=' .
             json_encode($config, JSON_HEX_TAG | JSON_HEX_AMP | JSON_HEX_APOS | JSON_HEX_QUOT) . ';',
             ['inline'=>true, 'contexts'=>['backend'], 'priority'=>10]);
@@ -111,6 +116,7 @@ class EstrabaoPlugin extends GenericPlugin
 
     function validateAdmission($hookName, $args)
     {
+        if (!EstrabaoTestScope::matches($args[0]->submissionId)) { return false; }
         if (Config::getVar('estrabao', 'post_submission_triage') === true) { return false; }
         $form = $args[0];
         try {
@@ -144,6 +150,7 @@ class EstrabaoPlugin extends GenericPlugin
     /** Keep native fields visible in the author wizard, without modifying stored journal settings. */
     function automaticMetadata($hookName, $args)
     {
+        if (!EstrabaoTestScope::requestMatches(Application::get()->getRequest())) { return false; }
         $context = Application::get()->getRequest()->getContext();
         if ($context && $this->getEnabled($context->getId())
             && Config::getVar('estrabao', 'post_submission_triage') === true) {
@@ -159,6 +166,7 @@ class EstrabaoPlugin extends GenericPlugin
         if ((int)$args[0] !== 4 || !$context || !$this->getEnabled($context->getId())
             || Config::getVar('estrabao', 'post_submission_triage') !== true) { return false; }
         $form = $args[2];
+        if (!EstrabaoTestScope::matches($form->submissionId)) { return false; }
         // Native handler already authorizes the submission. Native form checks POST and CSRF.
         if (!$form->validate()) { return false; }
         require_once __DIR__ . '/AutomaticTriage.inc.php';
@@ -182,6 +190,7 @@ class EstrabaoPlugin extends GenericPlugin
         if (!$context || !$this->getEnabled($context->getId())) { return false; }
         // This template is fetched only by the authorized native submission handler.
         $manager = $args[0]; $id = (int)$manager->getTemplateVars('submissionId');
+        if (!EstrabaoTestScope::matches($id)) { return false; }
         $submission = DAORegistry::getDAO('SubmissionDAO')->getById($id);
         if (!$submission || (int)$submission->getContextId() !== (int)$context->getId()) { return false; }
         require_once __DIR__ . '/AutomaticTriage.inc.php';
@@ -194,6 +203,7 @@ class EstrabaoPlugin extends GenericPlugin
 
     function loadReviewHandler($hookName, $args)
     {
+        if (!EstrabaoTestScope::requestMatches(Application::get()->getRequest())) { return false; }
         if ($args[0] !== 'estrabaoAdmission' || !in_array($args[1], ['review', 'saveReview', 'download', 'deskDraft', 'saveEditorialReview'], true)) { return false; }
         $context = Application::get()->getRequest()->getContext();
         if (!$context || !$this->getEnabled($context->getId())
@@ -212,7 +222,8 @@ class EstrabaoPlugin extends GenericPlugin
             import('lib.pkp.classes.linkAction.LinkAction');
             import('lib.pkp.classes.linkAction.request.RedirectAction');
             $actions[] = new LinkAction('admissionReview', new RedirectAction(
-                $request->getRouter()->url($request, null, 'estrabaoAdmission', 'review')
+                $request->getRouter()->url($request, null, 'estrabaoAdmission', 'review', null,
+                    EstrabaoTestScope::active() ? ['submissionId'=>EstrabaoTestScope::id()] : [])
             ), __('plugins.generic.estrabao.reviewTitle'));
         }
         return $actions;

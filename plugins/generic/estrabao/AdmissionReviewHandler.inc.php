@@ -9,6 +9,7 @@ class EstrabaoAdmissionReviewHandler extends Handler
     function authorize($request, &$args, $roleAssignments)
     {
         try {
+            if (!EstrabaoTestScope::requestMatches($request)) { throw new RuntimeException('review_forbidden'); }
             (new EstrabaoAdmissionReviewService())->requireEditor($request);
             return parent::authorize($request, $args, $roleAssignments);
         } catch (\Throwable $error) { return false; }
@@ -59,7 +60,10 @@ class EstrabaoAdmissionReviewHandler extends Handler
 
     private function renderReview($request, $submissionId, $message, $draft = null)
     {
-        try { (new EstrabaoAdmissionReviewService())->requireEditor($request); }
+        try {
+            if (!EstrabaoTestScope::matches($submissionId)) { throw new RuntimeException('review_forbidden'); }
+            (new EstrabaoAdmissionReviewService())->requireEditor($request);
+        }
         catch (\Throwable $error) { http_response_code(403); return; }
         $this->setupTemplate($request);
         $manager = TemplateManager::getManager($request);

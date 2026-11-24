@@ -14,7 +14,8 @@
             var actions = row.querySelector('.listPanel__itemExpandedActions');
             var existing = row.querySelector('a.estrabaoReviewNavigation');
             var id = identity ? identity.textContent.trim() : '';
-            if (!actions || !/^[1-9][0-9]{0,8}$/.test(id)) {
+            if (!actions || !/^[1-9][0-9]{0,8}$/.test(id)
+                || (Object.prototype.hasOwnProperty.call(config, 'testSubmissionId') && id !== config.testSubmissionId)) {
                 if (existing) { existing.remove(); }
                 return;
             }

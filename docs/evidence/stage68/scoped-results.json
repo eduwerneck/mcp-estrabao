@@ -1,0 +1,38 @@
+[
+  {
+    "case": "target retains bibliography field",
+    "passed": true
+  },
+  {
+    "case": "selected submission receives one automatic decline",
+    "passed": true
+  },
+  {
+    "case": "only configured test recipient receives automatic letter",
+    "passed": true
+  },
+  {
+    "case": "test message subject is marked",
+    "passed": true
+  },
+  {
+    "case": "editor can read selected test result",
+    "passed": true
+  },
+  {
+    "case": "other submission keeps native field configuration",
+    "passed": true
+  },
+  {
+    "case": "other submission completes normally",
+    "passed": true
+  },
+  {
+    "case": "other submission has no plugin decision marker or letter",
+    "passed": true
+  },
+  {
+    "case": "direct editorial route cannot bypass scope",
+    "passed": true
+  }
+]

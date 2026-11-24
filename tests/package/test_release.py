@@ -41,8 +41,8 @@ class ReleaseTest(unittest.TestCase):
 
     def test_exact_product_inventory(self):
         m = json.loads((self.original / 'manifest.json').read_text())
-        self.assertEqual(len(m['files']), 79)
-        self.assertEqual((m['plugin_version'], m['engine_version']), ('0.42.0.1', '0.44.0'))
+        self.assertEqual(len(m['files']), 80)
+        self.assertEqual((m['plugin_version'], m['engine_version']), ('0.43.0.0', '0.44.0'))
         for f in m['files']:
             self.assertEqual(r.digest(r.git('show', m['source_commit'] + ':' + f['source'])), f['sha256'])
 

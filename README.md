@@ -1,7 +1,7 @@
 # MCP Estrabão
 
 Apoio à triagem editorial preliminar da Revista Estrabão (OJS 3.3.0.20).
-Estado atual: [acesso contextual à triagem — Etapa 64](docs/STAGE66.md),
+Estado atual: [teste restrito por submissão — Etapa 68](docs/STAGE68.md),
 [balanço da triagem](docs/TRIAGE_COVERAGE.md) e
 [próximas entregas](docs/PENDING_REQUIREMENTS.md).
 As Etapas 1 a 63 implementam um motor PHP local, contratos JSON, testes sintéticos e
@@ -252,10 +252,12 @@ upload/revisão de DOCX pelo autor, ABNT retida, minuta privada, correção e
 liberação APA explícita. A conclusão registra recebimento, sem aceite/publicação
 automáticos; [procedimento e limites](docs/EDITORIAL_REHEARSAL.md).
 
-A [Etapa 64](docs/STAGE66.md) acrescenta **Visualizar triagem** às ações da lista
+A [Etapa 64](docs/STAGE68.md) acrescenta **Visualizar triagem** às ações da lista
 de submissões para a gerência editorial, com destino por manuscrito e explicação
 para submissões fora da etapa de confirmação. Plugin 0.40.0.0; motor 0.44.0.
 
 A revisão identifica a submissão e o manuscrito em análise; a busca por outro número fica recolhida em **Abrir outra submissão** (Etapa 65).
 
 Modo opcional de triagem após o recebimento (Etapa 66): rejeição automática por descumprimentos comprovados, carta no histórico e envio pelo OJS; referências e financiamento nos metadados. Casos inconclusivos seguem para conferência editorial.
+
+Teste restrito por ID e destinatário controlado: [procedimento para Eugenio](docs/TESTE-EUGENIO.md), plugin 0.43.0.0.

@@ -1,5 +1,6 @@
 <?php
 /** OJS 3.3.0.20 opt-in post-completion triage. Never impersonates the submitter as editor. */
+require_once __DIR__ . '/TestScope.inc.php';
 class EstrabaoAutomaticTriage
 {
     const SETTING = 'estrabaoAutomaticTriage';
@@ -26,7 +27,9 @@ class EstrabaoAutomaticTriage
     {
         $id = (int)$form->submissionId;
         $cid = (int)$request->getContext()->getId();
-        if (!self::enabled() || !$request->isPost() || !$request->checkCSRF() || !$request->getUser()
+        if (!EstrabaoTestScope::matches($id)
+            || (EstrabaoTestScope::active() && !EstrabaoTestScope::recipient())
+            || !self::enabled() || !$request->isPost() || !$request->checkCSRF() || !$request->getUser()
             || $id <= 0 || (int)$form->step !== 4 || (int)$form->submission->getContextId() !== $cid) {
             throw new RuntimeException('triage_forbidden');
         }
@@ -111,14 +114,17 @@ class EstrabaoAutomaticTriage
             $context = $request->getContext();
             $mail->setFrom($context->getData('contactEmail'), $context->getData('contactName'));
             $recipients = [];
-            foreach ($form->submission->getAuthors() as $author) {
+            foreach (EstrabaoTestScope::active() ? [] : $form->submission->getAuthors() as $author) {
                 $email = $author->getEmail();
                 if ($email && !isset($recipients[strtolower($email)])) {
                     $mail->addRecipient($email, $author->getFullName()); $recipients[strtolower($email)] = true;
                 }
             }
             $user = $request->getUser();
-            if (!isset($recipients[strtolower($user->getEmail())])) { $mail->addRecipient($user->getEmail(), $user->getFullName()); }
+            if (EstrabaoTestScope::active()) {
+                $mail->addRecipient(EstrabaoTestScope::recipient());
+                $state['subject'] = '[TESTE HOMOLOGAÇÃO] ' . $state['subject'];
+            } elseif (!isset($recipients[strtolower($user->getEmail())])) { $mail->addRecipient($user->getEmail(), $user->getFullName()); }
             $mail->setSubject($state['subject']);
             $mail->setBody(nl2br(htmlspecialchars($state['body'], ENT_QUOTES, 'UTF-8')));
             $state['mail'] = $mail->send($request) ? 'sent' : 'failed';

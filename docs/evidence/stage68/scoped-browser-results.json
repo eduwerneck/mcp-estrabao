@@ -1,0 +1,10 @@
+[
+  {
+    "case": "dashboard exposes triage only on selected test row",
+    "passed": true
+  },
+  {
+    "case": "other dashboard row has no triage action",
+    "passed": true
+  }
+]

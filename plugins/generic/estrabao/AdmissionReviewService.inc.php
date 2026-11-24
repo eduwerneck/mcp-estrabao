@@ -1,5 +1,6 @@
 <?php
 require_once __DIR__ . '/AdmissionBridge.inc.php';
+require_once __DIR__ . '/TestScope.inc.php';
 require_once __DIR__ . '/AdmissionReviewStore.inc.php';
 
 class EstrabaoAdmissionReviewService
@@ -16,7 +17,7 @@ class EstrabaoAdmissionReviewService
     function form($request, $submissionId)
     {
         $this->requireEditor($request);
-        if (!is_scalar($submissionId) || !preg_match('/^[1-9][0-9]{0,8}$/D', (string) $submissionId)) {
+        if (!EstrabaoTestScope::matches($submissionId) || !is_scalar($submissionId) || !preg_match('/^[1-9][0-9]{0,8}$/D', (string) $submissionId)) {
             throw new RuntimeException('review_unavailable');
         }
         $submission = DAORegistry::getDAO('SubmissionDAO')->getById((int) $submissionId);
